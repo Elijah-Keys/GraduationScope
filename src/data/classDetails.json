@@ -1,0 +1,4983 @@
+[
+  {
+    "className": "CCS 74 - Public Address",
+    "professor": "Ernesto Martinez",
+    "score": 4.3,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2656569",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 10:30AM - 11:45AM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "CCS 74 - Public Address",
+    "professor": "Rosanna Alvarez",
+    "score": 4.4,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2215963",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Roxanne Cnudde",
+    "score": 4.4,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/905203",
+    "schedule": [
+      "Th 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Anya Iyengar",
+    "score": 4.9,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/1619228",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Kendall Ward",
+    "score": 3.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/1877971",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Rahmon Pashtunyar",
+    "score": 4.4,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2443847",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 7:30AM - 8:45AM",
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Philip Bair",
+    "score": 4.7,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2417227",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM",
+      "MoWe 3:00PM - 4:15PM",
+      "TuTh 6:00PM - 7:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Dana Morella-Pozzi",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "Mo 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Kathy Werking",
+    "score": 3.6,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/1906703",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Kyle Johnson",
+    "score": 2.5,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/2179850",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Minna Holopainen",
+    "score": 4.5,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1228383",
+    "schedule": [
+      "We 4:30PM - 5:45PM",
+      "We 6:00PM - 8:45PM",
+      "Mo 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Zaki Hasan",
+    "score": 4.4,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/765625",
+    "schedule": [
+      "MoWe 7:30AM - 8:45AM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "David Galan",
+    "score": 3.4,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2182770",
+    "schedule": [
+      "Mo 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Ash Rahmani",
+    "score": 5,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2790229",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "Nancy Park",
+    "score": 5,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2641530",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "COMM 20 - Public Speaking",
+    "professor": "James Capurso",
+    "score": 4.8,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2034355",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "COMM 20N - Public Speaking For Nonnative Speakers",
+    "professor": "Ching Ching Tan",
+    "score": 4.7,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2164296",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "COMM 20EL - Public Speaking For English Language Learners",
+    "professor": "Ching Ching Tan",
+    "score": 4.7,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2164296",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "COMM 40 - Argumentation and Advocacy",
+    "professor": "Kim Yee",
+    "score": 2.9,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/2540366",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "COMM 40 - Argumentation and Advocacy",
+    "professor": "Tina Lim",
+    "score": 4.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/736416",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Nica Tanaka",
+    "score": 5,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/3055796",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Samuel Michael",
+    "score": 5,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/3101284",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Jordan Ellis",
+    "score": 5,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/3066015",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Michael Ford",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Katherine Hamilton",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Kristin Fitz-Patrick Ezell",
+    "score": 3.3,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2661443",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Allison Gregory",
+    "score": 5,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2950524",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 3:00PM - 4:15PM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Roohi Vora",
+    "score": 4.7,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/516288",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Sara Cook",
+    "score": 3.5,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/926719",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Peter O'Sullivan",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Mark Dowdy",
+    "score": 4.6,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/1201880",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 3:00PM - 4:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Jill Logan",
+    "score": 5,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/1963381",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Alesya Petty",
+    "score": 3.1,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/1853974",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Faith Kirk",
+    "score": 4.9,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2253715",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Joseph Navarro",
+    "score": 3.5,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2280219",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Rachel Turner",
+    "score": 2.3,
+    "difficulty": 4,
+    "link": "https://www.ratemyprofessors.com/professor/2708579",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 7:30AM - 8:45AM",
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Au-Co Tran",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Mostafa Jalal",
+    "score": 4.6,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/25334544",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Helen Meservey",
+    "score": 4.6,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2340169",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Lilly Chen",
+    "score": 4.8,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2702608",
+    "schedule": [
+      "MoWe 7:30AM - 8:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Jennifer Bean",
+    "score": 4.1,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2724460",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Katharine Studer",
+    "score": 3.9,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2804429",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 10:30AM - 11:45AM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Ume Ali",
+    "score": 5,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/2617610",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Chelsea Criez",
+    "score": 4.7,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2414516",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Tony Papanikolas",
+    "score": 5,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/3035803",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM",
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM",
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Christopher Dizon",
+    "score": 5,
+    "difficulty": 1.3,
+    "link": "https://www.ratemyprofessors.com/professor/2636209",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Raina Levesque",
+    "score": 4.8,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2855561",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Jillian Murphy",
+    "score": 4.8,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2832085",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Anne Walker",
+    "score": 4.5,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2869656",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Ryan Smith",
+    "score": 5,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2857461",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM",
+      "Fr 9:30AM - 12:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Victoria Thorp",
+    "score": 4.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2840854",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Anne Cheilek",
+    "score": 4.3,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2918841",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Daniel Hendel De La O",
+    "score": 3.5,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/search/professors/881?q=Daniel%20Hendel%20De%20La%20O",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ENGL 1A - First Year Writing",
+    "professor": "Johnny Damm",
+    "score": 4.8,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2538290",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Yuching Yang",
+    "score": 2,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2380372",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 12:00PM - 1:15PM",
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Jill Logan",
+    "score": 5,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/1963381",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Kristin Fitz-Patrick Ezell",
+    "score": 3.3,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2661443",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Alesya Petty",
+    "score": 3.1,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/1853974",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Chelsea Criez",
+    "score": 4.7,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2414516",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Raina Levesque",
+    "score": 4.8,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2855561",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Anne Walker",
+    "score": 4.5,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2869656",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM",
+      "MoWe 6:00PM - 7:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Ryan Smith",
+    "score": 5,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2857461",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1AF - First-Year Writing: Stretch English I",
+    "professor": "Alayna Mills",
+    "score": 3.9,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2539905",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ANTH 13 - Archaeology",
+    "professor": "Viviana Sanchez-Chopitea",
+    "score": 3,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/1904240",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ANTH 13 - Archaeology",
+    "professor": "Alicia Hedges",
+    "score": 4.7,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2548800",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "COMM 41 - Critical Decision Making",
+    "professor": "Kathy Werking",
+    "score": 3.6,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/1906703",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "COMM 45 - Media and Culture",
+    "professor": "Nancy Park",
+    "score": 5,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2641530",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "COMM 45 - Media and Culture",
+    "professor": "Patricia Daley- Harms",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TBA (Asynchronous)",
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "COMM 45 - Media and Culture",
+    "professor": "Kathy Werking",
+    "score": 3.6,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/1906703",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "COMM 45 - Media and Culture",
+    "professor": "Gina Firenzi",
+    "score": 4.5,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1100233",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Peter O'Sullivan",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Sarah Prasad",
+    "score": 3.6,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1216265",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Johnny Damm",
+    "score": 4.8,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2538290",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Regina Arnold",
+    "score": 4.6,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2394427",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Kristian O'Hare",
+    "score": 4.7,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/2640037",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Mostafa Jalal",
+    "score": 4.6,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/25334544",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Kristin Fitz-Patrick Ezell",
+    "score": 3.3,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2661443",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Helen Meservey",
+    "score": 4.6,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2340169",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Katharine Studer",
+    "score": 3.9,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2804429",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 2 - Critical Thinking and Writing",
+    "professor": "Jillian Murphy",
+    "score": 4.8,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2832085",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+{
+  "className": "ENGL 2 - Critical Thinking and Writing",
+  "professor": "Zehlia Babaci-Wilhite",
+  "score": 4.1,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2328909",
+  "schedule": ["We 6:00PM - 8:45PM", "Mo 6:00PM - 8:45PM"]
+},
+{
+  "className": "ENGL 2 - Critical Thinking and Writing",
+  "professor": "Daniel Hendel De La O",
+  "score": 3.5,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/search/professors/881?q=Daniel%20Hendel%20De%20La%20O",
+  "schedule": ["TuTh 3:00PM - 4:15PM", "TuTh 4:30PM - 5:45PM"]
+},
+{
+  "className": "ENGL 2 - Critical Thinking and Writing",
+  "professor": "Sherri Harvey",
+  "score": 3.3,
+  "difficulty": 3.2,
+  "link": "https://www.ratemyprofessors.com/professor/114573",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "ENVS 1 - Introduction to Environmental Issues",
+  "professor": "Ada Marquez",
+  "score": 3.5,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/1141653",
+  "schedule": ["MoWe 12:00PM - 1:15PM", "MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "ENVS 1 - Introduction to Environmental Issues",
+  "professor": "Joshua Baur",
+  "score": 2.8,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/20890411",
+  "schedule": ["TuTh 10:30AM - 11:45AM", "TBA (Asynchronous)"]
+},
+{
+  "className": "ENVS 1 - Introduction to Environmental Issues",
+  "professor": "Sabina Giri",
+  "score": 4.3,
+  "difficulty": 2.3,
+  "link": "https://www.ratemyprofessors.com/professor/3037113",
+  "schedule": ["MoWe 10:30AM - 11:45AM", "MoWe 9:00AM - 10:15AM"]
+},
+{
+  "className": "ENVS 1 - Introduction to Environmental Issues",
+  "professor": "Heather Duplaisir",
+  "score": 3.9,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/2636251",
+  "schedule": ["MoWe 10:30AM - 11:45AM", "MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "ENVS 1 - Introduction to Environmental Issues",
+  "professor": "Amy Petersen",
+  "score": 5,
+  "difficulty": 1,
+  "link": "https://www.ratemyprofessors.com/professor/3102048",
+  "schedule": ["MoWe 10:30AM - 11:45AM"]
+},
+{
+  "className": "HIST 50 - Historical Process: Understanding Historical Reasoning",
+  "professor": "Eric Naverson",
+  "score": 5,
+  "difficulty": 1.3,
+  "link": "https://www.ratemyprofessors.com/professor/1727516",
+  "schedule": ["We 6:00PM - 8:45PM", "Mo 6:00PM - 8:45PM"]
+},
+{
+  "className": "HUM 80 - Reading the World",
+  "professor": "Kim Knight",
+  "score": 4.2,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/29488288",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "MoWe 10:30AM - 11:45AMM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Kaye Sanders",
+  "score": 4.7,
+  "difficulty": 1.8,
+  "link": "https://www.ratemyprofessors.com/professor/641966",
+  "schedule": ["MoWe 12:00PM - 1:15PM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Janet Kitajima",
+  "score": 4.6,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/1672581",
+  "schedule": ["TuTh 1:30PM - 2:45PM", "TuTh 3:00PM - 4:15PM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Reiko Kataoka",
+  "score": 4.4,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/1786238",
+  "schedule": ["TuTh 12:00PM - 1:15PM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Chris Donlay",
+  "score": 2.9,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2192501",
+  "schedule": ["MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Shama Ball",
+  "score": 5,
+  "difficulty": 2.2,
+  "link": "https://www.ratemyprofessors.com/professor/1810355",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Effie Chiu",
+  "score": 4.7,
+  "difficulty": 2.2,
+  "link": "https://www.ratemyprofessors.com/professor/1464202",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "LING 21 - Language and Thinking",
+  "professor": "Mahsa Modirzadeh",
+  "score": 4.5,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1401127",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "LING 24 - Language Variation in Space, Time, & Culture",
+  "professor": "Chris Donlay",
+  "score": 2.9,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2192501",
+  "schedule": ["MoWe 10:30AM - 11:45AM"]
+},
+{
+  "className": "LING 24 - Language Variation in Space, Time, & Culture",
+  "professor": "Mahsa Modirzadeh",
+  "score": 4.5,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1401127",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Andrew Delunas",
+  "score": 4.7,
+  "difficulty": 1.4,
+  "link": "https://www.ratemyprofessors.com/professor/2511648",
+  "schedule": ["MoWe 10:30AM - 11:45AM"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Harlan Mcghan",
+  "score": 3,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/28562966",
+  "schedule": ["MoWe 12:00PM - 1:15PM", "MoWe 3:00PM - 4:15PM"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Nathan Osborne",
+  "score": 4.5,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/1714864",
+  "schedule": ["TuTh 1:30PM - 2:45PM"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Casey Smith",
+  "score": 4.1,
+  "difficulty": 2.2,
+  "link": "https://www.ratemyprofessors.com/professor/2313169",
+  "schedule": ["TuTh 3:00PM - 4:15PM", "Fr 12:30PM - 3:15PMM"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Krupa Patel",
+  "score": 4.3,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/662913",
+  "schedule": ["We 9:00AM - 10:15AM", "We 10:30AM - 11:45AM"]
+},
+{
+  "className": "PHIL 57 - Logic and Critical Reasoning",
+  "professor": "Donna Crane",
+  "score": 4.5,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/25399111",
+  "schedule": ["MoWe 12:00PM - 1:15PM"]
+},
+{
+  "className": "POLS 20 - Controversial Legal Issues",
+  "professor": "Jeremy Abrams",
+  "score": 4,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2196416",
+  "schedule": ["TuTh 4:30PM - 5:45PM"]
+},
+  {
+    "className": "ASTR 10 - Descriptive Astronomy",
+    "professor": "Olenka Hubickyj",
+    "score": 3.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1142532",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "GEOG 1 - Physical Geography",
+    "professor": "Joseph Hasty",
+    "score": 3.3,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/2281588",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "GEOG 1 - Physical Geography",
+    "professor": "Gary Pereira",
+    "score": 4.6,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2376189",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "GEOL 1 - General Geology",
+    "professor": "Matthew Leigh",
+    "score": 2.7,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/2380723",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "GEOL 3 - Planet Earth",
+    "professor": "Joao Santos",
+    "score": 4.6,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2067533",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "GEOL 6 - Geology of California",
+    "professor": "Joseph Petsche",
+    "score": 4.6,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2563406",
+    "schedule": [
+      "TBA"
+    ]
+  },
+  {
+    "className": "GEOL 7 - Earth, Time and Life",
+    "professor": "Joseph Petsche",
+    "score": 4.6,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2563406",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "GEOL 9 - Earth Disasters",
+    "professor": "Jon Richey",
+    "score": 1.7,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/3031519",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "METR 10 - Weather and Climate",
+    "professor": "Alicia Mullens",
+    "score": 4.7,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/1796340",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "METR 10 - Weather and Climate",
+    "professor": "Neel Desai",
+    "score": 5,
+    "difficulty": 1.2,
+    "link": "https://www.ratemyprofessors.com/professor/2950308",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "METR 10 - Weather and Climate",
+    "professor": "Rob Mayeda",
+    "score": 5,
+    "difficulty": 1.1,
+    "link": "https://www.ratemyprofessors.com/professor/2910957",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "METR 12 - Global Warming: Science and Solutions",
+    "professor": "Qian Tan",
+    "score": 2,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/25443600",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "METR 12 - Global Warming: Science and Solutions",
+    "professor": "Alicia Mullens",
+    "score": 4.7,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/1796340",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 1A - Physical Science of Food",
+    "professor": "Inbar Vanek",
+    "score": 4.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2623494",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 1A - Physical Science of Food",
+    "professor": "Cassie Boyd",
+    "score": 2.5,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/3105209",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 1A - Physical Science of Food",
+    "professor": "Stephanie Spencer",
+    "score": 4.1,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1728413",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 1A - Physical Science of Food",
+    "professor": "Gabriela John Swamy",
+    "score": 5,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2701825",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "PHYS 1 - Elementary Physics",
+    "professor": "Elaheh Sigari",
+    "score": 3.6,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2439044",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 2A - Fundamentals of Physics",
+    "professor": "Kassahun Betre",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Fr 1:30PM - 2:20PM"
+    ]
+  },
+  {
+    "className": "PHYS 2B - Fundamentals of Physics",
+    "professor": "Maxine Shao",
+    "score": 4.2,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/106503",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 2B - Fundamentals of Physics",
+    "professor": "Zairac Smith",
+    "score": 3.6,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/29593477",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM",
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 10:30AM - 11:50AM"
+    ]
+  },
+  {
+    "className": "PHYS 23 - Animation Physics",
+    "professor": "William Seneshen",
+    "score": 2,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2806098",
+    "schedule": [
+      "Th 6:00PM - 6:50PM",
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "PHYS 50 - General Physics/Mechanics",
+    "professor": "Elaheh Sigari",
+    "score": 3.6,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2439044",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "PHYS 50 - General Physics/Mechanics",
+    "professor": "Nargis Adham",
+    "score": 3.6,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2813956",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "MoWe 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Zairac Smith",
+    "score": 3.6,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/29593477",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Olenka Hubickyj",
+    "score": 3.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1142532",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Ignacio Mosqueira",
+    "score": 3.4,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/949495",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHYS 52 - General Physics/Waves, Light, Heat",
+    "professor": "Azadeh Shahid Faylienejad",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "PHYS 50 - General Physics/Mechanics",
+    "professor": "Elaheh Sigari",
+    "score": 3.6,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2439044",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Nargis Adham",
+    "score": 3.6,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2813956",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "MoWe 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Zairac Smith",
+    "score": 3.6,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/29593477",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Olenka Hubickyj",
+    "score": 3.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1142532",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "PHYS 51 - General Physics/Electricity and Magnetism",
+    "professor": "Ignacio Mosqueira",
+    "score": 3.4,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/949495",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHYS 52 - General Physics/Waves, Light, Heat",
+    "professor": "Azadeh Shahid Faylienejad",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ANTH 12 - Introduction to Human Evolution",
+    "professor": "Alicia Hedges",
+    "score": 4.7,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/25488000",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ANTH 12 - Introduction to Human Evolution",
+    "professor": "Kanak Somani",
+    "score": 5,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2909797",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ANTH 12 - Introduction to Human Evolution",
+    "professor": "Viviana Sanchez-Chopitea",
+    "score": 3,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/1904240",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "ANTH 12 - Introduction to Human Evolution",
+    "professor": "Amanda Feldman",
+    "score": 4.6,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2243790",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "BIOL 10 - The Living World",
+    "professor": "Allison Harness",
+    "score": 3,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/22150855",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TBA (Asynchronous)",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "BIOL 10 - The Living World",
+    "professor": "Mary Poffenroth",
+    "score": 3.9,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/10620999",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "BIOL 20 - Ecological Biology",
+    "professor": "Inez Yuwanita",
+    "score": 3.3,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2562961",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "BIOL 21 - Human Biology",
+    "professor": "Hamed Mouseghy",
+    "score": 4.2,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/27783266",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "BIOL 21 - Human Biology",
+    "professor": "Rachael French",
+    "score": 3.1,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/1736574",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Katherine Wilkinson",
+    "score": 3.5,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/1822834",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Mohamad Zoabi",
+    "score": 3.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/3032516",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Maleiyah Harris",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Tu 10:30AM - 1:15PM",
+      "Th 2:30PM - 5:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Aisha Elmeligi",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Tu 2:30PM - 5:15PM",
+      "We 7:30AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Tiana Tameta-Arenas",
+    "score": 5,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/3054484",
+    "schedule": [
+      "Tu 5:30PM - 8:15PM",
+      "We 5:30PM - 8:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Benjamin Marsh",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "We 10:30AM - 1:15PM",
+      "Fr 10:30AM - 1:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 30 - Principles of Biology I",
+    "professor": "Luz Arvizu",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Th 5:30PM - 8:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 31 - Principles of Biology II",
+    "professor": "Inez Yuwanita",
+    "score": 3.3,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2562961",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "BIOL 65 - Human Anatomy",
+    "professor": "Marcos Cepin",
+    "score": 4.2,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2903898",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "BIOL 65 - Human Anatomy",
+    "professor": "Gustavo Aldama",
+    "score": 4,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/3045715",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM"
+    ]
+  },
+  {
+    "className": "BIOL 66 - Human Physiology",
+    "professor": "Sulekha Anand",
+    "score": 3.8,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/81867",
+    "schedule": [
+      "TBA (Asynchronous)",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENVS 10 - Life on a Changing Planet",
+    "professor": "Jagruti Vedamati",
+    "score": 4.1,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/2700288",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENVS 10 - Life on a Changing Planet",
+    "professor": "Janin Guzman Morales",
+    "score": 4,
+    "difficulty": 1,
+    "link": "https://www.ratemyprofessors.com/professor/3067250",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "GEOL 8 - The Age of the Dinosaurs",
+    "professor": "Bradley Buerer",
+    "score": 4.4,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2594645",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 4:30PM - 5:45PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "GLST 1B - Introduction to Global Studies",
+    "professor": "Rachel Lazzeri-Aerts",
+    "score": 3.4,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1727474",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "MICR 20 - General Bacteriology",
+    "professor": "Phillip Hawkins",
+    "score": 2.9,
+    "difficulty": 4.2,
+    "link": "https://www.ratemyprofessors.com/professor/2106650",
+    "schedule": [
+      "MoWe 4:30PM - 6:10PM"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Sabine Mooney",
+    "score": 3,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/3062872",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Mary Hall",
+    "score": 4.2,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2852824",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Stephanie Spencer",
+    "score": 4.1,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1728413",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Yue Sun",
+    "score": 4.7,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/2300888",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Inbar Vanek",
+    "score": 4.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2623494",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "NUFS 16 - Science, Physiology, and Nutrition",
+    "professor": "Kayla Mitchell",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "CHAD 80 - Quantitative Analysis in Developmental Science",
+    "professor": "John Jabagchourian",
+    "score": 4.5,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1237413",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "CS 22A - Python for Everyone",
+    "professor": "Tahereh Arabghalizi",
+    "score": 1.9,
+    "difficulty": 4,
+    "link": "https://www.ratemyprofessors.com/professor/2926378",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "JS 15 - Introductory Statistics in Justice Studies",
+    "professor": "Dennis Estrada",
+    "score": 4.6,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2880123",
+    "schedule": [
+      "Fr 10:30AM - 1:15PM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "LING 26 - Quantitative Reasoning in Linguistic Diversity",
+    "professor": "Julia Swan",
+    "score": 4.1,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2297181",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "LING 26 - Quantitative Reasoning in Linguistic Diversity",
+    "professor": "Hahn Koo",
+    "score": 4.7,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/1386055",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "MATH 10A - Mathematics in Art and Music",
+    "professor": "Jordan Schettler",
+    "score": 4.6,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/search/professors/881?q=Jordan%20Schettlerr",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "MATH 12 - Number Systems",
+    "professor": "Salvador Huitzilopochtli",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "MATH 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Mokhtar Zoubeidi",
+    "score": 4.1,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/231554",
+    "schedule": [
+      "We 8:00AM - 8:50AM",
+      "Tu 8:00AM - 9:45AM",
+      "We 10:00AM - 10:50AM",
+      "Tu 10:00AM - 11:45AM",
+      "Th 10:00AM - 11:45AM",
+      "We 12:00PM - 12:50PM",
+      "Tu 12:00PM - 1:45PM",
+      "Th 12:00PM - 1:45PM",
+      "We 1:00PM - 1:50PM",
+      "Mo 1:00PM - 2:45PM",
+      "Fr 1:00PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "MATH 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Fatemeh Yarahmadi",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2530835",
+    "schedule": [
+      "We 2:30PM - 3:20PM",
+      "Fr 12:30PM - 1:20PM",
+      "MoWe 12:30PM - 2:15PM",
+      "Mo 9:00AM - 9:50AM",
+      "MoFr 10:00AM - 11:45AM",
+      "MoWe 3:30PM - 5:15PM"
+    ]
+  },
+  {
+    "className": "MATH 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Lucinda Robledo",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Mo 8:00AM - 8:50AM",
+      "WeFr 8:00AM - 9:45AM"
+    ]
+  },
+  {
+    "className": "MATH 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Marlena Jacobs",
+    "score": 5,
+    "difficulty": 1,
+    "link": "https://www.ratemyprofessors.com/professor/2909660",
+    "schedule": [
+      "Mo 3:00PM - 3:50PM",
+      "TuTh 3:00PM - 4:45PM"
+    ]
+  },
+  {
+    "className": "MATH 18A - College Algebra",
+    "professor": "Nicole Sebek",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "MATH 19 - Precalculus",
+    "professor": "Tuanh Nguyen",
+    "score": 4.1,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/4392833",
+    "schedule": [
+      "MoTuWeTh 9:30AM - 10:20AM"
+    ]
+  },
+  {
+    "className": "MATH 19 - Precalculus",
+    "professor": "Richard Low",
+    "score": 3.1,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/85837",
+    "schedule": [
+      "MoTuWeTh 3:30PM - 4:20PM",
+      "MoTuWeTh 4:30PM - 5:20PM"
+    ]
+  },
+  {
+    "className": "MATH 19 - Precalculus",
+    "professor": "Angela Tran",
+    "score": 3.5,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/419237",
+    "schedule": [
+      "MoTuWeTh 9:30AM - 10:20AM",
+      "MoTuWeTh 10:30AM - 11:20AM"
+    ]
+  },
+  {
+    "className": "MATH 19 - Precalculus",
+    "professor": "Lining Wang",
+    "score": 3.6,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/2841157",
+    "schedule": [
+      "MoTuWeTh 12:30PM - 1:20PM",
+      "MoTuWeTh 1:30PM - 2:20PM",
+      "MoTuWeTh 9:00AM - 9:50AM"
+    ]
+  },
+  {
+    "className": "MATH 19 - Precalculus",
+    "professor": "Viet Nguyen",
+    "score": 3.3,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/11668544",
+    "schedule": [
+      "MoWeFr 9:00AM - 10:10AM",
+      "MoWeFr 10:30AM - 11:40AM",
+      "MoWeFr 1:30PM - 2:40PM"
+    ]
+  },
+  {
+    "className": "MATH 30 - Calculus I",
+    "professor": "Minh Vu",
+    "score": 3.4,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/2078573",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "MATH 30 - Calculus I",
+    "professor": "Giang Le",
+    "score": 3.1,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2497026",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MATH 30 - Calculus I",
+    "professor": "Anh Nguyen",
+    "score": 4.2,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/101627",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "MATH 31 - Calculus II",
+    "professor": "Carl Bugarin",
+    "score": 3.9,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/1158988",
+    "schedule": [
+      "MoTuWeTh 7:30AM - 8:20AM",
+      "MoTuWeTh 6:30PM - 7:20PM"
+    ]
+  },
+  {
+    "className": "MATH 31 - Calculus II",
+    "professor": "Olga Kovaleva",
+    "score": 3,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/89392",
+    "schedule": [
+      "MoTuWeTh 10:30AM - 11:20AM",
+      "MoTuWeTh 12:30PM - 1:20PM"
+    ]
+  },
+  {
+    "className": "MATH 31 - Calculus II",
+    "professor": "Medha Bodas",
+    "score": 2.9,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/57992",
+    "schedule": [
+      "MoWeFr 9:00AM - 10:10AM"
+    ]
+  },
+  {
+    "className": "MATH 31 - Calculus II",
+    "professor": "Misako Van Der Poel",
+    "score": 2.7,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/958914",
+    "schedule": [
+      "MoWeFr 1:30PM - 2:40PM",
+      "MoWeFr 3:00PM - 4:10PM"
+    ]
+  },
+  {
+    "className": "MATH 32 - Calculus III",
+    "professor": "Trisha Bergthold",
+    "score": 4,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/225871",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "MATH 32 - Calculus III",
+    "professor": "Medha Bodas",
+    "score": 2.9,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/57992",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "MATH 32 - Calculus III",
+    "professor": "Dashiell Fryer",
+    "score": 2.3,
+    "difficulty": 4.2,
+    "link": "https://www.ratemyprofessors.com/professor/2080877",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "MATH 32 - Calculus III",
+    "professor": "Minh Vu",
+    "score": 3.4,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/2078573",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "MATH 70 - Mathematics for Business",
+    "professor": "Olga Kovaleva",
+    "score": 3,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/89392",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "MATH 70 - Mathematics for Business",
+    "professor": "Abera Jiru",
+    "score": 2.6,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/1557300",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "MATH 70 - Mathematics for Business",
+    "professor": "Minh Vu",
+    "score": 3.4,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/2078573",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MATH 70 - Mathematics for Business",
+    "professor": "Anh Nguyen",
+    "score": 4.2,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/101627",
+    "schedule": [
+      "TuTh 6:00PM - 7:15PM"
+    ]
+  },
+  {
+    "className": "MATH 71 - Calculus for Business and Aviation",
+    "professor": "Abera Jiru",
+    "score": 2.6,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/1557300",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "PH 67 - Introductory Health Statistics",
+    "professor": "Mahima Prabhakaran",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PH 67 - Introductory Health Statistics",
+    "professor": "Brooke Sherry",
+    "score": 3,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/31037777",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PH 67 - Introductory Health Statistics",
+    "professor": "Sahana Vasanth",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHIL 9 - Mathematics and Logic for General Education",
+    "professor": "Noah Friedman-Biglin",
+    "score": 2.7,
+    "difficulty": 3.7,
+    "link": "https://www.ratemyprofessors.com/professor/2101075",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHIL 9 - Mathematics and Logic for General Education",
+    "professor": "Andrew Delunas",
+    "score": 4.7,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/25116488",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "PHIL 9 - Mathematics and Logic for General Education",
+    "professor": "Casey Smith",
+    "score": 4.1,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2313169",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "STAT 95 - Elementary Statistics",
+    "professor": "Howard Tokunaga",
+    "score": 4.3,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/62206",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "STAT 95 - Elementary Statistics",
+    "professor": "Steven Macramalla",
+    "score": 2.7,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/1101787",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM",
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "STAT 95 - Elementary Statistics",
+    "professor": "Laree Huntsman",
+    "score": 4.1,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/622022",
+    "schedule": [
+      "Fr 9:30AM - 12:15PM"
+    ]
+  },
+  {
+    "className": "STAT 95 - Elementary Statistics",
+    "professor": "Nick Bathurst",
+    "score": 4.7,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2496827",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "STAT 95 - Elementary Statistics",
+    "professor": "Ravneet Tiwana",
+    "score": 3.8,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2657971",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "UNVS 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Mokhtar Zoubeidi",
+    "score": 4.1,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/231554",
+    "schedule": [
+      "We 8:00AM - 8:50AM",
+      "Tu 8:00AM - 9:45AM",
+      "We 10:00AM - 10:50AM",
+      "Tu 10:00AM - 11:45AM",
+      "Th 10:00AM - 11:45AM",
+      "We 12:00PM - 12:50PM",
+      "Tu 12:00PM - 1:45PM",
+      "Th 12:00PM - 1:45PM",
+      "We 1:00PM - 1:50PM",
+      "Mo 1:00PM - 2:45PM",
+      "Fr 1:00PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "UNVS 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Fatemeh Yarahmadi",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2530835",
+    "schedule": [
+      "We 2:30PM - 3:20PM",
+      "Fr 12:30PM - 1:20PM",
+      "MoWe 12:30PM - 2:15PM",
+      "Mo 9:00AM - 9:50AM",
+      "MoFr 10:00AM - 11:45AM",
+      "MoWe 3:30PM - 5:15PM"
+    ]
+  },
+  {
+    "className": "UNVS 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Lucinda Robledo",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Mo 8:00AM - 8:50AM",
+      "WeFr 8:00AM - 9:45AM"
+    ]
+  },
+  {
+    "className": "UNVS 15 - Statway: Statistics-Concepts & Methods",
+    "professor": "Marlena Jacobs",
+    "score": 5,
+    "difficulty": 1,
+    "link": "https://www.ratemyprofessors.com/professor/2909660",
+    "schedule": [
+      "Mo 3:00PM - 3:50PM",
+      "TuTh 3:00PM - 4:45PM"
+    ]
+  },
+  {
+    "className": "ARTH 15 - Intro to Visual Culture",
+    "professor": "Isabelle Pafford",
+    "score": 4,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2218274",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ARTH 15 - Intro to Visual Culture",
+    "professor": "Gretchen Simms",
+    "score": 1.7,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2799326",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ARTH 70A - Art History, Prehistoric to Medieval",
+    "professor": "Gretchen Simms",
+    "score": 1.7,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2799326",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ARTH 70A - Art History, Prehistoric to Medieval",
+    "professor": "Isabelle Pafford",
+    "score": 4,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2218274",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ARTH 70B - Art History, Renaissance to Modern",
+    "professor": "Josine Smits",
+    "score": 2.8,
+    "difficulty": 3.9,
+    "link": "https://www.ratemyprofessors.com/professor/17839033",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ARTH 70B - Art History, Renaissance to Modern",
+    "professor": "Mary Salzman",
+    "score": 1.9,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/1061409",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ARTH 70B - Art History, Renaissance to Modern",
+    "professor": "Elizabeth Carroll",
+    "score": 3,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2696519",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ARTH 70C - Arts of Asia",
+    "professor": "Hui-Chi Lo",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ARTH 72 - Design in Society",
+    "professor": "Elizabeth Carroll",
+    "score": 3,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2696519",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ARTH 72 - Design in Society",
+    "professor": "Molly Hankwitz",
+    "score": 1.9,
+    "difficulty": 4,
+    "link": "https://www.ratemyprofessors.com/professor/23516888",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "CA 95 - Introduction to Queer Arts",
+    "professor": "Lark Lareau",
+    "score": 5,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/2668073",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "We 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "DANC 10 - Dance Appreciation",
+    "professor": "Kara Davis",
+    "score": 2.8,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/2848815",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "KIN 68 - Visual Representations of Sport in Popular Culture",
+    "professor": "Daniel Murphy",
+    "score": 4.5,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/1141682",
+    "schedule": [
+      "Tu 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Thomas Hornig",
+    "score": 2.2,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2319561",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Tara Branham",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Th 10:30AM - 12:45PM"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Kate Metcalf",
+    "score": 4.2,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/2293064",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Robin Sacolick",
+    "score": 3.7,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2262831",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Paul Ellison",
+    "score": 4.7,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2646554",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Vincent Russo",
+    "score": 4.3,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2729107",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Steven Lin",
+    "score": 4,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2232197",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Gwendolyn Mok",
+    "score": 2.5,
+    "difficulty": 3.9,
+    "link": "https://www.ratemyprofessors.com/professor/678063",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10A - Music Appreciation",
+    "professor": "Victoria Lington",
+    "score": 3.2,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/651354",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "MUSC 10B - Introduction to Music",
+    "professor": "Simona Snitkovskaya",
+    "score": 5,
+    "difficulty": 1.2,
+    "link": "https://www.ratemyprofessors.com/professor/2630472",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MUSC 10B - Introduction to Music",
+    "professor": "Victoria Lington",
+    "score": 3.2,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/651354",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MUSC 10B - Introduction to Music",
+    "professor": "Isabella Eaton",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "MUSC 10B - Introduction to Music",
+    "professor": "Sandy Chen",
+    "score": 4.9,
+    "difficulty": 1.1,
+    "link": "https://www.ratemyprofessors.com/professor/2955270",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "MUSC 10C - Pop and Rock in the U.S.",
+    "professor": "Thomas Langan",
+    "score": 3.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2616413",
+    "schedule": [
+      "TuTh 2:00PM - 3:15PM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MUSC 10D - Introduction to Hip Hop",
+    "professor": "Dave Ma",
+    "score": 4.8,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2968205",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "MUSC 19 - Music in World Cultures",
+    "professor": "Robin Sacolick",
+    "score": 3.7,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2262831",
+    "schedule": [
+      "Mo 6:00PM - 8:45PM",
+      "We 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "ASIA 19 - Music in World Cultures",
+    "professor": "Robin Sacolick",
+    "score": 3.7,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2262831",
+    "schedule": [
+      "Mo 6:00PM - 8:45PM",
+      "We 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "ASIA 19 - Music in World Cultures",
+    "professor": "Timothy Harris",
+    "score": 4.7,
+    "difficulty": 1.3,
+    "link": "https://www.ratemyprofessors.com/professor/1620911",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "PHIL 66 - Introduction to Aesthetics",
+    "professor": "Andrew Delunas",
+    "score": 4.7,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/25116488",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHIL 66 - Introduction to Aesthetics",
+    "professor": "Iman Roohnavaz",
+    "score": 3.4,
+    "difficulty": 3.3,
+    "link": "https://www.ratemyprofessors.com/professor/2835444",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "PHIL 66 - Introduction to Aesthetics",
+    "professor": "Fern Alberts",
+    "score": 3.3,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/682345",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "RTVF 10 - The Art of Film",
+    "professor": "H. Gilchrist",
+    "score": 4.8,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2652162",
+    "schedule": [
+      "Mo 6:00PM - 8:45PM",
+      "We 3:00PM - 5:45PMM"
+    ]
+  },
+  {
+    "className": "RTVF 10 - The Art of Film",
+    "professor": "Christina Wright",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "Tu 3:00PM - 5:45PM",
+      "Tu 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "RTVF 10 - The Art of Film",
+    "professor": "Rosanne Welch",
+    "score": 5,
+    "difficulty": 1,
+    "link": "https://www.ratemyprofessors.com/professor/2735357",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "RTVF 10 - The Art of Film",
+    "professor": "Logan Walker",
+    "score": 3.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/1816947",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Johnny Moreno",
+    "score": 4.7,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2534781",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Kathleen Normington",
+    "score": 3.9,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/214618",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Will Detlefsen",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Sarah Kate Anderson",
+    "score": 3.9,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/1723713",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Scott Cummins",
+    "score": 5,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/2431524",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "TA 5 - Acting",
+    "professor": "Teresa Veramendi",
+    "score": 4.3,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2878961",
+    "schedule": [
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "TA 10 - Theatre Appreciation",
+    "professor": "Scott Cummins",
+    "score": 5,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/2431524",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "TA 10 - Theatre Appreciation",
+    "professor": "Sarah Kate Anderson",
+    "score": 3.9,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/1723713",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "TA 10 - Theatre Appreciation",
+    "professor": "Kathleen Normington",
+    "score": 3.9,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/214618",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "TA 10 - Theatre Appreciation",
+    "professor": "Nancy Carlin",
+    "score": 4.6,
+    "difficulty": 1.1,
+    "link": "https://www.ratemyprofessors.com/professor/2771451",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "TA 55 - Intro to Design for Theatre",
+    "professor": "Andrea Bechert",
+    "score": 4.7,
+    "difficulty": 3.2,
+    "link": "https://www.ratemyprofessors.com/professor/24577977",
+    "schedule": [
+      "TBA (Asynchronous)"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Ari Cushner",
+    "score": 3.3,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2225614",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Mike Benveniste",
+    "score": 3.3,
+    "difficulty": 4,
+    "link": "https://www.ratemyprofessors.com/professor/3016903",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Caitlin Jeffrey",
+    "score": 2.5,
+    "difficulty": 3.9,
+    "link": "https://www.ratemyprofessors.com/professor/2835476",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "Mo 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Michele Bertolone",
+    "score": 4.7,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/2943990",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Valerie Lo",
+    "score": 3.1,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2798095",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "AMS 10 - Stories that Make America",
+    "professor": "Kyle Serrott",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "CHIN 1A - Elementary Chinese",
+    "professor": "Qi Wang",
+    "score": 5,
+    "difficulty": 2,
+    "link": "https://www.ratemyprofessors.com/professor/29803299",
+    "schedule": [
+      "MoWe 10:30AM - 12:10PM",
+      "MoWe 3:00PM - 4:40PM"
+    ]
+  },
+  {
+    "className": "CHIN 1A - Elementary Chinese",
+    "professor": "San-hui Chuang",
+    "score": 3.2,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1536899",
+    "schedule": [
+      "TuTh 1:30PM - 3:10PM"
+    ]
+  },
+  {
+    "className": "CHIN 25A - Intermediate Chinese",
+    "professor": "San-hui Chuang",
+    "score": 3.2,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1536899",
+    "schedule": [
+      "TuTh 3:30PM - 5:10PM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Mark Dowdy",
+    "score": 4.6,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/1201880",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Sarah Prasad",
+    "score": 3.6,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/1216265",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Avantika Rohatgi",
+    "score": 2.9,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/1218201",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 1:30PM - 2:45PM",
+      "Fr 9:30AM - 12:15PM",
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Joseph Navarro",
+    "score": 3.5,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2280219",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Colton Saylor",
+    "score": 4.8,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2398551",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM",
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Zehlia Babaci-Wilhite",
+    "score": 4.1,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2328909",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM",
+      "Tu 6:00PM - 8:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 1B - Argument and Analysis",
+    "professor": "Kristin Fitz-Patrick Ezell",
+    "score": 3.3,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2661443",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "ENGL 21 - Mystery and Detective Fiction",
+    "professor": "Colton Saylor",
+    "score": 4.8,
+    "difficulty": 2.2,
+    "link": "https://www.ratemyprofessors.com/professor/2398551",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 22 - Fantasy and Science Fiction",
+    "professor": "Tanaj Nathanael",
+    "score": 4.5,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/1153621",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "ENGL 30 - Literature and the Environment",
+    "professor": "Mostafa Jalal",
+    "score": 4.6,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/25334544",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Regina Arnold",
+    "score": 4.6,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2394427",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Jill Logan",
+    "score": 5,
+    "difficulty": 1.7,
+    "link": "https://www.ratemyprofessors.com/professor/1963381",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Kristian O'Hare",
+    "score": 4.7,
+    "difficulty": 1.9,
+    "link": "https://www.ratemyprofessors.com/professor/2640037",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Au-Co Tran",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Ume Ali",
+    "score": 5,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/2617610",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Michael Edgerton",
+    "score": 3.3,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/2604706",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "ENGL 71 - Creative Writing",
+    "professor": "Johnny Damm",
+    "score": 4.8,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/2538290",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "FREN 1A - Elementary French",
+    "professor": "Loubna Hafid",
+    "score": 4.6,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/992326",
+    "schedule": [
+      "TuTh 3:00PM - 4:40PM"
+    ]
+  },
+  {
+    "className": "FREN 1A - Elementary French",
+    "professor": "Laurence Pilot-Darier-Baziere",
+    "score": 3.1,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2503458",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "FREN 1A - Elementary French",
+    "professor": "Jean-Luc Desalvo",
+    "score": 2.6,
+    "difficulty": 4.1,
+    "link": "https://www.ratemyprofessors.com/professor/789186",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "FREN 1B - Elementary French",
+    "professor": "Loubna Hafid",
+    "score": 4.6,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/992326",
+    "schedule": [
+      "TuTh 6:00PM - 7:40PM"
+    ]
+  },
+  {
+    "className": "FREN 1B - Elementary French",
+    "professor": "Laurence Pilot-Darier-Baziere",
+    "score": 3.1,
+    "difficulty": 3.6,
+    "link": "https://www.ratemyprofessors.com/professor/2503458",
+    "schedule": [
+      "We 5:00PM - 6:00PM"
+    ]
+  },
+  {
+    "className": "FREN 1B - Elementary French",
+    "professor": "Françoise Herrmann",
+    "score": 5,
+    "difficulty": 1.5,
+    "link": "https://www.ratemyprofessors.com/professor/2896913",
+    "schedule": [
+      "We 5:00PM - 6:00PM"
+    ]
+  },
+  {
+    "className": "FREN 25A - Intermediate French: Reading",
+    "professor": "Jean-Luc Desalvo",
+    "score": 2.6,
+    "difficulty": 4.1,
+    "link": "https://www.ratemyprofessors.com/professor/789186",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "GERM 1A - Elementary German",
+    "professor": "Larissa Chiriaeva",
+    "score": 4.7,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/1132107",
+    "schedule": [
+      "MoWe 10:30AM - 12:10PM",
+      "TuTh 12:30PM - 2:10PM"
+    ]
+  },
+  {
+    "className": "GERM 1B - Elementary German",
+    "professor": "Larissa Chiriaeva",
+    "score": 4.7,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/1132107",
+    "schedule": [
+      "TuTh 10:30AM - 12:10PM"
+    ]
+  },
+  {
+    "className": "HUM 90 - Bible History and Literature",
+    "professor": "Christian Alvarado",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2912608",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "ITAL 1A - Elementary Italian",
+    "professor": "Anna Demarchi",
+    "score": 5,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/2153164",
+    "schedule": [
+      "MoWe 3:00PM - 4:40PM"
+    ]
+  },
+  {
+    "className": "ITAL 1B - Elementary Italian",
+    "professor": "Anna Demarchi",
+    "score": 5,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/2153164",
+    "schedule": [
+      "TuTh 3:00PM - 4:00PM"
+    ]
+  },
+  {
+    "className": "JPN 1A - Elementary Japanese",
+    "professor": "Y Shimazu",
+    "score": 3.9,
+    "difficulty": 2.7,
+    "link": "https://www.ratemyprofessors.com/professor/208733",
+    "schedule": [
+      "MoWeFr 12:00PM - 1:10PM",
+      "MoWeFr 1:30PM - 2:40PM"
+    ]
+  },
+  {
+    "className": "JPN 1A - Elementary Japanese",
+    "professor": "Manami Iwata",
+    "score": 4.5,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2190893",
+    "schedule": [
+      "TuTh 8:30AM - 10:10AM"
+    ]
+  },
+  {
+    "className": "JPN 1A - Elementary Japanese",
+    "professor": "Kaoru Hollin",
+    "score": 4.9,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2686821",
+    "schedule": [
+      "MoWe 4:30PM - 6:10PM"
+    ]
+  },
+  {
+    "className": "JPN 1B - Elementary Japanese",
+    "professor": "Manami Iwata",
+    "score": 4.5,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2190893",
+    "schedule": [
+      "TuTh 1:30PM - 3:10PM"
+    ]
+  },
+  {
+    "className": "JPN 25A - Intermediate Japanese",
+    "professor": "Kaoru Hollin",
+    "score": 4.9,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2686821",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "JPN 25B - Intermediate Japanese",
+    "professor": "Mayu Loffgren",
+    "score": 4.9,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2373117",
+    "schedule": [
+      "TuTh 10:30AM - 12:10PM"
+    ]
+  },
+  {
+    "className": "JWSS 90 - Bible History and Literature",
+    "professor": "Marianne Delaporte Kabir",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2912608",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "LSTP 10 - Chronicles of Education",
+    "professor": "Christian Alvarado",
+    "score": 5,
+    "difficulty": 1.6,
+    "link": "https://www.ratemyprofessors.com/professor/2544577",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "MDES 90 - Bible History and Literature",
+    "professor": "Marianne Delaporte Kabir",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2912608",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 10 - Introduction to Philosophy",
+    "professor": "David McReynolds",
+    "score": 4.6,
+    "difficulty": 1.8,
+    "link": "https://www.ratemyprofessors.com/professor/2865588",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "PHIL 10 - Introduction to Philosophy",
+    "professor": "Nathan Osborne",
+    "score": 4.5,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/1714864",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "TuTh 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "PHIL 10 - Introduction to Philosophy",
+    "professor": "Kyle Hertsch",
+    "score": 5,
+    "difficulty": 1.1,
+    "link": "https://www.ratemyprofessors.com/professor/2798499",
+    "schedule": [
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "PHIL 10 - Introduction to Philosophy",
+    "professor": "Javier Cardoza-Kon",
+    "score": 2.4,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2494042",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 10 - Introduction to Philosophy",
+    "professor": "Michael Sudduth",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 61 - Moral Issues",
+    "professor": "Kyle Hertsch",
+    "score": 5,
+    "difficulty": 1.1,
+    "link": "https://www.ratemyprofessors.com/professor/2798499",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "PHIL 61 - Moral Issues",
+    "professor": "Harlan Mcghan",
+    "score": 3,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/2856296",
+    "schedule": [
+      "Fr 12:30PM - 3:15PM"
+    ]
+  },
+  {
+    "className": "PHIL 61 - Moral Issues",
+    "professor": "Raymond Noriega",
+    "score": 3.3,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/2926629",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+    "className": "PHIL 61 - Moral Issues",
+    "professor": "Lisa Bernasconi",
+    "score": 4.4,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/89203",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 61 - Moral Issues",
+    "professor": "Fern Alberts",
+    "score": 3.3,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/682345",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 70A - Ancient Philosophy",
+    "professor": "Janet Giddings",
+    "score": 3.7,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/651054",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "PHIL 70B - Modern Philosophy",
+    "professor": "Michael Jordan",
+    "score": 4.8,
+    "difficulty": 2.1,
+    "link": "https://www.ratemyprofessors.com/professor/1900642",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "POLS 3 - Introduction to Political Thought",
+    "professor": "Lawrence Quill",
+    "score": 4.4,
+    "difficulty": 3.8,
+    "link": "https://www.ratemyprofessors.com/professor/816257",
+    "schedule": [
+      "Th 10:30AM - 11:45AM",
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "POLS 16 - Power and Ideas in American Politics",
+    "professor": "Sara Benson",
+    "score": 4.7,
+    "difficulty": 2.8,
+    "link": "https://www.ratemyprofessors.com/professor/1879962",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM"
+    ]
+  },
+  {
+    "className": "POLS 16 - Power and Ideas in American Politics",
+    "professor": "Ali Kashani",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "POLS 16 - Power and Ideas in American Politics",
+    "professor": "Albert Schendan",
+    "score": 3.2,
+    "difficulty": 3.5,
+    "link": "https://www.ratemyprofessors.com/professor/811502",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "PORT 1A - Elementary Portuguese I",
+    "professor": "Duarte Manuel Carvalho Pinheiro",
+    "score": 4.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2545062",
+    "schedule": [
+      "MoWe 4:00PM - 5:40PM",
+      "TuTh 4:00PM - 5:40PM"
+    ]
+  },
+  {
+    "className": "PORT 1B - Elementary Portuguese II",
+    "professor": "Duarte Manuel Carvalho Pinheiro",
+    "score": 4.6,
+    "difficulty": 3,
+    "link": "https://www.ratemyprofessors.com/professor/2545062",
+    "schedule": [
+      "MoWe 12:00PM - 1:40PM"
+    ]
+  },
+  {
+    "className": "RELS 90 - Bible History and Literaturen",
+    "professor": "Marianne Delaporte Kabir",
+    "score": 4.6,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/2912608",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "RUSS 1A - Elementary Russian I",
+    "professor": "Larissa Chiriaeva",
+    "score": 4.7,
+    "difficulty": 2.6,
+    "link": "https://www.ratemyprofessors.com/professor/11321077",
+    "schedule": [
+      "MoWe 12:30PM - 2:10PM",
+      "TuTh 3:00PM - 4:30PM"
+    ]
+  },
+  {
+    "className": "SPAN 1A - Elementary Spanish",
+    "professor": "Raquel Rodriguez",
+    "score": 1.7,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2589301",
+    "schedule": [
+      "MoWe 8:30AM - 10:10AM",
+      "MoWe 10:30AM - 12:10PM"
+    ]
+  },
+  {
+    "className": "SPAN 1A - Elementary Spanish",
+    "professor": "Francisco de la Calle",
+    "score": 4.4,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/1412847",
+    "schedule": [
+      "TuTh 8:30AM - 10:10AM"
+    ]
+  },
+  {
+    "className": "SPAN 1B - Elementary Spanish",
+    "professor": "Alejandra Campos",
+    "score": 2.3,
+    "difficulty": 3.9,
+    "link": "https://www.ratemyprofessors.com/professor/2358751",
+    "schedule": [
+      "TuTh 8:30AM - 10:10AM",
+      "TuTh 3:00PM - 4:40PM"
+    ]
+  },
+  {
+    "className": "SPAN 1B - Elementary Spanish",
+    "professor": "José García Buenrostro",
+    "score": 4,
+    "difficulty": 2.5,
+    "link": "https://www.ratemyprofessors.com/professor/2617296",
+    "schedule": [
+      "MoWe 3:00PM - 4:40PM",
+      "MoWe 10:30AM - 12:10PM"
+    ]
+  },
+  {
+    "className": "SPAN 20A - Spanish for Heritage Speakers I",
+    "professor": "Angel Ruiz Blanco",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 10:00AM - 11:40AM"
+    ]
+  },
+  {
+    "className": "SPAN 20B - Spanish for Heritage Speakers II",
+    "professor": "Teresa Estrabao",
+    "score": 3.4,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/1695385",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "SPAN 25A - Intermediate Spanish",
+    "professor": "Eleanor Marsh",
+    "score": 4.7,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/1042562",
+    "schedule": [
+      "TuTh 8:30AM - 10:10AM"
+    ]
+  },
+  {
+    "className": "TA 13 - Great Comedies for Theatre",
+    "professor": "Scott Cummins",
+    "score": 5,
+    "difficulty": 1.4,
+    "link": "https://www.ratemyprofessors.com/professor/2431524",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "TA 13 - Great Comedies for Theatre",
+    "professor": "Philippa Kelly",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "TA 13 - Great Comedies for Theatre",
+    "professor": "Kathleen Normington",
+    "score": 3.9,
+    "difficulty": 2.4,
+    "link": "https://www.ratemyprofessors.com/professor/214618",
+    "schedule": [
+      "TBA (Asynchrnous)"
+    ]
+  },
+  {
+    "className": "TAG 1A - Elementary Tagalog I",
+    "professor": "Edith Borbon",
+    "score": 4.3,
+    "difficulty": 3.1,
+    "link": "https://www.ratemyprofessors.com/professor/2590775",
+    "schedule": [
+      "Tu 5:00PM - 6:40PM"
+    ]
+  },
+  {
+    "className": "AAS 33A - Asian Americans in U.S. History I",
+    "professor": "Yvonne Kwan",
+    "score": 4.3,
+    "difficulty": 2.9,
+    "link": "https://www.ratemyprofessors.com/professor/2276785",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "AAS 33A - Asian Americans in U.S. History I",
+    "professor": "Soo Choi",
+    "score": 3.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/226229",
+    "schedule": [
+      "MoWe 1:30PM - 2:45PM",
+      "MoWe 3:00PM - 4:15PM",
+      "TuTh 3:00PM - 4:15PM",
+      "TuTh 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "AAS 33A - Asian Americans in U.S. History I",
+    "professor": "Apryl Berney",
+    "score": 4.5,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/1467689",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ]
+  },
+  {
+    "className": "AAS 33B - Asian Americans in U.S. History II",
+    "professor": "Soo Choi",
+    "score": 3.6,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/226229",
+    "schedule": [
+      "MoWe 4:30PM - 5:45PM"
+    ]
+  },
+  {
+    "className": "AAS 33B - Asian Americans in U.S. History II",
+    "professor": "Apryl Berney",
+    "score": 4.5,
+    "difficulty": 2.3,
+    "link": "https://www.ratemyprofessors.com/professor/1467689",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM"
+    ]
+  },
+  {
+  "className": "AAS 33B - Asian Americans in U.S. History II",
+  "professor": "Saugher Nojan",
+  "score": 4.4,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2714944",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM",
+    "TuTh 12:00PM - 1:15PM"
+  ]
+},
+{
+  "className": "AFAM 2A - African Americans and the Development of America’s History and Government",
+  "professor": "Frank Ortega",
+  "score": 4.8,
+  "difficulty": 1.8,
+  "link": "https://www.ratemyprofessors.com/professor/2755025",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 10:30AM - 11:45AM",
+    "TuTh 9:00AM - 10:15AM",
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "AFAM 2B - African Americans and the Development of America’s History and Government",
+  "professor": "Emmanuel Watkins",
+  "score": 4.7,
+  "difficulty": 1.6,
+  "link": "https://www.ratemyprofessors.com/professor/2481659",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "AFAM 2B - African Americans and the Development of America’s History and Government",
+  "professor": "Jacques Watkins",
+  "score": 4.1,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2597471",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "ANTH 11 - Cultural Anthropology",
+  "professor": "Quincy Mccrary",
+  "score": 4.2,
+  "difficulty": 2.3,
+  "link": "https://www.ratemyprofessors.com/professor/1236729",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "ANTH 11 - Cultural Anthropology",
+  "professor": "Gisele Bousquet",
+  "score": 2.3,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/2262850",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "CCS 10A - Mexican Americans and the Development of U.S. History and Government",
+  "professor": "Jacqueline Gamboa",
+  "score": 4.3,
+  "difficulty": 1.5,
+  "link": "https://www.ratemyprofessors.com/professor/2857474",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM",
+    "MoWe 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "CCS 10A - Mexican Americans and the Development of U.S. History and Government",
+  "professor": "Jesus Covarrubias",
+  "score": 3.6,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/366730",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 10:30AM - 11:45AM",
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "CCS 10A - Mexican Americans and the Development of U.S. History and Government",
+  "professor": "Juan Pablo Mercado",
+  "score": 4.3,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2647117",
+  "schedule": [
+    "Tu 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "CHAD 75 - Imagination, Play and Adult Creativity",
+  "professor": "Maureen Smith",
+  "score": 2.5,
+  "difficulty": 3.6,
+  "link": "https://www.ratemyprofessors.com/professor/385733",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "CHAD 76 - Child Development Among Media and Emerging Technologies",
+  "professor": "John Jabagchourian",
+  "score": 4.5,
+  "difficulty": 3,
+  "link": "https://www.ratemyprofessors.com/professor/1237413",
+  "schedule": [
+    "TuTh 1:30 - 2:45PM"
+  ]
+},
+{
+  "className": "COMM 10 - Communication and Human Relationships",
+  "professor": "Minna Holopainen",
+  "score": 4.5,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/1228383",
+  "schedule": [
+    "Mo 6:00PM - 8:45PM",
+    "TuTh 12:00PM - 1:15PM"
+  ]
+},
+{
+  "className": "CS 25 - The Digital World and Society",
+  "professor": "Gregory Courand",
+  "score": 4,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2802659",
+  "schedule": [
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "ENGR 25 - The Digital World and Society",
+  "professor": "Gregory Courand",
+  "score": 4,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2802659",
+  "schedule": [
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "ECON 1B - Principles of Economics: Microeconomics",
+  "professor": "Ninos Malek",
+  "score": 4.5,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/274777",
+  "schedule": [
+    "Fr 10:00AM - 12:45PM",
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 10:30AM - 11:45AM",
+    "Th 4:30PM - 7:15PM"
+  ]
+},
+{
+  "className": "ECON 1B - Principles of Economics: Microeconomics",
+  "professor": "Mark Brady",
+  "score": 3.4,
+  "difficulty": 3,
+  "link": "https://www.ratemyprofessors.com/professor/562697",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "ECON 1B - Principles of Economics: Microeconomics",
+  "professor": "James O'Brien",
+  "score": 4.9,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2290740",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM",
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 12:00PM - 1:15PM",
+    "TBA (Asynchrnous)"
+  ]
+},
+{
+  "className": "ECON 1B - Principles of Economics: Microeconomics",
+  "professor": "Fahmida Fakhruddin",
+  "score": 2.6,
+  "difficulty": 3.6,
+  "link": "https://www.ratemyprofessors.com/professor/2679060",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM"
+  ]
+},
+{
+  "className": "GEOG 10 - Cultural Geography",
+  "professor": "Maureen Kelley",
+  "score": 4.1,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/1232706",
+  "schedule": [
+    "MoWe 3:00PM - 4:15PM"
+  ]
+},
+{
+  "className": "GEOG 10 - Cultural Geography",
+  "professor": "Gary Pereira",
+  "score": 4.6,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/2376189",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "GEOG 12 - World Regional Geography",
+  "professor": "Eileen Pena",
+  "score": 5,
+  "difficulty": 1.3,
+  "link": "https://www.ratemyprofessors.com/professor/2262086",
+  "schedule": [
+    "Tu 12:00PM - 2:45PM"
+  ]
+},
+{
+  "className": "GEOG 12 - World Regional Geography",
+  "professor": "Kathrine Richardson",
+  "score": 4.4,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/1296019",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "HIST 1A - World History to 1500",
+  "professor": "Allison Katsev",
+  "score": 4.5,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/751298",
+  "schedule": [
+    "TuTh 3:00PM - 4:15PM"
+  ]
+},
+{
+  "className": "HIST 10B - Western Civilization",
+  "professor": "Allison Katsev",
+  "score": 4.5,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/751298",
+  "schedule": [
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Raymand Buyco",
+  "score": 4.4,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/1721842",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Robert Cirivilleri",
+  "score": 3.3,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/216675",
+  "schedule": [
+    "TuTh 1:30PM - 2:45PM",
+    "TuTh 7:30AM - 8:45AM",
+    "TuTh 3:00PM - 4:15PM",
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Ari Cushner",
+  "score": 3.3,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2225614",
+  "schedule": [
+    "TuTh 12:00PM - 1:15PM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Caitlin Jeffrey",
+  "score": 2.5,
+  "difficulty": 3.9,
+  "link": "https://www.ratemyprofessors.com/professor/2835476",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Katherine Chilton",
+  "score": 3.9,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2062023",
+  "schedule": [
+    "Th 9:00AM - 10:15AM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Michele Bertolone",
+  "score": 4.7,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/2943990",
+  "schedule": [
+    "MoWe 3:00PM - 4:15PM"
+  ]
+},
+{
+  "className": "HIST 15 - Essentials of U.S. History",
+  "professor": "Leslie Corona",
+  "score": 3.9,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2717249",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "JOUR 50 - Navigating the News",
+  "professor": "Richard Craig",
+  "score": 4.9,
+  "difficulty": 2.8,
+  "link": "https://www.ratemyprofessors.com/professor/1860594",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "JS 25 - Introduction to Human Rights and Justice",
+  "professor": "Kevin Lynch",
+  "score": 3.4,
+  "difficulty": 2.3,
+  "link": "https://www.ratemyprofessors.com/professor/2457603",
+  "schedule": [
+    "TuTh 12:00PM - 1:15PM"
+  ]
+},
+{
+  "className": "JS 25 - Introduction to Human Rights and Justice",
+  "professor": "Edith Kinney",
+  "score": 2.5,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/1970588",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "LING 20 - Nature of Language",
+  "professor": "Scott Phillabaum",
+  "score": 5,
+  "difficulty": 1.4,
+  "link": "https://www.ratemyprofessors.com/professor/2431524",
+  "schedule": [
+    "MoWe 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "LING 20 - Nature of Language",
+  "professor": "Chris Donlay",
+  "score": 2.9,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2192501",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "LING 24 - Language Variation in Space, Time, & Culture",
+  "professor": "Chris Donlay",
+  "score": 2.9,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2192501",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "LING 24 - Language Variation in Space, Time, & Culture",
+  "professor": "Mahsa Modirzadeh",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/1401127",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "LING 25 - Languages of the World",
+  "professor": "Chris Donlay",
+  "score": 2.9,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2192501",
+  "schedule": [
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "MCOM 72 - Mass Communication and Society",
+  "professor": "Nisha Garud Patkar",
+  "score": 3.5,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2389526",
+  "schedule": [
+    "MoWe 12:00PM - 1:15PM"
+  ]
+},
+{
+  "className": "MCOM 72 - Mass Communication and Society",
+  "professor": "Ralph Nichols",
+  "score": 3.8,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/2300228",
+  "schedule": [
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "PH 15 - Human Life Span",
+  "professor": "Monique Duphily",
+  "score": 2.7,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/832531",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "PH 15 - Human Life Span",
+  "professor": "Susan Ross",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "N/A",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM",
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "POLS 2 - Introduction to Comparative Politics",
+  "professor": "Danijela Dudley",
+  "score": 4.1,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/1825109",
+  "schedule": [
+    "Mo 4:30PM - 7:15PM"
+  ]
+},
+{
+  "className": "POLS 4 - Introduction to International Relations",
+  "professor": "Andrew Alexander",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "N/A",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Albert Schendan",
+  "score": 3.2,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/811502",
+  "schedule": [
+    "MoWe 3:00PM - 4:15PM",
+    "MoWe 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Robert Ovetz",
+  "score": 2.5,
+  "difficulty": 3.6,
+  "link": "https://www.ratemyprofessors.com/professor/2125118",
+  "schedule": [
+    "TuTh 3:00PM - 4:15PM",
+    "TuTh 10:30AM - 11:45AM",
+    "TuTh 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Adam Bakr",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "N/A",
+  "schedule": [
+    "Th 6:00PM - 8:45PM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Ali Kashani",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "N/A",
+  "schedule": [
+    "Mo 6:00PM - 8:45PM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Garrick Percival",
+  "score": 4.1,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/1797961",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "POLS 15 - Essentials of U.S. & California Government",
+  "professor": "Sabrina Pinnell",
+  "score": 3.1,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/1069861",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "PSYC 1 - Introduction to Psychology",
+  "professor": "Gregory Feist",
+  "score": 4.4,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2327791",
+  "schedule": [
+    "TuTh 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "PSYC 1 - Introduction to Psychology",
+  "professor": "Mark Van Selst",
+  "score": 2.8,
+  "difficulty": 3.7,
+  "link": "https://www.ratemyprofessors.com/professor/61964",
+  "schedule": [
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "PSYC 1 - Introduction to Psychology",
+  "professor": "Christine Ma",
+  "score": 4.7,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2549872",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "PSYC 1 - Introduction to Psychology",
+  "professor": "Neelam Rattan",
+  "score": 4.6,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/816489",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "RECL 15 - Human Life Span",
+  "professor": "Monique Duphily",
+  "score": 2.7,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/832531",
+  "schedule": [
+    "MoWe 9:00AM - 10:15AM",
+    "MoWe 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "RECL 15 - Human Life Span",
+  "professor": "Susan Ross",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "N/A",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM",
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "SOCI 1 - Introduction to Sociology",
+  "professor": "Mark Pasion",
+  "score": 4.9,
+  "difficulty": 1.8,
+  "link": "https://www.ratemyprofessors.com/professor/1075408",
+  "schedule": [
+    "We 9:00AM - 10:15AM"
+  ]
+},
+{
+  "className": "SOCI 1 - Introduction to Sociology",
+  "professor": "William Armaline",
+  "score": 4.6,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/1366851",
+  "schedule": [
+    "MoWe 4:30PM - 5:45PM"
+  ]
+},
+{
+  "className": "SOCI 80 - Social Problems",
+  "professor": "Mark Pasion",
+  "score": 4.9,
+  "difficulty": 1.8,
+  "link": "https://www.ratemyprofessors.com/professor/1075408",
+  "schedule": [
+    "TuTh 9:00AM - 10:15AM",
+    "TuTh 10:30AM - 11:45AM"
+  ]
+},
+{
+  "className": "SOCI 80 - Social Problems",
+  "professor": "Soma de Bourbon",
+  "score": 4.9,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/1968273",
+  "schedule": [
+    "Mo 1:30PM - 2:45PM"
+  ]
+},
+{
+  "className": "SOCI 80 - Social Problems",
+  "professor": "Faustina DuCros",
+  "score": 3.8,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/2014408",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "WGSS 10 - Women, Gender, and Sexuality Studies",
+  "professor": "Tanya Bakhru",
+  "score": 4.1,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/1300097",
+  "schedule": [
+    "TBA (Asynchronous)"
+  ]
+},
+{
+  "className": "BIOL 54 - Human Understanding",
+  "professor": "Nora Balabanian",
+  "score": 3.8,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/696831",
+  "schedule": ["TuTh 7:30AM - 8:45AM"]
+},
+{
+  "className": "BIOL 54 - Human Understanding",
+  "professor": "Mary Poffenroth",
+  "score": 3.9,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/1062099",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "BUS3 12 - Managing My life",
+  "professor": "Singmay Chou",
+  "score": 4,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/2265181",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "MoWe 10:30AM - 11:45AM", "MoWe 12:00PM - 1:15PM"]
+},
+{
+  "className": "BUS3 12 - Managing My life",
+  "professor": "Walter Easter",
+  "score": 3.4,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/2537020",
+  "schedule": ["MoWe 1:30PM - 2:45PM", "MoWe 3:00PM - 4:15PM"]
+},
+{
+  "className": "BUS3 12 - Managing My life",
+  "professor": "Terry Thompson",
+  "score": 3.8,
+  "difficulty": 2.3,
+  "link": "https://www.ratemyprofessors.com/professor/1902506",
+  "schedule": ["TuTh 9:00AM - 10:15AM", "TuTh 10:30AM - 11:45AM", "TuTh 12:00PM - 1:15PM"]
+},
+{
+  "className": "BUS3 12 - Managing My life",
+  "professor": "Ginevra Scherini",
+  "score": 3.4,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/2570877",
+  "schedule": ["TuTh 4:30PM - 5:45PM"]
+},
+{
+  "className": "BUS3 12 - Managing My life",
+  "professor": "Janet Tan",
+  "score": 2.7,
+  "difficulty": 2.9,
+  "link": "https://www.ratemyprofessors.com/professor/2439946",
+  "schedule": ["TuTh 1:30PM - 2:45PM", "TuTh 3:00PM - 4:15PM"]
+},
+{
+  "className": "CA 60 - Creativity Matters",
+  "professor": "Noura Wedell",
+  "score": 4.2,
+  "difficulty": 1,
+  "link": "https://www.ratemyprofessors.com/professor/3005513",
+  "schedule": ["Tu 1:30PM - 2:45PM"]
+},
+{
+  "className": "CA 60 - Creativity Matters",
+  "professor": "Liz Linden",
+  "score": 4.2,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2659243",
+  "schedule": ["Mo 9:00AM - 10:15AM"]
+},
+{
+  "className": "CHAD 60 - Child Development",
+  "professor": "Nadia Sorkhabi",
+  "score": 3,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/1043449",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "CHAD 60 - Child Development",
+  "professor": "Jennifer Pearlman",
+  "score": 3.7,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/1043986",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CHAD 70 - Lifespan Development in a Global Context",
+  "professor": "Dina Izenstark",
+  "score": 4.7,
+  "difficulty": 1.8,
+  "link": "https://www.ratemyprofessors.com/professor/2342619",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CHAD 70 - Lifespan Development in a Global Context",
+  "professor": "Jennifer Pearlman",
+  "score": 3.7,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/1043986",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CHAD 70 - Lifespan Development in a Global Context",
+  "professor": "Meghna Soni",
+  "score": 5,
+  "difficulty": 1.6,
+  "link": "https://www.ratemyprofessors.com/professor/2709032",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CHAD 70 - Lifespan Development in a Global Context",
+  "professor": "Tara Duffy",
+  "score": 4.3,
+  "difficulty": 1.9,
+  "link": "https://www.ratemyprofessors.com/professor/2794054",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "COMM 74 - Fundamentals of Intercultural Communication",
+  "professor": "Kendall Ward",
+  "score": 3.6,
+  "difficulty": 2.3,
+  "link": "https://www.ratemyprofessors.com/professor/1877971",
+  "schedule": ["TuTh 1:30PM - 2:45PM"]
+},
+{
+  "className": "EDCO 4 - Personal, Academic and Career Exploration",
+  "professor": "Michele Burns",
+  "score": 4.7,
+  "difficulty": 1.4,
+  "link": "https://www.ratemyprofessors.com/professor/1668504",
+  "schedule": ["MoWe 10:30AM - 11:45AM", "TuTh 10:30AM - 11:45AM", "TuTh 12:00PM - 1:15PM", "MoWe 9:00AM - 10:15AM"]
+},
+{
+  "className": "EDCO 4 - Personal, Academic and Career Exploration",
+  "professor": "Jimma Cortes-Smith",
+  "score": 4.3,
+  "difficulty": 1.4,
+  "link": "https://www.ratemyprofessors.com/professor/531085",
+  "schedule": ["MoWe 12:00PM - 1:15PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Kourosh Youssefi",
+  "score": 4.2,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/79259",
+  "schedule": ["MoWe 12:00PM - 12:50PM", "We 9:00AM - 11:45AM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Jack Warecki",
+  "score": 4.9,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/2220317",
+  "schedule": ["MoWe 3:00PM - 3:50PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Smita Duorah",
+  "score": 3.2,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/1251316",
+  "schedule": ["Tu 9:00AM - 11:45AM", "We 4:00PM - 6:45PM", "Th 9:00AM - 11:45AM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Jane Huynh",
+  "score": 2.8,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/2585795",
+  "schedule": ["Tu 9:00AM - 11:45AM", "Tu 12:00PM - 2:45PM", "Th 3:00PM - 5:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Glenn Friedman",
+  "score": 4.5,
+  "difficulty": 1.5,
+  "link": "https://www.ratemyprofessors.com/professor/2748068",
+  "schedule": ["Tu 12:00PM - 2:45PM", "Tu 3:00PM - 5:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Steven Sepk",
+  "score": 4.8,
+  "difficulty": 1.3,
+  "link": "https://www.ratemyprofessors.com/professor/788590",
+  "schedule": ["Tu 6:00PM - 8:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Spoorthy Ananthaiah",
+  "score": 2.6,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/2118955",
+  "schedule": ["We 9:00AM - 11:45AM", "Th 12:00PM - 2:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Vasuda Bhatia",
+  "score": 4.6,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/2748069",
+  "schedule": ["We 4:00PM - 6:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Ahmed Banafa",
+  "score": 4.9,
+  "difficulty": 2.2,
+  "link": "https://www.ratemyprofessors.com/professor/2228841",
+  "schedule": ["Th 9:00AM - 11:45AM", "Fr 9:00AM - 11:45AM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Rufino Olay",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["Th 12:00PM - 2:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Denise Gip",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["Th 3:00PM - 5:45PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Javier Valencia",
+  "score": 4.7,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/1844513",
+  "schedule": ["Th 6:00PM - 8:45PM", "Fr 12:30PM - 3:10PM"]
+},
+{
+  "className": "ENGR 10 - Introduction to Engineering",
+  "professor": "Saied Rafati",
+  "score": 3.1,
+  "difficulty": 3.6,
+  "link": "https://www.ratemyprofessors.com/professor/2914126",
+  "schedule": ["Fr 9:00AM - 11:45AM", "Fr 12:30PM - 3:10PM"]
+},
+{
+  "className": "GEOL 5 - Sustainability, Human Development, and the Earth",
+  "professor": "Ellen Metzger",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TuTh 12:00PM - 1:15PM", "TuTh 1:15PM - 2:30PM"]
+},
+{
+  "className": "GERO 99 - Death, Dying and Religions",
+  "professor": "Todd Perreira",
+  "score": 4.2,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1144851",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "TuTh 3:00PM - 4:15PM"]
+},
+{
+  "className": "HUM 99 - Death, Dying and Religions",
+  "professor": "Todd Perreira",
+  "score": 4.2,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1144851",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "TuTh 3:00PM - 4:15PM"]
+},
+{
+  "className": "KIN 69 - Stress Management: A Multidisciplinary Perspective",
+  "professor": "Nicole Levine",
+  "score": 4.2,
+  "difficulty": 1.9,
+  "link": "https://www.ratemyprofessors.com/professor/2713755",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "MoWe 10:30AM - 11:45AM"]
+},
+{
+  "className": "KIN 69 - Stress Management: A Multidisciplinary Perspective",
+  "professor": "Karen Moreno",
+  "score": 2.8,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/1769394",
+  "schedule": ["TuTh 12:00PM - 1:15PM", "TuTh 1:30PM - 2:45PM"]
+},
+{
+  "className": "LING 22 - Language across the Lifespan",
+  "professor": "Stefan Frazier",
+  "score": 4.7,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/709989",
+  "schedule": ["MoWe 12:00PM - 1:15PM", "TuTh 9:00AM - 10:15AM"]
+},
+{
+  "className": "MUSC 8 - The Artist’s Way",
+  "professor": "Richard Vandivier",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["MoWe 4:00PM - 5:15PM"]
+},
+{
+  "className": "NUFS 9 - Introduction to Human Nutrition",
+  "professor": "Toni Toledo",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "NUFS 9 - Introduction to Human Nutrition",
+  "professor": "Izzie Brown",
+  "score": 3.3,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/994014",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "NUFS 9 - Introduction to Human Nutrition",
+  "professor": "Cassie Boyd",
+  "score": 2.5,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/3105209",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "NUFS 10 - Basic Life Skills",
+  "professor": "Jamie Kubota",
+  "score": 4.1,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/1494857",
+  "schedule": ["Mo 12:00PM - 1:40PM", "Mo 1:45PM - 3:30PM"]
+},
+{
+  "className": "PH 1 - Understanding Your Health",
+  "professor": "Naomi Williams",
+  "score": 3.4,
+  "difficulty": 3.5,
+  "link": "https://www.ratemyprofessors.com/professor/2107946",
+  "schedule": ["MoWe 10:30AM - 11:45AM", "TuTh 9:00AM - 10:15AM"]
+},
+{
+  "className": "PH 1 - Understanding Your Health",
+  "professor": "Mahima Prabhakaran",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "RECL 10 - Creating a Meaningful Lifen",
+  "professor": "Monique Duphily",
+  "score": 2.7,
+  "difficulty": 3.3,
+  "link": "https://www.ratemyprofessors.com/professor/832531",
+  "schedule": ["MoWe 12:00PM - 1:15PM", "MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "RELS 99 - Death, Dying and Religions",
+  "professor": "Todd Perreira",
+  "score": 4.2,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1144851",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "TuTh 3:00PM - 4:15PM"]
+},
+{
+  "className": "SCED 5 - Sustainability, Human Development, and the Earth",
+  "professor": "Ellen Metzger",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TuTh 12:00PM - 1:15PM", "TuTh 1:15PM - 2:30PM"]
+},
+{
+  "className": "TA 48 - Voice & Movement for the Actor",
+  "professor": "Sarah Kate Anderson",
+  "score": 3.9,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1723713",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Joanne Rondilla",
+  "score": 3.6,
+  "difficulty": 3.1,
+  "link": "https://www.ratemyprofessors.com/professor/2414993",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "MoWe 10:30AM - 11:45AM", "MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Trung Nguyen",
+  "score": 5,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2947425",
+  "schedule": ["MoWe 12:00PM - 1:15PM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Lawrence Lan",
+  "score": 3.9,
+  "difficulty": 2.4,
+  "link": "https://www.ratemyprofessors.com/professor/3016381",
+  "schedule": ["TuTh 9:00AM - 10:15AM", "TuTh 10:30AM - 11:45AM", "TuTh 3:00PM - 4:15PM", "TuTh 4:30PM - 5:45PM", "We 6:00PM - 8:45PM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Wayne Jopanda",
+  "score": 5,
+  "difficulty": 1.2,
+  "link": "https://www.ratemyprofessors.com/professor/3010192",
+  "schedule": ["TuTh 12:00PM - 1:15PM", "TuTh 1:30PM - 2:45PM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Lan Nguyen",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["Mo 6:00PM - 8:45PM"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Catherine Fung",
+  "score": 3,
+  "difficulty": 2.7,
+  "link": "https://www.ratemyprofessors.com/professor/3016864",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AAS 1 - Introduction to Asian American Studies",
+  "professor": "Kelly Zhao",
+  "score": 5,
+  "difficulty": 1.3,
+  "link": "https://www.ratemyprofessors.com/professor/2982845",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AAS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Maria Cruz",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "AAS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Bobby Seals",
+  "score": 4.5,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2481658",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AAS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Felipe Ponce",
+  "score": 4.4,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2149122",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 22 - The Humanities in African American Culture",
+  "professor": "Carmen Saleh",
+  "score": 3.5,
+  "difficulty": 2.5,
+  "link": "https://www.ratemyprofessors.com/professor/2877047",
+  "schedule": ["MoWe 9:00AM - 10:15AM", "MoWe 12:00PM - 1:15PM", "MoWe 3:00PM - 4:15PM", "MoWe 4:30PM - 5:45PM"]
+},
+{
+  "className": "AFAM 22 - The Humanities in African American Culture",
+  "professor": "Jacques Watkins",
+  "score": 4.1,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2597471",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 22 - The Humanities in African American Culture",
+  "professor": "Emmanuel Watkins",
+  "score": 4.7,
+  "difficulty": 1.6,
+  "link": "https://www.ratemyprofessors.com/professor/2481659",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Maria Cruz",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "AFAM 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Bobby Seals",
+  "score": 4.5,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2481658",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Felipe Ponce",
+  "score": 4.4,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2149122",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 134 - The Black Civil Rights Movements",
+  "professor": "Leah Gaines",
+  "score": 2.7,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2696962",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 158 - Race, Sport, Activism & Social Movements",
+  "professor": "Michelle Tran",
+  "score": 4.8,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2300289",
+  "schedule": ["TuTh 1:30PM - 2:45PM", "MoWe 1:30PM - 2:45PM", "MoWe 12:00PM - 1:15PM", "TBA (Asynchronous)"]
+},
+{
+  "className": "AFAM 162 - The Aesthetics of Hip-Hop",
+  "professor": "Bobby Seals",
+  "score": 4.5,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2481658",
+  "schedule": ["MoWe 3:00PM - 4:15PM"]
+},
+{
+  "className": "CCS 1 - Introduction to Chicana and Chicano Studies",
+  "professor": "Angelina Loyola",
+  "score": 5,
+  "difficulty": 1.2,
+  "link": "https://www.ratemyprofessors.com/professor/2804342",
+  "schedule": ["TuTh 10:30AM - 11:45AM", "TuTh 12:00PM - 1:15PM"]
+},
+{
+  "className": "CCS 1 - Introduction to Chicana and Chicano Studies",
+  "professor": "Rosanna Alvarez",
+  "score": 4.4,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/2215963",
+  "schedule": ["TBA (Asynchronous)", "TuTh 1:30PM - 2:45PM"]
+},
+{
+  "className": "CCS 1 - Introduction to Chicana and Chicano Studies",
+  "professor": "Sergio Barrera",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["MoWe 9:00AM - 10:15AM"]
+},
+{
+  "className": "CCS 1 - Introduction to Chicana and Chicano Studies",
+  "professor": "Maribel Martinez",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["We 6:00PM - 8:45PM"]
+},
+{
+  "className": "CCS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Maria Cruz",
+  "score": "N/A",
+  "difficulty": "N/A",
+  "link": "https://www.ratemyprofessors.com/professor/unknown",
+  "schedule": ["TuTh 10:30AM - 11:45AM"]
+},
+{
+  "className": "CCS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Bobby Seals",
+  "score": 4.5,
+  "difficulty": 1.7,
+  "link": "https://www.ratemyprofessors.com/professor/2481658",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CCS 25 - The Changing Majority: Power and Ethnicity in America",
+  "professor": "Felipe Ponce",
+  "score": 4.4,
+  "difficulty": 2.1,
+  "link": "https://www.ratemyprofessors.com/professor/2149122",
+  "schedule": ["TBA (Asynchronous)"]
+},
+{
+  "className": "CCS 30 - Race and Ethnicity in Public Space",
+  "professor": "Julia Curry",
+  "score": 2.4,
+  "difficulty": 3.4,
+  "link": "https://www.ratemyprofessors.com/professor/519467",
+  "schedule": ["MoWe 10:30AM - 11:45AM", "MoWe 1:30PM - 2:45PM"]
+},
+{
+  "className": "CCS 30 - Race and Ethnicity in Public Space",
+  "professor": "Angelina Loyola",
+  "score": 5,
+  "difficulty": 1.2,
+  "link": "https://www.ratemyprofessors.com/professor/2804342",
+  "schedule": ["TuTh 9:00AM - 10:15AM"]
+},
+{
+  "className": "CCS 30 - Race and Ethnicity in Public Space",
+  "professor": "Daniel Valencia Jr",
+  "score": 1.8,
+  "difficulty": 3.9,
+  "link": "https://www.ratemyprofessors.com/professor/2912782",
+  "schedule": ["TuTh 10:30AM - 11:45AM", "TBA (Asynchronous)"]
+},
+{
+  "className": "HUM 10 - Honors Global Oral and Rhetorical Cultures",
+  "professor": "Erik Johnson",
+  "score": 4.7,
+  "difficulty": 2.8,
+  "link": "https://www.ratemyprofessors.com/professor/2539642",
+  "schedule": ["Tu 10:30AM - 11:45AM", "Th 10:30AM - 11:45AM"]
+},
+{
+  "className": "HUM 10 - Honors Global Oral and Rhetorical Cultures",
+  "professor": "Todd Perreira",
+  "score": 4.2,
+  "difficulty": 2.6,
+  "link": "https://www.ratemyprofessors.com/professor/1144851",
+  "schedule": ["Tu 10:30AM - 11:45AM", "Th 10:30AM - 11:45AM"]
+},
+  {
+    "className": "ENGL 20 - Introduction to Comics",
+    "professor": "Johnny Damm",
+    "score": "4.8",
+    "difficulty": "2.4",
+    "link": "https://www.ratemyprofessors.com/professor/2538290",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ]
+  },
+  {
+    "className": "HEBR 1A",
+    "professor": "Galia Stein Rosen",
+    "score": "N/A",
+    "difficulty": "N/A",
+    "link": "N/A",
+    "schedule": [
+      "MoWe 1:30PM - 3:10PM"
+    ]
+  },
+  {
+  "className": "AMS 11 - Visions of Democracy",
+  "professor": "Michele Bertolone",
+  "score": 4.7,
+  "difficulty": 2,
+  "link": "https://www.ratemyprofessors.com/professor/2943990",
+  "schedule": [
+    "TuTh 12:00PM - 1:15PM"
+  ]
+}
+
+]

@@ -1,0 +1,319 @@
+[
+  {
+    "area": "A1 Oral Communication",
+    "classes": [
+      "CCS 74 - Public Address",
+      "COMM 20 - Public Speaking",
+      "COMM 20N - Public Speaking For Nonnative Speakers",
+      "COMM 40 - Argumentation and Advocacy",
+      "HUM 10 - Honors Global Oral and Rhetorical Cultures"
+    ]
+  },
+  {
+    "area": "A2 Written Communication I",
+    "classes": [
+      "ENGL 1A - First Year Writing",
+      "ENGL 1AF - First-Year Writing: Stretch English I"
+    ]
+  },
+  {
+    "area": "A3 Critical Thinking and Writing",
+    "classes": [
+      "ANTH 13 - Archaeology",
+      "COMM 41 - Critical Decision Making",
+      "COMM 45 - Media and Culture",
+      "ENGL 2 - Critical Thinking and Writing",
+      "ENVS 1 - Introduction to Environmental Issues",
+      "HIST 50 - Historical Process: Understanding Historical Reasoning",
+      "HUM 1B - Humanities Honors - Silk Roads & Water Ways",
+      "HUM 2B - Honors - Modern World Cultures B",
+      "HUM 80 - Reading the World",
+      "LING 21 - Language and Thinking",
+      "LING 24 - Language Variation in Space, Time, & Culture",
+      "PHIL 57 - Logic and Critical Reasoning",
+      "POLS 20 - Controversial Legal Issues"
+    ]
+  },
+  {
+    "area": "B1 Physical Science",
+    "classes": [
+      "ASTR 10 - Descriptive Astronomy",
+      "CHEM 1A - General Chemistry",
+      "CHEM 1B - General Chemistry",
+      "CHEM 30A - Introductory Chemistry",
+      "ENGR 5 - Science of High Technology",
+      "GEOG 1 - Physical Geography",
+      "GEOL 1 - General Geology",
+      "GEOL 3 - Planet Earth",
+      "GEOL 6 - Geology of California",
+      "GEOL 7 - Earth, Time and Life",
+      "GEOL 9 - Earth Disasters",
+      "METR 10 - Weather and Climate",
+      "METR 12 - Global Warming: Science and Solutions",
+      "NUFS 1A - Physical Science of Food",
+      "PHYS 1 - Elementary Physics",
+      "PHYS 2A - Fundamentals of Physics",
+      "PHYS 2B - Fundamentals of Physics",
+      "PHYS 23 - Animation Physics",
+      "PHYS 50 - General Physics/Mechanics",
+      "PHYS 51 - General Physics/Electricity and Magnetism",
+      "PHYS 52 - General Physics/Waves, Light, Heat"
+    ]
+  },
+  {
+    "area": "B2 Life Science",
+    "classes": [
+      "ANTH 12 - Introduction to Human Evolution",
+      "BIOL 10 - The Living World",
+      "BIOL 20 - Ecological Biology",
+      "BIOL 21 - Human Biology",
+      "BIOL 30 - Principles of Biology I",
+      "BIOL 31 - Principles of Biology II",
+      "BIOL 65 - Human Anatomy",
+      "BIOL 65O - Human Anatomy",
+      "BIOL 66 - Human Physiology",
+      "ENVS 10 - Life on a Changing Planet",
+      "GEOL 8 - The Age of the Dinosaurs",
+      "GLST 1B - Introduction to Global Studies",
+      "MICR 20 - General Bacteriology",
+      "NUFS 16 - Science, Physiology, and Nutrition"
+    ]
+  },
+  {
+    "area": "B3 Laboratory",
+    "classes": [
+      "BIOL 20 - Ecological Biology",
+      "BIOL 21 - Human Biology",
+      "GEOL 1 - General Geology",
+      "GEOL 7 - Earth, Time and Life",
+      "GEOL 9 - Earth Disasters"
+    ]
+  },
+  {
+    "area": "Mathematics/Quantitative Reasoning",
+    "classes": [
+      "CHAD 80 - Quantitative Analysis in Developmental Science",
+      "CS 22A - Python for Everyone",
+      "ESM 1 - Mathematical Reasoning",
+      "ESM 9 - Mathematics and Logic for General Education",
+      "ESM 10A - Mathematics in Art and Music",
+      "ESM 10D - Probability, Data Science, Ethics, and You",
+      "ESM 10P - Mathematics in Politics",
+      "ESM 15 - Statway: Statistics-Concepts & Methods",
+      "ESM 18A - College Algebra",
+      "JS 15 - Introductory Statistics in Justice Studies",
+      "LING 26 - Quantitative Reasoning in Linguistic Diversity",
+      "MATH 1 - Mathematical Reasoning",
+      "MATH 10 - Mathematics for General Education",
+      "MATH 10A - Mathematics in Art and Music",
+      "MATH 10D - Probability, Data Science, Ethics, and You",
+      "MATH 10P - Mathematics in Politics",
+      "MATH 12 - Number Systems",
+      "MATH 15 - Statway: Statistics-Concepts & Methods",
+      "MATH 18A - College Algebra",
+      "MATH 19 - Precalculus",
+      "MATH 30 - Calculus I",
+      "MATH 30X - Calculus I",
+      "MATH 31 - Calculus II",
+      "MATH 31X - Calculus II",
+      "MATH 32 - Calculus III",
+      "MATH 32X - Calculus III",
+      "MATH 70 - Mathematics for Business",
+      "MATH 70X - Mathematics for Business",
+      "MATH 71 - Calculus for Business and Aviation",
+      "MATH 71X - Calculus for Business and Aviation",
+      "PH 67 - Introductory Health Statistics",
+      "PHIL 9 - Mathematics and Logic for General Education",
+      "SOCI 15 - Statistical Applications in the Social Sciences",
+      "SOCS 15 - Statistical Applications in the Social Sciences",
+      "STAT 95 - Elementary Statistics",
+      "UNVS 15 - Statway: Statistics-Concepts & Methods"
+    ]
+  },
+  {
+    "area": "C1 Arts",
+    "classes": [
+      "AMS 1A - American Cultures to 1877",
+      "ARTH 15 - Intro to Visual Culture",
+      "ARTH 70A - Art History, Prehistoric to Medieval",
+      "ARTH 70B - Art History, Renaissance to Modern",
+      "ARTH 70C - Arts of Asia",
+      "ASIA 70C - Arts of Asia",
+      "ARTH 72 - Design in Society",
+      "CA 95 - Introduction to Queer Arts",
+      "DANC 10 - Dance Appreciation",
+      "HUM 1A - Humanities Honors - Origins, Agriculture, Empire",
+      "KIN 68 - Visual Representations of Sport in Popular Culture",
+      "MUSC 4A - Music Systems IVA",
+      "MUSC 4B - Music Systems IVB",
+      "MUSC 10A - Music Appreciation",
+      "MUSC 10B - Introduction to Music",
+      "MUSC 10C - Pop and Rock in the U.S.",
+      "MUSC 10D - Introduction to Hip Hop",
+      "MUSC 19 - Music in World Cultures",
+      "ASIA 19 - Music in World Cultures",
+      "PHIL 66 - Introduction to Aesthetics",
+      "RTVF 10 - The Art of Film",
+      "TA 5 - Acting",
+      "TA 10 - Theatre Appreciation",
+      "TA 55 - Intro to Design for Theatre"
+    ]
+  },
+  {
+    "area": "C2 Humanities",
+    "classes": [
+      "AMS 1B - American Cultures 1877 to Present",
+      "ENGL 20 - Introduction to Comics",
+      "AMS 10 - Stories that Make America",
+      "CHIN 1A - Elementary Chinese",
+      "CHIN 1B - Elementary Chinese",
+      "CHIN 25A - Intermediate Chinese",
+      "CHIN 25B - Intermediate Chinese",
+      "ENGL 1B - Argument and Analysis",
+      "ENGL 10 - Great Works of Literature",
+      "ENGL 21 - Mystery and Detective Fiction",
+      "ENGL 22 - Fantasy and Science Fiction",
+      "ENGL 30 - Literature and the Environment",
+      "ENGL 40 - Contemporary World Fiction",
+      "ENGL 71 - Creative Writing",
+      "ENGL 78 - Introduction to Shakespeare’s Drama",
+      "FREN 1A - Elementary French",
+      "FREN 1B - Elementary French",
+      "FREN 25A - Intermediate French: Reading",
+      "FREN 25B - Intermediate French: Writing",
+      "GERM 1A - Elementary German",
+      "GERM 1B - Elementary German",
+      "GERM 25A - Intermediate German",
+      "GERM 25B - Intermediate German",
+    "PORT 1B - Elementary Portuguese II",
+    "RELS 70 - Gods, Guns, Gurus, Grails-World Religion",
+    "RELS 90 - Bible History and Literature",
+    "RUSS 1A - Elementary Russian I",
+    "RUSS 1B - Elementary Russian II",
+    "SPAN 1A - Elementary Spanish",
+    "SPAN 1B - Elementary Spanish",
+    "SPAN 20A - Spanish for Heritage Speakers I",
+    "SPAN 20B - Spanish for Heritage Speakers II",
+    "SPAN 25A - Intermediate Spanish",
+    "SPAN 25B - Intermediate Spanish",
+    "TA 13 - Great Comedies for Theatre",
+    "TAG 1A - Elementary Tagalog I",
+    "TAG 1B - Elementary Tagalog II",
+    "VIET 1A - Elementary Vietnamese",
+    "VIET 1B - Elementary Vietnamese",
+   
+    
+"HEBR 1A - Elementary Hebrew"
+  ]
+},
+{
+  "area": "D. Social Sciences",
+  "classes": [
+    "AAS 33A - Asian Americans in U.S. History I",
+    "AAS 33B - Asian Americans in U.S. History II",
+    "AFAM 2A - African Americans and the Development of America's History and Government",
+    "AFAM 2B - African Americans and the Development of America's History and Government",
+    "ANTH 11 - Cultural Anthropology",
+    "CCS 10A - Mexican Americans and the Development of U.S. History and Government",
+    "CHAD 75 - Imagination, Play and Adult Creativity",
+    "CHAD 76 - Child Development Among Media and Emerging Technologies",
+    "COMM 10 - Communication and Human Relationships",
+    "CS 25 - The Digital World and Society",
+    "ENGR 25 - The Digital World and Society",
+    "ECON 1B - Principles of Economics: Microeconomics",
+    "GEOG 10 - Cultural Geography",
+    "GEOG 12 - World Regional Geography",
+    "HIST 1A - World History to 1500",
+    "HIST 10B - Western Civilization",
+    "HIST 15 - Essentials of U.S. History",
+    "JOUR 50 - Navigating the News",
+    "JS 25 - Introduction to Human Rights and Justice",
+    "LING 20 - Nature of Language",
+    "LING 24 - Language Variation in Space, Time, & Culture",
+    "LING 25 - Languages of the World",
+    "MCOM 72 - Mass Communication and Society",
+    "PH 15 - Human Life Span",
+    "POLS 2 - Introduction to Comparative Politics",
+    "POLS 4 - Introduction to International Relations",
+    "POLS 15 - Essentials of U.S. & California Government",
+    "PSYC 1 - Introduction to Psychology",
+    "RECL 15 - Human Life Span",
+    "SOCI 1 - Introduction to Sociology",
+    "SOCI 80 - Social Problems"
+  ]
+},
+  {
+    "area": "E. Human Understanding & Development",
+    "classes": [
+      "ANTH 25 - Human Lifecourse in Context",
+      "BIOL 54 - Human Understanding",
+      "BUS3 12 - Managing My life",
+      "CA 60 - Creativity Matters",
+      "CHAD 60 - Child Development",
+      "CHAD 70 - Lifespan Development in a Global Context",
+      "COMM 74 - Fundamentals of Intercultural Communication",
+      "COMM 74Q - Fundamentals of Intercultural Communication",
+      "EDCO 4 - Personal, Academic and Career Exploration",
+      "EDCO 4FY - Personal, Academic and Career Exploration",
+      "ENGR 10 - Introduction to Engineering",
+      "GEOL 5 - Sustainability, Human Development, and the Earth",
+      "GERO 99 - Death, Dying and Religions",
+      "HUM 1A - Humanities Honors - Origins, Agriculture, Empire",
+      "HUM 99 - Death, Dying and Religions",
+      "KIN 69 - Stress Management: A Multidisciplinary Perspective",
+      "LING 22 - Language across the Lifespan",
+      "MUSC 8 - The Artist’s Way",
+      "NUFS 9 - Introduction to Human Nutrition",
+      "NUFS 10 - Basic Life Skills",
+      "PH 1 - Understanding Your Health",
+      "PHIL 12 - Philosophy of the Person",
+      "PSYC 2Q - Identity Development and Prejudice",
+      "RECL 10 - Creating a Meaningful Life",
+      "RELS 99 - Death, Dying and Religions",
+      "SCED 5 - Sustainability, Human Development, and the Earth",
+      "SCI 2 - Success in Science",
+      "SOCI 57 - Community Involvement and Personal Growth",
+      "TA 48 - Voice & Movement for the Actor"
+    ]
+  },
+  {
+    "area": "F. Ethnic Studies",
+    "classes": [
+      "AAS 1 - Introduction to Asian American Studies",
+      "AAS 25 - The Changing Majority: Power and Ethnicity in America",
+      "AAS 159 - Asian American Media Representation and Popular Culture",
+      "AFAM 22 - The Humanities in African American Culture",
+      "AFAM 25 - The Changing Majority: Power and Ethnicity in America",
+      "AFAM 134 - The Black Civil Rights Movements",
+      "AFAM 158 - Race, Sport, Activism & Social Movements",
+      "AFAM 162 - The Aesthetics of Hip-Hop",
+      "CCS 1 - Introduction to Chicana and Chicano Studies",
+      "CCS 25 - The Changing Majority: Power and Ethnicity in America",
+      "CCS 30 - Race and Ethnicity in Public Space"
+    ]
+  },
+  {
+    "area": "US 1",
+    "classes": [
+      "HIST 15 - Essentials of U.S. History",
+      "AMS 10 - Stories that Make America",
+      "AAS 33A - Asian Americans in U.S. History I",
+      "AFAM 2A - African Americans and the Development of America’s History and Government",
+      "CCS 10A - Mexican Americans and the Development of U.S. History and Government"
+    ]
+  },
+  {
+    "area": "US 2",
+    "classes": [
+      "POLS 15 - Essentials of U.S. & California Government",
+      "AMS 11 - Visions of Democracy"
+    ]
+  },
+  {
+    "area": "US 3",
+    "classes": [
+      "POLS 15 - Essentials of U.S. & California Government",
+      "AMS 11 - Visions of Democracy"
+    ]
+  }]
+
