@@ -1,0 +1,64 @@
+/* src/components/Home.css */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-bottom: -500px;
+  background-position: center;
+  background-size: contain;
+}
+.hero-blur-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px) brightness(0.8); /* Adjust blur and darkness */
+  background: rgba(0,0,0,0.2); /* Optional: darken overlay */
+  z-index: 1;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.hero-overlay {
+  background: none;      /* No color or blur */
+  padding: 0;            /* No extra space */
+  border-radius: 0;      /* No rounded box */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;/* Centers vertically, optional */
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: 3rem;
+  margin-bottom: 32px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-search {
+
+  width: 700px;       /* Increase this value to make it longer */
+  max-width: 95vw;    /* Keeps it responsive on smaller screens */
+  padding: 28px 40px; /* Optional: adjust padding for better look */
+  font-size: 1.6rem;  /* Optional: adjust font size */
+  border-radius: 32px;     /* More rounding */
+  border: none;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.08); /* Stronger shadow */
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s, background 0.2s;
+  position: center;
+  margin-left: -50px;
+  margin-top: -30px;
+}
+
+.hero-search:focus {
+  box-shadow: 0 100px 40px rgba(33, 122, 50, 0.18), 0 2px 8px rgba(0,0,0,0.12);
+  background: #f8f8f8;
+}

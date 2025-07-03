@@ -1,0 +1,114 @@
+:root {
+  --sidebar-width: 100px;
+  --header-height:100px;
+}
+
+
+.navy-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--header-height);
+  background-color: #14213d;
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+/* Sidebar: fixed at the left, below the header */
+.navy-sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  background-color: #14213d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.navy-header-content {
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  position: relative;
+  justify-content: space-between; /* This pushes auth links to the right */
+}
+
+/* Wrapper for circle+logo, so we can position them together */
+.logo-circle-wrapper {
+  position: relative;
+  width: 80px;  /* Adjust to fit your circle/logo size */
+  height: 80px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Circle at the top-left corner, overlapping sidebar and header */
+.navy-circle {
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--sidebar-width) / 2);
+  width: 80px;    /* Adjust size */
+  height: 80px;   /* Adjust size */
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-top:0px;
+  z-index: 1;
+  /* Optional: border or shadow for effect */
+}
+
+/* Logo centered over the circle */
+.navy-logo {
+  position: relative;
+  z-index: 2;
+  width: 90px;    /* Adjust size to fit inside circle */
+  height: 90px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  margin-left: -45px;
+  margin-top: -2.5px;
+}
+
+.navy-title {
+  font-size: 60px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-left: 325px;
+  margin-top:-5px ;
+  white-space: nowrap;
+}
+.sidebar-icon {
+  color: #fff;           /* White icons for contrast */
+  font-size: 2.2rem;     /* Large enough to see */
+  margin: 24px 0;        /* Space between icons */
+  display: block;
+}
+.auth-links {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.signup-link, .login-link {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+margin-right: -10px;
+}
+
+.signup-link:hover, .login-link:hover {
+  color: #ffd700;
+}

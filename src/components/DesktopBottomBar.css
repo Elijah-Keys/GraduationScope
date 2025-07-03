@@ -1,0 +1,35 @@
+.bottom-bar {
+  background-color: #112244;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.bottom-bar {
+  background: #14213d;
+  min-height: 100px !important;
+
+  width: 100vw !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  margin-top: 500px;
+}
+.bottom-bar a {
+  color:  #ffffff; /* Change this hex code to any color you want */
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+
+.bottom-bar a:hover {
+  background-color: #ffffff;
+  color: #14213d;
+}

@@ -1,8 +1,22 @@
-import Header from "./Header";
+import Header from "./components/Header";
 import React, { useState } from "react";
-import GETracker from "./components/GETracker";
+import GETracker from "./pages/GETracker";
 import geRequirements from "./data/geRequirements.json";
 import classDetails from "./data/classDetails.json";
+import { Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Home from "./components/Home";
+import { useLocation } from "react-router-dom";
+import Sidebar from "./components/Sidebar"; 
+// index.js or App.js
+import './global.css';
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Survey from "./components/Survey";
+
+
+
 
 const areasToShow = [
   "A1 Oral Communication",
@@ -54,7 +68,14 @@ function getAllClasses(geRequirements) {
 }
 
 
+
+function ClassRecommendation() {
+  return <h1>Class Recommendation Page</h1>;
+}
+
+
 export default function App() {
+  const loc = useLocation();
   const [search, setSearch] = useState("");
   const [classesTaken, setClassesTaken] = useState([]);
   function onAddClass(className, area) {
@@ -182,169 +203,35 @@ const handleRemoveClass = (className, area) => {
   ));
 };
 
-return (
-  <div style={{ maxWidth: 700, margin: "2rem auto", fontFamily: "Nunito Sans" }}>
-     <Header />
-     <div style={{
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "18px 0 18px 0",
-  gap: "10px"
-}}>
-  <span style={{
-    fontWeight: 700,
-    fontSize: "1.08em",
-    color: "#0055A2",
-    background: "#FFC72A",
-    padding: "6px 14px",
-    borderRadius: "22px"
-  }}>
-    $100 Raffle
-  </span>
-  <span style={{ fontSize: "2em", color: "#0055A2" }}>➡️</span>
-  <a
-    href="https://docs.google.com/forms/d/1Y1O0rC_F2kYRl3q4VJCNqmv0pGIijDSemQ6cwrrxTNw/viewform"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      fontWeight: 600,
-      fontSize: "1.06em",
-      color: "#0055A2",
-      textDecoration: "underline"
-    }}
-  >
-    Take the quick survey!
-  </a>
-</div>
 
-    <h1>GE Requirements</h1>
-    {/* 3. Instruction above search bar */}
-    <div style={{ fontSize: "1em", color: "#444", marginBottom: 6 }}>
-      Search for a class you have already taken, or plan to take.
-    </div>
-    {/* Search Bar */}
-      <div style={{ marginBottom: 24, position: "relative" }}>
-        <input
-          type="text"
-          placeholder="Search for a class..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "8px",
-            fontSize: "1rem",
-            borderRadius: 4,
-            border: "1px solid #ccc"
-          }}
+  return (
+  <>
+  <Header />
+  {loc.pathname !== "/" && <Sidebar />}
+  <Routes>
+    <Route path="/" element={<Home search={search} setSearch={setSearch} />} />
+    <Route
+      path="/dashboard"
+      element={
+        <GETracker
+          geRequirements={geRequirements}
+          classDetails={classDetails}
+          onAddClass={onAddClass}
+          onDeleteClass={onDeleteClass}
+          classesTaken={classesTaken}
+          c1c2Fulfilled={c1c2Fulfilled}
+          areaCWarning={areaCWarning}
+          search={search}
+          setSearch={setSearch}
+          searchResults={searchResults}
+          handleAddClass={handleAddClass}
         />
-        {searchResults.length > 0 && (
-          <ul
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderTop: "none",
-              maxHeight: 200,
-              overflowY: "auto",
-              background: "#fff",
-              position: "absolute",
-              width: "calc(100% - 2px)",
-              zIndex: 2
-            }}
-          >
-            {searchResults.map(obj => (
-              <li
-                key={obj.className}
-                style={{
-                  padding: "6px 0",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #eee"
-                }}
-                onClick={() => handleAddClass(obj.className, obj.area)}
-              >
-                <strong>{obj.className}</strong>
-                <span style={{ color: "#888", marginLeft: 8 }}>
-                  ({obj.area})
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      }
+    />
+    {/* other routes */}
+    <Route path="/about" element={<About />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/survey" element={<Survey />} />
 
-      {/* Classes Taken Section */}
-      <div style={{ marginBottom: 32 }}>
-        <h2>Classes Taken</h2>
-  <ul>
-    {classesTaken.length === 0 ? (
-      <li style={{ color: "#aaa" }}>No classes taken yet.</li>
-    ) : (
-      classesTaken.map(obj => (
-        <li key={obj.className + obj.area}>
-          <strong>{obj.className}</strong>
-          <span style={{ marginLeft: 8, color: "#555" }}>
-            ({obj.area})
-          </span>
-          <button
-            onClick={() => onDeleteClass(obj)}
-            style={{
-              marginLeft: 8,
-              color: "red",
-              background: "none",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              padding: "2px 8px",
-              cursor: "pointer"
-            }}
-            title="Delete class"
-          >
-            Delete
-          </button>
-        </li>
-      ))
-    )}
-  </ul>
-
-
-        {/* Area C Warning */}
-        <div style={{ marginTop: 16 }}>
-          {areaCWarning && (
-            <div style={{ color: "#b8860b", fontWeight: "bold" }}>{areaCWarning}</div>
-          )}
-        </div>
-      </div>
-      {/* 5. Instruction below all areas (just before GETracker) */}
-<div style={{ fontSize: "0.97em", color: "#888", margin: "8px 0 14px 0" }}>
-  Click on a class name to see more information.
-</div>
-
-      {/* GE Requirements List (sorted alphabetically by area) */}
-     <GETracker
-  geRequirements={geRequirements}
-  classDetails={classDetails}
-  onAddClass={onAddClass}
-  onDeleteClass={onDeleteClass}   
-  classesTaken={classesTaken}
-  c1c2Fulfilled={c1c2Fulfilled} // <-- pass as prop
-/>
-<div
-  style={{
-    fontSize: "0.95em",
-    color: "#666",
-    margin: "32px 0 0 0",
-    textAlign: "center",
-    position: "fixed",
-    left: 0,
-    right: 0,
-    bottom: 10,
-    zIndex: 100,
-    background: "rgba(255,255,255,0.95)",
-    pointerEvents: "none"
-  }}
->
-  *classes as of June 15th.
-</div>
-          </div>)}
-      
+  </Routes>
+</>)}
