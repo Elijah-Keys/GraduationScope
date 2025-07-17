@@ -118,33 +118,6 @@ const normalizedEmail = currentUser.trim().toLowerCase();
 
 
 }, [classesTaken]);
-useEffect(() => {
-  // Only run on Home page, and only if user hasn't seen the tour
-  if ((loc.pathname === "/" || loc.pathname === "/home") && !localStorage.getItem("hasSeenTour")) {
-    setTimeout(() => { // Delay to ensure elements are rendered
-      introJs()
-        .setOptions({
-          steps: [
-            {
-              intro: "Welcome to GE Tracker! Let's get started.",
-            },
-            {
-              element: document.querySelector('.university-search'),
-              intro: "Search for your university here.",
-            },
-            {
-              element: document.querySelector('.add-class-btn'),
-              intro: "Click here to add a class you've taken.",
-            },
-          ],
-        })
-        .oncomplete(() => localStorage.setItem("hasSeenTour", "true"))
-        .onexit(() => localStorage.setItem("hasSeenTour", "true"))
-        .start();
-    }, 500); // 500ms delay to ensure Home and its elements are mounted
-  }
-}, [loc.pathname]);
-
 
 
   function onAddClass(className, area) {
