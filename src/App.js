@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GETracker from "./pages/GETracker";
 import geRequirements from "./data/geRequirements.json";
 import classDetails from "./data/classDetails.json";
@@ -14,8 +14,16 @@ import './global.css';
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Survey from "./components/Survey";
-
-
+import { useNavigate } from "react-router-dom"; // Add this import
+import SignUpModal from "./SignUpModal";
+import AccountSettingsPage from "./pages/AccountSettingsPage";
+import Cookies from 'js-cookie';
+import BottomBarA from './components/MobileBottomBar';
+import LoginModal from "./components/SignInModal.jsx";
+import ForgotPasswordPage from "./components/ForgotPassword.jsx";
+import introJs from "intro.js";
+import "intro.js/introjs.css"; // Don't forget to import the CSS!
+import ClassRecommendationPage from "./components/ClassReccomendation.jsx";
 
 
 const areasToShow = [
@@ -75,9 +83,70 @@ function ClassRecommendation() {
 
 
 export default function App() {
+   const [showSignUp, setShowSignUp] = useState(false);
+     const [showLogin, setShowLogin] = useState(false);
+     const [successMessage, setSuccessMessage] = useState("");
+     const [showForgotPassword, setShowForgotPassword] = useState(false);
+     const [prefillEmail, setPrefillEmail] = useState("");
+
   const loc = useLocation();
+  const isHome = loc.pathname === "/" || loc.pathname === "/home";
+   const navigate = useNavigate(); // Add this line
+const [isAuthenticated, setIsAuthenticated] = useState(
+  localStorage.getItem("isAuthenticated") === "true" ||
+  sessionStorage.getItem("isAuthenticated") === "true"
+);
+
   const [search, setSearch] = useState("");
   const [classesTaken, setClassesTaken] = useState([]);
+  // On app load
+useEffect(() => {
+  const savedClasses = localStorage.getItem("classesTaken");
+  if (savedClasses) {
+    setClassesTaken(JSON.parse(savedClasses));
+  }
+}, []);
+
+// Save classes when they change
+useEffect(() => {
+  localStorage.setItem("classesTaken", JSON.stringify(classesTaken));
+if (!currentUser) {
+  // handle no user case, e.g. return or set default
+  return;
+}
+const normalizedEmail = currentUser.trim().toLowerCase();
+
+
+}, [classesTaken]);
+useEffect(() => {
+  // Only run on Home page, and only if user hasn't seen the tour
+  if ((loc.pathname === "/" || loc.pathname === "/home") && !localStorage.getItem("hasSeenTour")) {
+    setTimeout(() => { // Delay to ensure elements are rendered
+      introJs()
+        .setOptions({
+          steps: [
+            {
+              intro: "Welcome to GE Tracker! Let's get started.",
+            },
+            {
+              element: document.querySelector('.university-search'),
+              intro: "Search for your university here.",
+            },
+            {
+              element: document.querySelector('.add-class-btn'),
+              intro: "Click here to add a class you've taken.",
+            },
+          ],
+        })
+        .oncomplete(() => localStorage.setItem("hasSeenTour", "true"))
+        .onexit(() => localStorage.setItem("hasSeenTour", "true"))
+        .start();
+    }, 500); // 500ms delay to ensure Home and its elements are mounted
+  }
+}, [loc.pathname]);
+
+
+
   function onAddClass(className, area) {
     // Prevent more than 3 C1/C2 classes total
     if (
@@ -202,16 +271,152 @@ const handleRemoveClass = (className, area) => {
     obj => !(obj.className === className && obj.area === area)
   ));
 };
+// In your handleLogin function in App.js
+const handleLogin = ({ email, password, rememberMe }) => {
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  if (users[email] && users[email].password === password) {
+    // Store in localStorage if Remember Me, otherwise sessionStorage
+    if (rememberMe) {
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", email);
+    } else {
+      sessionStorage.setItem("isAuthenticated", "true");
+      sessionStorage.setItem("currentUser", email);
+    }
+    setIsAuthenticated(true);
+    setCurrentUser(email);
+    setClassesTaken(users[email].classesTaken || []);
+    setShowLogin(false);
+    const recentUniversity = localStorage.getItem("recentUniversity") || "sjsu";
+    navigate(`/${recentUniversity}`);
+  } else {
+    alert("Invalid credentials");
+  }
+};
 
+
+
+const handleSignUp = ({ email, password }) => {
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  if (users[email]) {
+    alert("An account with this email already exists.");
+    return;
+  }
+  users[email] = { password, classesTaken: [] };
+  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("isAuthenticated", "true");
+  localStorage.setItem("currentUser", email);
+  setIsAuthenticated(true);
+  setCurrentUser(email);
+  setClassesTaken([]); // Start with empty classes
+  setShowSignUp(false);
+  setSuccessMessage("Successfully signed up!");
+  navigate("/"); // Redirect to home
+
+  setTimeout(() => setSuccessMessage(""), 2500); // Hide message after 2.5s
+};
+
+{successMessage && (
+  <div className="success-toast">
+    {successMessage}
+  </div>
+)}
+
+
+
+
+const handleLogout = () => {
+  localStorage.removeItem("isAuthenticated");
+  localStorage.removeItem("currentUser");
+  sessionStorage.removeItem("isAuthenticated");
+  sessionStorage.removeItem("currentUser");
+  setIsAuthenticated(false);
+  setCurrentUser(null);
+  setClassesTaken([]);
+  navigate("/");
+};
+
+
+useEffect(() => {
+  const syncAuth = () => {
+    setIsAuthenticated(localStorage.getItem("isAuthenticated") === "true");
+  };
+  window.addEventListener("storage", syncAuth);
+  return () => window.removeEventListener("storage", syncAuth);
+}, []);
+
+const [currentUser, setCurrentUser] = useState(
+  localStorage.getItem("currentUser") ||
+  sessionStorage.getItem("currentUser") ||
+  null
+);
+useEffect(() => {
+  if (currentUser) {
+    const users = JSON.parse(localStorage.getItem("users") || "{}");
+    const normalizedEmail = currentUser.trim().toLowerCase();
+    if (users[normalizedEmail]) {
+      users[normalizedEmail].classesTaken = classesTaken;
+      localStorage.setItem("users", JSON.stringify(users));
+    } else {
+      // Optionally handle the missing user case
+      // setIsAuthenticated(false); setCurrentUser(null);
+    }
+  }
+}, [classesTaken, currentUser]);
+
+<div>
+  <button onClick={() => setShowSignUp(true)}>Test Open Sign Up</button>
+  <button onClick={() => setShowLogin(true)}>Test Open Login</button>
+</div>
 
   return (
   <>
-  <Header />
+ <Header
+  isAuthenticated={isAuthenticated}
+  onLogout={handleLogout}
+  onShowSignUp={() => setShowSignUp(true)}
+  onShowLogin={() => setShowLogin(true)}
+/>
+{showSignUp && (
+  <SignUpModal
+    onClose={() => setShowSignUp(false)}
+    onSignUp={handleSignUp}
+    onShowLogin={email => {
+      setShowSignUp(false);
+      setPrefillEmail(email || "");
+      setShowLogin(true);
+    }}
+  />
+)}
+{showLogin && (
+  <LoginModal
+    onLogin={handleLogin}
+    onClose={() => setShowLogin(false)}
+    prefillEmail={prefillEmail}
+    onShowSignUp={() => {
+      setShowLogin(false);
+      setShowSignUp(true);
+    }}
+  />
+)}
+
+{showForgotPassword && (
+  <ForgotPasswordPage
+    onBackToLogin={() => {
+      setShowForgotPassword(false);
+      setShowLogin(true);
+    }}
+  />
+)}
+
+
+
+
   {loc.pathname !== "/" && <Sidebar />}
   <Routes>
     <Route path="/" element={<Home search={search} setSearch={setSearch} />} />
     <Route
-      path="/dashboard"
+      path="/sjsu"
       element={
         <GETracker
           geRequirements={geRequirements}
@@ -225,13 +430,46 @@ const handleRemoveClass = (className, area) => {
           setSearch={setSearch}
           searchResults={searchResults}
           handleAddClass={handleAddClass}
+          university={"sjsu"}
         />
       }
     />
+    <Route
+  path="/sanjosestate"
+  element={
+    <GETracker
+      geRequirements={geRequirements}
+      classDetails={classDetails}
+      onAddClass={onAddClass}
+      onDeleteClass={onDeleteClass}
+      classesTaken={classesTaken}
+      c1c2Fulfilled={c1c2Fulfilled}
+      areaCWarning={areaCWarning}
+      search={search}
+      setSearch={setSearch}
+      searchResults={searchResults}
+      handleAddClass={handleAddClass}
+      university={"sjsu"}
+    />
+  }
+/>
     {/* other routes */}
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/survey" element={<Survey />} />
 
+<Route path="/account" element={<AccountSettingsPage />} />
+<Route
+  path="/recommend"
+  element={
+    <ClassRecommendationPage
+      geRequirements={geRequirements}
+      classDetails={classDetails}
+    />
+  }
+/>
+
+
   </Routes>
+   {!isHome && <BottomBarA />}
 </>)}

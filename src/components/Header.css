@@ -10,7 +10,7 @@
   left: 0;
   width: 100vw;
   height: var(--header-height);
-  background-color: #14213d;
+  background-color:#14213D;
   display: flex;
   align-items: center;
   z-index: 1001;
@@ -23,7 +23,7 @@
   left: 0;
   width: var(--sidebar-width);
   height: calc(100vh - var(--header-height));
-  background-color: #14213d;
+  background-color:  #14213D;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,61 +32,52 @@
 
 
 .navy-header-content {
-  width: 100%;
-  
   display: flex;
   align-items: center;
-  padding: 0 50px;
-  position: relative;
-  justify-content: space-between; /* This pushes auth links to the right */
+  justify-content: space-between;
+  gap: 24px; /* Adjust as needed */
 }
 
-/* Wrapper for circle+logo, so we can position them together */
-.logo-circle-wrapper {
-  position: relative;
-  width: 80px;  /* Adjust to fit your circle/logo size */
-  height: 80px;
-  margin-right: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Circle at the top-left corner, overlapping sidebar and header */
+
 .navy-circle {
   position: absolute;
-  top: 0;
-  left: calc(-1 * var(--sidebar-width) / 2);
-  width: 80px;    /* Adjust size */
-  height: 80px;   /* Adjust size */
-  background: #fff;
+  left: 5px;                    /* Anchors the circle to the far left */
+  top: 5%;
+/* Vertically centers the circle in the wrapper */
+  width: 85px;               /* Make the circle slightly smaller than the wrapper */
+  height: 85px;
+  background-color: #fff;
   border-radius: 50%;
-  margin-left: 10px;
-  margin-top:0px;
-  z-index: 1;
-  /* Optional: border or shadow for effect */
+  z-index: 1;       /* Puts the circle behind the logo */
 }
 
-/* Logo centered over the circle */
+
+
 .navy-logo {
-  position: relative;
-  z-index: 2;
-  width: 90px;    /* Adjust size to fit inside circle */
-  height: 90px;
+  position: absolute;
+  left: -1px;                 /* Moves logo right so it sits over the circle */
+  top: 1%;
+  width: 100px;               /* Make the logo larger than before */
+  height: 100px;
   object-fit: contain;
-  display: block;
-  margin: 0 auto;
-  margin-left: -45px;
-  margin-top: -2.5px;
+  z-index: 2;                 /* Ensures the logo is above the circle */
+  background: transparent;
+  border-radius: 50%;
 }
 
 .navy-title {
-  font-size: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem !important; /* Increase as needed */
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.02em;
-  margin-left: 325px;
-  margin-top:-5px ;
   white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
 }
 .sidebar-icon {
   color: #fff;           /* White icons for contrast */
@@ -94,21 +85,165 @@
   margin: 24px 0;        /* Space between icons */
   display: block;
 }
+.auth-buttons-wrapper {
+  position: relative;
+  margin-left: 0;  
+  right: 0;  /* shift left by 20px; adjust as needed */
+  /* or alternatively: */
+  /* left: -20px; */
+}
+.spacer {
+  flex: 1 1 auto;
+  min-width: 1125px;
+}
+
+.navy-auth-bg {
+  position: absolute;
+  right: 0;          /* Anchors background to the right of the wrapper */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;      /* Size of background shape */
+  height: 120px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
 .auth-links {
   display: flex;
-  gap: 24px;
-  margin-left: auto;
+  align-items: center;
+  gap: 10px; /* or your preferred spacing */
+   flex-wrap: nowrap;
 }
 
-.signup-link, .login-link {
-  color: #fff;
+.guest-links {
+  margin-left: 70px;  /* pushes guest links to the right within .auth-links */
+  display: flex;
+  gap: 10px;          /* or your preferred spacing */
+}
+
+
+.signup-link,
+.login-link,
+.account-link,
+.logout-button {
   font-size: 1.1rem;
   font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: #14213d;
+  color: #fff;
   cursor: pointer;
-  transition: color 0.2s;
-margin-right: -10px;
+  transition: color 0.2s, background 0.2s;
+ white-space: nowrap;
 }
 
-.signup-link:hover, .login-link:hover {
-  color: #ffd700;
+.signup-link:hover,
+.login-link:hover,
+.account-link:hover,
+.logout-button:hover {
+  background: #ffffff;
+  color: #717171;
+}
+
+
+.logout-button {
+  background: #14213d;
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  /* Remove browser default button styles */
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  text-align: left; /* or center, to match links */
+  display: inline-block; /* To match <Link> display */
+}
+
+
+@media (max-width: 600px) {
+  .navy-sidebar {
+    display: none !important;
+  }
+  .navy-title {
+    display: none !important;
+  }
+
+  /* ...rest of your mobile styles... */
+
+  :root {
+    --sidebar-width: 40px;
+  }
+
+  .navy-header {
+    height: var(--header-height);
+    padding: 0;
+  }
+
+  .navy-header-content {
+    padding: 0 6px;
+    min-width: 0;
+  }
+
+  .logo-circle-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-right: 6px;
+  }
+
+  .navy-circle {
+    width: 60px;
+    height: 60px;
+    margin-left: 6px;
+    margin-top: 16px;
+  }
+
+  .navy-logo {
+    width: 70px;
+    height: 70px;
+    margin-left: 5px;
+    margin-top: 15px;
+  }
+
+  .navy-title {
+    font-size: 1.4rem;
+    margin-left: 5px;
+    margin-top: 0;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .auth-links {
+  gap: 4px;
+  margin-left: 0;
+  width: 100%;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+
+  .signup-link, .login-link, .account-link, .logout-button {
+    font-size: 0.85rem;
+    padding: 2px 4px;
+
+  }
+
+  .spacer {
+    width: 0 !important;
+    min-width: 0 !important;
+  }
+
 }

@@ -1,5 +1,9 @@
+.navy-bottom-bar {
+  display: none;
+}
+
 .bottom-bar {
-  background-color: #112244;
+  background-color: #14213D;
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -10,7 +14,7 @@
 }
 
 .bottom-bar {
-  background: #14213d;
+  background:  #14213D;
   min-height: 100px !important;
 
   width: 100vw !important;

@@ -1,4 +1,5 @@
 /* src/components/Home.css */
+
 .hero-section {
   position: relative;
   width: 100vw;
@@ -54,11 +55,98 @@
   margin-bottom: 24px;
   transition: box-shadow 0.2s, background 0.2s;
   position: center;
-  margin-left: -50px;
+  margin-left: -30px;
   margin-top: -30px;
 }
 
 .hero-search:focus {
   box-shadow: 0 100px 40px rgba(33, 122, 50, 0.18), 0 2px 8px rgba(0,0,0,0.12);
   background: #f8f8f8;
+}
+
+/* Prevent horizontal scrolling */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === Cleaned MOBILE SECTION === */
+@media only screen and (max-width: 600px) {
+  /* Hero section tweaks */
+  .hero-section {
+    height: 40vw;
+    background-size: 100% auto;
+    background-position: center center;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding: 0 0.5rem;
+  }
+
+  .hero-search {
+    width: 70vw;
+    max-width: 281px;
+    min-width: 80px;
+    padding: 14px 16px;
+    border-radius: 40px;
+    margin-bottom: 16px;
+    margin-left: 35px;
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  .hero-overlay {
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Logo positioning */
+  .logo, .navbar-logo {
+    position: absolute;
+    left: 18px;
+    top: 20px;
+    font-size: 1.6rem;
+    z-index: 200;
+  }
+
+  /* Move Sign In / Log In buttons */
+  .auth, .auth-links {
+    position: absolute;
+    top: 24px;
+    right: 18px;
+    display: flex;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .auth a,
+  .auth-links a,
+  .login, .signin, .signup {
+    font-size: 1.22rem;
+    padding: 7px 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    text-align: right;
+  }
+
+  /* Circle decoration fix */
+  .hero-circle,
+  .circle-bg,
+  .decor-circle {
+    position: absolute;
+    top: 80px;
+    right: 10vw;
+    margin-top: 20px;
+    width: 90px;
+    height: 90px;
+    opacity: 0.85;
+    z-index: 0;
+  }
 }

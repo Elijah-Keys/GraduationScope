@@ -1,0 +1,84 @@
+.a1-desktop-text {
+  color: #fff;
+  font-weight: 400; /* Less than 'bold' for title */
+  font-size: 1.5rem;     /* Increased from 1.07rem */
+  margin: 20px 0 8px 0;  /* Increased top margin from 2px to 20px */
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 40px;
+}
+/* GETracker mobile layout adjustments */
+@media only screen and (max-width: 600px) {
+  /* Make entire container more mobile friendly */
+  .ge-container {
+    padding: 32px 16px !important;
+    margin-top: 32px !important;
+  }
+
+  /* Switch grid layout to 1 column */
+  .ge-card-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Card styles on mobile */
+  .ge-card {
+    padding: 18px 20px !important;
+    font-size: 1rem !important;
+    min-height: unset !important;
+  }
+
+  /* Header text scaling */
+  .ge-title {
+    font-size: 1.5rem !important;
+    text-align: center !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Buttons (Find Easiest, etc.) */
+  .ge-button {
+    font-size: 1rem !important;
+    padding: 10px 16px !important;
+  }
+
+  /* Input spacing */
+  .ge-search-box input {
+    font-size: 1rem !important;
+    padding: 10px !important;
+  }
+
+  /* Professor table responsiveness */
+  .ge-table {
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    overflow-x: auto;
+  }
+
+  /* List style for classes */
+  .ge-class-btn {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  .ge-delete-btn {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+
+  /* Search List Dropdown on mobile */
+  .ge-search-results {
+    font-size: 0.9rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+
+@media (max-width: 900px) {
+  .a1-desktop-text {
+    display: none !important;
+  }
+}
+}

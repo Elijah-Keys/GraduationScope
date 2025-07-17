@@ -1,104 +1,105 @@
 import React, { useState } from "react";
+import './ProfessorTable.css'; // Ensure you have this CSS file for styling
+
+// Change these keys to match your ACTUAL data fields
+const RMP_KEY = "score";       // "score" OR "rmpScore", whatever your array uses
+const DIFF_KEY = "difficulty"; // probably correct
 
 export default function ProfessorTable({ className, classDetails }) {
-  // Normalize function for robust matching
   const normalize = str => str.replace(/\s+/g, ' ').trim().toLowerCase();
 
-  // Find all professor entries for this class
   const professors = classDetails.filter(
-    entry => normalize(entry.className) === normalize(className)
+    prof => normalize(prof.className) === normalize(className)
   );
 
-  // State for sorting
   const [sortConfig, setSortConfig] = useState({
-    key: "score", // "score" or "difficulty"
-    direction: "desc", // "asc" or "desc"
+    key: RMP_KEY,
+    direction: "desc",
   });
 
-  // Sorting logic
-  const sorted = [...professors].sort((a, b) => {
-    if (sortConfig.key === "score") {
-      return sortConfig.direction === "desc"
-        ? b.score - a.score
-        : a.score - b.score;
-    } else if (sortConfig.key === "difficulty") {
-      return sortConfig.direction === "asc"
-        ? a.difficulty - b.difficulty
-        : b.difficulty - a.difficulty;
-    }
-    return 0;
-  });
-
-  // Click handlers for sorting
-  const handleSort = key => {
-    setSortConfig(prev => {
-      if (prev.key === key) {
-        // Toggle direction
-        return {
-          key,
-          direction:
-            prev.direction === "asc" ? "desc" : "asc"
-        };
-      } else {
-        // Set initial direction for each column
-        return {
-          key,
-          direction: key === "score" ? "desc" : "asc"
-        };
-      }
-    });
+  const handleSort = (key) => {
+    setSortConfig((prev) => ({
+      key,
+      direction: prev.key === key && prev.direction === "asc" ? "desc" : "asc"
+    }));
   };
 
-  if (professors.length === 0) {
-    return <div>No professor data available for this class.</div>;
+  const getArrow = (key) =>
+    sortConfig.key === key
+      ? sortConfig.direction === "asc"
+        ? " ▲"
+        : " ▼"
+      : "";
+
+  const sorted = [...professors].sort((a, b) => {
+    const aVal = typeof a[sortConfig.key] === "number" ? a[sortConfig.key] : -Infinity;
+    const bVal = typeof b[sortConfig.key] === "number" ? b[sortConfig.key] : -Infinity;
+    return sortConfig.direction === "asc" ? aVal - bVal : bVal - aVal;
+  });
+
+  if (!sorted.length) {
+    return <div>No professor data for this class.</div>;
   }
 
-  // Helper to show arrow
-  const getArrow = key => {
-    if (sortConfig.key !== key) return "";
-    return sortConfig.direction === "asc" ? " ▲" : " ▼";
+  const thStyle = {
+    cursor: "pointer",
+    padding: "8px",
+    borderBottom: "1px solid #ccc",
+    color: "#fff"
+  };
+
+  const tdStyle = {
+    padding: "8px",
+    borderBottom: "1px solid #eee",
+    color: "#fff"
   };
 
   return (
-    <div>
-      <table border="1" cellPadding="4" style={{ marginTop: 8, width: "100%", borderCollapse: "collapse" }}>
+  <div className="professor-table">
+    <div className="professor-table-scroll">
+      <table style={{ width: "100%", marginTop: 8, borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            <th>Professor</th>
-            <th
-              style={{ cursor: "pointer", background: "#e0f7fa" }}
-              onClick={() => handleSort("score")}
-              title="Sort by RMP Score"
-            >
-              RMP Score{getArrow("score")}
+            <th className="professor-th">Professor</th>
+            <th className="clickable" onClick={() => handleSort(RMP_KEY)}>
+              RMP Score {getArrow(RMP_KEY)}
             </th>
-            <th
-              style={{ cursor: "pointer", background: "#e0f7fa" }}
-              onClick={() => handleSort("difficulty")}
-              title="Sort by Difficulty"
-            >
-              Difficulty{getArrow("difficulty")}
+            <th className="clickable" onClick={() => handleSort(DIFF_KEY)}>
+              Difficulty {getArrow(DIFF_KEY)}
             </th>
-            <th>Schedule</th>
+            <th className="schedule-header">Schedule</th>
             <th>RMP Link</th>
           </tr>
         </thead>
         <tbody>
-          {sorted.map((prof, i) => (
-            <tr key={i}>
+          {sorted.map((prof, idx) => (
+            <tr key={idx}>
               <td>{prof.professor}</td>
-              <td>{prof.score}</td>
-              <td>{prof.difficulty}</td>
-              <td>{prof.schedule ? prof.schedule.join(", ") : ""}</td>
+              <td>{prof[RMP_KEY] ?? "N/A"}</td>
+              <td>{prof[DIFF_KEY] ?? "N/A"}</td>
+              <td className="schedule-cell">
+                {Array.isArray(prof.schedule)
+                  ? prof.schedule.join(", ")
+                  : "N/A"}
+              </td>
               <td>
-                <a href={prof.link} target="_blank" rel="noopener noreferrer">
-                  Link
-                </a>
+                {prof.rmpLink ? (
+                  <a
+                    href={prof.rmpLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#91cdff", textDecoration: "underline" }}
+                  >
+                    RMP
+                  </a>
+                ) : (
+                  "N/A"
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
-}
+  </div>
+);}

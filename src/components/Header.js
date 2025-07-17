@@ -1,7 +1,9 @@
 import React from 'react';
 import './Header.css';
+import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
+
   return (
     <header className="navy-header">
       <div className="navy-header-content">
@@ -14,9 +16,28 @@ function Header() {
           />
         </div>
         <span className="navy-title">Graduation Scope</span>
+        <div className="spacer" />
         <div className="auth-links">
-          <span className="signup-link">Sign Up</span>
-          <span className="login-link">Log In</span>
+          {isAuthenticated ? (
+            <>
+              <Link to="/account" className="account-link">Account Settings</Link>
+              <button onClick={onLogout} className="logout-button">Log Out</button>
+            </>
+          ) : (
+            <div className="guest-links">
+            <button className="signup-link" onClick={onShowSignUp} style={{ background: "none", border: "none", cursor: "pointer" }}>
+  Sign Up
+</button>
+<button
+  className="login-link"
+  onClick={onShowLogin}
+  style={{ background: "none", border: "none", cursor: "pointer" }}
+>
+  Log In
+</button>
+
+            </div>
+          )}
         </div>
       </div>
     </header>

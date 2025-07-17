@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+.success-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #43a047;
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  z-index: 3000;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  animation: fadeout 2.5s forwards;
+}
+
+@keyframes fadeout {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

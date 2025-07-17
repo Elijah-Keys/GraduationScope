@@ -1,6 +1,11 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import universities from "../data/universities";
+import './UniversitySearch.css';
+
+
+
+
 
 export default function UniversitySearch() {
   const [search, setSearch] = useState("");
@@ -38,7 +43,7 @@ export default function UniversitySearch() {
 
   // When a result is clicked, navigate to dashboard
   const handleResultClick = (university) => {
-    navigate("/dashboard");
+    navigate("/sjsu");
   };
 
   return (
@@ -55,21 +60,8 @@ export default function UniversitySearch() {
         autoComplete="off"
         style={{ width: "100%" }}
       />
-      {showDropdown && (
-        <div
-          style={{
-            position: "absolute",
-            top: "72.5%",
-            left: -27,
-            width: "105%",
-            background: "rgba(255,255,255,0.98)",
-            borderRadius: "16px",
-            boxShadow: "0 6px 24px rgba(0,0,0,0.15)",
-            zIndex: 10,
-            maxHeight: 200,
-            overflowY: "auto"
-          }}
-        >
+     {showDropdown && (
+  <div className="university-dropdown">
           {results.length > 0 ? (
             results.map(u => (
               <div

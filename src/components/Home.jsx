@@ -3,20 +3,33 @@ import UniversitySearch from "./UniversitySearch";
 import "./Home.css";
 import DesktopBottomBar from "./DesktopBottomBar";
 
-export default function Home() {   
+// Custom hook to detect mobile screen size
+function useMobile() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 600);
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return isMobile;
+}
+
+export default function Home() {
+  const heroImage = "/hero1.jpg";           // <--- define here!
+  const isMobile = useMobile();             // <--- define here!
+
   return (
-    <div>
+    <div className="home-root">
       <div
         className="hero-section"
         style={{
-          backgroundImage: 'url("/hero.jpg")',
+          backgroundImage: `url(${heroImage})`,        // <-- heroImage now defined above
           backgroundPosition: 'center center',
-          backgroundSize: 'cover',
+          backgroundSize: isMobile ? '107.5% 100%' : 'cover',
           backgroundRepeat: 'no-repeat',
-          width: "100vw",
-          height: "calc(100vh - 100px)", // 100px = header height
+          width: isMobile ? "100vw" : "100%",
+          height: isMobile ? "140vw" : "calc(100vh - 100px)",
           marginTop: "100px",
-          marginLeft: "0px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -29,8 +42,6 @@ export default function Home() {
           <UniversitySearch />
         </div>
       </div>
-
-     {/* Use the DesktopBottomBar component here */}
       <DesktopBottomBar />
     </div>
   );

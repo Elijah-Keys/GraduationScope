@@ -208,6 +208,7 @@
 },
 {
   "area": "D. Social Sciences",
+  "requiredcount": 2,
   "classes": [
     "AAS 33A - Asian Americans in U.S. History I",
     "AAS 33B - Asian Americans in U.S. History II",

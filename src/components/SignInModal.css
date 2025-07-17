@@ -1,0 +1,192 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.25);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-modal-content {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.22);
+  padding: 38px 32px 32px 32px;
+  min-width: 340px;
+  max-width: 90vw;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.login-modal-content form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.login-modal-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  color: #fff;
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 16px 48px 16px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.25);
+  color: #222;
+  font-size: 1.1rem;
+  outline: none;
+  transition: border 0.2s, background 0.2s;
+}
+
+.input-box input:focus {
+  border: 1.5px solid #000000;
+  background: rgba(255,255,255,0.35);
+}
+
+.input-box i {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #888;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 22px;
+  margin-top: 2px;
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.remember-forgot a {
+  color: #14213d;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  width: 100%;
+  padding: 15px 0;
+  background: #14213d;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 7px;
+  margin-bottom: 18px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #14213d;
+}
+
+.register-link {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-link a {
+  color: #14213d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+@media only screen and (max-width: 600px) {
+  .login-modal-content {
+    padding: 24px 20px 24px 20px;
+    min-width: 220px;       /* ~40% reduction from 340px */
+    max-width: 90vw;
+    border-radius: 14px;
+  }
+
+  .login-modal-content h1 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .input-box input {
+    padding: 12px 44px 12px 14px;
+    font-size: 1rem;
+  }
+
+  .input-box i {
+    font-size: 18px;
+    right: 14px;
+  }
+
+  .remember-forgot {
+    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+
+  .register-link {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .modal-close {
+    top: 8px;
+    right: 12px;
+    font-size: 1.8rem;
+  }
+}
