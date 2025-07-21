@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import ProfessorTable from "../components/ProfessorTable";
 import Cookies from "js-cookie";
 import './GETracker.css';
+import { Link } from "react-router-dom";
+import { IoIosHome } from "react-icons/io";
+import { GiBrain } from "react-icons/gi";
+import { FaCircleInfo } from "react-icons/fa6";
 
 
 
-function ChecklistToggle({ geRequirements, classesTaken, classToAreas, c1c2Fulfilled }) {
-  const [open, setOpen] = useState(false);
 
-  // Generate completion status for each area
+function ChecklistToggleContent({ geRequirements, classesTaken, classToAreas, c1c2Fulfilled }) {
   const checklistData = geRequirements.map((req) => {
     const area = req.area;
-
     const taken = classesTaken.filter((c) => {
       const mappedAreas = classToAreas[c.className] || [];
       return mappedAreas.includes(area);
     });
-
     let fulfilled = false;
     if (area === "C1 Arts" || area === "C2 Humanities") {
       fulfilled = c1c2Fulfilled;
@@ -26,75 +26,28 @@ function ChecklistToggle({ geRequirements, classesTaken, classToAreas, c1c2Fulfi
       const count = req.requiredCount || 1;
       fulfilled = taken.length >= count;
     }
-
-    return {
-      area: area,
-      fulfilled
-    };
+    return { area, fulfilled };
   });
 
   return (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          background: "#558EF8",
-          color: "#fff",
-          padding: "12px 24px",
-          fontSize: "1.1em",
-          fontWeight: 600,
-          border: "none",
-          borderRadius: 8,
-          cursor: "pointer",
-          marginBottom: open ? 24 : 0,
-          transition: "background 0.2s ease"
-        }}
-      >
-        {open ? "Hide Checklist" : "View Checklist"}
-      </button>
-
-      {open && (
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            width: "90%",
-            maxWidth: "600px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            transition: "all 0.3s ease-in-out"
-          }}
+    <ul className="ge-checklist-grid">
+      {checklistData.map((item, i) => (
+        <li
+          key={`checklist-${i}`}
+          className={`ge-checklist-item${item.fulfilled ? " fulfilled" : ""}`}
         >
-          {checklistData.map((item, i) => (
-            <li
-              key={`checklist-${i}`}
-              style={{
-                background: "#ffffff",
-                border: item.fulfilled ? "2px solid #21824b" : "2px solid #b91c1c",
-                borderLeftWidth: "6px",
-                borderRadius: 8,
-                padding: "14px 20px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
-                fontSize: "1.05em",
-                fontWeight: 500,
-                color: item.fulfilled ? "#21824b" : "#b91c1c",
-                transition: "transform 0.2s ease"
-              }}
-            >
-              <span style={{ flex: 1 }}>{item.area}</span>
-              <span style={{ fontSize: "1.3em" }}>{item.fulfilled ? "✅" : "❌"}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+          <span className="ge-checklist-area">{item.area}</span>
+          <span className="ge-checklist-status">
+            {item.fulfilled ? "✅" : "❌"}
+          </span>
+        </li>
+      ))}
+    </ul>
   );
 }
+
+
+
 
 
 export default function GETracker({
@@ -116,6 +69,8 @@ export default function GETracker({
   const [easiestResults, setEasiestResults] = useState({});
   const [easiestLoading, setEasiestLoading] = useState({});
   const [a1TextVisible, setA1TextVisible] = useState(true);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+
 
 
   useEffect(() => {
@@ -260,148 +215,184 @@ const td = {
   <div>TEST RENDER - this should always show</div>
 )}
 
-  // --- Render ---
-  return (
-    <div
+ // --- Render ---  
+return (
+  <div
     className="ge-container"
-      style={{
-        maxWidth: "1440px",
-        margin: "0 auto",
-        padding: "60px 24px 40px 80px",
-        fontFamily: "Average",
-        color: "#000",
-        marginTop: "60px",
-        position: "relative"
-      }}
-    >
-      {/* View Progress Section */}
-      <h1 style={{ textAlign: "center", marginBottom: 36 }}>
-        San Jose State Undergraduate Requirements
-      </h1>
-     {/* Modern Checklist - Toggles Open Below Heading */}
-<div style={{ width: "100%", marginBottom: 32 }}>
- <ChecklistToggle
-  geRequirements={geRequirements}
-  classesTaken={classesTaken}
-  classToAreas={classToAreas}
-  c1c2Fulfilled={c1c2Fulfilled}
-/>
-
+    style={{
+      maxWidth: "1440px",
+      margin: "0 auto",
+      padding: "60px 24px 40px 80px",
+      fontFamily: "Average",
+      color: "#000",
+      marginTop: "60px",
+      position: "relative"
+    }}
+  >
+    {/* --- Title --- */}
+    <h1 className="ge-rectangle-title">
+      San Jose State Undergraduate Requirements
+    </h1>
+<div className="ge-title-iconbar">
+  <Link to="/">
+    <IoIosHome className="titlebar-icon" />
+  </Link>
+  <Link to="/recommend">
+    <GiBrain className="titlebar-icon" />
+  </Link>
+  <Link to="/about">
+    <FaCircleInfo className="titlebar-icon" />
+  </Link>
 </div>
-
-
-
-
-
-      {/* Search */}
-      <div style={{ marginBottom: 32 }}>
-        <div
-          style={{
-            fontWeight: "bold",
-            marginBottom: 8,
-            marginLeft: "5%", 
-            textAlign: "left"
-          }}
-        >
-          Search for a class you have already taken, or plan to take.
-        </div>
-        <div style={{ position: "relative", width: "90%", margin: "0 auto" }}>
-          <input
-            type="text"
-            placeholder="Search for a class..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              fontSize: "1rem",
-              borderRadius: 6,
-              border: "1px solid #ccc"
-            }}
-          />
-          {Array.isArray(searchResults) && searchResults.length > 0 && (
-            <ul
-              style={{
-                listStyle: "none",
-                margin: 0,
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderTop: "none",
-                maxHeight: 200,
-                overflowY: "auto",
-                background: "#fff",
-                position: "absolute",
-                width: "100%",
-                zIndex: 2
-              }}
-            >
-              {searchResults.map((obj) => (
-                <li
-                  key={obj.className}
-                  style={{
-                    padding: "6px 0",
-                    cursor: "pointer",
-                    borderBottom: "1px solid #eee"
-                  }}
-                  onClick={() => handleAddClass(obj.className, obj.area)}
-                >
-                  <strong>{obj.className}</strong>{" "}
-                  <span style={{ color: "#717171" }}>({obj.area})</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+    {/* --- Search Rectangle --- */}
+   <div className="mobile-main-column">
+  <div className="ge-search-section mobile-order-1">
+      <div className="ge-search-label">
+        Search for a class you have already taken, or plan to take.
       </div>
-
-      {/* Classes Taken */}
-      <div style={{ marginBottom: 32, width: "90%", margin: "0 auto" }}>
-        <h2>Classes Taken</h2>
-        <ul>
-          {classesTaken.length === 0 ? (
-            <li style={{ color: "#aaa" }}>No classes taken yet.</li>
-          ) : (
-            classesTaken.map((obj) => (
-              <li key={obj.className + obj.area}>
+      <div style={{ position: "relative", width: "100%" }}>
+        <input
+          type="text"
+          placeholder="Search for a class..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="ge-search-input"
+        />
+        {Array.isArray(searchResults) && searchResults.length > 0 && (
+          <ul
+            className="ge-search-results"
+            style={{
+              listStyle: "none",
+              margin: 0,
+              padding: "8px",
+              border: "1px solid #ccc",
+              borderTop: "none",
+              maxHeight: 200,
+              overflowY: "auto",
+              background: "#fff",
+              position: "absolute",
+              width: "100%",
+              zIndex: 2
+            }}
+          >
+            {searchResults.map((obj) => (
+              <li
+                key={obj.className}
+                style={{
+                  padding: "6px 0",
+                  cursor: "pointer",
+                  borderBottom: "1px solid #eee"
+                }}
+                onClick={() => handleAddClass(obj.className, obj.area)}
+              >
                 <strong>{obj.className}</strong>{" "}
-                <span style={{ color: "#555" }}>({obj.area})</span>
-                <button
-                  onClick={() => onDeleteClass(obj)}
-                  style={{
-                    marginLeft: 8,
-                    color: "#fff",
-                    background: "#d32f2f",
-                    border: "none",
-                    borderRadius: "4px",
-                    padding: "4px 12px",
-                    cursor: "pointer",
-                    fontWeight: 600
-                  }}
-                >
-                  Delete
-                </button>
+                <span style={{ color: "#717171" }}>({obj.area})</span>
               </li>
-            ))
-          )}
-        </ul>
-        {areaCWarning && (
-          <div style={{ color: "#b8860b", fontWeight: "bold", marginTop: 12 }}>
-            {areaCWarning}
-          </div>
+            ))}
+          </ul>
         )}
       </div>
+    </div>
 
-   {/* GE Requirement Cards */}
-<div
-  className="ge-card-grid"
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "44px",
-    width: "90%",
-    margin: "0 auto"
-  }}
->
+{/* --- Checklist Toggle Button (mobile only) --- */}
+{window.innerWidth <= 700 && (
+  <div
+    className="checklist-toggle-container mobile-order-3"
+    style={{
+      background: "#fff",
+      border: "2px solid #434656",
+      borderRadius: 14,
+      padding: "12px 20px",
+      margin: "12px 0",
+      boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
+      textAlign: "center",
+    }}
+  >
+    <button
+      className="ge-checklist-toggle-btn"
+      style={{
+        margin: "0 auto",
+        fontSize: "1.12rem",
+        background: "#558EF8",
+        color: "#fff",
+        border: "none",
+        borderRadius: 8,
+        padding: "11px 26px",
+        fontWeight: 700,
+        cursor: "pointer",
+        width: "86vw",
+        maxWidth: 420,
+        boxSizing: "border-box",
+      }}
+      onClick={() => setChecklistOpen(v => !v)}
+    >
+      {checklistOpen ? "Hide Checklist" : "View Checklist"}
+    </button>
+  </div>
+)}
+
+
+
+  {(checklistOpen || window.innerWidth > 700) && (
+    <div className="ge-checklist-btn-rect mobile-order-4">
+      <ChecklistToggleContent
+        geRequirements={geRequirements}
+        classesTaken={classesTaken}
+        classToAreas={classToAreas}
+        c1c2Fulfilled={c1c2Fulfilled}
+      />
+    </div>
+  )}
+
+
+    {/* --- Classes Taken Rectangle --- */}
+     <div className="ge-classes-taken-section mobile-order-2">
+      <h2 className="ge-classes-title">Classes Taken</h2>
+      <ul className="ge-classes-list">
+        {classesTaken.length === 0 ? (
+          <li style={{ color: "#aaa" }}>No classes taken yet.</li>
+        ) : (
+          classesTaken.map((obj) => (
+            <li key={obj.className + obj.area}>
+              <strong>{obj.className}</strong>{" "}
+              <span style={{ color: "#555" }}>({obj.area})</span>
+              <button
+                onClick={() => onDeleteClass(obj)}
+                style={{
+                  marginLeft: 8,
+                  color: "#fff",
+                  background: "#d32f2f",
+                  border: "none",
+                  borderRadius: "4px",
+                  padding: "4px 12px",
+                  cursor: "pointer",
+                  fontWeight: 600
+                }}
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        )}
+      </ul>
+      {areaCWarning && (
+        <div className="ge-classes-warning">
+          {areaCWarning}
+        </div>
+      )}
+    </div>
+
+    <div
+    className="ge-card-grid mobile-order-5"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: "44px",
+    }}
+  >
+
+
+
 
 
         {geRequirements.map((areaObj) => {
@@ -488,7 +479,7 @@ const td = {
 
               {/* Find Easiest Classes button - always visible */}
 {!isAreaOpen && (
-  <button
+  <button 
     onClick={(e) => toggleEasiestClasses(areaObj.area, e)}
     style={{
       background: "#558EF8",
@@ -614,10 +605,11 @@ const td = {
                                   style={{
                                     background: "#fff",
                                     color: "#004ea2",
-                                    border: "1px solid #004ea2",
+                                    border: "2px solid #000",
                                     borderRadius: 6,
                                     padding: "8px 12px",
-                                    cursor: "pointer"
+                                    cursor: "pointer",
+                                    fontWeight: 100
                                   }}
                                 >
                                   ➕
@@ -663,5 +655,5 @@ const td = {
         })}
       </div>
     </div>
-  );
-}
+  </div>
+  )}

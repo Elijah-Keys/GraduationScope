@@ -24,6 +24,7 @@ export default function Contact() {
 
    return (
     <div
+      className="contact-root"
       style={{
         marginTop: "120px", // pushes everything down below header
         display: "flex",

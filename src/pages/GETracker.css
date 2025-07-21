@@ -1,84 +1,496 @@
+/* San Jose State Undergraduate Requirements Title */
+.ge-rectangle-title {
+  background: #ffffff;
+  color: #434656;
+  padding: 18px 32px;
+  border-radius: 16px;
+  border: 2px solid #434656;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: block;
+  margin: 0 auto 22px auto;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: fit-content;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+}
+
+.ge-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 18px 16px 30px 16px;
+  font-family: Average, serif;
+  color: #000;
+  margin-top: 18px;
+  position: relative;
+}
+
+/* Layout: Search row and checklist button */
+.ge-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 34px;
+  justify-content: center;
+  margin-bottom: 0;
+  width: 100%;
+  margin-top: 0px;
+}
+
+/* Search section */
+.ge-search-section {
+  background: #fff;
+  border: 2px solid #434656;
+  border-radius: 14px;
+  padding: 26px 34px 22px 34px;
+  margin-bottom: 0;
+  width: 600px;
+  box-shadow: 0 4px 14px 0 rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: -40px;
+  margin-top:50px;
+}
+
+/* View Checklist button/rectangle */
+
+/* The button inside checklist rectangle */
+.ge-checklist-btn {
+  background: #558EF8;
+  color: #fff;
+  padding: 13px 36px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.ge-checklist-btn.open,
+.ge-checklist-btn:hover,
+.ge-checklist-btn:focus {
+  background: #3468c7;
+  color: #f4f4f4;
+}
+
+/* Classes Taken section, matches search bar width, centered below search */
+.ge-classes-taken-section {
+  background: #fff;
+  border: 2px solid #434656;
+  border-radius: 14px;
+  width: 600px;
+  margin: 22px auto 30px auto;
+  padding: 23px 34px 21px 34px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -225px;
+  margin-left: -40px;
+  min-height: 177.5px;
+ 
+}
+
+.ge-classes-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: #000000;
+}
+
+.ge-classes-list {
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.ge-classes-list li {
+  margin-bottom: 9px;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  word-break: break-word;
+}
+.ge-classes-warning {
+  color: #b8860b;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+/* Search label */
+.ge-search-label {
+  font-size: 1.10rem;
+  font-weight: 100;
+  color: #191919;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 100%;
+}
+
+/* Search input */
+.ge-search-section .ge-search-input {
+  width: 100%;
+  padding: 12px 13px;
+  font-size: 1.06rem;
+  border: 2.5px solid #434656;
+  border-radius: 7px;
+  background: #ffffff;
+  transition: border-color 0.2s;
+  margin-bottom: 3px;
+  margin-left: -13px;
+}
+.ge-search-section .ge-search-input:focus {
+  border-color: #434656;
+  outline: none;
+}
+.ge-search-section .ge-search-results {
+  font-size: 0.98rem;
+  border-radius: 0 0 6px 6px;
+  text-align: left;
+}
+
+
+/* Card grid and card adjustments */
+.ge-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 1fr));
+  gap: 44px;
+  width: 1400px;         /* play with this - must be < parent width! */
+  margin-left: -40px;   /* aligns grid to the left edge of parent */
+  margin-right: auto;    /* pushes free space to the right */
+  /* or: margin-left: 80px; margin-right: auto; // pushes grid right by 80px */
+}
+
+
+
+
+
+.ge-card {
+  padding: 23px 28px;
+  border-radius: 16px;
+  min-height: 215px;
+  font-size: 1.13rem;
+  
+}
+
 .a1-desktop-text {
   color: #fff;
-  font-weight: 400; /* Less than 'bold' for title */
-  font-size: 1.5rem;     /* Increased from 1.07rem */
-  margin: 20px 0 8px 0;  /* Increased top margin from 2px to 20px */
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 40px 0 8px 0;
   text-align: center;
   line-height: 1.2;
-  margin-top: 40px;
 }
-/* GETracker mobile layout adjustments */
-@media only screen and (max-width: 600px) {
-  /* Make entire container more mobile friendly */
-  .ge-container {
-    padding: 32px 16px !important;
-    margin-top: 32px !important;
-  }
 
-  /* Switch grid layout to 1 column */
-  .ge-card-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-  }
-
-  /* Card styles on mobile */
-  .ge-card {
-    padding: 18px 20px !important;
-    font-size: 1rem !important;
-    min-height: unset !important;
-  }
-
-  /* Header text scaling */
-  .ge-title {
-    font-size: 1.5rem !important;
-    text-align: center !important;
-    margin-bottom: 24px !important;
-  }
-
-  /* Buttons (Find Easiest, etc.) */
-  .ge-button {
-    font-size: 1rem !important;
-    padding: 10px 16px !important;
-  }
-
-  /* Input spacing */
-  .ge-search-box input {
-    font-size: 1rem !important;
-    padding: 10px !important;
-  }
-
-  /* Professor table responsiveness */
-  .ge-table {
-    font-size: 0.9rem !important;
-    width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* List style for classes */
-  .ge-class-btn {
-    font-size: 0.95rem;
-    padding: 10px 12px;
-  }
-
-  .ge-delete-btn {
-    font-size: 0.85rem;
-    padding: 4px 8px;
-  }
-
-  /* Search List Dropdown on mobile */
-  .ge-search-results {
-    font-size: 0.9rem;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-
-
+/* Hide .a1-desktop-text on tablet/mobile */
 @media (max-width: 900px) {
   .a1-desktop-text {
     display: none !important;
   }
 }
+
+/* Responsive adjustments for mobile */
+@media only screen and (max-width: 1300px) {
+  .ge-flex-row, .ge-top-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 12px;
+  }
+
+  .ge-checklist-btn-rect {
+    margin-left: 0;
+    margin-top: 18px;
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
+@media only screen and (max-width: 600px) {
+
+  .ge-container {
+    padding: 18px 4px !important;
+    margin-top: 12px !important;
+  }
+
+  .ge-rectangle-title {
+    padding: 11px 6px;
+    font-size: 1.13rem;
+    border-radius: 9px;
+    margin-bottom: 13px !important;
+  }
+
+  .ge-search-section,
+  .ge-classes-taken-section,
+  .ge-checklist-btn-rect {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 9px;
+    padding: 11px 5px;
+  }
+
+  .ge-flex-row, .ge-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 13px;
+  }
+
+  .ge-search-label, .ge-classes-title {
+    font-size: 0.97rem;
+    margin-bottom: 7px;
+  }
+
+  .ge-classes-list li {
+    font-size: 0.93rem;
+    gap: 6px;
+  }
+
+  .ge-checklist-btn {
+    padding: 10px 8px;
+    font-size: 0.97rem;
+  }
+
+  .ge-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .ge-card {
+    padding: 12px 11px !important;
+    font-size: 0.99rem !important;
+    min-height: unset !important;
+    
+  }
+}
+
+/* If you want .ge-flex-row, also accept .ge-top-row for legacy */
+.ge-top-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+/* The grid itself: 3 equal columns, responsive with parent width */
+.ge-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equally-sized columns */
+  gap: 14px 18px;                        /* vertical and horizontal gap */
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-width: 240px;
+  box-sizing: border-box;
+}
+
+/* Every bar/cell is a flex row, does NOT wrap, grows to fit */
+.ge-checklist-item {
+  background: #ffffff;
+  border: 2px solid #b91c1c;
+  border-left-width: 6px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: 1.05em;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #b91c1c;
+  transition: border 0.22s, color 0.22s;
+  /* Prevent bar inner content from overflowing or wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ge-checklist-item.fulfilled {
+  border-color: #21824b;
+  color: #21824b;
+}
+.ge-checklist-area {
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
+}
+.ge-checklist-status {
+  font-size: 1.3em;
+  margin-left: 13px;
+  flex-shrink: 0;
+}
+
+/* Responsive: On small screens, go to two columns, then one column */
+@media (max-width: 700px) {
+  .ge-checklist-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .ge-checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make parent rectangle flexible */
+.ge-checklist-btn-rect {
+  background: #F7F9FF;
+  border: 2px solid #000;
+  border-radius: 14px;
+  padding: 21px 32px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  margin-top: -132.5px;    /* Top align with search */
+  width: 625px;
+ margin-left: 675px
+  
+}
+.ge-classes-title {
+  background: #A7AABD;
+  border-radius: 22px;      /* Lots of rounding for a pill/rounded rectangle */
+  padding: 10px 30px;       /* Adjust for size */
+  display: inline-block;    /* So the background fits tightly around the text */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);  /* Optional: soft shadow */
+}
+.ge-top-row {
+  display: flex;
+  gap: 32px; /* space between boxes */
+  align-items: stretch; /* causes children to be same height */
+}
+.ge-title-iconbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 52.8px;          /* 44 * 1.2 = 52.8 */
+  background: #434656;
+  border-radius: 28.8px; /* 24 * 1.2 = 28.8 */
+  padding: 16.8px 45.6px; /* 14 * 1.2 = 16.8, 38 * 1.2 = 45.6 */
+  margin: 21.6px auto 36px auto; /* 18 * 1.2, 30 * 1.2 */
+  width: fit-content;
+  box-shadow: 0 2.4px 9.6px rgba(0,0,0,0.07); /* 0 2*1.2, 8*1.2 */
+  margin-right: 550px;
+}
+
+.titlebar-icon {
+  font-size: 2.544rem;  /* 2.12 * 1.2 = 2.544 */
+  color: #ffffff;
+  transition: color 0.18s, transform 0.16s;
+  cursor: pointer;
+}
+.titlebar-icon:hover,
+.titlebar-icon:focus {
+  color: #558EF8;
+  transform: translateY(-4.8px) scale(1.11); /* -4px * 1.2 = -4.8px */
+}
+
+@media (max-width: 700px) {
+  /* Title block and card: 10% smaller font/box, centered */
+  .ge-rectangle-title {
+    font-size: 1.27rem !important;   /* 10% smaller than ~1.41rem mobile default */
+    padding: 13px 19px !important;   /* 10% less than usual */
+    border-radius: 10px !important;
+    margin-top: 80px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: fit-content !important;
+    max-width: 99vw;
+    text-align: center;
+  }
+  /* Search Section and Input */
+  .ge-search-section {
+    margin: 16px auto !important;
+    width: 92vw !important;
+    max-width: 95vw !important;
+    padding: 10px 7px !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+  }
+  .ge-search-input {
+    font-size: 0.98rem !important;
+    padding: 9px 8px !important;
+    border-radius: 7px !important;
+    width: 97% !important;
+    max-width: 98vw !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+  }
+  /* Classes Taken */
+  .ge-classes-taken-section {
+    width: 92vw !important;
+    max-width: 96vw !important;
+    padding: 9px 7px 8px 7px !important;
+    border-radius: 10px !important;
+    margin: 15px auto !important;
+    box-sizing: border-box !important;
+  }
+  /* Checklist Button and Card */
+  .ge-checklist-btn {
+    width: 100% !important;
+    max-width: 98vw !important;
+    font-size: 1.07rem !important;
+    padding: 12px 0 !important;
+    margin: 18px auto 8px auto !important;
+    border-radius: 10px !important;
+  }
+  .ge-checklist-btn-rect {
+    width: 92vw !important;
+    max-width: 95vw !important;
+    border-radius: 9px !important;
+    padding: 13px 8px 10px 8px !important;
+    margin: 10px auto !important;
+    box-sizing: border-box !important;
+  }
+  .ge-checklist-grid {
+    font-size: 0.97rem !important;
+    width: 100% !important;
+    max-width: 98vw !important;
+    min-width: unset !important;
+  }
+}
+@media (max-width: 700px) {
+  .mobile-main-column {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .mobile-order-1 { order: 1 !important; }
+  .mobile-order-2 { order: 2 !important; }
+  .mobile-order-3 { order: 3 !important; }
+  .mobile-order-4 { order: 4 !important; }
+  .mobile-order-5 { order: 5 !important; }
+}
+.ge-checklist-toggle-btn {
+  width: 200px;              /* Smaller fixed width */
+  max-width: 85vw;           /* Responsive on very small screens */
+  display: block;            /* Allows margin to center */
+  margin: 0 auto;            /* Horizontally center the button */
+  font-size: 1rem;
+  padding: 9px 0 9px 0;      /* Less padding left and right */
+}
+

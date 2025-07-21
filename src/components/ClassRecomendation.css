@@ -1,0 +1,271 @@
+/* Card/rectangle style */
+.crp-card {
+  width: 155px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.14s;
+  user-select: none;
+  font-size: 1em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  white-space: normal;
+  overflow-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: 2px solid transparent;
+  background: #f3f3f3;
+  color: #222;
+}
+.crp-card.selected {
+  background: #1976d2;
+  color: #fff;
+  border: 2px solid #1976d2;
+}
+.crp-card.goal-selected {
+  background:#1976d2;
+  color: #fff;
+  border: 2px solid #1976d2;
+}
+
+/* Classes taken card */
+.crp-taken-card {
+  min-width: 128px;
+  background: #fffde7;
+  border: 1.5px solid #ffe082;
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin: 4px;
+  display: inline-block;
+  font-weight: 500;
+  color: #996f00;
+}
+
+/* Search bar */
+.crp-search {
+  width: 240px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  font-size: 1.07em;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.crp-taken-header {
+  font-weight: bold;
+  font-size: 1.18em;
+  margin-top: 20px;
+  margin-bottom: 11px;
+  color: #1976d2;
+}
+
+.crp-taken-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 18px;
+}
+
+.crp-remove-btn {
+  background: none;
+  border: none;
+  color: #c62828;
+  margin-left: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.05em;
+}
+
+.crp-search-results {
+  background: #f8fafc;
+  border-radius: 9px;
+  margin-bottom: 10px;
+  padding: 7px 13px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ge-title-iconbara {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 52.8px;
+  background: #434656;
+  border-radius: 28.8px; 
+  padding: 16.8px 45.6px;
+  width: fit-content;
+  box-shadow: 0 2.4px 9.6px rgba(0,0,0,0.07);
+}
+.ge-rectangle-titlea {
+  background: #ffffff;
+  color: #434656;
+  padding: 18px 32px;
+  border-radius: 16px;
+  border: 2px solid #434656;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: block;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: fit-content;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+}
+@media (max-width: 700px) {
+  /* Title */
+  .ge-rectangle-titlea {
+    font-size: 1.38rem !important;
+    padding: 14px 16px !important;
+    border-radius: 11px !important;
+    margin-top: 75px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: fit-content !important;
+    max-width: 98vw;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .crp-main-page,
+  .crp-mobile-stack {
+    width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+
+  .ge-classes-taken-section {
+    width: 93vw !important;
+    max-width: 98vw !important;
+    border-radius: 10px !important;
+    margin: 0 auto 18px auto !important;
+    box-sizing: border-box !important;
+    text-align: center;
+    padding: 9px 2vw 10px 2vw !important;
+  }
+  /* Classes Taken list wider handling */
+  .ge-classes-list {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+  }
+  /* Academic Areas */
+  .crp-areas-mobile-card {
+    max-width: 96vw !important;
+    width: 96vw !important;
+    margin: 0 auto 18px auto !important;
+    padding: 14px 2vw 14px 2vw !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    background: #fff !important;
+  }
+  .crp-card {
+    font-size: 0.99em !important;
+    min-width: 99px !important;
+    max-width: 95vw !important;
+    padding: 10px 6px !important;
+    border-radius: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  /* Goals */
+  .crp-goals-mobile-card {
+    max-width: 96vw !important;
+    width: 96vw !important;
+    margin: 0 auto 18px auto !important;
+    padding: 13px 2vw 13px 2vw !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    background: #fff !important;
+  }
+  /* Button (Get Recommendations) */
+  .crp-get-rec-btnbox {
+    width: 97vw !important;
+    max-width: 99vw !important;
+    margin: 0 auto 18px auto !important;
+    text-align: center;
+  }
+  .crp-get-rec-btnbox button,
+  .crp-get-rec-btnbox select {
+    font-size: 1.13rem !important;
+    width: 98vw !important;
+    max-width: 99vw !important;
+    margin-bottom: 14px !important;
+  }
+  /* Result Table */
+  .rec-results-mobile-padding {
+    padding: 0 3vw 0 3vw !important;
+    max-width: 99vw !important;
+    overflow-x: auto !important;
+  }
+}
+@media (max-width: 700px) {
+  .ge-title-iconbar,
+  .ge-title-iconbara {
+    display: none !important;
+  }
+}
+@media (max-width: 700px) {
+  .crp-areas-mobile-card,
+  .crp-goals-mobile-card {
+    width: 96vw !important;
+    max-width: 98vw !important;
+    margin: 0 auto 18px auto !important;
+    box-sizing: border-box !important;
+    padding: 12px 1vw !important;
+    border-radius: 11px !important;
+    text-align: center !important;
+  }
+  .crp-card {
+    font-size: 0.91em !important;
+    min-width: unset !important;
+    max-width: 96vw !important;
+    padding: 8px 4px !important;
+    margin-bottom: 7px !important;
+    flex: 1 0 40%;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  .crp-area-row,
+  .crp-goal-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 7px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-bottom: 5px !important;
+  }
+}
+@media (max-width: 700px) {
+  .crp-get-rec-btnbox {
+    width: 97vw !important;
+    max-width: 99vw !important;
+    margin: 0 auto 18px auto !important;
+    text-align: center;
+  }
+  .crp-get-rec-btnbox button,
+  .crp-get-rec-btnbox select {
+    width: 98vw !important;
+    max-width: 99vw !important;
+    font-size: 1.13rem !important;
+    margin-bottom: 12px !important;
+    padding: 12px 0 !important;
+    border-radius: 8px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
