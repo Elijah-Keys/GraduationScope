@@ -1,34 +1,97 @@
+/* Hide bottom bar by default (desktop) */
 .navy-bottom-bar {
-  display: none; /* Hide by default */
+  display: none;
 }
 
+/* Mobile styles: bottom bar visible, icons spaced */
 @media (max-width: 600px) {
   .navy-bottom-bar {
     display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100vw;
     height: 56px;
     background: #14213d;
-    justify-content: space-around;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    justify-content: space-evenly;
     align-items: center;
     z-index: 1002;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    padding: 0;
   }
+
   .bottom-bar-link {
     color: #fff;
-    font-size: 2rem; /* Larger for icons */
-    text-decoration: none;
+    font-size: 2.2rem;
     padding: 0 10px;
-    flex: 1;
+    flex: 1 1 0;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    background: none;
+    transition: color 0.17s;
+    outline: none;
   }
+
   .bottom-bar-link:active,
   .bottom-bar-link:focus {
-    color: #ffd700;
+    color: #FCA311;
+    background: none;
   }
+}
+
+/* Optional (for accessibility): visually hide nav on desktop entirely */
+@media (min-width: 601px) {
+  .navy-bottom-bar {
+    display: none !important;
+  }
+}
+/* Your existing navy-bottom-bar styles... */
+.navy-bottom-bar {
+  display: flex;
+  justify-content: space-around; /* or your preferred spacing */
+  align-items: center;
+  background-color: #14213d;
+  padding: 8px 0;
+  /* Ensure this nav bar sits at bottom and looks good */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Make each link a horizontal flex container */
+.bottom-bar-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fff;               /* text and icon color */
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  gap: 6px;                  /* space between icon and text */
+  padding: 6px 10px;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+
+
+/* Optional: control icon size */
+.bottom-bar-icon {
+  font-size: 1.5rem;        /* slightly bigger icons */
+  display: flex;            /* ensure icons align nicely */
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Text styling */
+.bottom-bar-text {
+  white-space: nowrap;
+  user-select: none;
 }

@@ -70,7 +70,26 @@ export default function GETracker({
   const [easiestLoading, setEasiestLoading] = useState({});
   const [a1TextVisible, setA1TextVisible] = useState(true);
   const [checklistOpen, setChecklistOpen] = useState(false);
+const [openAllOptions, setOpenAllOptions] = useState({});
+const isMobile = window.innerWidth <= 700;
 
+// Define shared header cell style with mobile adjustments
+const thMobile = {
+  textAlign: "left",
+  padding: isMobile ? "8px 8px" : "10px",
+  borderBottom: "1px solid #ccc",
+  backgroundColor: "transparent",
+  fontSize: isMobile ? "0.76rem" : "0.95rem",  // 20% smaller on mobile
+  borderRight: "1px solid #ccc",
+};
+
+// Define shared data cell style with mobile adjustments
+const tdMobile = {
+  padding: isMobile ? "6px 8px" : "10px",
+  borderBottom: "1px solid #eee",
+  fontSize: isMobile ? "0.76rem" : "0.95rem",
+  color: "#fff",
+};
 
 
   useEffect(() => {
@@ -109,12 +128,16 @@ export default function GETracker({
         ? allEntries[4].difficulty
         : allEntries[allEntries.length - 1].difficulty;
 
-    const easiest = allEntries.filter(
-      (c) => c.difficulty <= cutoffDifficulty
-    );
+const easiest = allEntries
+  .filter(c => c.difficulty <= cutoffDifficulty)
+  .map(c => ({
+    ...c,
+    rmpLink: c.link && c.link !== "N/A" ? c.link : null,
+  }));
 
-    setEasiestResults((prev) => ({ ...prev, [area]: easiest }));
-    setEasiestLoading((prev) => ({ ...prev, [area]: false }));
+   
+setEasiestResults(prev => ({ ...prev, [area]: easiest }));
+setEasiestLoading(prev => ({ ...prev, [area]: false }));
   };
 
   const toggleEasiestClasses = (area, event) => {
@@ -215,126 +238,209 @@ const td = {
   <div>TEST RENDER - this should always show</div>
 )}
 
+console.log("Easiest Results with RMP Links:", easiestResults);
+console.log("Class Details with RMP Links:", classDetails.map(c => ({
+  className: c.className,
+  professor: c.professor,
+  rmpLink: c.rmpLink || c.link
+})));
+
  // --- Render ---  
 return (
   <div
     className="ge-container"
-    style={{
-      maxWidth: "1440px",
-      margin: "0 auto",
-      padding: "60px 24px 40px 80px",
-      fontFamily: "Average",
-      color: "#000",
-      marginTop: "60px",
-      position: "relative"
-    }}
+   style={{
+  maxWidth: "1440px",
+  margin: "0 auto",
+  padding: "60px 24px 40px 80px", // <-- left padding is 80px, might cause offset
+  fontFamily: "Average",
+  color: "#000",
+  marginTop: "60px",
+  position: "relative"
+}}
+
   >
     {/* --- Title --- */}
     <h1 className="ge-rectangle-title">
       San Jose State Undergraduate Requirements
     </h1>
-<div className="ge-title-iconbar">
-  <Link to="/">
-    <IoIosHome className="titlebar-icon" />
-  </Link>
-  <Link to="/recommend">
-    <GiBrain className="titlebar-icon" />
-  </Link>
-  <Link to="/about">
-    <FaCircleInfo className="titlebar-icon" />
-  </Link>
-</div>
-    {/* --- Search Rectangle --- */}
-   <div className="mobile-main-column">
-  <div className="ge-search-section mobile-order-1">
-      <div className="ge-search-label">
-        Search for a class you have already taken, or plan to take.
-      </div>
-      <div style={{ position: "relative", width: "100%" }}>
-        <input
-          type="text"
-          placeholder="Search for a class..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="ge-search-input"
-        />
-        {Array.isArray(searchResults) && searchResults.length > 0 && (
-          <ul
-            className="ge-search-results"
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderTop: "none",
-              maxHeight: 200,
-              overflowY: "auto",
-              background: "#fff",
-              position: "absolute",
-              width: "100%",
-              zIndex: 2
-            }}
-          >
-            {searchResults.map((obj) => (
-              <li
-                key={obj.className}
-                style={{
-                  padding: "6px 0",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #eee"
-                }}
-                onClick={() => handleAddClass(obj.className, obj.area)}
-              >
-                <strong>{obj.className}</strong>{" "}
-                <span style={{ color: "#717171" }}>({obj.area})</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
-
-{/* --- Checklist Toggle Button (mobile only) --- */}
-{window.innerWidth <= 700 && (
-  <div
-    className="checklist-toggle-container mobile-order-3"
-    style={{
-      background: "#fff",
-      border: "2px solid #434656",
-      borderRadius: 14,
-      padding: "12px 20px",
-      margin: "12px 0",
-      boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
-      textAlign: "center",
-    }}
-  >
-    <button
-      className="ge-checklist-toggle-btn"
-      style={{
-        margin: "0 auto",
-        fontSize: "1.12rem",
-        background: "#558EF8",
-        color: "#fff",
-        border: "none",
-        borderRadius: 8,
-        padding: "11px 26px",
-        fontWeight: 700,
-        cursor: "pointer",
-        width: "86vw",
-        maxWidth: 420,
-        boxSizing: "border-box",
-      }}
-      onClick={() => setChecklistOpen(v => !v)}
+<div className="ge-title-iconbar" style={{ display: "flex", justifyContent: "center", gap: "16px", padding: "10px 0" }}>
+  {[
+    { to: "/", Icon: IoIosHome, label: "Home" },
+    { to: "/recommend", Icon: GiBrain, label: "Recommend" },
+    { to: "/about", Icon: FaCircleInfo, label: "About" },
+  ].map(({ to, Icon, label }) => (
+    <Link
+      key={label}
+      to={to}
+      className="iconbar-link"
+      aria-label={label}
     >
-      {checklistOpen ? "Hide Checklist" : "View Checklist"}
-    </button>
+      <Icon className="iconbar-icon" />
+      <span>{label}</span>
+    </Link>
+  ))}
+</div>
+{/* Start of mobile order wrapper */}
+<div
+  className="mobile-main-column"
+  style={{
+    display: "flex",
+    flexDirection: "column",
+  }}
+>
+  {/* 1. Find Classes section */}
+  <div className="ge-search-section mobile-order-1" style={{ textAlign: 'left' }}>
+    <h2
+      className="ge-classes-title"
+      style={{
+        display: 'inline-block',
+        background: '#A7AABD',
+        borderRadius: '22px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+        fontSize: '1.35rem',
+        fontWeight: 700,
+        margin: '0 0 14px 0',
+        padding: '10px 30px',
+        color: '#000',
+      
+      }}
+    >
+      Find Classes
+    </h2>
+    <div
+      className="ge-search-label"
+      style={{
+        textAlign: 'left',
+        marginBottom: '12px'
+      }}
+    >
+      Search for a class you have already taken, or plan to take.
+    </div>
+    <div style={{ position: 'relative', width: '100%' }}>
+      <input
+        type="text"
+        placeholder="Search for a class..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="ge-search-input"
+      />
+      {/* Your search results list */}
+      {Array.isArray(searchResults) && searchResults.length > 0 && (
+        <ul
+          className="ge-search-results"
+          style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: '8px',
+            border: '1px solid #ccc',
+            borderTop: 'none',
+            maxHeight: 200,
+            overflowY: 'auto',
+            background: '#fff',
+            position: 'absolute',
+            width: '100%',
+            zIndex: 2,
+          }}
+        >
+          {searchResults.map((obj) => (
+            <li
+              key={obj.className}
+              style={{
+                padding: '6px 0',
+                cursor: 'pointer',
+                borderBottom: '1px solid #eee',
+              }}
+              onClick={() => handleAddClass(obj.className, obj.area)}
+            >
+              <strong>{obj.className}</strong>{' '}
+              <span style={{ color: '#717171' }}>({obj.area})</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   </div>
-)}
 
+  {/* 2. Classes Taken section */}
+  <div className="ge-classes-taken-section mobile-order-2">
+    <h2 className="ge-classes-title">Classes Taken</h2>
+    <ul className="ge-classes-list">
+      {classesTaken.length === 0 ? (
+        <li style={{ color: "#aaa" }}>No classes taken yet.</li>
+      ) : (
+        classesTaken.map((obj) => (
+          <li key={obj.className + obj.area}>
+            <strong>{obj.className}</strong>{" "}
+            <span style={{ color: "#555" }}>({obj.area})</span>
+            <button
+              onClick={() => onDeleteClass(obj)}
+              style={{
+                marginLeft: 8,
+                color: "#fff",
+                background: "#d32f2f",
+                border: "none",
+                borderRadius: "4px",
+                padding: "4px 12px",
+                cursor: "pointer",
+                fontWeight: 600
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))
+      )}
+    </ul>
+    {areaCWarning && (
+      <div className="ge-classes-warning">
+        {areaCWarning}
+      </div>
+    )}
+  </div>
 
+  {/* 3. Checklist Toggle Button (mobile only) */}
+  {window.innerWidth <= 700 && (
+    <div
+      className="checklist-toggle-container mobile-order-3"
+      style={{
+        background: "#fff",
+        border: "2px solid #434656",
+        borderRadius: 14,
+        padding: "12px 20px",
+        margin: "12px 0",
+        boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
+        textAlign: "center",
+        width:"80vw",
+        marginLeft:"10px"
+      }}
+    >
+      <button
+        className="ge-checklist-toggle-btn"
+        style={{
+          margin: "0 auto",
+          fontSize: "1.12rem",
+          background: "#558EF8",
+          color: "#fff",
+          border: "none",
+          borderRadius: 8,
+          padding: "11px 26px",
+          fontWeight: 700,
+          cursor: "pointer",
+          width: "76vw",
+          maxWidth: 420,
+          boxSizing: "border-box",
+        }}
+        onClick={() => setChecklistOpen(v => !v)}
+      >
+        {checklistOpen ? "Hide Checklist" : "View Checklist"}
+      </button>
+    </div>
+  )}
 
+  {/* 4. Checklist Content (show conditionally) */}
   {(checklistOpen || window.innerWidth > 700) && (
-    <div className="ge-checklist-btn-rect mobile-order-4">
+    <div className="ge-checklist-btn-rect mobile-order-4" style={{ width: '100%' }}>
       <ChecklistToggleContent
         geRequirements={geRequirements}
         classesTaken={classesTaken}
@@ -344,56 +450,16 @@ return (
     </div>
   )}
 
-
-    {/* --- Classes Taken Rectangle --- */}
-     <div className="ge-classes-taken-section mobile-order-2">
-      <h2 className="ge-classes-title">Classes Taken</h2>
-      <ul className="ge-classes-list">
-        {classesTaken.length === 0 ? (
-          <li style={{ color: "#aaa" }}>No classes taken yet.</li>
-        ) : (
-          classesTaken.map((obj) => (
-            <li key={obj.className + obj.area}>
-              <strong>{obj.className}</strong>{" "}
-              <span style={{ color: "#555" }}>({obj.area})</span>
-              <button
-                onClick={() => onDeleteClass(obj)}
-                style={{
-                  marginLeft: 8,
-                  color: "#fff",
-                  background: "#d32f2f",
-                  border: "none",
-                  borderRadius: "4px",
-                  padding: "4px 12px",
-                  cursor: "pointer",
-                  fontWeight: 600
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          ))
-        )}
-      </ul>
-      {areaCWarning && (
-        <div className="ge-classes-warning">
-          {areaCWarning}
-        </div>
-      )}
-    </div>
-
-    <div
+  {/* 5. Card Grid */}
+  <div
     className="ge-card-grid mobile-order-5"
     style={{
       display: "grid",
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "44px",
+      width: '100%',
     }}
   >
-
-
-
-
 
         {geRequirements.map((areaObj) => {
           const isAreaOpen = openAreas.has(areaObj.area);
@@ -451,7 +517,7 @@ return (
 >
 
               {/* Card header */}
-      <div
+     <div
   style={{
     display: "flex",
     flexDirection: "column",
@@ -460,46 +526,56 @@ return (
     marginBottom: 18
   }}
 >
-  <span style={{
-    fontWeight: "bold",
-    fontSize: "1.32rem",
-    color: "#fff",
-  }}>
-    {areaObj.area}
-  </span>
+ <span
+  className="area-title-text"
+>
+  {areaObj.area}
+</span>
+
   <span>{isAreaOpen ? "▲" : ""}</span>
 </div>
 
-{areaObj.area === "A1 Oral Communication" && a1TextVisible && (
-  <div className="a1-desktop-text">
-    <div>Click Here</div>
-    <div style={{ marginTop: 0 }}>or</div>
-  </div>
-)}
+
 
               {/* Find Easiest Classes button - always visible */}
-{!isAreaOpen && (
-  <button 
-    onClick={(e) => toggleEasiestClasses(areaObj.area, e)}
-    style={{
-      background: "#558EF8",
-      color: "#fff",
-      border: "none",
-      borderRadius: 8,
-      padding: "12px 26px",
-      fontWeight: 700,
-      fontSize: "1.12rem",
-      cursor: "pointer",
-      marginBottom: 0,
-      alignSelf: "center",
-      marginTop: "auto",
-      marginLeft: "auto",
-      marginRight: "auto"
+<div className="card-actions-row">
+  <button
+    className="find-easiest-btn"
+    onClick={e => {
+      e.stopPropagation();
+      toggleEasiestClasses(areaObj.area, e);
+      // Scroll into view
+      e.currentTarget.closest('.ge-card').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }}
+    type="button"
   >
     Find Easiest Classes
   </button>
-)}
+  <button
+    className="see-all-options-btn"
+    onClick={e => {
+      // Simulate card click
+      e.stopPropagation(); // Prevent bubbling to parent
+      // Find card element and trigger its click
+      const card = e.currentTarget.closest('.ge-card');
+      if (card) {
+        // Scroll to top first (for nice animation)
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Find your card click callback and call it manually
+        handleAreaCardClick(areaObj.area);
+      }
+      // Optionally: If you want to **only** scroll, comment out handleAreaCardClick
+    }}
+    tabIndex={0}
+    type="button"
+    style={{ userSelect: 'none' }} // Prevent accidental text highlighting
+  >
+    View All Options
+  </button>
+</div>
 
 
 
@@ -510,43 +586,62 @@ return (
               )}
 
 
-  {easiestResults[areaObj.area]?.length > 0 && (
+{easiestResults[areaObj.area]?.length > 0 && (
   <table
+    className="easiest-table"
     style={{
       width: "100%",
       marginTop: 16,
       borderCollapse: "collapse",
       background: "transparent",
       border: "1px solid #ccc",
+      fontSize: isMobile ? "0.76rem" : "0.95rem", // 20% smaller on mobile
     }}
   >
     <thead>
       <tr>
-        <th style={th}>Professor</th>
-        <th style={th}>RMP Score</th>
-        <th style={th}>Difficulty</th>
-        <th style={th}>Schedule</th>
-        <th style={th}>RMP Link</th>
+        <th style={{ ...thMobile, borderLeft: "none" }}>Class Name</th>
+        <th style={thMobile}>Professor</th>
+        <th style={thMobile}>RMP Score</th>
+        <th style={{ ...thMobile, borderRight: "1px solid #ccc" }}>
+          Difficulty
+        </th>
+        {/* SCHEDULE ONLY ON DESKTOP */}
+        {!isMobile && (
+          <th style={{ ...thMobile, borderRight: "1px solid #ccc" }}>
+            Schedule
+          </th>
+        )}
+        <th style={{ ...thMobile, borderRight: "none" }}>RMP Link</th>
       </tr>
     </thead>
     <tbody>
       {easiestResults[areaObj.area].map((entry, idx) => (
         <tr key={entry.className + entry.professor + idx}>
-          <td style={td}>{entry.professor}</td>
-          <td style={td}>{entry.score ?? "N/A"}</td>
-          <td style={td}>{entry.difficulty}</td>
-          <td style={td}>
-            {Array.isArray(entry.schedule)
-              ? entry.schedule.join(", ")
-              : "N/A"}
+          <td className="strong-font" style={tdMobile}>{entry.className}</td>
+          <td className="strong-font" style={tdMobile}>{entry.professor}</td>
+          <td className="normal-font" style={tdMobile}>{entry.score ?? "N/A"}</td>
+          <td
+            className="normal-font"
+            style={{ ...tdMobile, borderRight: "1px solid #ccc" }}
+          >
+            {entry.difficulty}
           </td>
-          <td style={td}>
+          {/* SCHEDULE ONLY ON DESKTOP */}
+          {!isMobile && (
+            <td style={tdMobile}>
+              {Array.isArray(entry.schedule) ? entry.schedule.join(", ") : "N/A"}
+            </td>
+          )}
+          <td style={tdMobile}>
             {entry.rmpLink ? (
               <a
                 href={entry.rmpLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#004ea2" }}
+                onClick={e => e.stopPropagation()}
+                aria-label={`View Rate My Professor page for ${entry.professor}`}
               >
                 RMP
               </a>
@@ -562,98 +657,141 @@ return (
 
 
 
-              {/* Available Classes (only show if open) */}
-              {isAreaOpen && (
-                <div>
-                  <strong>Available Classes:</strong>
-                  <ul
+                 {/* ...rest of your card and content */}
+
+    {/* Available Classes (only show if open) */}
+    {isAreaOpen && (
+      <div>
+        <strong style={{ fontSize: "1.15em", marginBottom: 8, display: "block" }}>
+          Available Classes:
+        </strong>
+        <ul
+          style={{
+            listStyle: "none",
+            paddingLeft: 0,
+            marginTop: 12,
+            marginBottom: 0,
+          }}
+        >
+          {filteredClasses.length === 0 ? (
+            <li style={{ color: "#999" }}>No available classes.</li>
+          ) : (
+            filteredClasses.map((cls) => {
+              const key = getClassKey(areaObj.area, cls);
+              const isMenuOpen = openMenus.has(key);
+              const alreadyTaken = classesTaken.some(
+                (taken) => taken.className === cls
+              );
+              const c1c2LimitReached =
+                (areaObj.area === "C1 Arts" || areaObj.area === "C2 Humanities") &&
+                c1c2Count >= 3;
+
+              // Find details for RMP link etc.
+             const classDetail = classDetails.find(
+  (detail) => detail.className === cls
+);
+         {/* RMP Link */}
+              const rmpLink =
+  classDetail && classDetail.link && classDetail.link !== "N/A"
+    ? classDetail.link
+    : null;
+              return (
+                <React.Fragment key={key}>
+                  <li
                     style={{
-                      listStyle: "none",
-                      paddingLeft: 0,
-                      marginTop: 12
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginBottom: 10,
+                      flexWrap: "wrap",
                     }}
                   >
-                    {filteredClasses.length === 0 ? (
-                      <li style={{ color: "#999" }}>
-                        No available classes.
-                      </li>
-                    ) : (
-                      filteredClasses.map((cls) => {
-                        const key = getClassKey(areaObj.area, cls);
-                        const isMenuOpen = openMenus.has(key);
-                        const alreadyTaken = classesTaken.some(
-                          (taken) => taken.className === cls
-                        );
-                        const c1c2LimitReached =
-                          (areaObj.area === "C1 Arts" ||
-                            areaObj.area === "C2 Humanities") &&
-                          c1c2Count >= 3;
-
-                        return (
-                          <React.Fragment key={cls}>
-                            <li
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "12px",
-                                marginBottom: 10
-                              }}
-                            >
-                              {!alreadyTaken && !c1c2LimitReached && (
-                                <button
-                                  onClick={e => { e.stopPropagation(); onAddClass(cls, areaObj.area); }}
-                                  style={{
-                                    background: "#fff",
-                                    color: "#004ea2",
-                                    border: "2px solid #000",
-                                    borderRadius: 6,
-                                    padding: "8px 12px",
-                                    cursor: "pointer",
-                                    fontWeight: 100
-                                  }}
-                                >
-                                  ➕
-                                </button>
-                              )}
-                              {c1c2LimitReached && (
-                                <span style={{ color: "#999" }}>Max 3</span>
-                              )}
-                              <button
-                                onClick={e => handleClassClick(areaObj.area, cls, e)}
-                                style={{
-                                  flex: 1,
-                                  background: isMenuOpen ? "#f1f1f1" : "#fff",
-                                  border: "1px solid #ccc",
-                                  borderRadius: "6px",
-                                  padding: "10px 16px",
-                                  textAlign: "left",
-                                  cursor: "pointer",
-                                  fontWeight: isMenuOpen ? "bold" : "normal",
-                                  color: "#000"
-                                }}
-                              >
-                                {cls} {isMenuOpen ? "▲" : "▼"}
-                              </button>
-                            </li>
-                            {isMenuOpen && (
-                              <li style={{ marginLeft: 10 }}>
-                                <ProfessorTable
-                                  className={cls}
-                                  classDetails={classDetails}
-                                />
-                              </li>
-                            )}
-                          </React.Fragment>
-                        );
-                      })
+                    {/* Add Class Button */}
+                    {!alreadyTaken && !c1c2LimitReached && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAddClass(cls, areaObj.area);
+                        }}
+                        style={{
+                          background: "#fff",
+                          color: "#004ea2",
+                          border: "2px solid #000", 
+                          borderRadius: 6,
+                          padding: "8px 12px",
+                          cursor: "pointer",
+                          fontWeight: 100,
+                          flexShrink: 0,
+                          userSelect: "none",
+                        }}
+                        aria-label={`Add ${cls} to classes taken`}
+                        type="button"
+                      >
+                        ➕
+                      </button>
                     )}
-                  </ul>
-                </div>
-              )}
-            </div>
-          );
-        })}
+                    {/* Max 3 limit message */}
+                    {c1c2LimitReached && (
+                      <span style={{ color: "#999", flexShrink: 0 }}>Max 3</span>
+                    )}
+
+                    {/* Class Name Toggle Button */}
+                    <button
+                      onClick={(e) => handleClassClick(areaObj.area, cls, e)}
+                      style={{
+                        flex: "1 1 auto",
+                        background: isMenuOpen ? "#f1f1f1" : "#fff",
+                        border: "1px solid #ccc",
+                        borderRadius: 6,
+                        padding: "10px 16px",
+                        textAlign: "left",
+                        cursor: "pointer",
+                        fontWeight: isMenuOpen ? "bold" : "normal",
+                        color: "#000",
+                        whiteSpace: "normal",
+                        userSelect: "none",
+                        minWidth: 0,
+                      }}
+                      aria-expanded={isMenuOpen}
+                      type="button"
+                    >
+                      {cls} {isMenuOpen ? "▲" : "▼"}
+                    </button>
+
+           
+
+
+                
+                  </li>
+
+                  {/* Professor Table toggle area */}
+                  {isMenuOpen && (
+                    <li
+                      style={{
+                        marginLeft: 10,
+                        paddingLeft: 28,
+                        borderLeft: "none",
+                        marginBottom: 10,
+                      }}
+                    >
+                      <ProfessorTable
+                        className={cls}
+                        classDetails={classDetails}
+                      />
+                    </li>
+                  )}
+                </React.Fragment>
+              );
+            })
+          )}
+        </ul>
       </div>
-    </div>
-  </div>
-  )}
+    )}
+
+  </div>  
+);  
+})}  
+
+</div> 
+</div>
+</div>)}

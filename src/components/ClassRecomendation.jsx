@@ -307,13 +307,20 @@ return (
         width: "fit-content"
       }}
     >
-      <div className="ge-title-iconbara">
-        <Link to="/"><IoIosHome className="titlebar-icon" /></Link>
-        <Link to="/sjsu"><IoIosArrowBack className="titlebar-icon" /></Link>
-        <Link to="/about"><FaCircleInfo className="titlebar-icon" /></Link>
-      </div>
+      <div className="ge-title-iconbara" style={{ display: "flex", justifyContent: "center", gap: 16, padding: "10px 0" }}>
+      <Link to="/" className="iconbar-link" aria-label="Home">
+        <IoIosHome className="iconbar-icon" />
+        <span>Home</span>
+      </Link>
+      <Link to="/sjsu" className="iconbar-link" aria-label="Back">
+        <IoIosArrowBack className="iconbar-icon" />
+        <span>Back</span>
+      </Link>
+      <Link to="/about" className="iconbar-link" aria-label="About">
+        <FaCircleInfo className="iconbar-icon" />
+        <span>About</span>
+      </Link>
     </div>
-
 
 {isMobile ? (
   <div
@@ -321,204 +328,215 @@ return (
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      width: "100%"
+      width: "100%",
+      padding: "0 10px", // some horizontal padding for small screens
+      boxSizing: "border-box",
     }}
   >
-
-    {/* --- Search Bar --- */}
     <div
-      className="ge-search-section"
       style={{
-        width: "92vw",  
-        maxWidth: 440,
+        width: "90vw",        // 90% viewport width on mobile
+        maxWidth: 700,        // max width limit on larger phones/tablets
         margin: "0 auto",
-        textAlign: "center"
+        display: "flex",
+        flexDirection: "column",
+        gap: 16,              // spacing between search and classes taken
       }}
     >
-      <div
-        className="ge-search-label"
+<div className="ge-search-section crp-search-section" style={{ textAlign: 'left' }}>
+  <h2
+    className="ge-classes-title"
+    style={{
+      display: 'inline-block',
+      background: '#A7AABD',
+      borderRadius: '22px',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+      fontSize: '1.35rem',
+      fontWeight: 700,
+      margin: '0 0 14px 0',
+      padding: '10px 30px',
+      color: '#000'
+    }}
+  >
+    Find Classes
+  </h2>
+  <div
+    className="ge-search-label"
+    style={{
+      textAlign: 'left',
+      marginBottom: '12px'
+    }}
+  >
+    Search for a class you have already taken, or plan to take.
+  </div>
+  
+
+
+  <div style={{ position: 'relative', width: '100%' }}>
+    <input
+      type="text"
+      placeholder="Search for a class..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="ge-search-input"
+    />
+  
+
+    {/* Your search results list */}
+    {Array.isArray(searchResults) && searchResults.length > 0 && (
+      <ul
+        className="ge-search-results"
         style={{
-          fontSize: "1em",
-          marginBottom: "8px",
-          textAlign: "center"
+          listStyle: 'none',
+          margin: 0,
+          padding: '8px',
+          border: '1px solid #ccc',
+          borderTop: 'none',
+          maxHeight: 200,
+          overflowY: 'auto',
+          background: '#fff',
+          position: 'absolute',
+          width: '100%',
+          zIndex: 2,
         }}
       >
-        Search for a class you have already taken, or plan to take.
-      </div>
-      <div style={{ position: "relative", width: "100%" }}>
-        <input
-          type="text"
-          placeholder="Search for a class..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="ge-search-input"
-          style={{
-            width: "100%",
-            maxWidth: 440,
-            borderRadius: "8px",
-            fontSize: "1.07em",
-            padding: "10px 7px",
-            margin: 0,
-            display: "block"
-          }}
-        />
-        {Array.isArray(searchResults) && searchResults.length > 0 && (
-          <ul
-            className="ge-search-results"
+        {searchResults.map((obj) => (
+          <li
+            key={obj.className}
             style={{
-              listStyle: "none",
-              margin: 0,
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderTop: "none",
-              maxHeight: 180,
-              overflowY: "auto",
-              background: "#fff",
-              position: "absolute",
-              width: "100%",
-              zIndex: 2
+              padding: '6px 0',
+              cursor: 'pointer',
+              borderBottom: '1px solid #eee',
             }}
+            onClick={() => handleAddClass(obj.className, obj.area)}
           >
-            {searchResults.map(obj => (
-              <li
-                key={obj.className + obj.area}
-                style={{
-                  padding: "6px 0",
-                  cursor: "pointer",
-                  borderBottom: "1px solid #eee"
-                }}
-                onClick={() => handleAddClass(obj.className, obj.area)}
-              >
-                <strong>{obj.className}</strong>{" "}
-                <span style={{ color: "#717171" }}>({obj.area})</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
-
-    {/* --- Classes Taken Section --- */}
-    <div
-      className="ge-classes-taken-section"
-      style={{
-        width: "92vw",
-        maxWidth: 440,
-        margin: "15px auto 0 auto", // brings closer to search bar
-        textAlign: "center"
-      }}
-    >
-      <h2 className="ge-classes-title" style={{ fontSize: "1.12em" }}>
-        Classes Taken
-      </h2>
-      <ul
-        className="ge-classes-list"
-        style={{ paddingLeft: 0, marginBottom: 0, width: "100%" }}
-      >
-        {classesTaken.length === 0 ? (
-          <li style={{ color: "#aaa" }}>No classes taken yet.</li>
-        ) : (
-          classesTaken.map(obj => (
-            <li
-              key={obj.className + obj.area}
-              style={{ marginBottom: 5, display: "flex", alignItems: "center", justifyContent: "center" }}
-            >
-              <strong>{obj.className}</strong>{" "}
-              <span style={{ color: "#555" }}>({obj.area})</span>
-              <button
-                onClick={() => handleRemoveClass(obj.className, obj.area)}
-                style={{
-                  marginLeft: 8,
-                  color: "#fff",
-                  background: "#d32f2f",
-                  border: "none",
-                  borderRadius: "4px",
-                  padding: "4px 12px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "0.98em"
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          ))
-        )}
+            <strong>{obj.className}</strong>{' '}
+            <span style={{ color: '#717171' }}>({obj.area})</span>
+          </li>
+        ))}
       </ul>
-    </div>
+    )}
   </div>
-) : (
-  
-  <>
-      <div style={{ margin: "20px auto 32px auto", width: "100%", maxWidth: 600,marginLeft:50, }}>
-      <div className="ge-search-section">
-        <div className="ge-search-label">
-          Search for a class you have already taken, or plan to take.
-        </div>
-        <div style={{ position: "relative", width: "100%" }}>
-          <input
-            type="text"
-            placeholder="Search for a class..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="ge-search-input"
-          />
-          {Array.isArray(searchResults) && searchResults.length > 0 && (
-            <ul className="ge-search-results" style={{
-              listStyle: "none",
-              margin: 0,
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderTop: "none",
-              maxHeight: 200,
-              overflowY: "auto",
-              background: "#fff",
-              position: "absolute",
-              width: "100%",
-              zIndex: 2
-            }}>
-              {searchResults.map((obj) => (
-                <li
-                  key={obj.className}
-                  style={{
-                    padding: "6px 0",
-                    cursor: "pointer",
-                    borderBottom: "1px solid #eee"
-                  }}
-                  onClick={() => handleAddClass(obj.className, obj.area)}
-                >
-                  <strong>{obj.className}</strong>{" "}
-                  <span style={{ color: "#717171" }}>({obj.area})</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    </div>
-    <div style={{ margin: "0 auto 36px auto", maxWidth: 600, marginRight:75, marginTop:90 }}>
-      <div className="ge-classes-taken-section">
-        <h2 className="ge-classes-title">Classes Taken</h2>
-        <ul className="ge-classes-list">
+</div>
+
+
+
+      {/* Classes Taken Section */}
+      <div className="ge-classes-taken-section crp-classes-taken" style={{ width: "100%" }}>
+        <h2 className="ge-classes-title" style={{  marginBottom: 12 }}>
+          Classes Taken
+        </h2>
+        <ul className="ge-classes-list" style={{ paddingLeft: 0, marginTop: 0 }}>
           {classesTaken.length === 0 ? (
-            <li style={{ color: "#aaa" }}>No classes taken yet.</li>
+            <li style={{ color: "#aaa", fontStyle: "italic", padding: "10px 0" }}>
+              No classes taken yet.
+            </li>
           ) : (
             classesTaken.map((obj) => (
-              <li key={obj.className + obj.area}>
-                <strong>{obj.className}</strong>{" "}
+              <li 
+                key={obj.className + obj.area} 
+                style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}
+              >
+                <strong>{obj.className}</strong>
                 <span style={{ color: "#555" }}>({obj.area})</span>
                 <button
                   onClick={() => handleRemoveClass(obj.className, obj.area)}
                   style={{
-                    marginLeft: 8,
+                    marginLeft: "auto",
                     color: "#fff",
                     background: "#d32f2f",
                     border: "none",
-                    borderRadius: "4px",
+                    borderRadius: 4,
                     padding: "4px 12px",
                     cursor: "pointer",
                     fontWeight: 600,
+                    fontSize: "0.9rem",
+                    transition: "background-color 0.2s",
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b71c1c")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
+                  aria-label={`Remove ${obj.className} from classes taken`}
+                >
+                  Delete
+                </button>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+    </div>
+  </div>
+) : (
+  <>
+    {/* Desktop Search Section */}
+   <div className="ge-search-section" style={{ textAlign: 'left' }}>
+  <h2 className="ge-classes-title">
+    Find Classes
+  </h2>
+  <div className="ge-search-label">
+    Search for a class you have already taken, or plan to take.
+  </div>
+  <div style={{ position: 'relative', width: '100%' }}>
+    <input
+      type="text"
+      placeholder="Search for a class..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="ge-search-input"
+      aria-label="Search classes"
+    />
+    {Array.isArray(searchResults) && searchResults.length > 0 && (
+      <ul className="ge-search-results" role="listbox">
+        {searchResults.map((obj) => (
+          <li
+            key={obj.className}
+            onClick={() => handleAddClass(obj.className, obj.area)}
+            style={{ padding: '6px 0', cursor: 'pointer', borderBottom: '1px solid #eee' }}
+            role="option"
+            tabIndex={0}
+            onKeyDown={e => { if (e.key === "Enter") handleAddClass(obj.className, obj.area); }}
+            aria-selected="false"
+          >
+            <strong>{obj.className}</strong> <span style={{ color: '#717171' }}>({obj.area})</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
+
+    {/* Desktop Classes Taken Section */}
+    <div style={{ margin: "0 auto 36px auto", maxWidth: 600, width: "90%", boxSizing: "border-box" }}>
+      <div className="ge-classes-taken-sectiona">
+        <h2 className="ge-classes-title" style={{ marginBottom: 12 }}>Classes Taken</h2>
+        <ul className="ge-classes-list" style={{ paddingLeft: 0, marginTop: 0 }}>
+          {classesTaken.length === 0 ? (
+            <li style={{ color: "#aaa", fontStyle: "italic", padding: "10px 0" }}>
+              No classes taken yet.
+            </li>
+          ) : (
+            classesTaken.map((obj) => (
+              <li key={obj.className + obj.area} style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
+                <strong>{obj.className}</strong>
+                <span style={{ color: "#555" }}>({obj.area})</span>
+                <button
+                  onClick={() => handleRemoveClass(obj.className, obj.area)}
+                  style={{
+                    marginLeft: "auto",
+                    color: "#fff",
+                    background: "#d32f2f",
+                    border: "none",
+                    borderRadius: 4,
+                    padding: "4px 12px",
+                    cursor: "pointer",
+                    fontWeight: 600,
+                    fontSize: "0.9rem",
+                    transition: "background-color 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b71c1c")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
+                  aria-label={`Remove ${obj.className} from classes taken`}
                 >
                   Delete
                 </button>
@@ -539,124 +557,100 @@ return (
 
 
 
-  <div
-  style={{
-  }}
+
+
+
+<div className="academic-areas-container"
+
 >
-<div style={{
-  background: "#fff",
-  border: "2px solid #434656",
-  borderRadius: 14,
-  boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
- padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
-  maxWidth: isMobile ? 675 : 900,
-   width: isMobile ? "85vw" : "100%",
-  margin: "0 auto 38px auto",
-  textAlign: "center"
-}}>
-  <h2
-    style={{
-      fontWeight: 700,
-      marginBottom: 12,
-      textAlign: "center",
-      fontSize: "1.65em",
-      letterSpacing: "-0.01em",
-    }}
-  >
-    Academic Areas
-  </h2>
+  <h2 className="academic-areas-title">Academic Areas</h2>
   <p
     style={{
       color: "#555",
       marginBottom: 24,
       fontSize: "1.09em",
-      textAlign: "center",
+      textAlign: "left",
       maxWidth: 600,
-      marginLeft: "auto",
-      marginRight: "auto",
+      marginLeft: 0,
+      marginRight: 0,
     }}
   >
     Select the subject areas or types of classes you’re interested in.
   </p>
-  <div style={{ marginTop: 20 }}>
-    {areaRows.map((row, rowIdx) => (
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: isMobile ? 8 : 14, // space between cards
+      justifyContent: "flex-start", // left align rows
+      marginTop: 20,
+    }}
+  >
+    {areaRows.flat().map((area) => (
       <div
-        key={`area-row-${rowIdx}`}
+        key={area.id}
+        className={
+          "crp-card" + (selectedAreas.includes(area.id) ? " selected" : "")
+        }
+        onClick={() => toggle(area.id, "area")}
         style={{
-           display: "flex",
-    justifyContent: "center",
-    gap: isMobile ? 4 : 10,
-    marginBottom: isMobile ? 4 : 10,
+          flex: "1 1 calc((100% / 3) - 14px)",  // three items per row (subtract gap)
+          minWidth: 0,    // allow shrinking
+          maxWidth: "calc((100% / 3) - 14px)", // prevent growing too big
+          cursor: "pointer",
+          fontWeight: 500,
+          padding: "18px 0",  // larger padding for bigger cards
+          borderRadius: 10,
+          boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+          border: selectedAreas.includes(area.id)
+            ? "3px solid #1976d2"
+            : "3px solid #000",
+          background: selectedAreas.includes(area.id) ? "#edf3fa" : "#fff",
+          color: "#161616",
+          transition: "all 0.14s",
+          userSelect: "none",
+          fontSize: "1.2em",
+          letterSpacing: "-0.01em",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "60px",  // fixed height for equal card size
+          boxSizing: "border-box",
         }}
       >
-        {row.map((area) => (
-          <div
-            key={area.id}
-            className={
-              "crp-card" + (selectedAreas.includes(area.id) ? " selected" : "")
-            }
-            onClick={() => toggle(area.id, "area")}
-            style={{
-             minWidth: 144,
-            cursor: "pointer",
-            fontWeight: 500,
-            padding: "12px 12px",
-            borderRadius: 10,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-            border: selectedAreas.includes(area.id)
-              ? "3px solid #1976d2"
-              : "3px solid #000",
-            background: selectedAreas.includes(area.id)
-              ? "#edf3fa"
-              : "#fff",
-            color: "#161616",
-            transition: "all 0.14s",
-            userSelect: "none",
-            fontSize: "1.08em",
-            letterSpacing: "-0.01em",
-            marginBottom: 0,
-            }}
-          >
-            {area.label}
-          </div>
-        ))}
+        {area.label}
       </div>
     ))}
   </div>
 </div>
 
-<div style={{
-background: "#fff",
+
+<div
+  style={{
+    background: "#F7F9FF",
     border: "2px solid #434656",
     borderRadius: 14,
     boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
     padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
-    maxWidth: isMobile ? 675 : 900,
+    maxWidth: 1272,
     width: isMobile ? "90vw" : "100%",
     margin: isMobile ? "18px auto" : "0 auto 38px auto",
-    textAlign: "center",
+    textAlign: "left",
     transition: "all 0.3s",
     boxSizing: "border-box",
-}}>
-  <h2
-    style={{
-      fontWeight: 700,
-      marginBottom: 14,
-      textAlign: "center",
-      fontSize: "1.65em",
-      letterSpacing: "-0.01em",
-    }}
-  >
-    Student Goals
-  </h2>
+  }}
+>
+  <h2 className="student-goals-title">Student Goals</h2>
   <div
     style={{
       display: "flex",
-      justifyContent: "center",
-      gap: 10,
+      flexWrap: "nowrap",
+      gap: 20,                // increase the gap between cards for more breathing room
+      overflowX: "auto",
       marginBottom: 10,
       marginTop: 20,
-      flexWrap: "wrap", // Responsive for many/long goals
+      paddingBottom: 4,
     }}
   >
     {STUDENT_GOALS.map((goal) => (
@@ -667,24 +661,27 @@ background: "#fff",
         }
         onClick={() => toggle(goal.id, "goal")}
         style={{
-          minWidth: 141,
+          flex: "0 0 280px",
           cursor: "pointer",
           fontWeight: 500,
-          padding: "12px 18px",
+          padding: "18px 40px",  // increase horizontal padding for wider cards
           borderRadius: 10,
           boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-          border:
-            selectedGoals.includes(goal.id)
-              ? "3px solid #1976d2"
-              : "3px solid #000",
-          background: selectedGoals.includes(goal.id)
-            ? "#e8f6ef"
-            : "#fff",
+          border: selectedGoals.includes(goal.id)
+            ? "3px solid #1976d2"
+            : "3px solid #000",
+          background: selectedGoals.includes(goal.id) ? "#e8f6ef" : "#fff",
           color: "#151515",
           transition: "all 0.14s",
           userSelect: "none",
-          fontSize: "1.07em",
+          fontSize: "1.1em",
           letterSpacing: "-0.01em",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "80px",
+          boxSizing: "border-box",
+          whiteSpace: "nowrap",
         }}
       >
         {goal.label}
@@ -692,24 +689,30 @@ background: "#fff",
     ))}
   </div>
 </div>
-</div>
-  <div style={{
-  margin: "0 auto 32px auto",
-  maxWidth: 600,
-}}>
-  <div style={{
-    background: "#fff",
-    border: "2px solid #434656",
-    borderRadius: 14,
-    boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
-    padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
-    maxWidth: isMobile ? 675 : 900,
+
+
+
+<div
+  style={{
+    margin: "0 auto 32px auto",
+    maxWidth: isMobile ? 675 : 1272,      // Fix max width to 1200 on desktop
     width: isMobile ? "90vw" : "100%",
-    margin: isMobile ? "18px auto" : "0 auto 38px auto",
-    textAlign: "center",
-    transition: "all 0.3s",
-    boxSizing: "border-box",
-  }}>
+  }}
+>
+  <div
+    style={{
+      background: "#F7F9FF",
+      border: "2px solid #434656",
+      borderRadius: 14,
+      boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
+      padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
+      width: "100%",                      // full width of container
+      margin: "0 auto",                  // center inside parent container
+      textAlign: "center",
+      transition: "all 0.3s",
+      boxSizing: "border-box",
+    }}
+  >
     <div
       style={{
         background: "#A7AABD",
@@ -748,46 +751,53 @@ background: "#fff",
       </select>
       <span style={{ fontWeight: 600, fontSize: "1.15em" }}>classes recommended.</span>
     </div>
-    <div style={{ display: "flex", justifyContent: "center", gap: 18 }}>
-      <button
-        type="submit"
-        style={{
-          padding: "10px 28px",
-          background: "#1976d2",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-          fontWeight: "bold",
-          fontSize: "1.05em",
-          cursor: "pointer",
-          boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
-          opacity: selectedAreas.length === 0 && selectedGoals.length === 0 ? 0.6 : 1
-        }}
-        disabled={selectedAreas.length === 0 && selectedGoals.length === 0}
-        onClick={handleSubmit}
-      >
-        Get Recommendations
-      </button>
-      {recommendations.length > 0 && (
-        <button
-          type="button"
-          style={{
-            padding: "10px 28px",
-            background: "#388e3c",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            fontWeight: "bold",
-            fontSize: "1.05em",
-            cursor: "pointer",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
-          }}
-          onClick={handleRefresh}
-        >
-          Refresh Recommendations
-        </button>
-      )}
-    </div>
+   <div style={{ display: "flex", justifyContent: "center", gap: 18, flexWrap: isMobile ? "wrap" : "nowrap" }}>
+  <button
+    type="submit"
+    style={{
+      flex: isMobile ? "0 0 100%" : "1", // full width on mobile, flexible on desktop
+      padding: "10px 28px",
+      background: "#1976d2",
+      color: "#fff",
+      border: "none",
+      borderRadius: 8,
+      fontWeight: "bold",
+      fontSize: "1.05em",
+      cursor: "pointer",
+      boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
+      opacity: selectedAreas.length === 0 && selectedGoals.length === 0 ? 0.6 : 1,
+      minWidth: 200,
+      maxWidth: 350,
+    }}
+    disabled={selectedAreas.length === 0 && selectedGoals.length === 0}
+    onClick={handleSubmit}
+  >
+    Get Recommendations
+  </button>
+  {recommendations.length > 0 && (
+    <button
+      type="button"
+      style={{
+        flex: isMobile ? "0 0 100%" : "1",
+        padding: "10px 28px",
+        background: "#388e3c",
+        color: "#fff",
+        border: "none",
+        borderRadius: 8,
+        fontWeight: "bold",
+        fontSize: "1.05em",
+        cursor: "pointer",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
+        minWidth: 200,
+        maxWidth: 350,
+      }}
+      onClick={handleRefresh}
+    >
+      Refresh Recommendations
+    </button>
+  )}
+</div>
+
   </div>
 </div>
 <div
@@ -797,14 +807,15 @@ background: "#fff",
   }}
 >
 {recommendations.length > 0 && (
-  <div style={{ margin: "0 auto 38px auto", maxWidth: 900 }}>
+  <div style={{ margin: "0 auto 38px auto", maxWidth: 1272, width: "100%" }}>
     <div className="rec-results-mobile-padding">
       <div style={{ marginTop: 10 }}>
         <h3 style={{
           textAlign: "left",
           fontWeight: 600,
           marginBottom: 18,
-          fontSize: "1.32em"
+          fontSize: "1.32em",
+          marginLeft: "-150px"
         }}>
           Recommended Classes
         </h3>
@@ -818,62 +829,51 @@ background: "#fff",
             boxShadow: "0 2px 14px rgba(0,0,0,0.07)",
           }}
         >
-          <thead>
-            <tr style={{ background: "#f3f3f3" }}>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>Class</th>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>Professor</th>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>RMP Score</th>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>Difficulty</th>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>Schedule</th>
-              <th style={{ padding: 10, border: "1px solid #ddd", fontWeight: 600 }}>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recommendations.map((cls, idx) => (
-              <tr key={cls.className + cls.professor + idx}>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>{cls.className}</td>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>{cls.professor}</td>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>
-                  {cls.score !== undefined ? cls.score : "N/A"}
-                </td>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>
-                  {cls.difficulty !== undefined ? cls.difficulty : "N/A"}
-                </td>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>
-                  <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-                    {cls.schedule && cls.schedule.length > 0
-                      ? cls.schedule.map((s, i) => (
-                          <li key={i}>{s}</li>
-                        ))
-                      : <li style={{ color: "#888" }}>Not listed</li>
-                    }
-                  </ul>
-                </td>
-                <td style={{ padding: 10, border: "1px solid #ddd" }}>
-                  {cls.link && cls.link !== "N/A" ? (
-                    <a
-                      href={cls.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "#1976d2", fontWeight: 500 }}
-                    >
-                      RMP
-                    </a>
-                  ) : (
-                    "N/A"
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Professor</th>
+      <th>RMP Score</th>
+      <th>Difficulty</th>
+      {!isMobile && <th>Schedule</th>}
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {recommendations.map((cls, idx) => (
+      <tr key={cls.className + cls.professor + idx}>
+        <td>{cls.className}</td>
+        <td>{cls.professor}</td>
+        <td>{cls.score !== undefined ? cls.score : "N/A"}</td>
+        <td>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
+        {!isMobile && (
+          <td>
+            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+              {cls.schedule && cls.schedule.length > 0
+                ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
+                : <li style={{ color: "#888" }}>Not listed</li>}
+            </ul>
+          </td>
+        )}
+        <td>
+          {cls.link && cls.link !== "N/A" ? (
+            <a href={cls.link} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", fontWeight: 500 }}>
+              RMP
+            </a>
+          ) : (
+            "N/A"
+          )}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
       </div>
     </div>
   </div>
 )}
 </div>
   </div> 
-  
-  )}
- 
-  
+  </div>
+)
+}

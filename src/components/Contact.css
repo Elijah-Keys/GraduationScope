@@ -132,7 +132,7 @@
 }
 
 /* Responsive mobile scaling: 40% smaller at <=600px */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
   .contact-root {
     font-size: 0.6em;
