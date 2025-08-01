@@ -3,6 +3,8 @@
   import GETracker from "./pages/GETracker";
   import geRequirements from "./data/geRequirements.json";
   import classDetails from "./data/classDetails.json";
+  import chicoGeRequirements from './data/ChicogeRequirements.json';
+import chicoClassDetails from './data/ChicoclassDetails.json';
   import { Routes, Route } from "react-router-dom";
   import { Link } from "react-router-dom";
   import { Navigate } from "react-router-dom";
@@ -24,7 +26,8 @@
   import introJs from "intro.js";
   import "intro.js/introjs.css"; // Don't forget to import the CSS!
   import ClassRecommendationPage from "./components/ClassRecomendation.jsx";
-
+import ChicoGETracker from "./pages/ChicoGETracker";
+import ChicoClassRecommendationPage from "./components/ChicoClassRecommendation.jsx"
 
   const areasToShow = [
     "A1 Oral Communication",
@@ -411,21 +414,44 @@
       />
     }
   />
+  <Route
+    path="/chico"
+    element={
+      <ChicoGETracker
+            geRequirements={chicoGeRequirements}
+            classDetails={chicoClassDetails}
+            onAddClass={onAddClass}
+        onDeleteClass={onDeleteClass}
+        classesTaken={classesTaken}
+        c1c2Fulfilled={c1c2Fulfilled}
+        areaCWarning={areaCWarning}
+        search={search}
+        setSearch={setSearch}
+        searchResults={searchResults}
+        handleAddClass={handleAddClass}
+            university="chico"
+      />
+    }
+  />
       {/* other routes */}
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/survey" element={<Survey />} />
-
-  <Route path="/account" element={<AccountSettingsPage />} />
-  <Route
-    path="/recommend"
-    element={
-      <ClassRecommendationPage
-        geRequirements={geRequirements}
-        classDetails={classDetails}
-      />
-    }
+  <Route path="/chicorecommend" element={
+    <ChicoClassRecommendationPage
+      geRequirements={chicoGeRequirements}
+      classDetails={chicoClassDetails}
+       pageTitle="Chico Class Recommendations"
+    />} 
   />
+
+  <Route path="/recommend" element={
+    <ClassRecommendationPage
+      geRequirements={geRequirements}
+      classDetails={classDetails}
+    />} 
+  />
+
 
 
     </Routes>

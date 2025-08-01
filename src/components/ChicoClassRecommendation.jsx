@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { TOPIC_TO_CLASSES } from "./Topic_To_Classes";
-import "./ClassRecomendation.css";
+import { ChicoTOPIC_TO_CLASSES } from "./ChicoTopic_To_Classes";
+import "./ChicoClassRecommendation.css";
 import "../pages/GETracker.css";
 import { Link } from "react-router-dom";
-import { IoIosHome } from "react-icons/io";
+import { IoIosHome } from "react-icons/io";  
 import { IoIosArrowBack } from "react-icons/io";
 import { FaCircleInfo } from "react-icons/fa6";
 
@@ -37,11 +37,26 @@ const ACADEMIC_AREAS = [
 // ==========================
 // MAIN COMPONENT
 // ==========================
-export default function ClassRecommendationPage({ geRequirements, classDetails }) {
+export default function ClassRecommendationPage({ geRequirements, classDetails,pageTitle }) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [dropdownValue, setDropdownValue] = useState(3);
   const [recommendations, setRecommendations] = useState([]);
+  const safeRecommendations = React.useMemo(() => {
+  return recommendations.map(cls => {
+    let sched = cls.schedule;
+    if (!Array.isArray(sched)) {
+      if (typeof sched === "string" && sched.trim() !== "") {
+        sched = [sched.trim()];
+      } else {
+        sched = [];
+      }
+    }
+    return { ...cls, schedule: sched };
+  });
+}, [recommendations]);
+
+
   const [refreshKey, setRefreshKey] = useState(Date.now());
 const isMobile = window.innerWidth <= 700;
 const areaRows = isMobile
@@ -158,6 +173,7 @@ function recommendClasses({
   console.log("classDetails", classDetails);
   console.log("geRequirements", geRequirements);
   console.log("classesTaken", classesTaken);
+  console.log("PageTitle prop:", pageTitle);
   // ...rest of code
 
 
@@ -181,7 +197,7 @@ function recommendClasses({
   // Build topicClassSet from mapping and selectedAreas
   const topicClassSet = new Set();
   selectedAreas.forEach(topic => {
-    const classList = TOPIC_TO_CLASSES && TOPIC_TO_CLASSES[topic];
+    const classList = ChicoTOPIC_TO_CLASSES && ChicoTOPIC_TO_CLASSES[topic];
     if (Array.isArray(classList)) {
       classList.forEach(clsName => topicClassSet.add(clsName));
     }
@@ -237,7 +253,14 @@ function recommendClasses({
     if (recommendations.length >= numClasses) break;
   }
 
-  return recommendations;
+ return recommendations.map(cls => ({
+  ...cls,
+  schedule: Array.isArray(cls.schedule)
+    ? cls.schedule
+    : typeof cls.schedule === "string" && cls.schedule.trim() !== ""
+      ? [cls.schedule.trim()]
+      : [],
+}));
 }
 
   // Toggle for areas/goals
@@ -298,7 +321,9 @@ return (
         width: "fit-content"
       }}
     >
-      <h1 className="ge-rectangle-titlea">San Jose Class Recommendations</h1>
+   <h1 className="ge-rectangle-titleab">Chico Class Recommendations</h1>
+
+
     </div>
     {/* Icon Bar: center and control its spacing below the title */}
     <div
@@ -312,7 +337,7 @@ return (
         <IoIosHome className="iconbar-icon" />
         <span>Home</span>
       </Link>
-      <Link to="/sjsu" className="iconbar-link" aria-label="Back">
+      <Link to="/chico" className="iconbar-link" aria-label="Back">
         <IoIosArrowBack className="iconbar-icon" />
         <span>Back</span>
       </Link>
@@ -840,7 +865,7 @@ return (
     </tr>
   </thead>
   <tbody>
-    {recommendations.map((cls, idx) => (
+  {safeRecommendations.map((cls, idx) => (
       <tr key={cls.className + cls.professor + idx}>
         <td>{cls.className}</td>
         <td>{cls.professor}</td>
@@ -848,11 +873,14 @@ return (
         <td>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
         {!isMobile && (
           <td>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {cls.schedule && cls.schedule.length > 0
-                ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
-                : <li style={{ color: "#888" }}>Not listed</li>}
-            </ul>
+          <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+  {Array.isArray(cls.schedule) && cls.schedule.length > 0
+    ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
+    : typeof cls.schedule === "string" && cls.schedule.trim() !== ""
+      ? <li>{cls.schedule}</li>
+      : <li style={{ color: "#888" }}>Not listed</li>
+  }
+</ul>
           </td>
         )}
         <td>

@@ -42,9 +42,11 @@ export default function UniversitySearch() {
   };
 
   // When a result is clicked, navigate to dashboard
-  const handleResultClick = (university) => {
-    navigate("/sjsu");
-  };
+ // UniversitySearch.jsx (snippet)
+const handleResultClick = (university) => {
+  navigate(`/${university.id}`); // dynamically navigates to correct path
+};
+
 
   return (
     <div style={{ position: "relative", width: "100%", maxWidth: 650 }}>
