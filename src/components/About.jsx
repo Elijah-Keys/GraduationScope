@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -11,29 +10,6 @@ export default function About() {
       <p style={{ textAlign: "center" }}>
         For questions or suggestions, please contact us using the link below.
       </p>
-      <div style={{ textAlign: "center", marginTop: 40 }}>
-        <Link
-          to="/"
-          style={{
-            display: "inline-block",
-            padding: "12px 24px",
-            backgroundColor: "#1976d2",
-            color: "#fff",
-            borderRadius: 8,
-            textDecoration: "none",
-            fontWeight: "bold",
-            fontSize: "1em",
-            cursor: "pointer",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-            transition: "background-color 0.3s",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#1565c0")}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1976d2")}
-          aria-label="Back to Home"
-        >
-          Back to Home
-        </Link>
-      </div>
     </div>
   );
 }
