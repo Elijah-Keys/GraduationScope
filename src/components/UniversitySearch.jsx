@@ -1,20 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import universities from "../data/universities";
 import './UniversitySearch.css';
 
-
-
-
-
-export default function UniversitySearch() {
+const UniversitySearch = forwardRef((props, ref) => {
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [results, setResults] = useState([]);
-  const inputRef = useRef(null);
   const navigate = useNavigate();
 
-  // Filter results based on search
   const getFilteredResults = (value) => {
     if (!value) return universities;
     return universities.filter(u =>
@@ -22,7 +16,6 @@ export default function UniversitySearch() {
     );
   };
 
-  // Handle input change
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearch(value);
@@ -30,28 +23,23 @@ export default function UniversitySearch() {
     setShowDropdown(true);
   };
 
-  // Handle input focus
   const handleFocus = () => {
     setResults(getFilteredResults(search));
     setShowDropdown(true);
   };
 
-  // Handle input blur (hide dropdown after short delay to allow click)
   const handleBlur = () => {
     setTimeout(() => setShowDropdown(false), 100);
   };
 
-  // When a result is clicked, navigate to dashboard
- // UniversitySearch.jsx (snippet)
-const handleResultClick = (university) => {
-  navigate(`/${university.id}`); // dynamically navigates to correct path
-};
-
+  const handleResultClick = (university) => {
+    navigate(`/${university.id}`);
+  };
 
   return (
     <div style={{ position: "relative", width: "100%", maxWidth: 650 }}>
       <input
-        ref={inputRef}
+        ref={ref}
         className="hero-search"
         type="text"
         placeholder="Search universities"
@@ -62,8 +50,8 @@ const handleResultClick = (university) => {
         autoComplete="off"
         style={{ width: "100%" }}
       />
-     {showDropdown && (
-  <div className="university-dropdown">
+      {showDropdown && (
+        <div className="university-dropdown">
           {results.length > 0 ? (
             results.map(u => (
               <div
@@ -92,4 +80,6 @@ const handleResultClick = (university) => {
       )}
     </div>
   );
-}
+});
+
+export default UniversitySearch;
