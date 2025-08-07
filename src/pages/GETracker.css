@@ -815,3 +815,229 @@
     margin-top: 16px !important;
   }
 }
+/* Container */
+.ge-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 24px 40px 24px;
+  font-family: 'Average', sans-serif;  /* Keep your existing font if preferred */
+  color: #000;
+}
+
+/* Title/Header */
+.ge-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 3rem; /* large and clean */
+  margin-top: 32px;
+  margin-bottom: 32px; /* space before icon bar */
+  user-select: none;
+}
+
+/* Icon Bar */
+.ge-icon-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 120px; /* space after icon bar (per spec) */
+  user-select: none;
+}
+
+.ge-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #3a60ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.ge-icon-link:hover,
+.ge-icon-link:focus {
+  color: #2a44cc;
+}
+
+.ge-icon {
+  font-size: 28px;
+}
+
+/* Graduation Progress Bar Section */
+.ge-progress-summary {
+  max-width: 600px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+  user-select: none;
+}
+
+.ge-progress-bar-wrapper {
+  position: relative;
+  height: 24px;
+  background: #e0e0e0;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.ge-progress-bar-bg {
+  width: 100%;
+  height: 100%;
+}
+
+.ge-progress-bar-fill {
+  height: 100%;
+  background: #3a60ff; /* brand blue */
+  transition: width 0.5s ease;
+}
+
+.ge-progress-bar-label {
+  position: absolute;
+  right: 12px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.ge-progress-percent {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 24px;
+}
+
+/* Progress cards below progress bar */
+.ge-progress-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.ge-progress-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(58, 96, 255, 0.15);
+  font-size: 1rem;
+  min-width: 110px;
+  user-select: none;
+}
+
+.ge-progress-card-completed {
+  background-color: #e1f0df;
+  color: #4a9a2e;
+}
+
+.ge-progress-card-remaining {
+  background-color: #f9e1e1;
+  color: #d32f2f;
+}
+
+.ge-progress-card-gpa {
+  background-color: #dbe9fc;
+  color: #3a60ff;
+}
+
+/* Find Classes Section */
+.ge-search-section-wrapper {
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  text-align: left;
+}
+
+.ge-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+.ge-search-description {
+  color: #444;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.ge-search-input-wrapper {
+  position: relative;
+}
+
+.ge-search-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 24px;
+  border: 1.8px solid #bbb;
+  box-shadow: 0 2px 8px rgba(58, 96, 255, 0.15);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.ge-search-input:focus {
+  border-color: #3a60ff;
+  box-shadow: 0 0 8px #3a60ffcc;
+}
+
+/* Classes Taken Section */
+.ge-classes-taken-wrapper {
+  max-width: 800px;
+  margin: 0 auto 32px auto;
+}
+
+.ge-classes-taken-list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+/* Add styles for each list item, buttons etc, respecting existing class names */
+
+/* Area warning */
+.ge-area-warning {
+  margin-top: 16px;
+  padding: 14px 20px;
+  background-color: #ffefef;
+  border: 1px solid #d32f2f;
+  color: #b00000;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+/* Checklist Wrapper */
+.ge-checklist-wrapper {
+  max-width: 800px;
+  margin: 0 auto 32px auto;
+  /* Add additional spacing, bigger width */
+}
+
+/* Card Grid Wrapper */
+.ge-card-grid-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 44px;
+}
+
+/* You can add card styles in your existing .ge-card class or enhance here */
+body, html {
+  background-color: #F8F8FF !important;
+  /* You may want to add */
+  min-height: 100vh;
+  width: 100%;
+}
+body, div, span, p, h1, h2, h3, h4, h5, h6, input, button {
+  font-family: 'Inter', sans-serif !important;
+}

@@ -74,4 +74,20 @@
     text-overflow: unset !important;
   }
 }
+.professor-table .professor-table-table tr:focus,
+.professor-table .professor-table-table tr:focus-visible,
+.professor-table .professor-table-table tr:active,
+.professor-table .professor-table-table td:focus,
+.professor-table .professor-table-table td:focus-visible,
+.professor-table .professor-table-table td:active,
+.professor-table .professor-table-table button:focus,
+.professor-table .professor-table-table a:focus {
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.professor-table-table {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
 

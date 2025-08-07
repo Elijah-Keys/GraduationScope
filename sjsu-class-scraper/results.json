@@ -1,0 +1,228 @@
+[
+  {
+    "className": "CCS 74",
+    "professor": "Ernesto Martinez",
+    "schedule": [
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 12:00PM - 1:15PM",
+      "TuTh 9:00AM - 10:15AM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "CCS 74",
+    "professor": "Marina Corrales",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "CCS 74",
+    "professor": "Rosanna Alvarez",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Ash Rahmani",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Nancy Park",
+    "schedule": [
+      "TuTh 1:30PM - 2:45PM",
+      "TuTh 3:00PM - 4:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Philip Bair",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 4:30PM - 5:45PM",
+      "TuTh 6:00PM - 7:15PM",
+      "TuTh 3:00PM - 4:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "James Capurso",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Anya Iyengar",
+    "schedule": [
+      "TuTh 7:30AM - 8:45AM",
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Kendall Ward",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Rahmon Pashtunyar",
+    "schedule": [
+      "MoWe 10:30AM - 11:45AM",
+      "MoWe 7:30AM - 8:45AM",
+      "MoWe 9:00AM - 10:15AM",
+      "MoWe 1:30PM - 2:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Kathy Werking",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Patricia Daley- Harms",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Dana Morella-Pozzi",
+    "schedule": [
+      "MoWe 3:00PM - 4:15PM",
+      "MoWe 4:30PM - 5:45PM",
+      "Mo 6:00PM - 8:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Beth McMurray",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Kyle Johnson",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM",
+      "TuTh 1:30PM - 2:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Zaki Hasan",
+    "schedule": [
+      "MoWe 7:30AM - 8:45AM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "David Galan",
+    "schedule": [
+      "Mo 6:00PM - 8:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Kaitlin Cannava",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Minna Holopainen",
+    "schedule": [
+      "We 6:00PM - 8:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Morgan McKnight",
+    "schedule": [
+      "TuTh 9:00AM - 10:15AM",
+      "TuTh 10:30AM - 11:45AM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Lindsay Walsh",
+    "schedule": [
+      "Th 6:00PM - 8:45PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Ching Ching Tan",
+    "schedule": [
+      "MoWe 12:00PM - 1:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Leif Rogers",
+    "schedule": [
+      "TuTh 3:00PM - 4:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Kathleen Raiff",
+    "schedule": [
+      "TuTh 10:30AM - 11:45AM",
+      "TuTh 12:00PM - 1:15PM"
+    ],
+    "status": "Closed"
+  },
+  {
+    "className": "COMM 20",
+    "professor": "Jean-Pierre Lacrampe",
+    "schedule": [
+      "TBA"
+    ],
+    "status": "Closed"
+  }
+]

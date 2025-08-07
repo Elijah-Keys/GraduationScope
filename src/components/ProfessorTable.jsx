@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+
 import './ProfessorTable.css'; // Keep your styles or enhance as needed
 
 const RMP_KEY = "score";
@@ -57,7 +59,7 @@ export default function ProfessorTable({ className, classDetails }) {
     padding: isMobile ? "9px 10px" : "10px 12px",
     borderBottom: "1px solid #ccc",
     borderRight: "1px solid #ccc",
-    color: "#fff",
+    color: "#000",
     textAlign: "left",
     fontWeight: 600,
     whiteSpace: "nowrap",
@@ -66,7 +68,7 @@ export default function ProfessorTable({ className, classDetails }) {
   const tdBaseStyle = {
     padding: isMobile ? "9px 10px" : "10px 12px",
     borderBottom: "1px solid #ccc",
-    color: "#fff",
+    color: "#000",
     textAlign: "left",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
@@ -77,17 +79,21 @@ export default function ProfessorTable({ className, classDetails }) {
   };
 
   return (
-    <div className="professor-table" style={{ width: "100%", overflowX: "auto" }}>
+    <div className="professor-table" style={{ backgroundColor: "#fff", width: "100%", overflowX: "hidden" }}>
       <div className="professor-table-scroll" style={{ minWidth: 0 }}>
         <table
           style={{
-            width: "100%",
-            marginTop: isMobile ? 4 : 8,
-            borderCollapse: "collapse",
-            border: "1px solid #ccc", // Box border around the entire table
-            background: "transparent",
+        width: "100%",
+    tableLayout: "fixed",        // Ensures no horizontal scroll
+    borderCollapse: "collapse",
+    backgroundColor: "#fff",
+    border: "1.5px solid #ccc",
+    fontSize: "0.9rem",
+    borderRadius: 12,
+    whiteSpace: "normal",  
             fontSize: isMobile ? "0.86rem" : "0.95rem",
-            minWidth: isMobile ? "auto" : "600px",
+           minWidth: "0",
+
           }}
         >
           <thead>
@@ -118,7 +124,7 @@ export default function ProfessorTable({ className, classDetails }) {
           </thead>
           <tbody>
             {sorted.map((prof, idx) => (
-              <tr key={idx}>
+            <tr key={idx} tabIndex={-1}>
                 <td
                   style={{
                     ...tdBaseStyle,
@@ -128,6 +134,9 @@ export default function ProfessorTable({ className, classDetails }) {
                     maxWidth: isMobile ? 120 : undefined,
                     textOverflow: "ellipsis",
                     overflow: "hidden",
+                    wordWrap: "break-word",
+whiteSpace: "normal",
+
                   }}
                   title={prof.professor}
                 >
@@ -143,6 +152,9 @@ export default function ProfessorTable({ className, classDetails }) {
                     maxWidth: isMobile ? 90 : undefined,
                     textOverflow: "ellipsis",
                     overflow: "hidden",
+                    wordWrap: "break-word",
+whiteSpace: "normal",
+
                   }}
                   title={prof[RMP_KEY]}
                 >
@@ -158,6 +170,9 @@ export default function ProfessorTable({ className, classDetails }) {
                     maxWidth: isMobile ? 90 : undefined,
                     textOverflow: "ellipsis",
                     overflow: "hidden",
+                    wordWrap: "break-word",
+whiteSpace: "normal",
+
                   }}
                   title={prof[DIFF_KEY]}
                 >
@@ -174,6 +189,9 @@ export default function ProfessorTable({ className, classDetails }) {
                       maxWidth: 160,
                       whiteSpace: "normal",
                       wordWrap: "break-word",
+                      wordWrap: "break-word",
+whiteSpace: "normal",
+
                     }}
                   >
                     {Array.isArray(prof.schedule)
@@ -190,6 +208,9 @@ export default function ProfessorTable({ className, classDetails }) {
                     fontWeight: 400,
                     maxWidth: isMobile ? 160 : undefined,
                     whiteSpace: "nowrap",
+                    wordWrap: "break-word",
+whiteSpace: "normal",
+
                   }}
                 >
                   {prof.link && prof.link !== "N/A" ? (

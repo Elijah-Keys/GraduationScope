@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { TOPIC_TO_CLASSES } from "./Topic_To_Classes";
 import "./ClassRecomendation.css";
 import "../pages/GETracker.css";
-import { Link } from "react-router-dom";
-import { IoIosHome } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { FaCircleInfo } from "react-icons/fa6";
-
-
+import { FiSearch } from "react-icons/fi";
+import { PiMedal } from "react-icons/pi";
+import { BsStars } from "react-icons/bs";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
+import { GoGoal } from "react-icons/go";
 
 // ==========================
 // DATA ARRAYS
@@ -31,13 +30,32 @@ const ACADEMIC_AREAS = [
   { id: "politics", label: "Politics & Government 🏛️" },
   { id: "art_design", label: "Art 🎨" },
   { id: "music", label: "Music 🎶" },
-  { id: "sports", label: "Sports 🏀" },
 ];
 
 // ==========================
 // MAIN COMPONENT
 // ==========================
-export default function ClassRecommendationPage({ geRequirements, classDetails }) {
+ const brandBlue = "#7589F3";
+ const thStyle = {
+  padding: "14px 16px",
+  textAlign: "left",
+  fontWeight: 600,
+  fontSize: "1rem",
+  color: "#333",
+  backgroundColor: "#F9FAFC",
+  border: "1px solid #E0E0E0", // border around each header cell
+};
+
+const tdStyle = {
+  padding: "14px 16px",
+  textAlign: "left",
+  fontSize: "0.95rem",
+  verticalAlign: "top",
+  border: "1px solid #E0E0E0", // border around each data cell
+};
+
+
+export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, }) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [dropdownValue, setDropdownValue] = useState(3);
@@ -289,337 +307,289 @@ function recommendClasses({
 
 
 
+
+
 return (
+  <>
   <div>
     {/* Title: add enough margin to clear the header */}
-    <div
-      style={{
-        margin: "110px auto 12px auto",      // <---- ADJUST THIS for header height!
-        width: "fit-content"
-      }}
-    >
-      <h1 className="ge-rectangle-titlea">San Jose Class Recommendations</h1>
-    </div>
-    {/* Icon Bar: center and control its spacing below the title */}
-    <div
-      style={{
-        margin: "0 auto 44px auto",          // <---- First number moves icon bar down
-        width: "fit-content"
-      }}
-    >
-      <div className="ge-title-iconbara" style={{ display: "flex", justifyContent: "center", gap: 16, padding: "10px 0" }}>
-      <Link to="/" className="iconbar-link" aria-label="Home">
-        <IoIosHome className="iconbar-icon" />
-        <span>Home</span>
-      </Link>
-      <Link to="/sjsu" className="iconbar-link" aria-label="Back">
-        <IoIosArrowBack className="iconbar-icon" />
-        <span>Back</span>
-      </Link>
-      <Link to="/about" className="iconbar-link" aria-label="About">
-        <FaCircleInfo className="iconbar-icon" />
-        <span>About</span>
-      </Link>
-    </div>
-
-{isMobile ? (
-  <div
+   <div
+  style={{
+    margin: isMobile ? "90px auto 12px auto" : "110px auto 12px auto",
+    width: "100%",
+    textAlign: "center",
+    padding: isMobile ? "0 16px" : 0,
+    boxSizing: "border-box",
+  }}
+>
+  <h1
     style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      width: "100%",
-      padding: "0 10px", // some horizontal padding for small screens
+      fontSize: isMobile ? "2.2rem" : "2.8rem",
+      fontWeight: 700,
+      color: "#1F2A37",
+      marginBottom: 8,
+       marginTop: isMobile ? 100 : 0, // ✅ mobile-only push-down
+    }}
+  >
+    Smart Class Recommendations San Jose
+  </h1>
+  <p
+    style={{
+      textAlign: "center",
+      color: "#6B7280",
+      fontSize: "1.1rem",
+      maxWidth: 640,
+      margin: "0 auto 32px auto",
+    }}
+  >
+    Get personalized course suggestions based on your interests, goals, and academic progress
+  </p>
+</div>
+
+
+  <>
+   {/* Search Bar Container */}
+<div
+  style={{
+    backgroundColor: "#fff",
+    padding: "20px 24px",
+    borderRadius: 20,
+    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+    margin: isMobile ? "0 auto 32px auto" : "32px auto 0 auto",
+    width: isMobile ? "92vw" : 1200,
+    maxWidth: isMobile ? "92vw" : "100%",
+    position: "relative",
+    userSelect: "none",
+    boxSizing: "border-box",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <input
+    type="text"
+    placeholder="Search for a class you have already taken, or plan to take."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    aria-label="Search for classes"
+    style={{
+      width: isMobile ? "88vw" : 1150,
+      padding: isMobile ? "10px 10px 10px 38px" : "12px 16px 12px 48px",
+      fontSize: isMobile ? "0.85rem" : "1rem",
+      borderRadius: 20,
+      border: "1.8px solid #bbb",
+      boxShadow: "0 2px 5px rgba(58, 96, 255, 0.15)",
+      outline: "none",
+      userSelect: "text",
       boxSizing: "border-box",
     }}
-  >
-    <div
+    onFocus={(e) => (e.target.style.borderColor = brandBlue)}
+    onBlur={(e) => (e.target.style.borderColor = "#bbb")}
+  />
+
+  <FiSearch
+    style={{
+      position: "absolute",
+      left: isMobile ? 32 : 35,
+      top: "50%",
+      transform: "translateY(-50%)",
+      color: "#999",
+      pointerEvents: "none",
+      fontSize: isMobile ? 18 : 20,
+      userSelect: "none",
+    }}
+    aria-hidden="true"
+  />
+
+  {Array.isArray(searchResults) && searchResults.length > 0 && (
+    <ul
+      className="ge-search-results"
       style={{
-        width: "90vw",        // 90% viewport width on mobile
-        maxWidth: 700,        // max width limit on larger phones/tablets
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: 16,              // spacing between search and classes taken
+        listStyle: "none",
+        margin: 0,
+        padding: 8,
+        border: "1.8px solid #bbb",
+        borderTop: "none",
+        maxHeight: 220,
+        overflowY: "auto",
+        backgroundColor: "#fff",
+        position: "absolute",
+        width: "100%",
+        zIndex: 10,
+        borderRadius: "0 0 20px 20px",
+        boxShadow: "0 8px 16px rgba(58, 96, 255, 0.2)",
+        top: "calc(100% + 4px)",
+        left: 0,
+        userSelect: "none",
       }}
     >
-<div className="ge-search-section crp-search-section" style={{ textAlign: 'left' }}>
-  <h2
-    className="ge-classes-title"
-    style={{
-      display: 'inline-block',
-      background: '#A7AABD',
-      borderRadius: '22px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-      fontSize: '1.35rem',
-      fontWeight: 700,
-      margin: '0 0 14px 0',
-      padding: '10px 30px',
-      color: '#000'
-    }}
-  >
-    Find Classes
-  </h2>
-  <div
-    className="ge-search-label"
-    style={{
-      textAlign: 'left',
-      marginBottom: '12px'
-    }}
-  >
-    Search for a class you have already taken, or plan to take.
-  </div>
-  
-
-
-  <div style={{ position: 'relative', width: '100%' }}>
-    <input
-      type="text"
-      placeholder="Search for a class..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      className="ge-search-input"
-    />
-  
-
-    {/* Your search results list */}
-    {Array.isArray(searchResults) && searchResults.length > 0 && (
-      <ul
-        className="ge-search-results"
-        style={{
-          listStyle: 'none',
-          margin: 0,
-          padding: '8px',
-          border: '1px solid #ccc',
-          borderTop: 'none',
-          maxHeight: 200,
-          overflowY: 'auto',
-          background: '#fff',
-          position: 'absolute',
-          width: '100%',
-          zIndex: 2,
-        }}
-      >
-        {searchResults.map((obj) => (
-          <li
-            key={obj.className}
-            style={{
-              padding: '6px 0',
-              cursor: 'pointer',
-              borderBottom: '1px solid #eee',
-            }}
-            onClick={() => handleAddClass(obj.className, obj.area)}
-          >
-            <strong>{obj.className}</strong>{' '}
-            <span style={{ color: '#717171' }}>({obj.area})</span>
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
+      {searchResults.map((obj) => (
+        <li
+          key={obj.className}
+          style={{
+            padding: "10px 12px",
+            cursor: "pointer",
+            borderBottom: "1px solid #eee",
+            fontWeight: "600",
+            color: "#222",
+            userSelect: "none",
+          }}
+          onClick={() => handleAddClass(obj.className, obj.area)}
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          <strong>{obj.className}</strong>{" "}
+          <span style={{ color: "#666" }}>({obj.area})</span>
+        </li>
+      ))}
+    </ul>
+  )}
 </div>
 
-
-
-      {/* Classes Taken Section */}
-      <div className="ge-classes-taken-section crp-classes-taken" style={{ width: "100%" }}>
-        <h2 className="ge-classes-title" style={{  marginBottom: 12 }}>
-          Classes Taken
-        </h2>
-        <ul className="ge-classes-list" style={{ paddingLeft: 0, marginTop: 0 }}>
-          {classesTaken.length === 0 ? (
-            <li style={{ color: "#aaa", fontStyle: "italic", padding: "10px 0" }}>
-              No classes taken yet.
-            </li>
-          ) : (
-            classesTaken.map((obj) => (
-              <li 
-                key={obj.className + obj.area} 
-                style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}
-              >
-                <strong>{obj.className}</strong>
-                <span style={{ color: "#555" }}>({obj.area})</span>
-                <button
-                  onClick={() => handleRemoveClass(obj.className, obj.area)}
-                  style={{
-                    marginLeft: "auto",
-                    color: "#fff",
-                    background: "#d32f2f",
-                    border: "none",
-                    borderRadius: 4,
-                    padding: "4px 12px",
-                    cursor: "pointer",
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    transition: "background-color 0.2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b71c1c")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
-                  aria-label={`Remove ${obj.className} from classes taken`}
-                >
-                  Delete
-                </button>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-    </div>
-  </div>
-) : (
-  <>
-    {/* Desktop Search Section */}
-   <div className="ge-search-section" style={{ textAlign: 'left' }}>
-  <h2 className="ge-classes-title">
-    Find Classes
-  </h2>
-  <div className="ge-search-label">
-    Search for a class you have already taken, or plan to take.
-  </div>
-  <div style={{ position: 'relative', width: '100%' }}>
-    <input
-      type="text"
-      placeholder="Search for a class..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      className="ge-search-input"
-      aria-label="Search classes"
-    />
-    {Array.isArray(searchResults) && searchResults.length > 0 && (
-      <ul className="ge-search-results" role="listbox">
-        {searchResults.map((obj) => (
-          <li
-            key={obj.className}
-            onClick={() => handleAddClass(obj.className, obj.area)}
-            style={{ padding: '6px 0', cursor: 'pointer', borderBottom: '1px solid #eee' }}
-            role="option"
-            tabIndex={0}
-            onKeyDown={e => { if (e.key === "Enter") handleAddClass(obj.className, obj.area); }}
-            aria-selected="false"
-          >
-            <strong>{obj.className}</strong> <span style={{ color: '#717171' }}>({obj.area})</span>
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-</div>
-
-
-    {/* Desktop Classes Taken Section */}
-    <div style={{ margin: "0 auto 36px auto", maxWidth: 600, width: "90%", boxSizing: "border-box" }}>
-      <div className="ge-classes-taken-sectiona">
-        <h2 className="ge-classes-title" style={{ marginBottom: 12 }}>Classes Taken</h2>
-        <ul className="ge-classes-list" style={{ paddingLeft: 0, marginTop: 0 }}>
-          {classesTaken.length === 0 ? (
-            <li style={{ color: "#aaa", fontStyle: "italic", padding: "10px 0" }}>
-              No classes taken yet.
-            </li>
-          ) : (
-            classesTaken.map((obj) => (
-              <li key={obj.className + obj.area} style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-                <strong>{obj.className}</strong>
-                <span style={{ color: "#555" }}>({obj.area})</span>
-                <button
-                  onClick={() => handleRemoveClass(obj.className, obj.area)}
-                  style={{
-                    marginLeft: "auto",
-                    color: "#fff",
-                    background: "#d32f2f",
-                    border: "none",
-                    borderRadius: 4,
-                    padding: "4px 12px",
-                    cursor: "pointer",
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    transition: "background-color 0.2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b71c1c")}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
-                  aria-label={`Remove ${obj.className} from classes taken`}
-                >
-                  Delete
-                </button>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-    </div>
-  </>
-)}
-
-
-
-
-
-
-
-
-
-
-
-
-<div className="academic-areas-container"
-
+{/* Classes Taken Container */}
+<div
+  style={{
+    width: isMobile ? "92vw" : 1200,
+    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+    backgroundColor: "#fff",
+    padding: "20px 24px",
+    borderRadius: 20,
+    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+    boxSizing: "border-box",
+    userSelect: "text",
+  }}
 >
-  <h2 className="academic-areas-title">Academic Areas</h2>
+  <h2 className="ge-section-title">Classes Taken</h2>
+
+  <ul
+    className="ge-classes-taken-list"
+    style={{
+      padding: 0,
+      margin: 0,
+      listStyle: "none",
+      fontSize: "1rem",
+      lineHeight: 1.4,
+      color: "#222",
+    }}
+  >
+    {classesTaken.length === 0 ? (
+      <li style={{ color: "#aaa", fontStyle: "italic" }}>No classes taken yet.</li>
+    ) : (
+      classesTaken.map((obj) => (
+        <li
+          key={obj.className + obj.area}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            padding: "6px 0",
+            borderBottom: "1px solid #eee",
+          }}
+        >
+          <div>
+            <strong>{obj.className}</strong>{" "}
+            <span style={{ color: "#555" }}>({obj.area})</span>
+          </div>
+          <button
+           onClick={() => handleRemoveClass(obj.className, obj.area)}
+            style={{
+              backgroundColor: "#d32f2f",
+              color: "#fff",
+              border: "none",
+              borderRadius: 6,
+              padding: "6px 14px",
+              cursor: "pointer",
+              fontWeight: 600,
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a12121")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
+            type="button"
+            aria-label={`Delete ${obj.className} from classes taken`}
+          >
+            Delete
+          </button>
+        </li>
+      ))
+    )}
+  </ul>
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+<div
+  style={{
+    width: isMobile ? "92vw" : 1250,
+    maxWidth: "92vw",
+    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+    userSelect: "text",
+    textAlign: "left",
+    backgroundColor: "#fff",
+    padding: "20px 24px",
+    borderRadius: 20,
+    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+    boxSizing: "border-box",
+  }}
+>
+
+<h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
+  <HiOutlineAcademicCap size={24} color="#7589F3" />
+  Academic Areas
+</h2>
+
+
   <p
     style={{
       color: "#555",
       marginBottom: 24,
-      fontSize: "1.09em",
-      textAlign: "left",
+      fontSize: "1em",
       maxWidth: 600,
-      marginLeft: 0,
-      marginRight: 0,
     }}
   >
-    Select the subject areas or types of classes you’re interested in.
+    Select the subjects you’re interested in
   </p>
+
   <div
     style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: isMobile ? 8 : 14, // space between cards
-      justifyContent: "flex-start", // left align rows
-      marginTop: 20,
+      display: "grid",
+    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(6, 1fr)",
+      gap: 16,
     }}
   >
     {areaRows.flat().map((area) => (
       <div
         key={area.id}
-        className={
-          "crp-card" + (selectedAreas.includes(area.id) ? " selected" : "")
-        }
         onClick={() => toggle(area.id, "area")}
         style={{
-          flex: "1 1 calc((100% / 3) - 14px)",  // three items per row (subtract gap)
-          minWidth: 0,    // allow shrinking
-          maxWidth: "calc((100% / 3) - 14px)", // prevent growing too big
-          cursor: "pointer",
-          fontWeight: 500,
-          padding: "18px 0",  // larger padding for bigger cards
-          borderRadius: 10,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-          border: selectedAreas.includes(area.id)
-            ? "3px solid #1976d2"
-            : "3px solid #000",
-          background: selectedAreas.includes(area.id) ? "#edf3fa" : "#fff",
-          color: "#161616",
-          transition: "all 0.14s",
-          userSelect: "none",
-          fontSize: "1.2em",
-          letterSpacing: "-0.01em",
-          textAlign: "center",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "60px",  // fixed height for equal card size
-          boxSizing: "border-box",
+          textAlign: "center",
+          padding: "18px 8px",
+          borderRadius: 12,
+          cursor: "pointer",
+          border: selectedAreas.includes(area.id)
+            ? "2px solid #1976d2"
+            : "1.5px solid #DADDE7",
+          background: selectedAreas.includes(area.id) ? "#EDF4FD" : "#fff",
+          boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
+          transition: "all 0.2s ease",
+          fontSize: "1em",
+          fontWeight: 500,
+          userSelect: "none",
         }}
       >
-        {area.label}
+        <div style={{ fontSize: "1.5em", marginBottom: 6 }}>{area.icon}</div>
+        <div>{area.label}</div>
       </div>
     ))}
   </div>
@@ -628,63 +598,61 @@ return (
 
 <div
   style={{
-    background: "#F7F9FF",
-    border: "2px solid #434656",
-    borderRadius: 14,
-    boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
-    padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
-    maxWidth: 1272,
-    width: isMobile ? "90vw" : "100%",
-    margin: isMobile ? "18px auto" : "0 auto 38px auto",
+    width: isMobile ? "92vw" : 1250,
+    maxWidth: "92vw",
+    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+    userSelect: "text",
     textAlign: "left",
-    transition: "all 0.3s",
+    backgroundColor: "#fff",
+    padding: "20px 24px",
+    borderRadius: 20,
+    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
     boxSizing: "border-box",
   }}
 >
-  <h2 className="student-goals-title">Student Goals</h2>
+
+<h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
+  <GoGoal size={22} color="#7589F3" />
+  Student Goals
+</h2>
+
+
+
   <div
     style={{
-      display: "flex",
-      flexWrap: "nowrap",
-      gap: 20,                // increase the gap between cards for more breathing room
-      overflowX: "auto",
-      marginBottom: 10,
+      display: "grid",
+    gridTemplateColumns: isMobile ? "repeat(1, 1fr)" : "repeat(4, 1fr)",
+      gap: 20,
       marginTop: 20,
-      paddingBottom: 4,
     }}
   >
     {STUDENT_GOALS.map((goal) => (
       <div
         key={goal.id}
-        className={
-          "crp-card" + (selectedGoals.includes(goal.id) ? " goal-selected" : "")
-        }
         onClick={() => toggle(goal.id, "goal")}
         style={{
-          flex: "0 0 280px",
-          cursor: "pointer",
-          fontWeight: 500,
-          padding: "18px 40px",  // increase horizontal padding for wider cards
-          borderRadius: 10,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-          border: selectedGoals.includes(goal.id)
-            ? "3px solid #1976d2"
-            : "3px solid #000",
-          background: selectedGoals.includes(goal.id) ? "#e8f6ef" : "#fff",
-          color: "#151515",
-          transition: "all 0.14s",
-          userSelect: "none",
-          fontSize: "1.1em",
-          letterSpacing: "-0.01em",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          height: "80px",
-          boxSizing: "border-box",
+          gap: 12,
+          padding: "16px 20px",
+          borderRadius: 12,
+          cursor: "pointer",
+          border: selectedGoals.includes(goal.id)
+            ? "2px solid #1976d2"
+            : "1.5px solid #DADDE7",
+          background: selectedGoals.includes(goal.id)
+            ? "#E8F6EF"
+            : "#fff",
+          boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
+          transition: "all 0.2s ease",
+          fontSize: "1em",
+          fontWeight: 500,
+          userSelect: "none",
           whiteSpace: "nowrap",
         }}
       >
-        {goal.label}
+        <span style={{ fontSize: "1.4em" }}>{goal.icon}</span>
+        <span>{goal.label}</span>
       </div>
     ))}
   </div>
@@ -692,162 +660,209 @@ return (
 
 
 
+
 <div
   style={{
-    margin: "0 auto 32px auto",
-    maxWidth: isMobile ? 675 : 1272,      // Fix max width to 1200 on desktop
-    width: isMobile ? "90vw" : "100%",
+    background: "#fff",
+    border: "1.5px solid #DADDE7",
+    borderRadius: 16,
+    padding: "24px 20px",
+    width: isMobile ? "92vw" : 1250,
+    maxWidth: "92vw",
+    margin: isMobile ? "0 auto 32px auto" : "0 auto",
+    marginTop: 40,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
+    fontFamily: "'Inter', sans-serif",
+    boxSizing: "border-box",
   }}
 >
-  <div
+
+  <h3
     style={{
-      background: "#F7F9FF",
-      border: "2px solid #434656",
-      borderRadius: 14,
-      boxShadow: "0 4px 14px 0 rgba(0,0,0,0.06)",
-      padding: isMobile ? "24px 12px" : "36px 38px 32px 38px",
-      width: "100%",                      // full width of container
-      margin: "0 auto",                  // center inside parent container
-      textAlign: "center",
-      transition: "all 0.3s",
-      boxSizing: "border-box",
+      fontSize: "1.1em",
+      fontWeight: 600,
+      marginBottom: 12,
+      color: "#1A1A1A",
     }}
   >
-    <div
-      style={{
-        background: "#A7AABD",
-        borderRadius: 22,
-        display: "inline-block",
-        padding: "10px 30px",
-        marginBottom: 22,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-        fontSize: "1.15em",
-        fontWeight: 600,
-        color: "#222",
-      }}
-    >
-      <span style={{ fontWeight: 600, fontSize: "1.15em" }}>I want</span>
-      <select
-        value={dropdownValue}
-        onChange={e => setDropdownValue(Number(e.target.value))}
-        style={{
-          fontSize: "1.1em",
-          padding: "6px 20px 6px 10px",
-          borderRadius: 7,
-          border: "1.5px solid #434656",
-          fontWeight: 500,
-          background: "#fff",
-          cursor: "pointer",
-          outline: "none",
-          margin: "0 10px",
-          appearance: "none",
-          WebkitAppearance: "none",
-          MozAppearance: "none",
-        }}
-      >
-        {[1, 2, 3, 4, 5, 6].map(n => (
-          <option key={n} value={n}>{n}</option>
-        ))}
-      </select>
-      <span style={{ fontWeight: 600, fontSize: "1.15em" }}>classes recommended.</span>
-    </div>
-   <div style={{ display: "flex", justifyContent: "center", gap: 18, flexWrap: isMobile ? "wrap" : "nowrap" }}>
-  <button
-    type="submit"
+    🎯 Recommendation Count
+  </h3>
+
+  <p
     style={{
-      flex: isMobile ? "0 0 100%" : "1", // full width on mobile, flexible on desktop
-      padding: "10px 28px",
-      background: "#1976d2",
-      color: "#fff",
-      border: "none",
-      borderRadius: 8,
-      fontWeight: "bold",
-      fontSize: "1.05em",
+      marginBottom: 12,
+      fontSize: "0.95em",
+      fontWeight: 500,
+      color: "#4A4A4A",
+    }}
+  >
+    Number of classes: <span style={{ color: "#1AA179", fontWeight: 600 }}>{dropdownValue}</span>
+  </p>
+
+  <input
+    type="range"
+    min={1}
+    max={6}
+    value={dropdownValue}
+    onChange={(e) => setDropdownValue(Number(e.target.value))}
+    style={{
+      width: "100%",
+      accentColor: "#F9C645",
       cursor: "pointer",
-      boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
-      opacity: selectedAreas.length === 0 && selectedGoals.length === 0 ? 0.6 : 1,
-      minWidth: 200,
-      maxWidth: 350,
+      marginBottom: 18,
     }}
-    disabled={selectedAreas.length === 0 && selectedGoals.length === 0}
-    onClick={handleSubmit}
-  >
-    Get Recommendations
-  </button>
-  {recommendations.length > 0 && (
-    <button
-      type="button"
-      style={{
-        flex: isMobile ? "0 0 100%" : "1",
-        padding: "10px 28px",
-        background: "#388e3c",
-        color: "#fff",
-        border: "none",
-        borderRadius: 8,
-        fontWeight: "bold",
-        fontSize: "1.05em",
-        cursor: "pointer",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.09)",
-        minWidth: 200,
-        maxWidth: 350,
-      }}
-      onClick={handleRefresh}
-    >
-      Refresh Recommendations
-    </button>
-  )}
+  />
+
+<button
+  type="button"
+  onClick={handleRefresh} // Always refresh recommendations
+  style={{
+    width: "100%",
+    padding: "12px 0",
+    backgroundColor: "#1AA179",
+    color: "#fff",
+    border: "none",
+    borderRadius: 10,
+    fontSize: "1.05em",
+    fontWeight: 600,
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+  }}
+>
+  Get Recommendations
+</button>
+
 </div>
 
-  </div>
-</div>
+
+  </>
 <div
   style={{
-    maxWidth: 900,
-    margin: "50px auto 0 auto",
+    paddingBottom: isMobile ? 48 : 0, // adds mobile-only bottom spacing
   }}
 >
-{recommendations.length > 0 && (
-  <div style={{ margin: "0 auto 38px auto", maxWidth: 1272, width: "100%" }}>
-    <div className="rec-results-mobile-padding">
-      <div style={{ marginTop: 10 }}>
-        <h3 style={{
-          textAlign: "left",
-          fontWeight: 600,
-          marginBottom: 18,
-          fontSize: "1.32em",
-          marginLeft: "-150px"
-        }}>
-          Recommended Classes
-        </h3>
-        <table
+<div
+  style={{
+    width: isMobile ? "92vw" : 1250,
+    maxWidth: "92vw",
+    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    padding: isMobile ? "20px 18px" : "28px 32px",
+    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.08)",
+    boxSizing: "border-box",
+    textAlign: "center",
+  }}
+>
+
+  {/* Always show title and icon */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      justifyContent: "center",
+      marginBottom: 20,
+    }}
+  >
+    <PiMedal size={22} color="#EDC239" />
+    <h3 style={{ fontSize: "1.12rem", fontWeight: 700, margin: 0 }}>
+      Personalized Recommendations
+    </h3>
+  </div>
+
+  {/* Conditional content: show either info or table */}
+  {recommendations.length === 0 ? (
+    <>
+      {/* Centered Icon */}
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+        <BsStars size={72} color="#7589F3" />
+      </div>
+
+      {/* Headline + paragraph */}
+      <div style={{ maxWidth: 500, margin: "0 auto", marginBottom: 24 }}>
+        <h4 style={{ fontSize: "1.05rem", fontWeight: 600, marginBottom: 8, color: "#222" }}>
+          Ready to Find Your Perfect Classes?
+        </h4>
+        <p style={{ fontSize: "0.95rem", color: "#444", margin: 0 }}>
+          Select your academic interests and goals to receive personalized course recommendations tailored to your needs and preferences.
+        </p>
+      </div>
+
+      {/* Feature bullets */}
+      <ul
+        style={{
+          listStyle: "none",
+          paddingLeft: 0,
+          margin: 0,
+          fontSize: "0.92rem",
+          color: "#444",
+          lineHeight: 1.7,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+           gap: isMobile ? 6 : 8,
+        }}
+      >
+        <li>⚡ Instant recommendations</li>
+        <li>⭐ Based on professor ratings</li>
+        <li>🎯 Aligned to your graduation path</li>
+      </ul>
+    </>
+  ) : (
+    <>
+      {/* Recommendations Table */}
+      <div style={{ marginTop: 30 }}>
+        <h3
           style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            background: "#fff",
-            borderRadius: 10,
-            overflow: "hidden",
-            boxShadow: "0 2px 14px rgba(0,0,0,0.07)",
+            textAlign: "left",
+            fontWeight: 600,
+            marginBottom: 18,
+            fontSize: "1.32em",
           }}
         >
-  <thead>
+          Recommended Classes
+        </h3>
+<div
+  style={{
+    width: "100%",
+    overflowX: isMobile ? "auto" : "visible", // horizontal scroll only on mobile
+  }}
+>
+  <table
+    style={{
+      minWidth: isMobile ? 600 : "100%", // ensures table doesn't squish too much
+      width: "100%",
+      borderCollapse: "separate",
+      borderSpacing: 0,
+      background: "#fff",
+      border: "1.5px solid #E0E0E0",
+      borderRadius: 10,
+      overflow: "hidden",
+      fontSize: "0.98rem",
+      color: "#1A1A1A",
+    }}
+  >
+
+  <thead style={{ backgroundColor: "#F5F7FA" }}>
     <tr>
-      <th>Class</th>
-      <th>Professor</th>
-      <th>RMP Score</th>
-      <th>Difficulty</th>
-      {!isMobile && <th>Schedule</th>}
-      <th>Link</th>
+      <th style={thStyle}>Class</th>
+      <th style={thStyle}>Professor</th>
+      <th style={thStyle}>RMP Score</th>
+      <th style={thStyle}>Difficulty</th>
+      {!isMobile && <th style={thStyle}>Schedule</th>}
+      <th style={thStyle}>Link</th>
     </tr>
   </thead>
   <tbody>
     {recommendations.map((cls, idx) => (
-      <tr key={cls.className + cls.professor + idx}>
-        <td>{cls.className}</td>
-        <td>{cls.professor}</td>
-        <td>{cls.score !== undefined ? cls.score : "N/A"}</td>
-        <td>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
+      <tr key={cls.className + cls.professor + idx} style={{ borderBottom: "1px solid #EAEAEA" }}>
+        <td style={tdStyle}>{cls.className}</td>
+        <td style={tdStyle}>{cls.professor}</td>
+        <td style={tdStyle}>{cls.score !== undefined ? cls.score : "N/A"}</td>
+        <td style={tdStyle}>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
         {!isMobile && (
-          <td>
+          <td style={tdStyle}>
             <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
               {cls.schedule && cls.schedule.length > 0
                 ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
@@ -855,9 +870,14 @@ return (
             </ul>
           </td>
         )}
-        <td>
+        <td style={tdStyle}>
           {cls.link && cls.link !== "N/A" ? (
-            <a href={cls.link} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", fontWeight: 500 }}>
+            <a
+              href={cls.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#1976d2", fontWeight: 500 }}
+            >
               RMP
             </a>
           ) : (
@@ -868,12 +888,12 @@ return (
     ))}
   </tbody>
 </table>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</> 
 )}
 </div>
-  </div> 
-  </div>
-)
-}
+</div>
+</div>
+</>
+  )}

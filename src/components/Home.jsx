@@ -39,10 +39,60 @@ export default function Home() {
       >
         <div className="hero-blur-overlay"></div>
         <div className="hero-overlay">
-          <UniversitySearch />
+         <div className="hero-heading-group">
+  <h1 className="hero-title">Your Path to <span style={{ color: "#FFD43A" }}>Graduation</span></h1>
+  <p className="hero-subtitle">
+    Navigate your academic journey with confidence. Track requirements,<br />
+    discover courses, and graduate on time with personalized guidance.
+  </p>
+</div>
+      <div className="hero-search-wrapper">
+  <UniversitySearch />
+</div>
         </div>
       </div>
-      <DesktopBottomBar />
+   
+      <section className="feature-section">
+  <h2 className="feature-title">Everything You Need to Graduate</h2>
+  <p className="feature-subtitle">
+    Comprehensive tools and insights to navigate your academic journey with confidence
+  </p>
+  <div className="feature-grid">
+    <div className="feature-card">
+      <div className="feature-icon">🎯</div>
+      <h3>Track Requirements</h3>
+      <p>Monitor your progress through graduation requirements with detailed tracking and visual progress indicators.</p>
+    </div>
+    <div className="feature-card">
+      <div className="feature-icon">📖</div>
+      <h3>Smart Recommendations</h3>
+      <p>Get personalized course suggestions based on your academic goals, interests, and graduation timeline.</p>
+    </div>
+    <div className="feature-card">
+      <div className="feature-icon">🎓</div>
+      <h3>Expert Guidance</h3>
+      <p>Access curated information about course difficulty, professor ratings, and student success rates.</p>
+    </div>
+    <div className="feature-card">
+      <div className="feature-icon">📊</div>
+      <h3>Progress Analytics</h3>
+      <p>Visualize your academic journey with comprehensive analytics and milestone tracking.</p>
+    </div>
+  </div>
+</section>
+<section className="cta-section">
+  <h2 className="cta-title">Ready to Take Control of Your Academic Future?</h2>
+  <p className="cta-subtitle">
+    Join thousands of students who are successfully navigating their graduation requirements with confidence
+  </p>
+  <button className="cta-button">Start Your Journey →</button>
+ <div className="cta-links">
+  <a href="/contact">Contact</a>
+  <a href="/survey">Survey</a>
+  <a href="/about">About</a>
+</div>
+</section>
+
     </div>
   );
 }

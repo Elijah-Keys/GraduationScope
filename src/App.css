@@ -56,3 +56,6 @@
   80% { opacity: 1; }
   100% { opacity: 0; }
 }
+* {
+  font-family: 'Inter', sans-serif;
+}
