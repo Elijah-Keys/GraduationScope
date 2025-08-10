@@ -95,3 +95,61 @@
   white-space: nowrap;
   user-select: none;
 }
+/* MobileBottomBar.css */
+
+/* ensure icons are white by default */
+.bottom-bar-icon {
+  color: #fff;
+}
+
+/* Highlight the middle Recommend button without changing size */
+.recommend-cta {
+  position: relative;
+  isolation: isolate; /* so the glow stays under the icon */
+}
+
+/* Soft animated glow behind the icon (same footprint) */
+.recommend-cta .cta-glow {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 44px;                 /* same visual footprint as icon circle */
+  height: 44px;
+  border-radius: 9999px;
+  z-index: -1;                 /* behind the icon/text */
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(117, 137, 243, 0.55) 0%,
+    rgba(117, 137, 243, 0.20) 55%,
+    rgba(117, 137, 243, 0.0) 75%
+  );
+  filter: blur(1px);
+  animation: ctaPulse 2.4s ease-in-out infinite;
+}
+
+/* subtle pulse */
+@keyframes ctaPulse {
+  0%, 100% { transform: scale(0.96); opacity: 0.8; }
+  50%      { transform: scale(1.05); opacity: 1; }
+}
+
+/* reduce motion friendliness */
+@media (prefers-reduced-motion: reduce) {
+  .recommend-cta .cta-glow {
+    animation: none;
+  }
+}
+
+/* Optional: tiny emphasis on label color while keeping same size */
+.recommend-cta .bottom-bar-text {
+  color: #eaf0ff; /* slightly brighter white/blue tint */
+}
+
+/* Keep hover/tap feedback consistent (no size changes) */
+.bottom-bar-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

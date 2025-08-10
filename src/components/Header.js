@@ -132,12 +132,15 @@ function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
     zIndex: 2,
   }}
 >
-  {navLinks.map(({ to, Icon, label }) => (
+{navLinks.map(({ to, Icon, label }) => {
+  const isRecommend = label === 'Recommend';
+
+  return (
     <NavLink
       key={label}
       to={to}
       className={({ isActive }) =>
-        isActive ? 'ge-icon-link active' : 'ge-icon-link'
+        `ge-icon-link ${isActive ? 'active' : ''} ${isRecommend ? 'recommend-cta' : ''}`
       }
       style={{
         display: 'flex',
@@ -147,11 +150,15 @@ function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
         textDecoration: 'none',
         fontSize: '1rem',
       }}
+      aria-label={label}
     >
-      <Icon style={{ fontSize: '2.07rem' }} />
+      {/* same size for all icons */}
+      <Icon style={{ fontSize: '2.07rem', color: '#fff' }} />
       <span style={{ marginTop: 2, textDecoration: 'underline' }}>{label}</span>
     </NavLink>
-  ))}
+  );
+})}
+
 </nav>
 
 

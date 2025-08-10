@@ -56,26 +56,11 @@ const tdStyle = {
   border: "1px solid #E0E0E0", // border around each data cell
 };
 
-export default function ClassRecommendationPage({ geRequirements, classDetails,pageTitle }) {
+export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, }) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [dropdownValue, setDropdownValue] = useState(3);
   const [recommendations, setRecommendations] = useState([]);
-  const safeRecommendations = React.useMemo(() => {
-  return recommendations.map(cls => {
-    let sched = cls.schedule;
-    if (!Array.isArray(sched)) {
-      if (typeof sched === "string" && sched.trim() !== "") {
-        sched = [sched.trim()];
-      } else {
-        sched = [];
-      }
-    }
-    return { ...cls, schedule: sched };
-  });
-}, [recommendations]);
-
-
   const [refreshKey, setRefreshKey] = useState(Date.now());
 const isMobile = window.innerWidth <= 700;
 const areaRows = isMobile
@@ -87,6 +72,36 @@ const [search, setSearch] = useState("");
 const [classesTaken, setClassesTaken] = useState([
   // ... optionally, hydrating from localStorage or your context!
 ]);
+// -- handlers: recompute recommendations on demand --
+const handleRefresh = () => {
+  const newKey = Date.now();
+  setRefreshKey(newKey);
+
+  const recs = recommendClasses({
+    classDetails,
+    geRequirements,
+    selectedAreas,
+    selectedGoals,
+    numClasses: dropdownValue,
+    refreshKey: newKey,
+    classesTaken,
+  });
+
+  setRecommendations(recs);
+};
+// -- handlers: toggle areas/goals --
+const toggle = (id, type) => {
+  if (type === "area") {
+    setSelectedAreas(prev =>
+      prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]
+    );
+  } else {
+    setSelectedGoals(prev =>
+      prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]
+    );
+  }
+};
+
 const handleAddClass = (className, area) => {
   if (!classesTaken.some(obj => obj.className === className && obj.area === area)) {
     setClassesTaken([...classesTaken, { className, area }]);
@@ -118,9 +133,11 @@ const searchResults = (search.trim().length > 0 && classDetails)
 
 const STUDENT_GOALS = [
   { id: "easy", label: "Easiest Classes ✅" },
-  { id: "major", label: "Major Oriented 🧘" },
-  { id: "professor", label: "Top Professors 🥇" },
-  { id: "short", label: "Short Classes ⏱️" },
+  { id: "fridaysoff", label: "Fridays Off🗓️" },
+  { id: "MonWed", label: "Monday/Wednesday ⏱️" },
+  { id: "TueThu", label: "Tuesday/Thursday ⏱️" },
+  { id: "earlyclasses", label: "Early Classes 🌅" },
+  { id: "lateclasses", label: "Late Classes 🌙" },
 ];
 
 // ==========================
@@ -175,11 +192,170 @@ function shuffle(array, seed) {
   }
   return array;
 }
+// ===== Day helpers (single source of truth) =====
+function getClassDays(cls) {
+  const texts = [];
+  if (typeof cls.days === "string") texts.push(cls.days);
+  if (Array.isArray(cls.schedule)) texts.push(...cls.schedule.map(String));
 
+  const days = new Set();
+  for (const raw of texts) {
+    const t = String(raw)
+      .replace(/TTh/gi, "TuTh")
+      .replace(/TueThu/gi, "TuTh")
+      .replace(/MonWedFri/gi, "MWF")
+      .replace(/MonWed/gi, "MW")
+      .replace(/MoWeFr/gi, "MWF")
+      .replace(/MoWe/gi, "MW");
 
-// ==========================
-// RECOMMENDATION ALGORITHM (Grok 4 Super Heavy)
-// ==========================
+    if (/\bMWF\b/i.test(t)) { days.add("M"); days.add("W"); days.add("F"); }
+    if (/\bMW\b/i.test(t))  { days.add("M"); days.add("W"); }
+    if (/\bTuTh\b/i.test(t)) { days.add("Tu"); days.add("Th"); }
+
+    if (/\bMon(day)?\b|(^|[^a-z])Mo([^a-z]|$)/i.test(t)) days.add("M");
+    if (/\bTue(s|sday)?\b|(^|[^a-z])Tu([^a-z]|$)/i.test(t)) days.add("Tu");
+    if (/\bWed(nesday)?\b|(^|[^a-z])We(d)?([^a-z]|$)/i.test(t)) days.add("W");
+    if (/\bThu(r|rs|rsday)?\b|(^|[^a-z])Th([^a-z]|$)/i.test(t)) days.add("Th");
+    if (/\bFri(day)?\b|(^|[^a-z])Fr?i?([^a-z]|$)/i.test(t)) days.add("F");
+  }
+  return days;
+}
+const meetsAllDays = (cls, codes) => {
+  const d = getClassDays(cls);
+  return codes.every(c => d.has(c));
+};
+const meetsAnyDay = (cls, codes) => {
+  const d = getClassDays(cls);
+  return codes.some(c => d.has(c));
+};
+function hasFriday(cls) {
+  const d = getClassDays(cls);
+  return d.has("F");
+}
+function dayPrefBonus(c, wantMonWed, wantTueThu, wantFridayOff) {
+  let bonus = 0;
+  if (wantMonWed) {
+    if (meetsAllDays(c, ["M", "W"])) bonus += 0.5;
+    if (meetsAnyDay(c, ["Tu", "Th"])) bonus -= 0.2;
+    if (!wantFridayOff && meetsAnyDay(c, ["F"])) bonus -= 0.4;
+  }
+  if (wantTueThu) {
+    if (meetsAllDays(c, ["Tu", "Th"])) bonus += 0.5;
+    if (meetsAnyDay(c, ["M", "W"])) bonus -= 0.2;
+    if (!wantFridayOff && meetsAnyDay(c, ["F"])) bonus -= 0.4;
+  }
+  return bonus;
+}
+// ===== Time parsing & classification helpers =====
+
+// minutes since midnight; returns null if can't parse
+function parseTimeToMinutes(text, meridiemHint) {
+  if (!text) return null;
+  const m = String(text).trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([AaPp][Mm])?$/);
+  if (!m) return null;
+  let h = parseInt(m[1], 10);
+  const mm = m[2] ? parseInt(m[2], 10) : 0;
+  let mer = m[3] ? m[3].toLowerCase() : (meridiemHint ? meridiemHint.toLowerCase() : null);
+
+  if (h < 1 || h > 12 || mm < 0 || mm > 59) return null;
+  // convert to 24h
+  h = h % 12; // 12 -> 0
+  if (mer === "pm") h += 12;
+  if (mer === "am" || mer === "pm") {
+    // ok
+  } else {
+    // no meridiem -> can't classify confidently
+    return null;
+  }
+  return h * 60 + mm;
+}
+
+// returns [{start,end}] parsed from a text like "MW 10:45-12:00pm"
+function extractWindowsFromText(text) {
+  const s = String(text || "");
+  // capture "hh[:mm]am/pm - hh[:mm]am/pm" with optional am/pm on first time
+  const rx = /(\d{1,2}(?::\d{2})?)\s*([AaPp][Mm])?\s*[-–—]\s*(\d{1,2}(?::\d{2})?)\s*([AaPp][Mm])?/g;
+  const out = [];
+  let m;
+  while ((m = rx.exec(s))) {
+    const startRaw = m[1];
+    const startMer  = m[2] || m[4] || null; // inherit end meridiem if start missing
+    const endRaw   = m[3];
+    const endMer   = m[4] || m[2] || null; // inherit start meridiem if end missing
+
+    const start = parseTimeToMinutes(startRaw, startMer);
+    const end   = parseTimeToMinutes(endRaw, endMer);
+    if (start != null && end != null) {
+      out.push({ start, end });
+    }
+  }
+  return out;
+}
+
+// gather all windows from the class object
+function getClassTimeWindows(cls) {
+  const wins = [];
+
+  // common patterns: schedule: ["MW 10:30-11:45 AM", "F 1:00–2:15 PM"]
+  if (Array.isArray(cls.schedule)) {
+    for (const s of cls.schedule) {
+      wins.push(...extractWindowsFromText(s));
+    }
+  }
+  // sometimes there's a single "time" string
+  if (typeof cls.time === "string") {
+    wins.push(...extractWindowsFromText(cls.time));
+  }
+  // edge: startTime/endTime fields
+  if (typeof cls.startTime === "string" && typeof cls.endTime === "string") {
+    const w = extractWindowsFromText(`${cls.startTime}-${cls.endTime}`);
+    wins.push(...w);
+  }
+  return wins;
+}
+
+// Noon boundary (in minutes)
+const NOON_MIN = 12 * 60; // 720
+
+// Early = every meeting ends <= 12:00pm (10:45–12:00 counts Early)
+function classIsEarly(cls) {
+  const wins = getClassTimeWindows(cls);
+  if (!wins.length) return false;
+  return wins.every(w => w.end <= NOON_MIN);
+}
+
+// Late = every meeting starts >= 12:00pm (12:00–1:15 counts Late)
+function classIsLate(cls) {
+  const wins = getClassTimeWindows(cls);
+  if (!wins.length) return false;
+  return wins.every(w => w.start >= NOON_MIN);
+}
+
+// scoring nudge for time prefs
+function timePrefBonus(c, wantEarly, wantLate) {
+  let b = 0;
+  const isE = classIsEarly(c);
+  const isL = classIsLate(c);
+
+  if (wantEarly) {
+    if (isE) b += 0.5;
+    else if (isL) b -= 0.3;
+  }
+  if (wantLate) {
+    if (isL) b += 0.5;
+    else if (isE) b -= 0.3;
+  }
+  return b;
+}
+
+// Keep remainingDNeeded top-level so recommendClasses can use it
+function remainingDNeeded(classesTaken) {
+  const takenD = classesTaken.filter(c => isD(c.area)).length;
+  return Math.max(0, 2 - takenD);
+}
+const seededShuffle = (arr, seed) => shuffle(arr.slice(), seed);
+
+// ===== Main algorithm =====
 function recommendClasses({
   classDetails,
   geRequirements,
@@ -189,145 +365,335 @@ function recommendClasses({
   refreshKey,
   classesTaken
 }) {
-  console.log("classDetails", classDetails);
-  console.log("geRequirements", geRequirements);
-  console.log("classesTaken", classesTaken);
-  console.log("PageTitle prop:", pageTitle);
-  // ...rest of code
+  if (typeof recommendClasses._hasRun === "undefined") {
+    recommendClasses._hasRun = false;
+  }
 
+  const classesTakenNames = new Set(classesTaken.map(c => c.className));
+  const areasTaken = new Set(classesTaken.map(c => c.area));
 
-  // Compute fulfilled areas
-  const classesTakenNames = new Set(classesTaken.map(cls => cls.className));
-  const areasTaken = new Set(classesTaken.map(cls => cls.area));
-
-  // For each area, get possible classes
   const areaToClasses = {};
-  geRequirements.forEach(areaObj => {
-    areaToClasses[areaObj.area] = new Set(areaObj.classes);
+  geRequirements.forEach(a => { areaToClasses[a.area] = new Set(a.classes); });
+
+  const getAreasForClass = (name) =>
+    Object.entries(areaToClasses).filter(([_, set]) => set.has(name)).map(([area]) => area);
+
+  // base candidates (not taken, can still fulfill something)
+  let candidates = classDetails.filter(cls => {
+    if (!cls?.className) return false;
+    if (classesTakenNames.has(cls.className)) return false;
+    const areas = getAreasForClass(cls.className);
+    return areas.some(a => !areasTaken.has(a));
   });
 
-  // Helper: find area(s) for a class
-  function getAreasForClass(className) {
-    return Object.entries(areaToClasses)
-      .filter(([area, classSet]) => classSet.has(className))
-      .map(([area]) => area);
-  }
+const wantFridayOff = selectedGoals.includes("fridaysoff");
+const wantMonWed    = selectedGoals.includes("MonWed");
+const wantTueThu    = selectedGoals.includes("TueThu");
+const wantEarly     = selectedGoals.includes("earlyclasses"); // <-- add
+const wantLate      = selectedGoals.includes("lateclasses");  // <-- add
 
-  // Build topicClassSet from mapping and selectedAreas
-  const topicClassSet = new Set();
-  selectedAreas.forEach(topic => {
-    const classList = ChicoTOPIC_TO_CLASSES && ChicoTOPIC_TO_CLASSES[topic];
-    if (Array.isArray(classList)) {
-      classList.forEach(clsName => topicClassSet.add(clsName));
+const wantEasy      = selectedGoals.includes("easy");
+const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
+
+
+
+  const TOPIC_MAP =
+    (typeof ChicoTOPIC_TO_CLASSES !== "undefined" && ChicoTOPIC_TO_CLASSES) ||
+    (typeof window !== "undefined" && window.ChicoTOPIC_TO_CLASSES) ||
+    {};
+  const inTopic = (name) => classInSelectedTopics(name, selectedAreas, TOPIC_MAP);
+
+  // ---------- EASY branch ----------
+  if (wantEasy) {
+    let pool = hasTopics ? candidates.filter(c => inTopic(c.className)) : candidates;
+
+    if (wantFridayOff) {
+      const noFri = pool.filter(c => !hasFriday(c));
+      if (noFri.length >= Math.max(6, numClasses)) pool = noFri;
     }
-  });
-
-  // Score each class, filtering out already-taken classes and fulfilled areas
-  const scored = classDetails
-    .filter(cls => {
-      // 1. Not already taken
-      if (classesTakenNames.has(cls.className)) return false;
-      // 2. Get area(s) for this class
-      const areas = getAreasForClass(cls.className);
-      // 3. Does any unfulfilled area remain?
-      if (!areas.some(area => !areasTaken.has(area))) return false;
-      return true;
-    })
-    .map(cls => {
-      // 1 if this class is in any selected topic, 0 otherwise
-      const topicScore = topicClassSet.has(cls.className) ? 1 : 0;
-      let goalScore = 0;
-      if (cls.goals) {
-        goalScore = selectedGoals.filter(goal => cls.goals.includes(goal)).length;
-      }
-      const matchScore = topicScore * 2 + goalScore * 1;
-      const matchedAreas = getAreasForClass(cls.className);
-      return { ...cls, matchScore, matchedAreas };
-    });
-
-  // Sort and shuffle among top matches for refreshability
-  scored.sort((a, b) => b.matchScore - a.matchScore);
-  const topScore = scored.length > 0 ? scored[0].matchScore : 0;
-  const topClasses = scored.filter(cls => Math.abs(cls.matchScore - topScore) < 0.2);
-  shuffle(topClasses, refreshKey);
-  const rest = scored.filter(cls => Math.abs(cls.matchScore - topScore) >= 0.2);
-  const randomized = [...topClasses, ...rest];
-
-  // Keep track of how many per area, skip areas that are fulfilled
-  let usedArea = {};
-  const recommendations = [];
-  for (const cls of randomized) {
-    const unfulfilledForClass = cls.matchedAreas.filter(area => !areasTaken.has(area));
-    if (unfulfilledForClass.length === 0) continue; // All areas satisfied
-
-    // (You can expand the logic for area-specific limits as needed, using unfulfilledForClass[0] etc.)
-    const area = unfulfilledForClass[0];
-    if (!usedArea[area]) usedArea[area] = 0;
-
-    // For C1/C2/D, you might want custom limits STILL, but for now let's just do 1 per area remaining.
-    if (usedArea[area] < 1) {
-      usedArea[area] += 1;
-      recommendations.push(cls);
+    if (wantMonWed && !wantTueThu) {
+      const mwOnly = pool.filter(c =>
+        meetsAllDays(c, ["M", "W"]) && !meetsAnyDay(c, ["Tu", "Th", "F"])
+      );
+      if (mwOnly.length >= Math.max(6, numClasses)) pool = mwOnly;
     }
-    if (recommendations.length >= numClasses) break;
-  }
-
- return recommendations.map(cls => ({
-  ...cls,
-  schedule: Array.isArray(cls.schedule)
-    ? cls.schedule
-    : typeof cls.schedule === "string" && cls.schedule.trim() !== ""
-      ? [cls.schedule.trim()]
-      : [],
-}));
+    if (wantTueThu && !wantMonWed) {
+      const tuthOnly = pool.filter(c =>
+        meetsAllDays(c, ["Tu", "Th"]) && !meetsAnyDay(c, ["M", "W", "F"])
+      );
+      if (tuthOnly.length >= Math.max(6, numClasses)) pool = tuthOnly;
+    }
+// Time preference: exclusive filters (only if exactly one chosen)
+if (wantEarly && !wantLate) {
+  const earlyOnly = pool.filter(classIsEarly);
+  if (earlyOnly.length >= Math.max(6, numClasses)) pool = earlyOnly;
+}
+if (wantLate && !wantEarly) {
+  const lateOnly = pool.filter(classIsLate);
+  if (lateOnly.length >= Math.max(6, numClasses)) pool = lateOnly;
 }
 
-  // Toggle for areas/goals
-  const toggle = (id, type) => {
-    if (type === "area") {
-      setSelectedAreas((prev) =>
-        prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
-      );
-    } else {
-      setSelectedGoals((prev) =>
-        prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
-      );
+    // widen if topic map too sparse
+    if (hasTopics && pool.length === 0) {
+      const kwMap = {
+        business: ["bus", "acct", "acctg", "acct.", "account", "fin", "mktg", "mgmt", "econ"],
+        communication: ["comm", "media", "journal", "pr", "advert"],
+        psychology: ["psych"],
+        computer: ["cs", "comp", "cis", "info", "software"],
+        art_design: ["art", "design", "c1"],
+        philosophy: ["phil", "ethic", "c2", "humanities"],
+        history: ["hist"],
+        health: ["hlth", "health", "kin", "nurs"],
+      };
+      const kws = (selectedAreas || []).flatMap(a => kwMap[a] || []);
+      const rx = kws.length ? new RegExp(`\\b(${kws.join("|")})`, "i") : null;
+      pool = rx ? candidates.filter(c => rx.test(c.className || "")) : candidates;
     }
-  };
 
-  // Submit handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Debug log
-    // console.log("Get Recommendations clicked", { selectedAreas, selectedGoals });
-    const recs = recommendClasses({
-      classDetails,
-      geRequirements,
-      selectedAreas,
-      selectedGoals,
-      numClasses: dropdownValue,
-      refreshKey,
-      classesTaken
-    });
-    setRecommendations(recs);
-  };
+    if (!pool.length) return [];
 
-  // Refresh handler
-  const handleRefresh = () => {
-    const newKey = Date.now();
-    setRefreshKey(newKey);
-    const recs = recommendClasses({
-      classDetails,
-      geRequirements,
-      selectedAreas,
-      selectedGoals,
-      numClasses: dropdownValue,
-      refreshKey: newKey,
-      classesTaken
+    const fridayPenalty = c => wantFridayOff && hasFriday(c) ? 0.6 : 0;
+const scoreWithPrefs = c =>
+  easeScore(c)
+  - fridayPenalty(c)
+  + dayPrefBonus(c, wantMonWed, wantTueThu, wantFridayOff)
+  + timePrefBonus(c, wantEarly, wantLate);
+
+
+    const WINDOW_K = Math.min(Math.max(numClasses * 4, 25), pool.length);
+    const topList = pool.slice(0, WINDOW_K);
+
+    const c1Fulfilled = classesTaken.some(c => isC1(c.area));
+    const c2Fulfilled = classesTaken.some(c => isC2(c.area));
+    let dLeft = remainingDNeeded(classesTaken);
+
+    const getUnfulfilledAreas = (cls) =>
+      getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
+
+    const canC1 = topList.some(it => getUnfulfilledAreas(it).some(isC1));
+    const canC2 = topList.some(it => getUnfulfilledAreas(it).some(isC2));
+    const dAvail = topList.filter(it => getUnfulfilledAreas(it).some(isD)).length;
+
+    let needC1 = !c1Fulfilled && canC1;
+    let needC2 = !c2Fulfilled && canC2;
+    dLeft = Math.min(dLeft, dAvail);
+
+    const picked = [];
+    const usedOtherAreas = new Set();
+    const guardMax = topList.length * 2;
+
+    const stride = 7;
+    const offset = topList.length
+      ? ((((Math.abs(Number(refreshKey || 0)) / 1000) | 0) * stride) % topList.length)
+      : 0;
+
+    let steps = 0;
+    let i = offset;
+
+    while (picked.length < numClasses && steps++ < guardMax) {
+      const cls = topList[i % topList.length];
+      i++;
+
+      if (picked.includes(cls)) continue;
+
+      const unfulfilled = getUnfulfilledAreas(cls);
+      if (!unfulfilled.length) continue;
+
+      const hasC1a = unfulfilled.some(isC1);
+      const hasC2a = unfulfilled.some(isC2);
+      const hasDa  = unfulfilled.some(isD);
+
+      if (needC1 && hasC1a && !picked.some(p => getUnfulfilledAreas(p).some(isC1))) {
+        picked.push(cls);
+        needC1 = false;
+        continue;
+      }
+      if (needC2 && hasC2a && !picked.some(p => getUnfulfilledAreas(p).some(isC2))) {
+        picked.push(cls);
+        needC2 = false;
+        continue;
+      }
+      if (dLeft > 0 && hasDa) {
+        picked.push(cls);
+        dLeft -= 1;
+        continue;
+      }
+
+      const firstOther = unfulfilled.find(a => !isC1(a) && !isC2(a) && !isD(a) && !usedOtherAreas.has(a));
+      if (firstOther) {
+        picked.push(cls);
+        usedOtherAreas.add(firstOther);
+      }
+    }
+
+    if (picked.length < numClasses) {
+      steps = 0;
+      while (picked.length < numClasses && steps++ < guardMax) {
+        const cls = topList[i % topList.length];
+        i++;
+        if (!picked.includes(cls)) picked.push(cls);
+      }
+    }
+
+    recommendClasses._hasRun = true;
+    return picked.slice(0, numClasses).map(cls => ({
+      ...cls,
+      matchedAreas: getUnfulfilledAreas(cls)
+    }));
+  }
+
+  // ---------- NON-easy branch ----------
+  const topicSet = new Set();
+  if (hasTopics) {
+    selectedAreas.forEach(t => {
+      (TOPIC_MAP?.[t] || []).forEach(n => topicSet.add(n));
     });
-    setRecommendations(recs);
+  }
+
+  let poolNonEasy = hasTopics
+    ? candidates.filter(cls => topicSet.has(cls.className))
+    : candidates;
+
+  if (hasTopics && poolNonEasy.length === 0) {
+    poolNonEasy = candidates;
+  }
+
+  if (wantMonWed && !wantTueThu) {
+    const mwOnly = poolNonEasy.filter(c =>
+      meetsAllDays(c, ["M", "W"]) && !meetsAnyDay(c, ["Tu", "Th", "F"])
+    );
+    if (mwOnly.length >= Math.max(6, numClasses)) poolNonEasy = mwOnly;
+  }
+  if (wantTueThu && !wantMonWed) {
+    const tuthOnly = poolNonEasy.filter(c =>
+      meetsAllDays(c, ["Tu", "Th"]) && !meetsAnyDay(c, ["M", "W", "F"])
+    );
+    if (tuthOnly.length >= Math.max(6, numClasses)) poolNonEasy = tuthOnly;
+  }
+// Time preference: exclusive filters (only if exactly one chosen)
+if (wantEarly && !wantLate) {
+  const earlyOnly = poolNonEasy.filter(classIsEarly);
+  if (earlyOnly.length >= Math.max(6, numClasses)) poolNonEasy = earlyOnly;
+}
+if (wantLate && !wantEarly) {
+  const lateOnly = poolNonEasy.filter(classIsLate);
+  if (lateOnly.length >= Math.max(6, numClasses)) poolNonEasy = lateOnly;
+}
+
+  poolNonEasy = poolNonEasy.map(cls => {
+    let goalScore = 0;
+    if (Array.isArray(cls.goals)) {
+      goalScore = selectedGoals.filter(g => cls.goals.includes(g)).length;
+    }
+    const fridayPenalty = wantFridayOff && hasFriday(cls) ? 0.6 : 0;
+    const score = (easeScore(cls) * 0.5) + goalScore - fridayPenalty
+      + dayPrefBonus(cls, wantMonWed, wantTueThu, wantFridayOff);
+    return { ...cls, __score: score };
+  });
+
+  poolNonEasy.sort((a, b) => (b.__score || 0) - (a.__score || 0));
+
+  const startIdx = poolNonEasy.length ? Math.abs(Number(refreshKey || 0)) % poolNonEasy.length : 0;
+
+  const usedAreaNonEasy = {};
+  const out = [];
+  for (let k = 0; k < poolNonEasy.length && out.length < numClasses; k++) {
+    const cls = poolNonEasy[(startIdx + k) % poolNonEasy.length];
+    const unfulfilled = getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
+    if (unfulfilled.length === 0) continue;
+    const area = unfulfilled[0];
+    if (!usedAreaNonEasy[area]) usedAreaNonEasy[area] = 0;
+    if (usedAreaNonEasy[area] < 1) {
+      usedAreaNonEasy[area] += 1;
+      out.push({ ...cls, matchedAreas: unfulfilled });
+    }
+  }
+
+  recommendClasses._hasRun = true;
+  return out;
+}
+
+// Replace the old easeScore with this:
+function easeScore(cls) {
+  // Normalize to [0,1]
+  const hasScore = Number.isFinite(cls.score);
+  const hasDiff  = Number.isFinite(cls.difficulty);
+
+  const score01 = hasScore ? Math.min(1, Math.max(0, cls.score / 5)) : 0.0;
+  // difficulty is 1 (easiest) to 5 (hardest) -> invert to ease
+  const diff01  = hasDiff  ? Math.min(1, Math.max(0, (5 - (cls.difficulty || 3)) / 4)) : 0.0;
+
+  // Weights: lean on difficulty > rating, but both matter
+  const W_SCORE = 0.45;
+  const W_DIFF  = 0.55;
+
+  // Missing-data penalties so items with no signals don't float up
+  let penalty = 0;
+  if (!hasScore) penalty += 0.10;   // no rating → slightly downrank
+  if (!hasDiff)  penalty += 0.20;   // no difficulty → stronger downrank
+
+  // Optional boost if your data has a hint (e.g., cls.goals includes "easy")
+  const hintEasy = Array.isArray(cls.goals) && cls.goals.includes("easy") ? 0.05 : 0;
+
+  const composite = (W_SCORE * score01) + (W_DIFF * diff01) + hintEasy - penalty;
+
+  // Clamp for safety
+  return Math.max(-1, Math.min(1.2, composite));
+}
+
+function classInSelectedTopics(clsName, selectedAreas, ChicoTOPIC_TO_CLASSES) {
+  if (!selectedAreas?.length) return false;
+  for (const t of selectedAreas) {
+    const list = ChicoTOPIC_TO_CLASSES?.[t] || [];
+    if (list.includes(clsName)) return true;
+  }
+  return false;
+}
+// seeded RNG so refreshKey actually changes results
+function makeRng(seed) {
+  let s = seed || Date.now();
+  return () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 2**32;
   };
-// Example state
+}
+
+// weighted sample without replacement
+function weightedSampleWithoutReplacement(items, weights, k, rng) {
+  const picked = [];
+  const arr = items.slice();
+  const w = weights.slice();
+  for (let t = 0; t < k && arr.length > 0; t++) {
+    const total = w.reduce((a, b) => a + b, 0) || 1;
+    let r = rng() * total;
+    let idx = 0;
+    while (idx < w.length && r > w[idx]) { r -= w[idx]; idx++; }
+    if (idx >= arr.length) idx = arr.length - 1;
+    picked.push(arr[idx]);
+    arr.splice(idx, 1);
+    w.splice(idx, 1);
+  }
+  return picked;
+}
+const isC1 = (a) => /(^|\s)C1\b/i.test(a) || /Arts/i.test(a) && /C1/i.test(a);
+const isC2 = (a) => /(^|\s)C2\b/i.test(a) || /Humanities/i.test(a) && /C2/i.test(a);
+const isD  = (a) => /^D\b|D\.\s|Social Sciences/i.test(a);
+
+
+
+
+// How many D's the student still needs. If your rule differs, tweak here.
+function remainingDNeeded(classesTaken) {
+  const takenD = classesTaken.filter(c => isD(c.area)).length;
+  return Math.max(0, 2 - takenD);
+}
+// Non-mutating wrapper around your existing shuffle()
+
+
+// ==========================
+// RECOMMENDATION ALGORITHM (Grok 4 Super Heavy)
+// ==========================
+
 
 
 
@@ -602,7 +968,8 @@ return (
           border: selectedAreas.includes(area.id)
             ? "2px solid #1976d2"
             : "1.5px solid #DADDE7",
-          background: selectedAreas.includes(area.id) ? "#EDF4FD" : "#fff",
+          background: selectedAreas.includes(area.id) ? "rgba(117, 137, 243, 0.15)" // brandBlue with 15% alpha
+  : "#fff",
           boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
           transition: "all 0.2s ease",
           fontSize: "1em",
@@ -662,9 +1029,10 @@ return (
           border: selectedGoals.includes(goal.id)
             ? "2px solid #1976d2"
             : "1.5px solid #DADDE7",
-          background: selectedGoals.includes(goal.id)
-            ? "#E8F6EF"
-            : "#fff",
+         background: selectedGoals.includes(goal.id)
+  ? "rgba(117, 137, 243, 0.15)" // brandBlue with 15% alpha
+  : "#fff",
+
           boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
           transition: "all 0.2s ease",
           fontSize: "1em",

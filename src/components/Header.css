@@ -370,3 +370,121 @@
 .login-link {
   font-family: 'Montserrat', sans-serif !important;
 }
+/* Base */
+.ge-icon-link { color: #fff; }
+
+/* Desktop-only hover effects */
+@media (hover:hover) and (pointer:fine) {
+  .ge-icon-link {
+    transition: color 0.18s ease;
+  }
+  .ge-icon-link:hover {
+    color: #fff; /* keep white on hover */
+  }
+  .ge-icon-link:hover svg {
+    transform: translateY(-2px) scale(1.06);
+    filter: drop-shadow(0 6px 12px rgba(10, 17, 40, 0.35));
+  }
+  .ge-icon-link:hover .ge-icon-label {
+    text-decoration: underline;
+  }
+}
+
+/* If you also want the active tab white (no tint) */
+.ge-icon-link.active { color: #fff; }
+/* Force white for all icon links, all states */
+.navy-header .ge-icon-bar .ge-icon-link,
+.navy-header .ge-icon-bar .ge-icon-link:link,
+.navy-header .ge-icon-bar .ge-icon-link:visited,
+.navy-header .ge-icon-bar .ge-icon-link:hover,
+.navy-header .ge-icon-bar .ge-icon-link:active,
+.navy-header .ge-icon-bar .ge-icon-link.active {
+  color: #fff !important;
+}
+
+/* Make the react-icons use that white color */
+.navy-header .ge-icon-bar .ge-icon-link svg {
+  color: inherit !important;
+}
+/* Desktop-only emphasis for the Recommend icon */
+@media (min-width: 769px) {
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta {
+    position: relative;
+    color: #fff !important;
+    border-radius: 12px;
+    padding: 6px 10px;
+    background: rgba(59, 130, 246, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 16px;
+    background: radial-gradient(closest-side, rgba(59,130,246,.35), transparent 70%);
+    animation: rec-pulse 2.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @keyframes rec-pulse {
+    0%, 100% { transform: scale(1); opacity: .45; }
+    50% { transform: scale(1.06); opacity: .95; }
+  }
+
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta::after {
+    content: 'New';
+    position: absolute;
+    top: -8px; right: -10px;
+    background: #f59e0b;
+    color: #0a1128;
+    font-size: .65rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 6px;
+    letter-spacing: .02em;
+  }
+
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta svg {
+    color: inherit !important;
+    filter: drop-shadow(0 0 6px rgba(59,130,246,.6));
+    transition: transform 0.2s ease;
+  }
+
+  /* lift only — no scaling */
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(59,130,246,.25);
+  }
+  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta:hover svg {
+    transform: translateY(-1px); /* removed scale */
+  }
+}
+/* Desktop only */
+@media (min-width: 769px) {
+  .navy-header .ge-icon-bar {
+    display: flex;
+    align-items: center;            /* make all items share the same vertical center */
+    gap: 48px;
+  }
+
+  .navy-header .ge-icon-bar .ge-icon-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px 10px;              /* <-- give ALL items the same padding */
+    border-radius: 12px;            /* consistent shape */
+    height: 64px;                   /* fixed height so they line up perfectly */
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .navy-header .ge-icon-bar .ge-icon-link svg {
+    color: #fff;                    /* keep icons white */
+    font-size: 2.07rem;
+  }
+}
