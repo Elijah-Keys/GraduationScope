@@ -27,8 +27,11 @@ import chicoClassDetails from './data/ChicoclassDetails.json';
   import "intro.js/introjs.css"; // Don't forget to import the CSS!
   import ClassRecommendationPage from "./components/ClassRecomendation.jsx";
 import ChicoGETracker from "./pages/ChicoGETracker";
-import ChicoClassRecommendationPage from "./components/ChicoClassRecommendation.jsx"
-
+import ChicoClassRecommendationPage from "./components/ChicoClassRecommendation.jsx";
+import BerkeleyGETracker from "./pages/BerekeleyGETracker.jsx";
+ import BerkeleyGeRequirements from './data/BerkeleygeRequirements.json';
+import BerkeleyClassDetails from './data/BerekelyclassDetails.json';
+import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommendation.jsx";
   const areasToShow = [
     "A1 Oral Communication",
     "A2 Written Communication I",
@@ -451,8 +454,36 @@ import ChicoClassRecommendationPage from "./components/ChicoClassRecommendation.
       classDetails={classDetails}
     />} 
   />
+<Route
+  path="/berkeley"
+  element={
+    <BerkeleyGETracker
+      geRequirements={BerkeleyGeRequirements}
+      classDetails={BerkeleyClassDetails}
+      onAddClass={onAddClass}
+      onDeleteClass={onDeleteClass}
+      classesTaken={classesTaken}
+      c1c2Fulfilled={c1c2Fulfilled}
+      areaCWarning={areaCWarning}
+      search={search}
+      setSearch={setSearch}
+     
+      handleAddClass={handleAddClass}
+      university="berkeley"
+    />
+  }
+/>
 
-
+<Route
+  path="/berkeleyrecommend"
+  element={
+    <ClassRecommendationPage
+      geRequirements={BerkeleyGeRequirements}
+      classDetails={BerkeleyClassDetails}
+      pageTitle="Smart Class Recommendations — Berkeley"
+    />
+  }
+/>
 
     </Routes>
     {!isHome && <BottomBarA />}

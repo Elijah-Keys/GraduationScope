@@ -31,66 +31,105 @@ const generalReqs = [
   const toAbs = (base, href) => new URL(href, base).toString();
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  const browser = await puppeteer.launch({ headless: false, defaultViewport: null, slowMo: 60 });
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null,
+    slowMo: 60
+  });
   const page = await browser.newPage();
-  page.setDefaultTimeout(90000);
+  page.setDefaultTimeout(90_000);
 
   const saveDebug = async (name) => writeOut(name, await page.content());
 
   const waitForResults = async () => {
-    const candidates = [
-      "ol.search-results",
-      "div.search-results",
-      "div.view-search-results",
-      "div.view-content",
-      "div.search-result, li.search-result",
-      "h3.search-result__title",
-      "article.node--course",
-      "div.search-result__row",
-    ];
-    const sel = candidates.join(", ");
-    const ok = await Promise.race([
-      page.waitForSelector(sel, { timeout: 30000 }).then(() => true).catch(() => false),
-      (async () => {
-        await sleep(32000);
-        return false;
-      })(),
-    ]);
+    // wait for overlay to disappear (if present)
+    try {
+      await page.waitForFunction(() => {
+        const el = document.querySelector(".loading-popup");
+        return !el || getComputedStyle(el).display === "none";
+      }, { timeout: 60_000 });
+    } catch {}
+
+    // wait for at least one result card
+    const ok = await page
+      .waitForSelector("div.view-content article.st", { timeout: 60_000 })
+      .then(() => true)
+      .catch(() => false);
+
     if (!ok) {
       await saveDebug("no-results-container.html");
       await page.screenshot({ path: outPath("no-results-container.png") });
       console.warn("No known results container found. Saved no-results-container.html");
     }
-    return ok; // don't throw
+    return ok;
   };
+const ensureMeetingsVisible = async () => {
+  // nudge lazy content
+  await page.evaluate(async () => {
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    window.scrollTo(0, 0);
+    await sleep(100);
+    window.scrollTo(0, document.body.scrollHeight);
+    await sleep(250);
+    window.scrollTo(0, 0);
+  });
 
+  // try to expand collapsed schedules inside cards
+  await page.evaluate(async () => {
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    const cards = Array.from(document.querySelectorAll("div.view-content article.st"));
+    for (const c of cards) {
+      // if we already see any meeting rows, skip
+      if (c.querySelector(".st--meetings, .st--meeting, .st--meeting-row, .st--meeting-body")) continue;
+
+      const toggles = [
+        "button[aria-expanded='false']",
+        "a[aria-expanded='false']",
+        ".st--toggle",
+        ".st--expand",
+        ".st--more",
+        "[data-once='sectionToggle']"
+      ];
+      const toggle = toggles.map(sel => c.querySelector(sel)).find(Boolean);
+      if (toggle) {
+        toggle.click();
+        await sleep(150);
+      }
+    }
+  });
+
+  // tiny settle wait
+await sleep(300);
+};
+  // Puppeteer doesn’t support Playwright’s ::-p-text(). Use a simple text match.
   const dismissCookiesIfAny = async () => {
     try {
-      const btn = await page.$(`::-p-text(Accept)`);
-      if (btn) {
-        await btn.click();
+      const handle = await page.evaluateHandle(() => {
+        const candidates = Array.from(document.querySelectorAll("button, a, div[role='button']"));
+        return candidates.find(el => /accept|agree/i.test((el.textContent || "").trim())) || null;
+      });
+      if (handle) {
+        const el = handle.asElement();
+        if (el) await el.click();
         await sleep(300);
       }
     } catch {}
   };
 
-  const clickTermByText = async (termText) => {
-    const el = await page.waitForSelector(`::-p-text(${JSON.stringify(termText)})`, { timeout: 30000 });
-    const prevUrl = page.url();
-    await Promise.all([
-      page.waitForNavigation({ waitUntil: "networkidle0", timeout: 60000 }),
-      el.click(),
-    ]);
-    console.log("After term click:", page.url());
-    if (page.url() === prevUrl) console.warn("URL did not change after term click");
-  };
-
   const gotoFacetByLabel = async (label) => {
-    // read facet href and navigate directly (clicks are flaky)
     const href = await page.evaluate((lab) => {
-      const a = Array.from(document.querySelectorAll('a[data-drupal-facet-item-value]'))
-        .find((el) => el.getAttribute("data-drupal-facet-item-value") === lab);
-      return a ? a.getAttribute("href") : null;
+      // try exact facet value match
+      const anchors = Array.from(document.querySelectorAll("a[data-drupal-facet-item-value]"));
+      const byValue = anchors.find(a =>
+        a.getAttribute("data-drupal-facet-item-value") === lab ||
+        a.getAttribute("data-drupal-facet-item-value") === `general_requirements:${lab}`
+      );
+      if (byValue) return byValue.getAttribute("href");
+
+      // fallback: match visible text (trim, collapse whitespace)
+      const norm = s => (s || "").replace(/\s+/g, " ").trim();
+      const byText = anchors.find(a => norm(a.textContent) === norm(lab));
+      return byText ? byText.getAttribute("href") : null;
     }, label);
 
     if (!href) {
@@ -99,14 +138,15 @@ const generalReqs = [
     }
 
     const target = toAbs(await page.url(), href);
-    await page.goto(target, { waitUntil: "networkidle0", timeout: 60000 });
+    await page.goto(target, { waitUntil: "networkidle0", timeout: 60_000 });
     console.log(`After facet "${label}" click:`, page.url());
-
-    // Save FIRST so we always have a snapshot even if wait fails
     await saveDebug(`facet-${label.replace(/\W+/g, "_")}-page1.html`);
     await page.screenshot({ path: outPath(`facet-${label.replace(/\W+/g, "_")}-page1.png`) });
-
-    await waitForResults();
+   // instead of: await waitForResults();
+await Promise.race([
+  waitForResults(), // listing page with cards
+  page.waitForSelector("h2, main ul a[href*='search/class']", { timeout: 10_000 }).catch(() => {})
+]);
   };
 
   // ---------- HUB DETECTION & SUBJECT LINKING ----------
@@ -115,8 +155,6 @@ const generalReqs = [
       const h2 = document.querySelector("h2");
       const t = h2 ? h2.textContent.trim() : "";
       if (t.includes("Search by Department Subject")) return true;
-
-      // Heuristic: a big list with lots of subject links in main content
       const lists = Array.from(document.querySelectorAll("main ul, main ol"));
       return lists.some((list) => list.querySelectorAll("a").length > 10);
     });
@@ -124,91 +162,159 @@ const generalReqs = [
 
   const getSubjectLinks = async () => {
     const links = await page.evaluate(() => {
-      // Only pull links from the main content area pointing to /search/class
       const arr = Array.from(document.querySelectorAll("main a[href*='search/class']"));
-
-      // Filter out facet chips or irrelevant links; keep ones with "(N)" counts or obvious subject names
       const filtered = arr.filter((a) => {
         const txt = (a.textContent || "").trim();
-        const hasCount = /\(\d+\)$/.test(txt); // e.g. "English (11)"
+        const hasCount = /\(\d+\)$/.test(txt);
         const looksSubject = /^[A-Za-z].+/.test(txt) && txt.length < 90;
         return txt && (hasCount || looksSubject);
       });
-
       return filtered.map((a) => a.getAttribute("href"));
     });
-
-    // de-dupe & absolutize
     const uniq = Array.from(new Set(links)).map((href) => new URL(href, window.location.href).toString());
     return uniq;
   };
 
   // ---------- SCRAPING ----------
-  const scrapeOnePage = async () => {
-    return await page.evaluate(() => {
-      const pick = (el, sel) => el.querySelector(sel)?.textContent.trim() || null;
-
-      // Try common wrappers
-      const list = document.querySelector("ol.search-results");
-      const cards = list
-        ? Array.from(list.querySelectorAll("li"))
-        : Array.from(
-            document.querySelectorAll(
-              "li.search-result, div.search-result, div.st--result, article.node--course, div.search-result__row"
-            )
-          );
-
-      const out = [];
-      for (const card of cards) {
-        const className =
-          pick(card, ".st--section-name") ||
-          pick(card, "h3.search-result__title") ||
-          pick(card, ".st--course-title") ||
-          pick(card, "h3, h2");
-
-        const professor =
-          pick(card, ".st--instructors") ||
-          pick(card, ".instructors") ||
-          pick(card, "[class*='instructor']");
-
-        const daysNode =
-          card.querySelector(".st--meeting-days span:nth-of-type(2)") ||
-          card.querySelector(".st--meeting-days span") ||
-          card.querySelector("[class*='meeting-days'] span");
-
-        const timeNode =
-          card.querySelector(".st--meeting-time span:nth-of-type(2)") ||
-          card.querySelector(".st--meeting-time span") ||
-          card.querySelector("[class*='meeting-time'] span");
-
-        const meetingDays = daysNode ? daysNode.textContent.trim() : null;
-        const meetingTime = timeNode ? timeNode.textContent.trim() : null;
-
-        let seats = pick(card, ".st--seats strong") || pick(card, ".st--seats") || pick(card, "[class*='seats']");
-        let unitsRaw = pick(card, ".st--details-unit") || pick(card, "[class*='details-unit']");
-        let units = null;
-        if (unitsRaw) {
-          const m = unitsRaw.match(/Units:\s*([\d.]+)/i);
-          units = m ? m[1] : unitsRaw.replace(/Units:\s*/i, "").trim();
-        }
-
-        if (className) out.push({ className, professor, meetingDays, meetingTime, seats, units });
+const scrapeOnePage = async () => {
+  return await page.evaluate(() => {
+    const pick = (el, sel) => el.querySelector(sel)?.textContent.trim() || null;
+    const pickOneOf = (root, sels) => {
+      for (const s of sels) {
+        const el = root.querySelector(s);
+        if (el) return el.textContent.trim();
       }
-      return out;
-    });
+      return null;
+    };
+
+    const cards = Array.from(document.querySelectorAll(
+      "div.view-content .views-row article.st," +
+      "article.node--course, li.search-result, div.search-result, div.st--result, div.search-result__row"
+    ));
+
+    const out = [];
+    for (const card of cards) {
+      const className =
+        pick(card, ".st--section-name") ||
+        pick(card, ".st--course-title") ||
+        pick(card, "h3, h2");
+
+      const professor =
+        pick(card, ".st--instructors .st--value") ||
+        pick(card, ".st--instructors") ||
+        pick(card, "[class*='instructor']");
+
+      // Meeting rows: include lists, rows, tables
+      const meetingRows = Array.from(card.querySelectorAll([
+        ".st--meetings",
+        ".st--meeting",
+        ".st--meeting-row",
+        ".st--meeting-body",
+        ".st--meetings .st--row",
+        ".st--meetings li",
+        ".st--meetings tr"
+      ].join(", "))).flatMap(container => {
+        // If we picked a container, prefer its children as rows
+        const rows = container.querySelectorAll(".st--meeting, .st--meeting-row, .st--row, li, tr");
+        return rows.length ? Array.from(rows) : [container];
+      });
+
+      // BEFORE: we built `parts = [kind, days, time, place]` and used all of them
+// AFTER: only keep days + time and strip the external-link text
+const strip = (s) => (s || "").replace(/\s*\(link is external\)\s*/gi, "").trim();
+
+const meetings = meetingRows.map(row => {
+  const days = pickOneOf(row, [
+    ".st--meeting-days .st--value",
+    "[class*='meeting-days'] .st--value",
+    "[class*='meeting-days']",
+    ".st--days .st--value",
+    ".st--days"
+  ]);
+
+  const timeEl = row.querySelector("time");
+  const time = timeEl?.textContent.trim() || pickOneOf(row, [
+    ".st--meeting-time .st--value",
+    "[class*='meeting-time'] .st--value",
+    "[class*='meeting-time']",
+    ".st--time .st--value",
+    ".st--time"
+  ]);
+
+  const d = strip(days);
+  const t = strip(time);
+  if (!d || !t) return null;
+
+  return {
+    days: d,
+    time: t,
+    text: `${d} • ${t}`
   };
+}).filter(Boolean);
+
+// Fallback single fields (also strip the token)
+let meetingDays =
+  strip(pick(card, ".st--meeting-days .st--value") ||
+        pick(card, ".st--meeting-days span") ||
+        pick(card, "[class*='meeting-days'] span") ||
+        pick(card, "[class*='meeting-days']"));
+
+let meetingTime =
+  strip(card.querySelector("time")?.textContent.trim() ||
+        pick(card, ".st--meeting-time .st--value") ||
+        pick(card, ".st--meeting-time span") ||
+        pick(card, "[class*='meeting-time'] span") ||
+        pick(card, "[class*='meeting-time']"));
+
+if ((!meetingDays || !meetingTime) && meetings.length) {
+  meetingDays = meetingDays || meetings[0].days;
+  meetingTime = meetingTime || meetings[0].time;
+}
+
+
+      const seats =
+        pick(card, ".st--seats .st--value") ||
+        pick(card, ".st--seats strong") ||
+        pick(card, ".st--seats") ||
+        pick(card, "[class*='seats']");
+
+      let units =
+        pick(card, ".st--units .st--value") ||
+        pick(card, ".st--details-unit") ||
+        pick(card, "[class*='unit']");
+      if (units) {
+        const m = units.match(/Units:\s*([\d.]+)/i);
+        if (m) units = m[1];
+      }
+
+      if (className) {
+        out.push({
+          className,
+          professor,
+          meetingDays: meetingDays || null,
+          meetingTime: meetingTime || null,
+          schedules: Array.from(new Set(meetings.map(m => m.text))), // dedupe
+          seats,
+          units
+        });
+      }
+    }
+    return out;
+  });
+};
 
   const clickNextIfAny = async () => {
     const href = await page.evaluate(() => {
       const byRel = document.querySelector("a[rel~='next']");
       if (byRel && byRel.getAttribute("href")) return byRel.getAttribute("href");
 
-      const byText = Array.from(document.querySelectorAll("a")).find((a) => a.textContent.trim() === "Next");
+      const byText = Array.from(document.querySelectorAll("a"))
+        .find(a => a.textContent.trim() === "Next");
       if (byText && byText.getAttribute("href")) return byText.getAttribute("href");
 
       const url = new URL(window.location.href);
       const cur = Number(url.searchParams.get("page") || "0");
-      const num = Array.from(document.querySelectorAll("a[href*='page=']")).find((a) => {
+      const num = Array.from(document.querySelectorAll("a[href*='page=']")).find(a => {
         const href = a.getAttribute("href");
         if (!href) return false;
         const u = new URL(href, window.location.origin);
@@ -224,18 +330,21 @@ const generalReqs = [
     }
     const target = toAbs(await page.url(), href);
     console.log("Next page href:", target);
-    await page.goto(target, { waitUntil: "networkidle0", timeout: 60000 });
+    await page.goto(target, { waitUntil: "networkidle0", timeout: 60_000 });
     await waitForResults();
+    await ensureMeetingsVisible();   // <— ADD THIS
     await saveDebug(`page-${new URL(target).searchParams.get("page") || "2"}.html`);
     return true;
   };
+// Click any per-card expanders and give the DOM a moment to render.
+
 
   const scrapeListingPages = async (bucketLabel) => {
     let pageIndex = 0;
     while (true) {
       pageIndex += 1;
       await sleep(400);
-
+await ensureMeetingsVisible();   // <— ADD THIS
       const results = await scrapeOnePage();
       if (pageIndex === 1 && results.length === 0) {
         await saveDebug(`empty-first-page-${bucketLabel.replace(/\W+/g, "_")}.html`);
@@ -260,7 +369,9 @@ const generalReqs = [
   await page.screenshot({ path: outPath("after-start.png") });
 
   await dismissCookiesIfAny();
-  await clickTermByText("Fall 2025"); // or: await page.goto(TERM_URL, { waitUntil: "networkidle0" });
+  await page.goto(TERM_URL, { waitUntil: "networkidle0", timeout: 60_000 });
+  await waitForResults();
+  await ensureMeetingsVisible();   // <— ADD THIS
   await saveDebug("after-term.html");
   await page.screenshot({ path: outPath("after-term.png") });
 
@@ -278,8 +389,9 @@ const generalReqs = [
 
         for (const [i, href] of subjects.entries()) {
           console.log(`[${req}] Subject ${i + 1}/${subjects.length}: ${href}`);
-          await page.goto(href, { waitUntil: "networkidle0", timeout: 60000 });
+          await page.goto(href, { waitUntil: "networkidle0", timeout: 60_000 });
           await waitForResults();
+          await ensureMeetingsVisible();   // <— ADD THIS
           await saveDebug(`subject-${req.replace(/\W+/g, "_")}-${i + 1}.html`);
           await scrapeListingPages(req);
         }
@@ -294,6 +406,7 @@ const generalReqs = [
     // Reset back to the term-only results before the next facet
     await page.goto(TERM_URL, { waitUntil: "networkidle0" });
     await waitForResults();
+    await ensureMeetingsVisible();   // <— ADD THIS
   }
 
   // ---------- GROUP & WRITE ----------
@@ -310,9 +423,15 @@ const generalReqs = [
         generalRequirement: r.generalRequirement,
       };
     }
-    const sched = `${r.meetingDays || ""} ${r.meetingTime || ""}`.trim();
-    if (sched && !grouped[key].schedules.includes(sched)) grouped[key].schedules.push(sched);
-  }
+    const scheds = Array.isArray(r.schedules) && r.schedules.length
+      ? r.schedules
+      : (r.meetingDays && r.meetingTime)
++    [`${r.meetingDays} • ${r.meetingTime}`]
++    [];
+    for (const s of scheds) {
+      if (s && !grouped[key].schedules.includes(s)) grouped[key].schedules.push(s);
+    }
+  } // <-- close the for...of loop
 
   const output = Object.values(grouped);
   writeOut("berkeley-classes.json", JSON.stringify(output, null, 2));

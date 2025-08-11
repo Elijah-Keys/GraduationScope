@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { TOPIC_TO_CLASSES } from "./Topic_To_Classes";
-import "./ClassRecomendation.css";
+import React, { useState, useEffect } from "react";
+import BerkeleyTOPIC_TO_CLASSES from "./BerkeleyTopic_To_Classes";
+import "./ChicoClassRecommendation.css";
 import "../pages/GETracker.css";
 import { FiSearch } from "react-icons/fi";
 import { PiMedal } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { GoGoal } from "react-icons/go";
+
+
 
 // ==========================
 // DATA ARRAYS
@@ -35,7 +37,7 @@ const ACADEMIC_AREAS = [
 // ==========================
 // MAIN COMPONENT
 // ==========================
- const brandBlue = "#7589F3";
+const brandBlue = "#7589F3";
  const thStyle = {
   padding: "14px 16px",
   textAlign: "left",
@@ -54,13 +56,15 @@ const tdStyle = {
   border: "1px solid #E0E0E0", // border around each data cell
 };
 
-
-export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, pageTitle= "Smart Class Recommendations San Jose" }) {
+export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, pageTitle = "Smart Class Recommendations" }) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [dropdownValue, setDropdownValue] = useState(3);
   const [recommendations, setRecommendations] = useState([]);
   const [refreshKey, setRefreshKey] = useState(Date.now());
+  useEffect(() => {
+  document.title = pageTitle || "Smart Class Recommendations";
+}, [pageTitle]);
 const isMobile = window.innerWidth <= 700;
 const areaRows = isMobile
   ? getEvenPyramidRows(ACADEMIC_AREAS, 19) // 2 per row on mobile (18 total/9 rows)
@@ -397,8 +401,8 @@ const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
 
 
   const TOPIC_MAP =
-    (typeof TOPIC_TO_CLASSES !== "undefined" && TOPIC_TO_CLASSES) ||
-    (typeof window !== "undefined" && window.TOPIC_TO_CLASSES) ||
+    (typeof BerkeleyTOPIC_TO_CLASSES !== "undefined" && BerkeleyTOPIC_TO_CLASSES) ||
+    (typeof window !== "undefined" && window.BerkeleyTOPIC_TO_CLASSES) ||
     {};
   const inTopic = (name) => classInSelectedTopics(name, selectedAreas, TOPIC_MAP);
 
@@ -640,10 +644,10 @@ function easeScore(cls) {
   return Math.max(-1, Math.min(1.2, composite));
 }
 
-function classInSelectedTopics(clsName, selectedAreas, TOPIC_TO_CLASSES) {
+function classInSelectedTopics(clsName, selectedAreas, BerkeleyTOPIC_TO_CLASSES) {
   if (!selectedAreas?.length) return false;
   for (const t of selectedAreas) {
-    const list = TOPIC_TO_CLASSES?.[t] || [];
+    const list = BerkeleyTOPIC_TO_CLASSES?.[t] || [];
     if (list.includes(clsName)) return true;
   }
   return false;
@@ -695,6 +699,7 @@ function remainingDNeeded(classesTaken) {
 
 
 
+
 return (
   <>
   <div>
@@ -717,7 +722,7 @@ return (
        marginTop: isMobile ? 100 : 0, // ✅ mobile-only push-down
     }}
   >
-    {pageTitle}
+    {pageTitle}     
   </h1>
   <p
     style={{
@@ -1027,7 +1032,7 @@ return (
           border: selectedGoals.includes(goal.id)
             ? "2px solid #1976d2"
             : "1.5px solid #DADDE7",
-          background: selectedGoals.includes(goal.id)
+         background: selectedGoals.includes(goal.id)
   ? "rgba(117, 137, 243, 0.15)" // brandBlue with 15% alpha
   : "#fff",
 

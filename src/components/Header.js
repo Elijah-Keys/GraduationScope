@@ -30,6 +30,13 @@ function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
         { to: '/about', Icon: FaCircleInfo, label: 'About' },
       ];
     }
+    if (location.pathname.startsWith('/berkeley')) {
+      return [
+        { to: '/', Icon: IoIosHome, label: 'Home' },
+        { to: '/berkeleyrecommend', Icon: GiBrain, label: 'Recommend' },
+        { to: '/about', Icon: FaCircleInfo, label: 'About' },
+      ];
+    }
     if (location.pathname.startsWith('/sjsu')) {
       return [
         { to: '/', Icon: IoIosHome, label: 'Home' },

@@ -1,0 +1,48 @@
+[
+{
+"area": "Entry-Level Writing Requirement (ELWR)",
+"classes": ["COLWRIT R1A - Accelerated Reading and Composition 6 Units", "XCOLWRI R1A - College Writing R1A"
+
+]
+},
+{
+"area": "1st Half Reading & Composition (R&C A)",
+"classes": ["ASAMST R2A - Asian American Literature",
+"CHICANO R1A - Introduction to Chicano Literature in English", 
+"COLWRIT R1A - Accelerated Reading and Composition 6 Units​",
+"COLWRIT R4A ",
+"COMLIT R1A - English Composition in Connection",
+"ENGLISH R1A - College Writing",
+"FILM R1A - The Craft of Writing Film Focus",
+"GERMAN R5A - German Literature",
+"ITALIAN R5A - Italian Literature",
+"MELC R1A - Middle Eastern Culture",
+"NATAMST R1A - Native American Studies Reading and Composition",
+"RHETOR R1A - The Craft of Writing", "SASIAN R5A - Great Books of India", "SCANDIN R5A - Scandinavian Literature and Culture", "SEASIAN R5A - Self, Representation, and Nation", "SLAVIC R5A - Literature of Fantastic Transformation", "SPANISH R1A - Reading and Composition Through Readings from the Spanish-Speaking World", "THEATER R1A - Reading and Composition", "XCOLWRI R1A - College Writing R1A", "XCOMLIT R1A - Comparative Literature", "XENGLIS R1A - English"
+]
+},
+{
+"area": "2nd Half Reading & Composition (R&C B)",
+"classes": ["AFRICAM R1B - African American Studies", "AHMA R1B - Ancient History and Mediterranean Archaeology", "ANTHRO R5B - Anthropology", "CELTIC R1B - Celtic Writers", "COLWRIT R4B - 2nd Half Reading and Composition", "COMLIT R1B - English Composition in Connection with the Reading of World Literature", "COMLIT R3B - English Composition in Connection with Reading of World and Hispanic Literature", "EALANG R1B - East Asia", "ENGLISH R1B - Reading and Composition", "FILM R1B - Film Comprehension", "FRENCH R1B - Narrating Childhood in 20th Century France", "HISTART R1B - Reading and Writing about Visual Experience", "HISTORY R1B - Reading and Composition courses in History", "ITALIAN R5B - The Art of Protest", "LEGALST R1B - Reading and Composition in Connection with the Law as a Social Institution", "LINGUIS R1B - Linguistics Science", "MUSIC R1B - Music Reading and Writing", "PHILOS R1B - Reading and Composition through Philosophy", "RHETOR R1B - The Craft of Writing", "SASIAN R5B - India in the Writer's Eye", "SCANDIN R5B - Scandanavian Literature", "SLAVIC R5B - Slavic Literature", "SOCIOL R1B - Sociological Reading & Composition", "THEATER R1B - Performance: Writing and Research", "XENGLIS R1B - Societal Reading and Composition"
+]
+},
+{
+"area": "American History",
+"classes": ["HISTORY 7A - Introduction to the History of the United States: The United States from Settlement to Civil War",
+ "XHISTOR 7B - The United States from Civil War to Present","HISTORY 125A - African American History and Race Relations: 1450-1860", "HISTORY 133B - Wall Street / Main Street"
+]
+},
+{
+"area": "American Cultures (AC)",
+"classes": ["AFRICAM 27AC - African American Literature", "AFRICAM C133A - African American Language and Studies", "AMERSTD 101AC - American Culture and Studies", "ANTHRO 2AC - Archaeology", "ANTHRO 3AC - American Anthropology", "ASAMST 20AC - Asian American Studies", "ASAMST 128AC - Muslims in America", "ASAMST 143AC - Asian American Health", "COLWRIT 25AC - Diversity and Access in U.S. Public Education", "CYPLAN 118AC - The Urban Community", "DUTCH 171AC - Dutch Culture", "EDUC 131AC - A Focus on Equity and Urban Schools", "EDUC 140AC - Educational Perspectives on Literacy and Learning in a Global World", "EDUC W140A - Educational Perspectives on Literacy and Learning in a Global World", "EDUC C181 - What is the Role of Race in Urban Schools?", "EDUC W190A - Critical Studies in Education", "ESPM 50AC - Introduction to Culture and Natural Resource Management", "ESPM 163AC - Environmental Justice: Race, Class, Equity, and the Environment", "ETHSTD 22AC - An Introduction to Abolition Pedagogy and Practice", "GEOG 10AC - Worldings: Regions, Peoples and States", "GEOG 50AC - California", "GWS 50AC - Gender in American Culture", "GWS 100AC - Women in American Culture", "GWS 130AC - Gender, Race, Nation, and Health", "GWS 133AC - Women, Men, and Other Animals: Human Animality in American Cultures", 
+ "HISTORY 100AC - Sports and Gender in U.S. History", "HISTORY 124B - The Recent United States: The United States from World War II", "ITALIAN 70AC - The Recent United States: The United States from World War II", "LEGALST 162AC - Restorative Justice", "LGBT 20AC - Sexual Politics and Queer Organzing in the US", "LINGUIS 55AC - The American Languages", "MELC 117AC - The Origins of Racism in the West", "MELC 158AC - Middle East: Post-Colonialism, Migration, and Diaspora", "MUSIC 26AC - Music in American Culture", "PBHLTH 155E - Seeing People Understanding Homelessness' Roots, Stigmas & Solutions-A Berkeley Changemaker Course", "PUBPOL 117AC - Race, Ethnicity, and Public Policy", "RHETOR 129AC - Individualism and American Autobiography", "SOCIOL 3AC - Principles of Sociology: American Cultures", "SOCIOL 111AC - Sociology of the Family", "SOCIOL 113AC - Sociology of Education", "SOCIOL 131AC - Race and Ethnic Relations: U.S. American Cultures", "SOCIOL 137AC - Environmental Justice: Race, Class, Equity, and the Environment", "SOCWEL 150AC - Race, Ethnic Relations, and Social Welfare in the United States", "THEATER 52AC - Dance in American Cultures", "UGBA 39AC - Philanthropy: A Cross-Cultural Perspective", "XASAMST 20AC - Asian American Communities and Race Relations", "XESPM 50AC - Introduction to Culture and Natural Resource Management", "XETHSTD 21AC - A Comparative Survey of Racial and Ethnic Groups in the U.S", 
+ "XMUSIC 26AC - Music in American Culture", "HISTORY 7A - Introduction to the History of the United States: The United States from Settlement to Civil War",
+ "XHISTOR 7B - The United States from Civil War to Present","XSOCIOL 3AC - Principles of Sociology: American Cultures", "XTHEATR 52AC - Dance in American Cultures"
+]
+},
+{
+"area": "American Institutions",
+"classes": ["EDUC 282 - Introduction to Disciplined Inquiry", "POLSCI 1 - The Politics of Immigration", "XPOLSCI 1 - Introduction to American Politics"
+]
+}
+]

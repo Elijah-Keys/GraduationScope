@@ -54,11 +54,13 @@ if (fs.existsSync("results.json")) {
         waitUntil: "domcontentloaded",
         timeout: 60000
       });
+await page.waitForSelector(`#${ge.id}`, { timeout: 30000 });
+const isChecked = await page.$eval(`#${ge.id}`, el => el.checked);
+if (!isChecked) await page.click(`#${ge.id}`);
 
       // ✅ Interact with top-level page
-      await page.waitForSelector(`#${ge.id}`);
-      const isChecked = await page.$eval(`#${ge.id}`, el => el.checked);
-      if (!isChecked) await page.click(`#${ge.id}`);
+     
+    
 
       // Clear all days
       for (const sel of Object.values(daySelectors)) {
@@ -72,12 +74,39 @@ if (fs.existsSync("results.json")) {
       }
 
       // Submit form
-    await page.click("input[type='button'][value='Search']");
-await new Promise(resolve => setTimeout(resolve, 10000)); // 10 seconds
-fs.writeFileSync("after-search.html", await page.content());
+// Submit form
+await page.click("input[type='button'][value='Search']");
 
-   await page.waitForSelector("#mc_win", { timeout: 20000 });
-const frame = page;
+// Wait for either the results table OR the "no results" message
+let status;
+try {
+status = await Promise.race([
+  page.waitForSelector('#mc_win tr:nth-child(4) td', { timeout: 60000 }).then(() => 'table'),
+  page.waitForFunction(
+    () => document.body.innerText.includes('No courses found with the following search parameters'),
+    { timeout: 60000 }
+  ).then(() => 'empty')
+]);
+
+} catch (_) {
+  status = 'timeout';
+}
+
+// Debug snapshot
+fs.writeFileSync("after-search.html", await page.content());
+await page.screenshot({ path: `debug-ge-${ge.id}.png` });
+
+if (status === 'empty') {
+  console.log(`🚫 No results for GE ${ge.label} — ${days.join(", ")}`);
+  continue; // move on to next day/GE
+}
+if (status !== 'table') {
+  console.warn(`⚠️ Timed out waiting for results for ${ge.label} — ${days.join(", ")}`);
+  continue; // or throw if you prefer to fail hard
+}
+
+const frame = page; // proceed with scraping
+
 
 
       await page.screenshot({ path: `debug-ge-${ge.id}.png` });
@@ -85,49 +114,63 @@ const frame = page;
       console.log("📸 Screenshot and HTML saved for debugging");
 
       // Check for "no results" message
-      const noResults = await frame.evaluate(() =>
-        document.body.innerText.includes("No courses found with the following search parameters")
-      );
-      if (noResults) {
-        console.log(`🚫 No results for GE ${ge.label} — ${days.join(", ")}`);
-        continue;
-      }
-const currentDayLabel = days.join(" ");
+const currentDayLabel = days.join(", ");
       // Extract rows
 const results = await frame.evaluate(() => {
   const table = document.querySelector("#mc_win");
   if (!table) return [];
 
-  const rows = Array.from(table.querySelectorAll("tr")).slice(3);
+  const rows = Array.from(table.querySelectorAll("tr"));
   const data = [];
+
+  const text = (el) => (el?.innerText || "").trim();
 
   for (const row of rows) {
     const cells = row.querySelectorAll("td");
-    if (cells.length < 6) continue;
+    if (cells.length < 5) continue;
 
-    const courseId = cells[1]?.innerText.trim();               // AHI 001A
-    const schedule = cells[0]?.innerText.trim();               // 9:00 - 9:50 AM, M
-    const className = cells[2]?.innerText.trim();              // Ancient Mediterran Art
-  const geTags = Array.from(cells[3]?.querySelectorAll("acronym") || [])
-      .map(acr => acr.textContent.trim());                     // ['AH', 'VL']
-    const section = cells[3]?.innerText.trim();                // A01 (3/0)
-    const professor = cells[4]?.childNodes[0]?.textContent.trim(); // Sofroniew, A
-   const profRating = cells[4]?.querySelector("em")?.textContent.trim() || null;
+    const c0 = text(cells[0]); // CRN/Time/Days column (header says "CRN\nTime/Days")
+    const c1 = text(cells[1]); // Subject+course (e.g., "AHI 001A")
+    const c2 = text(cells[2]); // Title (e.g., "Ancient Mediterran Art")
+    const c3 = text(cells[3]); // Section + GE tags (e.g., "A01 (3/0)")
+    const c4 = cells[4];       // Instructor + <em>rating</em>
 
+    // Skip header/separator rows
+    if (/CRN\s*Time\/Days/i.test(c0) || /Title\s*-\s*Section/i.test(c2)) continue;
+
+    // Schedule: remove any CRN prefix and anything after the first comma (leaves time only)
+   // Schedule: remove any CRN prefix and anything after the first comma (leaves time only)
+const scheduleTime = c0.replace(/^\d+\s*/, "").split(",")[0].trim(); // "9:00 - 9:50 AM"
+
+// Section code: accept A01, 001, A1, B12, 010, etc.
+const sectionCodeMatch = c3.match(/\b([A-Z]?\d{2,3})\b/);
+const sectionCode = sectionCodeMatch ? sectionCodeMatch[1] : '';
+
+// don't hard-filter here; some rows might still be useful even if section is odd
+
+    // GE tags inside <acronym>
+    const geTags = Array.from(cells[3].querySelectorAll("acronym"))
+      .map(a => (a.textContent || "").trim())
+      .filter(Boolean);
+
+    // Instructor + rating
+    const professor = ((c4.childNodes[0]?.textContent) || "").trim();
+    const profRating = c4.querySelector("em")?.textContent.trim() || null;
 
     data.push({
-      courseId,
-      schedule,
-      className,
+      courseId: c1,                  // "AHI 001A"
+      classTitle: c2,                // "Ancient Mediterran Art"
+      sectionCode,                   // "A01"
+      scheduleTime,                  // "9:00 - 9:50 AM"
       geTags,
-      section,
       professor,
       profRating
     });
   }
 
-  return data; // ✅ THIS is what comes back to the outside world
+  return data;
 });
+
 // ✅ Add GE and day info to each result manually
 for (const r of results) {
   r.ge = ge.label;
@@ -136,49 +179,55 @@ for (const r of results) {
 
 
 
- const grouped = {};
-
+const grouped = {};
 for (const r of results) {
-  // Clean schedule like "Mon 9:00 - 9:50 AM"
-const cleanSchedule = `${currentDayLabel} ${r.schedule.replace(/^\d+\s*\n?/, "").split(",")[0].trim()}`;
+  if (!r.classTitle || !r.sectionCode || !r.scheduleTime) continue; // extra safety
 
-const rawSection = r.section.split("\n")[0].split(/\s+/)[0].trim(); // e.g. "A01"
-const cleanTitle = r.className.trim();                              // e.g. "Ancient Mediterran Art"
-const cleanClassName = `${rawSection} - ${cleanTitle}`;            // e.g. "A01 - Ancient Mediterran Art"
+  const cleanClassName = `${r.classTitle} - ${r.sectionCode}`; // "Ancient Mediterran Art - A01"
+ const cleanSchedule = `${currentDayLabel} ${r.scheduleTime}`.replace(/\s+/g, " ").trim();
 
-const key = `${cleanClassName}__${r.professor}`;
-
-if (!grouped[key]) {
-  grouped[key] = {
-    className: cleanClassName,
-    professor: r.professor,
-    ge: r.ge,
-    schedule: [cleanSchedule],
-    geTags: r.geTags,
-    profRating: r.profRating
-  };
-} else {
-  if (!grouped[key].schedule.includes(cleanSchedule)) {
-    grouped[key].schedule.push(cleanSchedule);
+  const key = `${cleanClassName}__${r.professor}`;
+  if (!grouped[key]) {
+    grouped[key] = {
+      className: cleanClassName,
+      professor: r.professor,
+      ge: ge.label,
+      schedule: [cleanSchedule],
+      geTags: Array.from(new Set(r.geTags)),   // de-dupe & no blanks (already filtered)
+      profRating: r.profRating
+    };
+  } else {
+    if (!grouped[key].schedule.includes(cleanSchedule)) {
+      grouped[key].schedule.push(cleanSchedule);
+    }
   }
 }
 
-
 const groupedResults = Object.values(grouped);
-
 allResults.push(...groupedResults);
 console.log(`✅ Found ${groupedResults.length} result(s)`);
 console.log(`📊 Extracted ${results.length} result(s) from DOM`);
 
-     fs.writeFileSync("results.json", JSON.stringify(allResults, null, 2));
-    }
-     const groupedResults = Object.values(grouped);
-    allResults.push(...groupedResults);
-    console.log(`✅ Found ${groupedResults.length} result(s)`);
-    console.log(`📊 Extracted ${results.length} result(s) from DOM`);
-    fs.writeFileSync("results.json", JSON.stringify(allResults, null, 2));
+
+
+    
   }
 }
+// --- dedupe & final write (place right before await browser.close()) ---
+const seen = new Set();
+const deduped = [];
+
+for (const row of allResults) {
+  const schedKey = Array.isArray(row.schedule) ? [...row.schedule].sort().join("|") : "";
+  const k = `${row.className}__${row.professor}__${row.ge}__${schedKey}`;
+  if (!seen.has(k)) {
+    seen.add(k);
+    deduped.push(row);
+  }
+}
+
+fs.writeFileSync("results.json", JSON.stringify(deduped, null, 2));
+// --- end dedupe ---
 
 await browser.close();
 })();
