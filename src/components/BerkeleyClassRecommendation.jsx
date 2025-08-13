@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BerkeleyTOPIC_TO_CLASSES from "./BerkeleyTopic_To_Classes";
+import { BerkeleyTOPIC_TO_CLASSES } from "./BerkeleyTopic_To_Classes";
 import "./ChicoClassRecommendation.css";
 import "../pages/GETracker.css";
 import { FiSearch } from "react-icons/fi";
@@ -7,8 +7,7 @@ import { PiMedal } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { GoGoal } from "react-icons/go";
-
-
+console.log("[CR FILE] loaded");
 
 // ==========================
 // DATA ARRAYS
@@ -35,17 +34,18 @@ const ACADEMIC_AREAS = [
 ];
 
 // ==========================
-// MAIN COMPONENT
+// STYLES
 // ==========================
 const brandBlue = "#7589F3";
- const thStyle = {
+
+const thStyle = {
   padding: "14px 16px",
   textAlign: "left",
   fontWeight: 600,
   fontSize: "1rem",
   color: "#333",
   backgroundColor: "#F9FAFC",
-  border: "1px solid #E0E0E0", // border around each header cell
+  border: "1px solid #E0E0E0",
 };
 
 const tdStyle = {
@@ -53,98 +53,11 @@ const tdStyle = {
   textAlign: "left",
   fontSize: "0.95rem",
   verticalAlign: "top",
-  border: "1px solid #E0E0E0", // border around each data cell
+  border: "1px solid #E0E0E0",
 };
-
-export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, pageTitle = "Smart Class Recommendations" }) {
-  const [selectedAreas, setSelectedAreas] = useState([]);
-  const [selectedGoals, setSelectedGoals] = useState([]);
-  const [dropdownValue, setDropdownValue] = useState(3);
-  const [recommendations, setRecommendations] = useState([]);
-  const [refreshKey, setRefreshKey] = useState(Date.now());
-  useEffect(() => {
-  document.title = pageTitle || "Smart Class Recommendations";
-}, [pageTitle]);
-const isMobile = window.innerWidth <= 700;
-const areaRows = isMobile
-  ? getEvenPyramidRows(ACADEMIC_AREAS, 19) // 2 per row on mobile (18 total/9 rows)
-  : getEvenPyramidRows(ACADEMIC_AREAS, 4); // 4 per row on desktop
-
-
-const [search, setSearch] = useState("");
-const [classesTaken, setClassesTaken] = useState([
-  // ... optionally, hydrating from localStorage or your context!
-]);
-// -- handlers: recompute recommendations on demand --
-const handleRefresh = () => {
-  const newKey = Date.now();
-  setRefreshKey(newKey);
-
-    const recs = recommendClasses({
-    classDetails,
-    geRequirements,
-    selectedAreas,
-    selectedGoals,
-    numClasses: dropdownValue,
-    refreshKey: newKey,
-    classesTaken,
-  });
-
-  setRecommendations(recs);
-};
-// -- handlers: toggle areas/goals --
-const toggle = (id, type) => {
-  if (type === "area") {
-    setSelectedAreas(prev =>
-      prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]
-    );
-  } else {
-    setSelectedGoals(prev =>
-      prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]
-    );
-  }
-};
-
-const handleAddClass = (className, area) => {
-  if (!classesTaken.some(obj => obj.className === className && obj.area === area)) {
-    setClassesTaken([...classesTaken, { className, area }]);
-    setSearch("");
-  }
-};
-const handleRemoveClass = (className, area) => {
-  setClassesTaken(classesTaken.filter(
-    obj => !(obj.className === className && obj.area === area)
-  ));
-};
-const searchResults = (search.trim().length > 0 && classDetails)
-  ? Array.from(
-      new Map(
-        classDetails
-          .filter(cls =>
-            cls.className &&
-            cls.className.toLowerCase().includes(search.trim().toLowerCase()) &&
-            !classesTaken.some(taken => taken.className === cls.className)
-          )
-          .map(cls => [cls.className, {
-            className: cls.className,
-            area: (cls.areas && cls.areas[0]) || "Other"
-          }])
-      ).values()
-    )
-  : [];
-
-
-const STUDENT_GOALS = [
-  { id: "easy", label: "Easiest Classes ✅" },
-  { id: "fridaysoff", label: "Fridays Off🗓️" },
-  { id: "MonWed", label: "Monday/Wednesday ⏱️" },
-  { id: "TueThu", label: "Tuesday/Thursday ⏱️" },
-  { id: "earlyclasses", label: "Early Classes 🌅" },
-  { id: "lateclasses", label: "Late Classes 🌙" },
-];
 
 // ==========================
-// UTILITY FUNCTIONS
+// SMALL UTILS
 // ==========================
 function getEvenPyramidRows(array, rowCount = 4) {
   const rows = Array.from({ length: rowCount }, () => []);
@@ -157,45 +70,7 @@ function getEvenPyramidRows(array, rowCount = 4) {
   return rows;
 }
 
-
-
-const CARD_WIDTH = 155;
-const CARD_HEIGHT = 38;
-const CARD_STYLE = {
-  width: CARD_WIDTH,
-  height: CARD_HEIGHT,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: 10,
-  fontWeight: 500,
-  textAlign: "center",
-  transition: "all 0.14s",
-  userSelect: "none",
-  fontSize: "1em",
-  letterSpacing: "-0.01em",
-  lineHeight: 1.15,
-  whiteSpace: "normal",
-  overflowWrap: "break-word",
-  boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-  cursor: "pointer",
-  padding: 0,
-  margin: 0,
-};
-
-function shuffle(array, seed) {
-  // Simple seeded shuffle for reproducibility on refresh
-  let m = array.length, t, i;
-  let s = seed || Math.random();
-  while (m) {
-    i = Math.floor(Math.abs(Math.sin(s++) * 10000) % m--);
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-  return array;
-}
-// ===== Day helpers (single source of truth) =====
+// ===== Day helpers =====
 function getClassDays(cls) {
   const texts = [];
   if (typeof cls.days === "string") texts.push(cls.days);
@@ -249,9 +124,8 @@ function dayPrefBonus(c, wantMonWed, wantTueThu, wantFridayOff) {
   }
   return bonus;
 }
-// ===== Time parsing & classification helpers =====
 
-// minutes since midnight; returns null if can't parse
+// ===== Time helpers =====
 function parseTimeToMinutes(text, meridiemHint) {
   if (!text) return null;
   const m = String(text).trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([AaPp][Mm])?$/);
@@ -261,997 +135,1236 @@ function parseTimeToMinutes(text, meridiemHint) {
   let mer = m[3] ? m[3].toLowerCase() : (meridiemHint ? meridiemHint.toLowerCase() : null);
 
   if (h < 1 || h > 12 || mm < 0 || mm > 59) return null;
-  // convert to 24h
-  h = h % 12; // 12 -> 0
+  h = h % 12;
   if (mer === "pm") h += 12;
-  if (mer === "am" || mer === "pm") {
-    // ok
-  } else {
-    // no meridiem -> can't classify confidently
-    return null;
-  }
+  if (mer !== "am" && mer !== "pm") return null;
   return h * 60 + mm;
 }
-
-// returns [{start,end}] parsed from a text like "MW 10:45-12:00pm"
 function extractWindowsFromText(text) {
   const s = String(text || "");
-  // capture "hh[:mm]am/pm - hh[:mm]am/pm" with optional am/pm on first time
   const rx = /(\d{1,2}(?::\d{2})?)\s*([AaPp][Mm])?\s*[-–—]\s*(\d{1,2}(?::\d{2})?)\s*([AaPp][Mm])?/g;
   const out = [];
   let m;
   while ((m = rx.exec(s))) {
     const startRaw = m[1];
-    const startMer  = m[2] || m[4] || null; // inherit end meridiem if start missing
+    const startMer  = m[2] || m[4] || null;
     const endRaw   = m[3];
-    const endMer   = m[4] || m[2] || null; // inherit start meridiem if end missing
-
+    const endMer   = m[4] || m[2] || null;
     const start = parseTimeToMinutes(startRaw, startMer);
     const end   = parseTimeToMinutes(endRaw, endMer);
-    if (start != null && end != null) {
-      out.push({ start, end });
-    }
+    if (start != null && end != null) out.push({ start, end });
   }
   return out;
 }
-
-// gather all windows from the class object
 function getClassTimeWindows(cls) {
   const wins = [];
-
-  // common patterns: schedule: ["MW 10:30-11:45 AM", "F 1:00–2:15 PM"]
   if (Array.isArray(cls.schedule)) {
-    for (const s of cls.schedule) {
-      wins.push(...extractWindowsFromText(s));
-    }
+    for (const s of cls.schedule) wins.push(...extractWindowsFromText(s));
   }
-  // sometimes there's a single "time" string
   if (typeof cls.time === "string") {
     wins.push(...extractWindowsFromText(cls.time));
   }
-  // edge: startTime/endTime fields
   if (typeof cls.startTime === "string" && typeof cls.endTime === "string") {
-    const w = extractWindowsFromText(`${cls.startTime}-${cls.endTime}`);
-    wins.push(...w);
+    wins.push(...extractWindowsFromText(`${cls.startTime}-${cls.endTime}`));
   }
   return wins;
 }
-
-// Noon boundary (in minutes)
-const NOON_MIN = 12 * 60; // 720
-
-// Early = every meeting ends <= 12:00pm (10:45–12:00 counts Early)
+const NOON_MIN = 12 * 60;
 function classIsEarly(cls) {
   const wins = getClassTimeWindows(cls);
   if (!wins.length) return false;
   return wins.every(w => w.end <= NOON_MIN);
 }
-
-// Late = every meeting starts >= 12:00pm (12:00–1:15 counts Late)
 function classIsLate(cls) {
   const wins = getClassTimeWindows(cls);
   if (!wins.length) return false;
   return wins.every(w => w.start >= NOON_MIN);
 }
-
-// scoring nudge for time prefs
 function timePrefBonus(c, wantEarly, wantLate) {
   let b = 0;
   const isE = classIsEarly(c);
   const isL = classIsLate(c);
-
   if (wantEarly) {
-    if (isE) b += 0.5;
-    else if (isL) b -= 0.3;
+    if (isE) b += 0.5; else if (isL) b -= 0.3;
   }
   if (wantLate) {
-    if (isL) b += 0.5;
-    else if (isE) b -= 0.3;
+    if (isL) b += 0.5; else if (isE) b -= 0.3;
   }
   return b;
 }
 
-// Keep remainingDNeeded top-level so recommendClasses can use it
-function remainingDNeeded(classesTaken) {
-  const takenD = classesTaken.filter(c => isD(c.area)).length;
-  return Math.max(0, 2 - takenD);
+// ==========================
+// TOPIC MATCHING – SINGLE SOURCE OF TRUTH
+// (No duplicates; robust against names or codes like "COMPSCI 61C")
+// ==========================
+function normalizeSpaces(s = "") {
+  return String(s).replace(/\s+/g, " ").trim();
 }
-const seededShuffle = (arr, seed) => shuffle(arr.slice(), seed);
+// Common long->short department aliases (expand if your data uses others)
+const DEPT_ALIASES = {
+  COMPUTERSCIENCE: "COMPSCI",
+  INTEGRATIVEBIOLOGY: "INTEGBI",
+  MOLECULARCELLBIOLOGY: "MCELLBI",
+  ENVIRONMENTALECONOMICS: "ENVECON",
+  GEOGRAPHY: "GEOG",
+  ECONOMICS: "ECON",
+  SOCIOLOGY: "SOCIOL",
+  ANTHROPOLOGY: "ANTHRO",
+  HISTORYOFART: "HISTART",
+  POLITICALSCIENCE: "POLSCI",
+  AMERICANSTUDIES: "AMERSTD",
+  MEDIASTUDIES: "MEDIAST",
+  EASTASIANLANGUAGES: "EALANG",
+  ENVIRONMENTALDESIGN: "ENVDES",
+  LEGALSTUDIES: "LEGALST",
+  PUBLICHEALTH: "PBHLTH",
+  GLOBALSTUDIES: "GLOBAL",
+  GENDERSWOMENSTUDIES: "GWS",
+  CELTICSTUDIES: "CELTIC",
+  SLAVICLANGSLIT: "SLAVIC",
+  ASTRONOMY: "ASTRON",
+  PHILOSOPHY: "PHILOS",
+  PSYCHOLOGY: "PSYCH",
+  BIOENGINEERING: "BIOENG",
+  DATA: "DATA", // no-op but here for consistency
+};
 
-// ===== Main algorithm =====
-function recommendClasses({
-  classDetails,
-  geRequirements,
-  selectedAreas,
-  selectedGoals,
-  numClasses,
-  refreshKey,
-  classesTaken
-}) {
-  if (typeof recommendClasses._hasRun === "undefined") {
-    recommendClasses._hasRun = false;
-  }
+// replaces your current extractCourseCode
+function extractCourseCode(s = "") {
+  const m = String(s).replace(/\s+/g, " ").trim()
+    .match(/\b([A-Z][A-Z&\.]{1,15}(?:\s[A-Z]{1,10})?)\s*[-_/ ]?\s*([A-Z]?\d{1,3}[A-Z]{0,3})\b/i);
+  if (!m) return null;
 
-  const classesTakenNames = new Set(classesTaken.map(c => c.className));
-  const areasTaken = new Set(classesTaken.map(c => c.area));
+  // normalize dept to uppercase + no spaces and strip non-letters to combine multi-words
+  const rawDeptNoSpace = m[1].toUpperCase().replace(/\s+/g, "");
+  // also try collapsing obvious “OF/AND/…” glue to match tokens from your map
+  const collapsed = rawDeptNoSpace.replace(/(OF|AND|THE|LANGUAGES|STUDIES|SCIENCE)/g, "");
+  const alias = DEPT_ALIASES[rawDeptNoSpace] || DEPT_ALIASES[collapsed] || rawDeptNoSpace;
 
-  const areaToClasses = {};
-  geRequirements.forEach(a => { areaToClasses[a.area] = new Set(a.classes); });
-
-  const getAreasForClass = (name) =>
-    Object.entries(areaToClasses).filter(([_, set]) => set.has(name)).map(([area]) => area);
-
-  // base candidates (not taken, can still fulfill something)
-  let candidates = classDetails.filter(cls => {
-    if (!cls?.className) return false;
-    if (classesTakenNames.has(cls.className)) return false;
-    const areas = getAreasForClass(cls.className);
-    return areas.some(a => !areasTaken.has(a));
-  });
-
-const wantFridayOff = selectedGoals.includes("fridaysoff");
-const wantMonWed    = selectedGoals.includes("MonWed");
-const wantTueThu    = selectedGoals.includes("TueThu");
-const wantEarly     = selectedGoals.includes("earlyclasses"); // <-- add
-const wantLate      = selectedGoals.includes("lateclasses");  // <-- add
-const isVeryEasy = (c) => Number.isFinite(c?.difficulty) && c.difficulty <= 2.9;
-const wantEasy      = selectedGoals.includes("easy");
-const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
-
-  const applyDayTimePrefs = (list) => {
-    let out = list;
-    if (wantFridayOff) {
-      const noFri = out.filter(c => !hasFriday(c));
-      if (noFri.length >= Math.max(6, numClasses)) out = noFri;
-    }
-    if (wantMonWed && !wantTueThu) {
-      const mwOnly = out.filter(c =>
-        meetsAllDays(c, ["M","W"]) && !meetsAnyDay(c, ["Tu","Th","F"])
-      );
-      if (mwOnly.length >= Math.max(6, numClasses)) out = mwOnly;
-    }
-    if (wantTueThu && !wantMonWed) {
-      const tuthOnly = out.filter(c =>
-        meetsAllDays(c, ["Tu","Th"]) && !meetsAnyDay(c, ["M","W","F"])
-      );
-      if (tuthOnly.length >= Math.max(6, numClasses)) out = tuthOnly;
-    }
-    if (wantEarly && !wantLate) {
-      const earlyOnly = out.filter(classIsEarly);
-      if (earlyOnly.length >= Math.max(6, numClasses)) out = earlyOnly;
-    }
-    if (wantLate && !wantEarly) {
-      const lateOnly = out.filter(classIsLate);
-      if (lateOnly.length >= Math.max(6, numClasses)) out = lateOnly;
-    }
-    return out;
-  };
-
-  const TOPIC_MAP =
-    (typeof BerkeleyTOPIC_TO_CLASSES !== "undefined" && BerkeleyTOPIC_TO_CLASSES) ||
-    (typeof window !== "undefined" && window.BerkeleyTOPIC_TO_CLASSES) ||
-    {};
-  const inTopic = (name) => classInSelectedTopics(name, selectedAreas, TOPIC_MAP);
-
-  // ---------- EASY branch ----------
- // ---------- EASY branch ----------
-if (wantEasy) {
-  let pool = hasTopics ? candidates.filter(c => inTopic(c.className)) : candidates;
-
-  // 1) apply day/time prefs
-  pool = applyDayTimePrefs(pool);
-
-  // 2) widen once if topics too sparse, then reapply prefs
-  if (hasTopics && pool.length === 0) {
-    const kwMap = {
-      business: ["bus","acct","acctg","acct.","account","fin","mktg","mgmt","econ"],
-      communication: ["comm","media","journal","pr","advert"],
-      psychology: ["psych"],
-      computer: ["cs","comp","cis","info","software"],
-      art_design: ["art","design","c1"],
-      philosophy: ["phil","ethic","c2","humanities"],
-      history: ["hist"],
-      health: ["hlth","health","kin","nurs"],
-    };
-    const kws = (selectedAreas || []).flatMap(a => kwMap[a] || []);
-    const rx = kws.length ? new RegExp(`\\b(${kws.join("|")})`, "i") : null;
-    pool = rx ? candidates.filter(c => rx.test(c.className || "")) : candidates;
-    pool = applyDayTimePrefs(pool);
-  }
-
-  // 3) hard cap difficulty, then shuffle once per click
-  pool = pool.filter(c => Number.isFinite(c?.difficulty) && c.difficulty <= 2.9);
-  if (!pool.length) return [];
-  pool = seededShuffle(pool, refreshKey);
-
-  // 4) picking logic stays the same
-  const WINDOW_K = Math.min(Math.max(numClasses * 4, 25), pool.length);
-  const topList = pool.slice(0, WINDOW_K);
-
-  const c1Fulfilled = classesTaken.some(c => isC1(c.area));
-  const c2Fulfilled = classesTaken.some(c => isC2(c.area));
-  let dLeft = remainingDNeeded(classesTaken);
-
-  const getUnfulfilledAreas = (cls) =>
-    getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
-
-  const canC1 = topList.some(it => getUnfulfilledAreas(it).some(isC1));
-  const canC2 = topList.some(it => getUnfulfilledAreas(it).some(isC2));
-  const dAvail = topList.filter(it => getUnfulfilledAreas(it).some(isD)).length;
-
-  let needC1 = !c1Fulfilled && canC1;
-  let needC2 = !c2Fulfilled && canC2;
-  dLeft = Math.min(dLeft, dAvail);
-
-  const picked = [];
-  const usedOtherAreas = new Set();
-  const guardMax = topList.length * 2;
-  const stride = 7;
-  const offset = topList.length
-    ? ((((Math.abs(Number(refreshKey || 0)) / 1000) | 0) * stride) % topList.length)
-    : 0;
-
-  let steps = 0;
-  let i = offset;
-
-  while (picked.length < numClasses && steps++ < guardMax) {
-    const cls = topList[i % topList.length];
-    i++;
-    if (picked.includes(cls)) continue;
-
-    const unfulfilled = getUnfulfilledAreas(cls);
-    if (!unfulfilled.length) continue;
-
-    const hasC1a = unfulfilled.some(isC1);
-    const hasC2a = unfulfilled.some(isC2);
-    const hasDa  = unfulfilled.some(isD);
-
-    if (needC1 && hasC1a && !picked.some(p => getUnfulfilledAreas(p).some(isC1))) {
-      picked.push(cls); needC1 = false; continue;
-    }
-    if (needC2 && hasC2a && !picked.some(p => getUnfulfilledAreas(p).some(isC2))) {
-      picked.push(cls); needC2 = false; continue;
-    }
-    if (dLeft > 0 && hasDa) { picked.push(cls); dLeft -= 1; continue; }
-
-    const firstOther = unfulfilled.find(a =>
-      !isC1(a) && !isC2(a) && !isD(a) && !usedOtherAreas.has(a)
-    );
-    if (firstOther) { picked.push(cls); usedOtherAreas.add(firstOther); }
-  }
-
-  if (picked.length < numClasses) {
-    steps = 0;
-    while (picked.length < numClasses && steps++ < guardMax) {
-      const cls = topList[i % topList.length];
-      i++;
-      if (!picked.includes(cls)) picked.push(cls);
-    }
-  }
-
-  recommendClasses._hasRun = true;
-  return picked.slice(0, numClasses).map(cls => ({
-    ...cls,
-    matchedAreas: getUnfulfilledAreas(cls)
-  }));
+  const num = m[2].toUpperCase();
+  return `${alias} ${num}`;
 }
 
-  // ---------- NON-easy branch ----------
-  const topicSet = new Set();
-  if (hasTopics) {
-    selectedAreas.forEach(t => {
-      (TOPIC_MAP?.[t] || []).forEach(n => topicSet.add(n));
+
+// --- helpers (add these) ---
+function stripTitle(s = "") {
+  // "ANTHRO 2AC - Archaeology" -> "ANTHRO 2AC"
+  return String(s).replace(/\s*[-:–—]\s*.*$/, "").trim();
+}
+
+function generateCodeVariants(fromText = "") {
+  // Turn any label into multiple code keys that might appear in your data
+  const code = extractCourseCode(fromText);
+  if (!code) return [];
+  const [deptRaw, numRaw] = code.split(/\s+/);
+  const deptNoSpace = deptRaw.toUpperCase().replace(/\s+/g, "");
+  const num = numRaw.toUpperCase();
+
+  const lead = /^[A-Z]/.test(num) ? num[0] : "";     // e.g., C / R / W
+  const numNoLead = lead ? num.slice(1) : num;
+  const deptNoX   = deptNoSpace.startsWith("X") ? deptNoSpace.slice(1) : deptNoSpace;
+
+  const out = new Set();
+  // original
+  out.add(`${deptNoSpace} ${num}`);
+  // without leading letter on the number (COMPSCI C100A -> COMPSCI 100A)
+  if (lead) out.add(`${deptNoSpace} ${numNoLead}`);
+  // without 'X' on the department (XESPM 15 -> ESPM 15)
+  if (deptNoSpace !== deptNoX) out.add(`${deptNoX} ${num}`);
+  // both transforms
+  if (lead && deptNoSpace !== deptNoX) out.add(`${deptNoX} ${numNoLead}`);
+
+  return Array.from(out);
+}
+
+function buildTopicSets(TOPIC_MAP, keys) {
+  const namesSet = new Set(); // store LOWERCASED canonical names
+  const codesSet = new Set(); // store normalized codes like "COMPSCI 61C"
+
+  (keys || Object.keys(TOPIC_MAP || {})).forEach((k) => {
+    (TOPIC_MAP[k] || []).forEach((raw) => {
+      const full = normalizeSpaces(raw);
+      const stripped = stripTitle(full);
+
+      // name variants (lowercased)
+      namesSet.add(full.toLowerCase());
+      namesSet.add(stripped.toLowerCase());
+
+      // code variants
+      for (const v of generateCodeVariants(full)) codesSet.add(v);
+      for (const v of generateCodeVariants(stripped)) codesSet.add(v);
     });
-  }
-
-  let poolNonEasy = hasTopics
-    ? candidates.filter(cls => topicSet.has(cls.className))
-    : candidates;
-
-// widen once if topic map is sparse
-
-
-
-  poolNonEasy = poolNonEasy.map(cls => {
-    let goalScore = 0;
-    if (Array.isArray(cls.goals)) {
-      goalScore = selectedGoals.filter(g => cls.goals.includes(g)).length;
-    }
-    const fridayPenalty = wantFridayOff && hasFriday(cls) ? 0.6 : 0;
-    const score = (easeScore(cls) * 0.5) + goalScore - fridayPenalty
-      + dayPrefBonus(cls, wantMonWed, wantTueThu, wantFridayOff);
-    return { ...cls, __score: score };
   });
 
-  poolNonEasy.sort((a, b) => (b.__score || 0) - (a.__score || 0));
-
-  const startIdx = poolNonEasy.length ? Math.abs(Number(refreshKey || 0)) % poolNonEasy.length : 0;
-
-  const usedAreaNonEasy = {};
-  const out = [];
-  for (let k = 0; k < poolNonEasy.length && out.length < numClasses; k++) {
-    const cls = poolNonEasy[(startIdx + k) % poolNonEasy.length];
-    const unfulfilled = getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
-    if (unfulfilled.length === 0) continue;
-    const area = unfulfilled[0];
-    if (!usedAreaNonEasy[area]) usedAreaNonEasy[area] = 0;
-    if (usedAreaNonEasy[area] < 1) {
-      usedAreaNonEasy[area] += 1;
-      out.push({ ...cls, matchedAreas: unfulfilled });
-    }
-  }
-
-  recommendClasses._hasRun = true;
-  return out;
+  return { namesSet, codesSet };
 }
 
-// Replace the old easeScore with this:
+function matchesTopic(cls, namesSet, codesSet) {
+  // name match (case-insensitive, with stripped-title fallback)
+  const nFull = normalizeSpaces(cls?.className || "");
+  const nStripped = stripTitle(nFull);
+  if (namesSet.has(nFull.toLowerCase()) || namesSet.has(nStripped.toLowerCase())) return true;
+
+  // code match (try multiple variants from the class string)
+  const variants = [
+    ...generateCodeVariants(nFull),
+    ...generateCodeVariants(nStripped),
+  ];
+
+  // also consider precomputed courseCode if you have one
+  if (cls.courseCode) {
+    variants.push(...generateCodeVariants(cls.courseCode));
+  }
+
+  return variants.some(v => codesSet.has(v));
+}
+
+
+function resolveTopicKeys(selectedAreas, TOPIC_MAP) {
+  const available = new Set(Object.keys(TOPIC_MAP || {}));
+  return (selectedAreas || []).filter((k) => available.has(k));
+}
+
+// ===== GE helpers =====
+
+
+
+
+// ===== Scoring =====
 function easeScore(cls) {
-  // Normalize to [0,1]
   const hasScore = Number.isFinite(cls.score);
   const hasDiff  = Number.isFinite(cls.difficulty);
 
   const score01 = hasScore ? Math.min(1, Math.max(0, cls.score / 5)) : 0.0;
-  // difficulty is 1 (easiest) to 5 (hardest) -> invert to ease
   const diff01  = hasDiff  ? Math.min(1, Math.max(0, (5 - (cls.difficulty || 3)) / 4)) : 0.0;
 
-  // Weights: lean on difficulty > rating, but both matter
   const W_SCORE = 0.45;
   const W_DIFF  = 0.55;
 
-  // Missing-data penalties so items with no signals don't float up
   let penalty = 0;
-  if (!hasScore) penalty += 0.10;   // no rating → slightly downrank
-  if (!hasDiff)  penalty += 0.20;   // no difficulty → stronger downrank
+  if (!hasScore) penalty += 0.10;
+  if (!hasDiff)  penalty += 0.20;
 
-  // Optional boost if your data has a hint (e.g., cls.goals includes "easy")
   const hintEasy = Array.isArray(cls.goals) && cls.goals.includes("easy") ? 0.05 : 0;
-
   const composite = (W_SCORE * score01) + (W_DIFF * diff01) + hintEasy - penalty;
 
-  // Clamp for safety
   return Math.max(-1, Math.min(1.2, composite));
 }
 
-function classInSelectedTopics(clsName, selectedAreas, BerkeleyTOPIC_TO_CLASSES) {
-  if (!selectedAreas?.length) return false;
-  for (const t of selectedAreas) {
-    const list = BerkeleyTOPIC_TO_CLASSES?.[t] || [];
-    if (list.includes(clsName)) return true;
+// ==========================
+// MAIN COMPONENT
+// ==========================
+export default function ClassRecommendationPage({
+  geRequirements,
+  classDetails,
+  onDeleteClass,
+  pageTitle = "Smart Class Recommendations",
+}) {
+  // --- STATE (all first) ---
+  const [selectedAreas, setSelectedAreas]       = useState([]);
+  const [selectedGoals, setSelectedGoals]       = useState([]);
+  const [dropdownValue, setDropdownValue]       = useState(3);
+  const [recommendations, setRecommendations]   = useState([]);
+  const [refreshKey, setRefreshKey]             = useState(Date.now());
+  const [search, setSearch]                     = useState("");
+  const [classesTaken, setClassesTaken]         = useState([]);
+useEffect(() => {
+  console.log("[CR] ClassRecommendationPage mounted");
+}, []);
+useEffect(() => {
+  console.log("[CR] selectedAreas:", selectedAreas);
+}, [selectedAreas]);
+console.log("[CR] render", { pageTitle, time: Date.now() });
+
+useEffect(() => {
+  console.log("[CR] mounted");
+}, []);
+
+useEffect(() => {
+  console.log("[CR] selectedAreas:", selectedAreas);
+}, [selectedAreas]);
+
+useEffect(() => {
+  console.log("[CR] selectedGoals:", selectedGoals);
+}, [selectedGoals]);
+
+  // --- side effects ---
+  useEffect(() => {
+    document.title = pageTitle || "Smart Class Recommendations";
+  }, [pageTitle]);
+
+  // Auto-refresh recommendations whenever inputs change
+  useEffect(() => {
+    const newKey = Date.now();
+    const recs = recommendClasses({
+      classDetails,
+      geRequirements,
+      selectedAreas,
+      selectedGoals,
+      numClasses: dropdownValue,
+      refreshKey: newKey,
+      classesTaken,
+    });
+    setRecommendations(recs);
+  }, [selectedAreas, selectedGoals, dropdownValue, classesTaken, classDetails, geRequirements]);
+
+  const isMobile = typeof window !== "undefined" ? window.innerWidth <= 700 : false;
+  const areaRows = isMobile
+    ? getEvenPyramidRows(ACADEMIC_AREAS, 19)
+    : getEvenPyramidRows(ACADEMIC_AREAS, 4);
+
+  const handleRefresh = () => {
+    const newKey = Date.now();
+    setRefreshKey(newKey);
+
+    const recs = recommendClasses({
+      classDetails,
+      geRequirements,
+      selectedAreas,
+      selectedGoals,
+      numClasses: dropdownValue,
+      refreshKey: newKey,
+      classesTaken,
+    });
+
+    setRecommendations(recs);
+  };
+
+  const toggle = (id, type) => {
+       console.log("[CR] toggle", { id, type });
+    if (type === "area") {
+      setSelectedAreas(prev =>
+        prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]
+      );
+    } else {
+      setSelectedGoals(prev =>
+        prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]
+      );
+    }
+  };
+
+  const handleAddClass = (className, area) => {
+    if (!classesTaken.some(obj => obj.className === className && obj.area === area)) {
+      setClassesTaken([...classesTaken, { className, area }]);
+      setSearch("");
+    }
+  };
+  const handleRemoveClass = (className, area) => {
+    setClassesTaken(classesTaken.filter(
+      obj => !(obj.className === className && obj.area === area)
+    ));
+  };
+
+  const searchResults = (search.trim().length > 0 && Array.isArray(classDetails))
+    ? Array.from(
+        new Map(
+          classDetails
+            .filter(cls =>
+              cls.className &&
+              cls.className.toLowerCase().includes(search.trim().toLowerCase()) &&
+              !classesTaken.some(taken => taken.className === cls.className)
+            )
+            .map(cls => [cls.className, {
+              className: cls.className,
+              area: (cls.areas && cls.areas[0]) || "Other"
+            }])
+        ).values()
+      )
+    : [];
+// ====== Berkeley requirements — DATA DRIVEN from geRequirements.json ======
+function buildReqIndex(geReqs) {
+  const areaToClasses = new Map();  // area -> Set(className)
+  const classToAreas = new Map();   // className -> Set(area)
+
+  const visit = (areaLabel, classes) => {
+    const area = normalizeSpaces(areaLabel || "");
+    if (!area) return;
+    if (!areaToClasses.has(area)) areaToClasses.set(area, new Set());
+    (classes || []).forEach((raw) => {
+      const name = normalizeSpaces(raw);
+      if (!name) return;
+      areaToClasses.get(area).add(name);
+      if (!classToAreas.has(name)) classToAreas.set(name, new Set());
+      classToAreas.get(name).add(area);
+    });
+  };
+
+  (geReqs || []).forEach((areaObj) => {
+    visit(areaObj.area, areaObj.classes);
+    (areaObj.subRequirements || []).forEach((sub) => {
+      // use sub.area if present; otherwise derive a label
+      const label = sub.area || `${areaObj.area}: ${sub.label || "Sub"}`;
+      visit(label, sub.classes);
+    });
+  });
+
+  return { areaToClasses, classToAreas };
+}
+
+// try to read "how many needed" from JSON; fallback to 1 each
+function computeAreaNeeds(geReqs) {
+  const need = new Map(); // area -> count required
+  (geReqs || []).forEach((areaObj) => {
+    if (Array.isArray(areaObj.subRequirements) && areaObj.subRequirements.length) {
+      areaObj.subRequirements.forEach((sub) => {
+        const label = normalizeSpaces(sub.area || `${areaObj.area}: ${sub.label || "Sub"}`);
+        const req = Number(sub.requiredCount ?? sub.min ?? 1);
+        need.set(label, Math.max(1, req));
+      });
+    } else {
+      const label = normalizeSpaces(areaObj.area);
+      const req = Number(areaObj.requiredCount ?? areaObj.min ?? 1);
+      need.set(label, Math.max(1, req));
+    }
+  });
+  return need;
+}
+
+function getUnmetAreas(geReqs, classesTaken) {
+  const { areaToClasses } = buildReqIndex(geReqs);
+  const need = computeAreaNeeds(geReqs);
+
+  // count completions
+  const counts = new Map([...need.keys()].map((k) => [k, 0]));
+  (classesTaken || []).forEach((ct) => {
+    const className = normalizeSpaces(ct.className);
+    areaToClasses.forEach((set, area) => {
+      if (set.has(className)) {
+        counts.set(area, (counts.get(area) || 0) + 1);
+      }
+    });
+  });
+
+  // figure out remaining
+  const unmet = new Set();
+  need.forEach((req, area) => {
+    if ((counts.get(area) || 0) < req) unmet.add(area);
+  });
+  return unmet; // Set of area labels that still need more classes
+}
+
+  // ==========================
+  // RECOMMENDATION ALGORITHM
+  // ==========================
+  function recommendClasses({
+    classDetails,
+    geRequirements,
+    selectedAreas,
+    selectedGoals,
+    numClasses,
+    refreshKey,
+    classesTaken
+  }) {
+     console.log("[CR] recommendClasses:start", {
+  selectedAreas,
+  selectedGoals,
+  numClasses,
+  classDetailsLen: Array.isArray(classDetails) ? classDetails.length : "not array",
+});
+
+    // sanitize
+    classDetails   = Array.isArray(classDetails) ? classDetails : [];
+    geRequirements = Array.isArray(geRequirements) ? geRequirements : [];
+    numClasses     = Math.max(1, Number(numClasses) || 3);
+const wantFridayOff = selectedGoals.includes("fridaysoff");
+const wantMonWed    = selectedGoals.includes("MonWed");
+const wantTueThu    = selectedGoals.includes("TueThu");
+const wantEarly     = selectedGoals.includes("earlyclasses");
+const wantLate      = selectedGoals.includes("lateclasses");
+const wantEasy      = selectedGoals.includes("easy");
+const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
+
+const TOPIC_MAP = BerkeleyTOPIC_TO_CLASSES || {};
+
+console.log("[CR] classDetails:", Array.isArray(classDetails) ? classDetails.length : "not array");
+console.log("[CR] hasTopics:", hasTopics, "selectedAreas:", selectedAreas);
+console.log("[CR] TOPIC_MAP keys:", Object.keys(TOPIC_MAP).length);
+const reqIndex = buildReqIndex(geRequirements);
+const unmetAreas = getUnmetAreas(geRequirements, classesTaken);
+
+if (process.env.NODE_ENV !== "production") {
+  console.log("[berkeley-reqs] unmet areas:", Array.from(unmetAreas));
+}
+
+    // Precompute codes
+    // Precompute codes
+const normalized = (Array.isArray(classDetails) ? classDetails : []).map((c) => {
+  const dept =
+    c.dept || c.subject || c.department || c.subjectCode || null;
+  const num  =
+    c.number || c.courseNumber || c.catalogNumber || c.catalogNbr || null;
+  const fromFields = dept && num ? `${dept} ${num}` : null;
+
+  return {
+    ...c,
+    courseCode:
+      c.courseCode ||
+      extractCourseCode(c.className) ||
+      (fromFields ? extractCourseCode(fromFields) : null),
+    // NEW: coerce to numbers so filtering is reliable
+    difficulty: c.difficulty != null ? Number(c.difficulty) : undefined,
+    score:      c.score      != null ? Number(c.score)      : undefined,
+  };
+});
+
+console.log("[CR] normalized sample", normalized.slice(0, 3));
+
+
+
+
+    // Untaken base
+    const takenNames = new Set((classesTaken || []).map(c => c.className));
+    let base = normalized.filter(c => c?.className && !takenNames.has(c.className));
+    if (!base.length) return [];
+    console.log("[CR] base size", base.length);
+
+
+    // Topic filter
+  // Topic filter
+let pool = base;
+if (hasTopics) {
+  const topicKeys = resolveTopicKeys(selectedAreas, TOPIC_MAP);
+  const { namesSet, codesSet } = buildTopicSets(TOPIC_MAP, topicKeys);
+
+  // DEBUG (won't run in production builds)
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[topics] selectedAreas:", selectedAreas, "topicKeys:", topicKeys);
+    console.log("[topics] namesSet size:", namesSet.size, "codesSet size:", codesSet.size);
+
+    // Probe a handful of classes to see why they do/don't match
+    base.slice(0, 12).forEach((c, i) => {
+      const nFull = normalizeSpaces(c.className || "");
+      const nStrip = stripTitle(nFull);
+      const codeFromName = extractCourseCode(nFull);
+      const variants = [
+        ...generateCodeVariants(nFull),
+        ...generateCodeVariants(nStrip),
+        ...(c.courseCode ? generateCodeVariants(c.courseCode) : []),
+      ];
+      const nameHit = namesSet.has(nFull.toLowerCase()) || namesSet.has(nStrip.toLowerCase());
+      const codeHit = variants.find(v => codesSet.has(v));
+      console.log("[probe]", i, {
+        className: c.className,
+        courseCode: c.courseCode,
+        codeFromName,
+        variants,
+        nameHit,
+        codeHit,
+      });
+    });
+  }
+
+  pool = base.filter((c) => matchesTopic(c, namesSet, codesSet));
+
+  // TEMP: surface failures instead of silently falling back
+  if (!pool.length) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[topics] No matches for", topicKeys, "— not falling back so you can see it.");
+    }
+    return []; // comment this out later if you want the soft fallback again
+  }
+}
+// Hard filter for "Easiest"
+if (wantEasy) {
+  const before = pool.length;
+  pool = pool.filter(c => Number.isFinite(c.difficulty) && c.difficulty <= 2.9);
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[easy] filtered by difficulty<=2.9:", before, "->", pool.length);
+  }
+
+  // If you want to surface the failure (no loosening):
+  if (!pool.length) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[easy] No classes <= 2.9 difficulty.");
+    }
+    return []; // keep strict behavior; remove if you prefer soft fallback
+  }
+}
+
+
+    // day/time prefs
+// day/time prefs
+const friPenaltyFor = (cls) =>
+  wantFridayOff && getClassDays(cls).has("F") ? 0.6 : 0;
+
+const scored = pool.map((c) => {
+  const baseScore = wantEasy ? easeScore(c) : easeScore(c) * 0.5;
+
+  // GE bonus: prefer classes that fill unmet Berkeley areas
+  const classAreas =
+    reqIndex.classToAreas.get(normalizeSpaces(c.className)) || new Set();
+
+  const fillsUnmet = Array.from(classAreas).some((a) => unmetAreas.has(a));
+  const geBonus = fillsUnmet ? 0.9 : 0;
+
+  const score =
+    baseScore +
+    dayPrefBonus(c, wantMonWed, wantTueThu, wantFridayOff) +
+    timePrefBonus(c, wantEarly, wantLate) -
+    friPenaltyFor(c) +
+    geBonus;
+
+  return { ...c, __score: score };
+});
+
+// ---- selection helpers ----
+const canonArea = (s) => normalizeSpaces(String(s || '').split(':')[0]);
+
+const areasFor = (c) => {
+  const raw = reqIndex.classToAreas.get(normalizeSpaces(c.className)) || new Set();
+  return new Set(Array.from(raw).map(canonArea));
+};
+
+const unmetAreasCanon = new Set(Array.from(unmetAreas).map(canonArea));
+
+const normalizeProfessor = (p) =>
+  String(p || '').toLowerCase().replace(/\s+/g, ' ').trim();
+
+const courseKey = (c) => {
+  // prefer real course code; fall back to stripped title
+  return (
+    extractCourseCode(c.courseCode || '') ||
+    extractCourseCode(c.className || '') ||
+    extractCourseCode(stripTitle(c.className || '')) ||
+    normalizeSpaces(stripTitle(c.className || '')).toUpperCase()
+  );
+};
+
+const overlaps = (a, b) => {
+  const daysA = getClassDays(a);
+  const daysB = getClassDays(b);
+  // no shared days -> no conflict
+  const shareDay = [...daysA].some((d) => daysB.has(d));
+  if (!shareDay) return false;
+
+  const wA = getClassTimeWindows(a);
+  const wB = getClassTimeWindows(b);
+  if (!wA.length || !wB.length) return false; // unknown times -> allow
+
+  for (const x of wA) {
+    for (const y of wB) {
+      if (x.start < y.end && y.start < x.end) return true; // time window overlaps
+    }
   }
   return false;
-}
-// seeded RNG so refreshKey actually changes results
-function makeRng(seed) {
-  let s = seed || Date.now();
-  return () => {
-    s = (s * 1664525 + 1013904223) >>> 0;
-    return s / 2**32;
-  };
+};
+
+// ---- rank then rotate for variety ----
+scored.sort((a, b) => (b.__score || 0) - (a.__score || 0));
+const start = scored.length ? Math.abs(Number(refreshKey || 0)) % scored.length : 0;
+const candidates = scored.slice(start).concat(scored.slice(0, start));
+
+// ---- greedy pick with constraints ----
+const picked = [];
+const seenCourses = new Set();
+const seenProfs = new Set();
+const coveredAreas = new Set();
+
+const canAdd = (item) => {
+  const cKey = courseKey(item);
+  if (seenCourses.has(cKey)) return false;
+
+  const pKey = normalizeProfessor(item.professor);
+  if (pKey && seenProfs.has(pKey)) return false;
+
+  if (picked.some((p) => overlaps(p, item))) return false;
+
+  return true;
+};
+
+const accept = (item) => {
+  picked.push(item);
+  seenCourses.add(courseKey(item));
+  const pKey = normalizeProfessor(item.professor);
+  if (pKey) seenProfs.add(pKey);
+  areasFor(item).forEach((a) => coveredAreas.add(a));
+};
+
+// Pass 1: only items that add a *new unmet* Berkeley area
+for (const c of candidates) {
+  if (picked.length >= numClasses) break;
+  if (!canAdd(c)) continue;
+  const aSet = areasFor(c);
+  const addsUnmet = Array.from(aSet).some((a) => unmetAreasCanon.has(a) && !coveredAreas.has(a));
+  if (addsUnmet) accept(c);
 }
 
-// weighted sample without replacement
-function weightedSampleWithoutReplacement(items, weights, k, rng) {
-  const picked = [];
-  const arr = items.slice();
-  const w = weights.slice();
-  for (let t = 0; t < k && arr.length > 0; t++) {
-    const total = w.reduce((a, b) => a + b, 0) || 1;
-    let r = rng() * total;
-    let idx = 0;
-    while (idx < w.length && r > w[idx]) { r -= w[idx]; idx++; }
-    if (idx >= arr.length) idx = arr.length - 1;
-    picked.push(arr[idx]);
-    arr.splice(idx, 1);
-    w.splice(idx, 1);
+// Pass 2: items that add any *new* area (even if not unmet)
+if (picked.length < numClasses) {
+  for (const c of candidates) {
+    if (picked.length >= numClasses) break;
+    if (!canAdd(c)) continue;
+    const aSet = areasFor(c);
+    const addsAny = Array.from(aSet).some((a) => !coveredAreas.has(a));
+    if (addsAny) accept(c);
   }
-  return picked;
 }
-const isC1 = (a) => /(^|\s)C1\b/i.test(a) || /Arts/i.test(a) && /C1/i.test(a);
-const isC2 = (a) => /(^|\s)C2\b/i.test(a) || /Humanities/i.test(a) && /C2/i.test(a);
-const isD  = (a) => /^D\b|D\.\s|Social Sciences/i.test(a);
 
+// Pass 3: fill remaining slots (still no dup course/prof or time conflicts)
+if (picked.length < numClasses) {
+  for (const c of candidates) {
+    if (picked.length >= numClasses) break;
+    if (canAdd(c)) accept(c);
+  }
+}
 
+return picked.slice(0, numClasses).map((cls) => ({ ...cls }));
+  }
 
-
-// How many D's the student still needs. If your rule differs, tweak here.
-// Non-mutating wrapper around your existing shuffle()
-
-
-// ==========================
-// RECOMMENDATION ALGORITHM (Grok 4 Super Heavy)
-// ==========================
-
-
-
-
-return (
-  <>
-  <div>
-    {/* Title: add enough margin to clear the header */}
-   <div
-  style={{
-    margin: isMobile ? "90px auto 12px auto" : "110px auto 12px auto",
-    width: "100%",
-    textAlign: "center",
-    padding: isMobile ? "0 16px" : 0,
-    boxSizing: "border-box",
-  }}
->
-  <h1
-    style={{
-      fontSize: isMobile ? "2.2rem" : "2.8rem",
-      fontWeight: 700,
-      color: "#1F2A37",
-      marginBottom: 8,
-       marginTop: isMobile ? 100 : 0, // ✅ mobile-only push-down
-    }}
-  >
-    {pageTitle}     
-  </h1>
-  <p
-    style={{
-      textAlign: "center",
-      color: "#6B7280",
-      fontSize: "1.1rem",
-      maxWidth: 640,
-      margin: "0 auto 32px auto",
-    }}
-  >
-    Get personalized course suggestions based on your interests, goals, and academic progress
-  </p>
-</div>
-
-
-  <>
-   {/* Search Bar Container */}
-<div
-  style={{
-    backgroundColor: "#fff",
-    padding: "20px 24px",
-    borderRadius: 20,
-    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
-    margin: isMobile ? "0 auto 32px auto" : "32px auto 0 auto",
-    width: isMobile ? "92vw" : 1200,
-    maxWidth: isMobile ? "92vw" : "100%",
-    position: "relative",
-    userSelect: "none",
-    boxSizing: "border-box",
-    display: "flex",
-    justifyContent: "center",
-  }}
->
-  <input
-    type="text"
-    placeholder="Search for a class you have already taken, or plan to take."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    aria-label="Search for classes"
-    style={{
-      width: isMobile ? "88vw" : 1150,
-      padding: isMobile ? "10px 10px 10px 38px" : "12px 16px 12px 48px",
-      fontSize: isMobile ? "0.85rem" : "1rem",
-      borderRadius: 20,
-      border: "1.8px solid #bbb",
-      boxShadow: "0 2px 5px rgba(58, 96, 255, 0.15)",
-      outline: "none",
-      userSelect: "text",
-      boxSizing: "border-box",
-    }}
-    onFocus={(e) => (e.target.style.borderColor = brandBlue)}
-    onBlur={(e) => (e.target.style.borderColor = "#bbb")}
-  />
-
-  <FiSearch
-    style={{
-      position: "absolute",
-      left: isMobile ? 32 : 35,
-      top: "50%",
-      transform: "translateY(-50%)",
-      color: "#999",
-      pointerEvents: "none",
-      fontSize: isMobile ? 18 : 20,
-      userSelect: "none",
-    }}
-    aria-hidden="true"
-  />
-
-  {Array.isArray(searchResults) && searchResults.length > 0 && (
-    <ul
-      className="ge-search-results"
-      style={{
-        listStyle: "none",
-        margin: 0,
-        padding: 8,
-        border: "1.8px solid #bbb",
-        borderTop: "none",
-        maxHeight: 220,
-        overflowY: "auto",
-        backgroundColor: "#fff",
-        position: "absolute",
-        width: "100%",
-        zIndex: 10,
-        borderRadius: "0 0 20px 20px",
-        boxShadow: "0 8px 16px rgba(58, 96, 255, 0.2)",
-        top: "calc(100% + 4px)",
-        left: 0,
-        userSelect: "none",
-      }}
-    >
-      {searchResults.map((obj) => (
-        <li
-          key={obj.className}
+  // ==========================
+  // RENDER
+  // ==========================
+  return (
+    <>
+      <div>
+        {/* Title */}
+        <div
           style={{
-            padding: "10px 12px",
-            cursor: "pointer",
-            borderBottom: "1px solid #eee",
-            fontWeight: "600",
-            color: "#222",
-            userSelect: "none",
-          }}
-          onClick={() => handleAddClass(obj.className, obj.area)}
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          <strong>{obj.className}</strong>{" "}
-          <span style={{ color: "#666" }}>({obj.area})</span>
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
-
-{/* Classes Taken Container */}
-<div
-  style={{
-    width: isMobile ? "92vw" : 1200,
-    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
-    backgroundColor: "#fff",
-    padding: "20px 24px",
-    borderRadius: 20,
-    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
-    boxSizing: "border-box",
-    userSelect: "text",
-  }}
->
-  <h2 className="ge-section-title">Classes Taken</h2>
-
-  <ul
-    className="ge-classes-taken-list"
-    style={{
-      padding: 0,
-      margin: 0,
-      listStyle: "none",
-      fontSize: "1rem",
-      lineHeight: 1.4,
-      color: "#222",
-    }}
-  >
-    {classesTaken.length === 0 ? (
-      <li style={{ color: "#aaa", fontStyle: "italic" }}>No classes taken yet.</li>
-    ) : (
-      classesTaken.map((obj) => (
-        <li
-          key={obj.className + obj.area}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-            padding: "6px 0",
-            borderBottom: "1px solid #eee",
+            margin: isMobile ? "90px auto 12px auto" : "110px auto 12px auto",
+            width: "100%",
+            textAlign: "center",
+            padding: isMobile ? "0 16px" : 0,
+            boxSizing: "border-box",
           }}
         >
-          <div>
-            <strong>{obj.className}</strong>{" "}
-            <span style={{ color: "#555" }}>({obj.area})</span>
-          </div>
-          <button
-           onClick={() => handleRemoveClass(obj.className, obj.area)}
+          <h1
             style={{
-              backgroundColor: "#d32f2f",
-              color: "#fff",
-              border: "none",
-              borderRadius: 6,
-              padding: "6px 14px",
-              cursor: "pointer",
-              fontWeight: 600,
-              transition: "background-color 0.3s ease",
+              fontSize: isMobile ? "2.2rem" : "2.8rem",
+              fontWeight: 700,
+              color: "#1F2A37",
+              marginBottom: 8,
+              marginTop: isMobile ? 100 : 0,
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a12121")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
-            type="button"
-            aria-label={`Delete ${obj.className} from classes taken`}
           >
-            Delete
-          </button>
-        </li>
-      ))
-    )}
-  </ul>
-</div>
+            {pageTitle}
+          </h1>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#6B7280",
+              fontSize: "1.1rem",
+              maxWidth: 640,
+              margin: "0 auto 32px auto",
+            }}
+          >
+            Get personalized course suggestions based on your interests, goals, and academic progress
+          </p>
+        </div>
 
-      
+        <>
+          {/* Search Bar */}
+          <div
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px 24px",
+              borderRadius: 20,
+              boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+              margin: isMobile ? "0 auto 32px auto" : "32px auto 0 auto",
+              width: isMobile ? "92vw" : 1200,
+              maxWidth: isMobile ? "92vw" : "100%",
+              position: "relative",
+              userSelect: "none",
+              boxSizing: "border-box",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Search for a class you have already taken, or plan to take."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label="Search for classes"
+              style={{
+                width: isMobile ? "88vw" : 1150,
+                padding: isMobile ? "10px 10px 10px 38px" : "12px 16px 12px 48px",
+                fontSize: isMobile ? "0.85rem" : "1rem",
+                borderRadius: 20,
+                border: "1.8px solid #bbb",
+                boxShadow: "0 2px 5px rgba(58, 96, 255, 0.15)",
+                outline: "none",
+                userSelect: "text",
+                boxSizing: "border-box",
+              }}
+              onFocus={(e) => (e.target.style.borderColor = brandBlue)}
+              onBlur={(e) => (e.target.style.borderColor = "#bbb")}
+            />
 
+            <FiSearch
+              style={{
+                position: "absolute",
+                left: isMobile ? 32 : 35,
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#999",
+                pointerEvents: "none",
+                fontSize: isMobile ? 18 : 20,
+                userSelect: "none",
+              }}
+              aria-hidden="true"
+            />
 
+            {Array.isArray(searchResults) && searchResults.length > 0 && (
+              <ul
+                className="ge-search-results"
+                style={{
+                  listStyle: "none",
+                  margin: 0,
+                  padding: 8,
+                  border: "1.8px solid #bbb",
+                  borderTop: "none",
+                  maxHeight: 220,
+                  overflowY: "auto",
+                  backgroundColor: "#fff",
+                  position: "absolute",
+                  width: "100%",
+                  zIndex: 10,
+                  borderRadius: "0 0 20px 20px",
+                  boxShadow: "0 8px 16px rgba(58, 96, 255, 0.2)",
+                  top: "calc(100% + 4px)",
+                  left: 0,
+                  userSelect: "none",
+                }}
+              >
+                {searchResults.map((obj) => (
+                  <li
+                    key={obj.className}
+                    style={{
+                      padding: "10px 12px",
+                      cursor: "pointer",
+                      borderBottom: "1px solid #eee",
+                      fontWeight: "600",
+                      color: "#222",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleAddClass(obj.className, obj.area)}
+                    onMouseDown={(e) => e.preventDefault()}
+                  >
+                    <strong>{obj.className}</strong>{" "}
+                    <span style={{ color: "#666" }}>({obj.area})</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
+          {/* Classes Taken */}
+          <div
+            style={{
+              width: isMobile ? "92vw" : 1200,
+              margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+              backgroundColor: "#fff",
+              padding: "20px 24px",
+              borderRadius: 20,
+              boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+              boxSizing: "border-box",
+              userSelect: "text",
+            }}
+          >
+            <h2 className="ge-section-title">Classes Taken</h2>
 
-
-
-
-
-
-
-<div
-  style={{
-    width: isMobile ? "92vw" : 1200,
-    maxWidth: "92vw",
-    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
-    userSelect: "text",
-    textAlign: "left",
-    backgroundColor: "#fff",
-    padding: "20px 24px",
-    borderRadius: 20,
-    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
-    boxSizing: "border-box",
-  }}
->
-
-<h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
-  <HiOutlineAcademicCap size={24} color="#7589F3" />
-  Academic Areas
-</h2>
-
-
-  <p
-    style={{
-      color: "#555",
-      marginBottom: 24,
-      fontSize: "1em",
-      maxWidth: 600,
-    }}
-  >
-    Select the subjects you’re interested in
-  </p>
-
-  <div
-    style={{
-      display: "grid",
-    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(6, 1fr)",
-      gap: 16,
-    }}
-  >
-    {areaRows.flat().map((area) => (
-      <div
-        key={area.id}
-        onClick={() => toggle(area.id, "area")}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          padding: "18px 8px",
-          borderRadius: 12,
-          cursor: "pointer",
-          border: selectedAreas.includes(area.id)
-            ? "2px solid #1976d2"
-            : "1.5px solid #DADDE7",
-          background: selectedAreas.includes(area.id) ? "rgba(117, 137, 243, 0.15)" // brandBlue with 15% alpha
-  : "#fff",
-          boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
-          transition: "all 0.2s ease",
-          fontSize: "1em",
-          fontWeight: 500,
-          userSelect: "none",
-        }}
-      >
-        <div style={{ fontSize: "1.5em", marginBottom: 6 }}>{area.icon}</div>
-        <div>{area.label}</div>
-      </div>
-    ))}
-  </div>
-</div>
-
-
-<div
-  style={{
-    width: isMobile ? "92vw" : 1200,
-    maxWidth: "92vw",
-    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
-    userSelect: "text",
-    textAlign: "left",
-    backgroundColor: "#fff",
-    padding: "20px 24px",
-    borderRadius: 20,
-    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
-    boxSizing: "border-box",
-  }}
->
-
-<h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
-  <GoGoal size={22} color="#7589F3" />
-  Student Goals
-</h2>
-
-
-
-  <div
-    style={{
-      display: "grid",
-    gridTemplateColumns: isMobile ? "repeat(1, 1fr)" : "repeat(4, 1fr)",
-      gap: 20,
-      marginTop: 20,
-    }}
-  >
-    {STUDENT_GOALS.map((goal) => (
-      <div
-        key={goal.id}
-        onClick={() => toggle(goal.id, "goal")}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          padding: "16px 20px",
-          borderRadius: 12,
-          cursor: "pointer",
-          border: selectedGoals.includes(goal.id)
-            ? "2px solid #1976d2"
-            : "1.5px solid #DADDE7",
-         background: selectedGoals.includes(goal.id)
-  ? "rgba(117, 137, 243, 0.15)" // brandBlue with 15% alpha
-  : "#fff",
-
-          boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
-          transition: "all 0.2s ease",
-          fontSize: "1em",
-          fontWeight: 500,
-          userSelect: "none",
-          whiteSpace: "nowrap",
-        }}
-      >
-        <span style={{ fontSize: "1.4em" }}>{goal.icon}</span>
-        <span>{goal.label}</span>
-      </div>
-    ))}
-  </div>
-</div>
-
-
-
-
-<div
-  style={{
-    background: "#fff",
-    border: "1.5px solid #DADDE7",
-    borderRadius: 16,
-    padding: "24px 20px",
-    width: isMobile ? "92vw" : 1200,
-    maxWidth: "92vw",
-    margin: isMobile ? "0 auto 32px auto" : "0 auto",
-    marginTop: 40,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
-    fontFamily: "'Inter', sans-serif",
-    boxSizing: "border-box",
-  }}
->
-
-  <h3
-    style={{
-      fontSize: "1.1em",
-      fontWeight: 600,
-      marginBottom: 12,
-      color: "#1A1A1A",
-    }}
-  >
-    🎯 Recommendation Count
-  </h3>
-
-  <p
-    style={{
-      marginBottom: 12,
-      fontSize: "0.95em",
-      fontWeight: 500,
-      color: "#4A4A4A",
-    }}
-  >
-    Number of classes: <span style={{ color: "#1AA179", fontWeight: 600 }}>{dropdownValue}</span>
-  </p>
-
-  <input
-    type="range"
-    min={1}
-    max={6}
-    value={dropdownValue}
-    onChange={(e) => setDropdownValue(Number(e.target.value))}
-    style={{
-      width: "100%",
-      accentColor: "#F9C645",
-      cursor: "pointer",
-      marginBottom: 18,
-    }}
-  />
-
-<button
-  type="button"
-  onClick={handleRefresh} // Always refresh recommendations
-  style={{
-    width: "100%",
-    padding: "12px 0",
-    backgroundColor: "#1AA179",
-    color: "#fff",
-    border: "none",
-    borderRadius: 10,
-    fontSize: "1.05em",
-    fontWeight: 600,
-    cursor: "pointer",
-    transition: "background-color 0.3s ease",
-  }}
->
-  Get Recommendations
-</button>
-
-</div>
-
-
-  </>
-<div
-  style={{
-    paddingBottom: isMobile ? 48 : 0, // adds mobile-only bottom spacing
-  }}
->
-<div
-  style={{
-    width: isMobile ? "92vw" : 1200,
-    maxWidth: "92vw",
-    margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    padding: isMobile ? "20px 18px" : "28px 32px",
-    boxShadow: "0 6px 18px rgba(58, 96, 255, 0.08)",
-    boxSizing: "border-box",
-    textAlign: "center",
-  }}
->
-
-  {/* Always show title and icon */}
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: 10,
-      justifyContent: "center",
-      marginBottom: 20,
-    }}
-  >
-    <PiMedal size={22} color="#EDC239" />
-    <h3 style={{ fontSize: "1.12rem", fontWeight: 700, margin: 0 }}>
-      Personalized Recommendations
-    </h3>
-  </div>
-
-  {/* Conditional content: show either info or table */}
-  {recommendations.length === 0 ? (
-    <>
-      {/* Centered Icon */}
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-        <BsStars size={72} color="#7589F3" />
-      </div>
-
-      {/* Headline + paragraph */}
-      <div style={{ maxWidth: 500, margin: "0 auto", marginBottom: 24 }}>
-        <h4 style={{ fontSize: "1.05rem", fontWeight: 600, marginBottom: 8, color: "#222" }}>
-          Ready to Find Your Perfect Classes?
-        </h4>
-        <p style={{ fontSize: "0.95rem", color: "#444", margin: 0 }}>
-          Select your academic interests and goals to receive personalized course recommendations tailored to your needs and preferences.
-        </p>
-      </div>
-
-      {/* Feature bullets */}
-      <ul
-        style={{
-          listStyle: "none",
-          paddingLeft: 0,
-          margin: 0,
-          fontSize: "0.92rem",
-          color: "#444",
-          lineHeight: 1.7,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-           gap: isMobile ? 6 : 8,
-        }}
-      >
-        <li>⚡ Instant recommendations</li>
-        <li>⭐ Based on professor ratings</li>
-        <li>🎯 Aligned to your graduation path</li>
-      </ul>
-    </>
-  ) : (
-    <>
-      {/* Recommendations Table */}
-      <div style={{ marginTop: 30 }}>
-        <h3
-          style={{
-            textAlign: "left",
-            fontWeight: 600,
-            marginBottom: 18,
-            fontSize: "1.32em",
-          }}
-        >
-          Recommended Classes
-        </h3>
-<div
-  style={{
-    width: "100%",
-    overflowX: isMobile ? "auto" : "visible", // horizontal scroll only on mobile
-  }}
->
-  <table
-    style={{
-      minWidth: isMobile ? 600 : "100%", // ensures table doesn't squish too much
-      width: "100%",
-      borderCollapse: "separate",
-      borderSpacing: 0,
-      background: "#fff",
-      border: "1.5px solid #E0E0E0",
-      borderRadius: 10,
-      overflow: "hidden",
-      fontSize: "0.98rem",
-      color: "#1A1A1A",
-    }}
-  >
-
-  <thead style={{ backgroundColor: "#F5F7FA" }}>
-    <tr>
-      <th style={thStyle}>Class</th>
-      <th style={thStyle}>Professor</th>
-      <th style={thStyle}>RMP Score</th>
-      <th style={thStyle}>Difficulty</th>
-      {!isMobile && <th style={thStyle}>Schedule</th>}
-      <th style={thStyle}>Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    {recommendations.map((cls, idx) => (
-      <tr key={cls.className + cls.professor + idx} style={{ borderBottom: "1px solid #EAEAEA" }}>
-        <td style={tdStyle}>{cls.className}</td>
-        <td style={tdStyle}>{cls.professor}</td>
-        <td style={tdStyle}>{cls.score !== undefined ? cls.score : "N/A"}</td>
-        <td style={tdStyle}>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
-        {!isMobile && (
-          <td style={tdStyle}>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {cls.schedule && cls.schedule.length > 0
-                ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
-                : <li style={{ color: "#888" }}>Not listed</li>}
-            </ul>
-          </td>
-        )}
-        <td style={tdStyle}>
-          {cls.link && cls.link !== "N/A" ? (
-            <a
-              href={cls.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#1976d2", fontWeight: 500 }}
+            <ul
+              className="ge-classes-taken-list"
+              style={{
+                padding: 0,
+                margin: 0,
+                listStyle: "none",
+                fontSize: "1rem",
+                lineHeight: 1.4,
+                color: "#222",
+              }}
             >
-              RMP
-            </a>
-          ) : (
-            "N/A"
-          )}
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-</div>
-</div>
-</> 
-)}
-</div>
-</div>
-</div>
-</>
-  )}
+              {classesTaken.length === 0 ? (
+                <li style={{ color: "#aaa", fontStyle: "italic" }}>No classes taken yet.</li>
+              ) : (
+                classesTaken.map((obj) => (
+                  <li
+                    key={obj.className + obj.area}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                      padding: "6px 0",
+                      borderBottom: "1px solid #eee",
+                    }}
+                  >
+                    <div>
+                      <strong>{obj.className}</strong>{" "}
+                      <span style={{ color: "#555" }}>({obj.area})</span>
+                    </div>
+                    <button
+                      onClick={() => handleRemoveClass(obj.className, obj.area)}
+                      style={{
+                        backgroundColor: "#d32f2f",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 6,
+                        padding: "6px 14px",
+                        cursor: "pointer",
+                        fontWeight: 600,
+                        transition: "background-color 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a12121")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d32f2f")}
+                      type="button"
+                      aria-label={`Delete ${obj.className} from classes taken`}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+
+          {/* Academic Areas */}
+          <div
+            style={{
+              width: isMobile ? "92vw" : 1200,
+              maxWidth: "92vw",
+              margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+              userSelect: "text",
+              textAlign: "left",
+              backgroundColor: "#fff",
+              padding: "20px 24px",
+              borderRadius: 20,
+              boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+              boxSizing: "border-box",
+            }}
+          >
+            <h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <HiOutlineAcademicCap size={24} color="#7589F3" />
+              Academic Areas
+            </h2>
+
+            <p
+              style={{
+                color: "#555",
+                marginBottom: 24,
+                fontSize: "1em",
+                maxWidth: 600,
+              }}
+            >
+              Select the subjects you’re interested in
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(6, 1fr)",
+                gap: 16,
+              }}
+            >
+              {areaRows.flat().map((area) => (
+                <div
+                  key={area.id}
+                  onClick={() => toggle(area.id, "area")}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    padding: "18px 8px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    border: selectedAreas.includes(area.id)
+                      ? "2px solid #1976d2"
+                      : "1.5px solid #DADDE7",
+                    background: selectedAreas.includes(area.id)
+                      ? "rgba(117, 137, 243, 0.15)"
+                      : "#fff",
+                    boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
+                    transition: "all 0.2s ease",
+                    fontSize: "1em",
+                    fontWeight: 500,
+                    userSelect: "none",
+                  }}
+                >
+                  {/* Using label emoji only; no area.icon to avoid undefined */}
+                  <div style={{ fontSize: "1.1em", marginBottom: 6 }} />
+                  <div>{area.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Student Goals */}
+          <div
+            style={{
+              width: isMobile ? "92vw" : 1200,
+              maxWidth: "92vw",
+              margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+              userSelect: "text",
+              textAlign: "left",
+              backgroundColor: "#fff",
+              padding: "20px 24px",
+              borderRadius: 20,
+              boxShadow: "0 6px 18px rgba(58, 96, 255, 0.1)",
+              boxSizing: "border-box",
+            }}
+          >
+            <h2 style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <GoGoal size={22} color="#7589F3" />
+              Student Goals
+            </h2>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "repeat(1, 1fr)" : "repeat(4, 1fr)",
+                gap: 20,
+                marginTop: 20,
+              }}
+            >
+              {[
+                { id: "easy", label: "Easiest Classes ✅" },
+                { id: "fridaysoff", label: "Fridays Off 🗓️" },
+                { id: "MonWed", label: "Monday/Wednesday ⏱️" },
+                { id: "TueThu", label: "Tuesday/Thursday ⏱️" },
+                { id: "earlyclasses", label: "Early Classes 🌅" },
+                { id: "lateclasses", label: "Late Classes 🌙" },
+              ].map((goal) => (
+                <div
+                  key={goal.id}
+                  onClick={() => toggle(goal.id, "goal")}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    padding: "16px 20px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    border: selectedGoals.includes(goal.id)
+                      ? "2px solid #1976d2"
+                      : "1.5px solid #DADDE7",
+                    background: selectedGoals.includes(goal.id)
+                      ? "rgba(117, 137, 243, 0.15)"
+                      : "#fff",
+                    boxShadow: "0 1px 5px rgba(0,0,0,0.04)",
+                    transition: "all 0.2s ease",
+                    fontSize: "1em",
+                    fontWeight: 500,
+                    userSelect: "none",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <span>{goal.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div
+            style={{
+              background: "#fff",
+              border: "1.5px solid #DADDE7",
+              borderRadius: 16,
+              padding: "24px 20px",
+              width: isMobile ? "92vw" : 1200,
+              maxWidth: "92vw",
+              margin: isMobile ? "0 auto 32px auto" : "0 auto",
+              marginTop: 40,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
+              fontFamily: "'Inter', sans-serif",
+              boxSizing: "border-box",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: "1.1em",
+                fontWeight: 600,
+                marginBottom: 12,
+                color: "#1A1A1A",
+              }}
+            >
+              🎯 Recommendation Count
+            </h3>
+
+            <p
+              style={{
+                marginBottom: 12,
+                fontSize: "0.95em",
+                fontWeight: 500,
+                color: "#4A4A4A",
+              }}
+            >
+              Number of classes:{" "}
+              <span style={{ color: "#1AA179", fontWeight: 600 }}>{dropdownValue}</span>
+            </p>
+
+            <input
+              type="range"
+              min={1}
+              max={6}
+              value={dropdownValue}
+              onChange={(e) => setDropdownValue(Number(e.target.value))}
+              style={{
+                width: "100%",
+                accentColor: "#F9C645",
+                cursor: "pointer",
+                marginBottom: 18,
+              }}
+            />
+
+            <button
+              type="button"
+              onClick={handleRefresh}
+              style={{
+                width: "100%",
+                padding: "12px 0",
+                backgroundColor: "#1AA179",
+                color: "#fff",
+                border: "none",
+                borderRadius: 10,
+                fontSize: "1.05em",
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              Get Recommendations
+            </button>
+          </div>
+        </>
+
+        {/* Recommendations */}
+        <div style={{ paddingBottom: isMobile ? 48 : 0 }}>
+          <div
+            style={{
+              width: isMobile ? "92vw" : 1200,
+              maxWidth: "92vw",
+              margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+              backgroundColor: "#fff",
+              borderRadius: 16,
+              padding: isMobile ? "20px 18px" : "28px 32px",
+              boxShadow: "0 6px 18px rgba(58, 96, 255, 0.08)",
+              boxSizing: "border-box",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                justifyContent: "center",
+                marginBottom: 20,
+              }}
+            >
+              <PiMedal size={22} color="#EDC239" />
+              <h3 style={{ fontSize: "1.12rem", fontWeight: 700, margin: 0 }}>
+                Personalized Recommendations
+              </h3>
+            </div>
+
+            {recommendations.length === 0 ? (
+              <>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+                  <BsStars size={72} color="#7589F3" />
+                </div>
+                <div style={{ maxWidth: 500, margin: "0 auto", marginBottom: 24 }}>
+                  <h4 style={{ fontSize: "1.05rem", fontWeight: 600, marginBottom: 8, color: "#222" }}>
+                    Ready to Find Your Perfect Classes?
+                  </h4>
+                  <p style={{ fontSize: "0.95rem", color: "#444", margin: 0 }}>
+                    Select your academic interests and goals to receive personalized course
+                    recommendations tailored to your needs and preferences.
+                  </p>
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    paddingLeft: 0,
+                    margin: 0,
+                    fontSize: "0.92rem",
+                    color: "#444",
+                    lineHeight: 1.7,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: isMobile ? 6 : 8,
+                  }}
+                >
+                  <li>⚡ Instant recommendations</li>
+                  <li>⭐ Based on professor ratings</li>
+                  <li>🎯 Aligned to your graduation path</li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <div style={{ marginTop: 30, width: "100%", textAlign: "left" }}>
+                  <h3 style={{ fontWeight: 600, marginBottom: 18, fontSize: "1.32em" }}>
+                    Recommended Classes
+                  </h3>
+                  <div style={{ width: "100%", overflowX: isMobile ? "auto" : "visible" }}>
+                    <table
+                      style={{
+                        minWidth: isMobile ? 600 : "100%",
+                        width: "100%",
+                        borderCollapse: "separate",
+                        borderSpacing: 0,
+                        background: "#fff",
+                        border: "1.5px solid #E0E0E0",
+                        borderRadius: 10,
+                        overflow: "hidden",
+                        fontSize: "0.98rem",
+                        color: "#1A1A1A",
+                      }}
+                    >
+                      <thead style={{ backgroundColor: "#F5F7FA" }}>
+                        <tr>
+                          <th style={thStyle}>Class</th>
+                          <th style={thStyle}>Professor</th>
+                          <th style={thStyle}>RMP Score</th>
+                          <th style={thStyle}>Difficulty</th>
+                          {!isMobile && <th style={thStyle}>Schedule</th>}
+                          <th style={thStyle}>Link</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {recommendations.map((cls, idx) => (
+                          <tr key={cls.className + cls.professor + idx} style={{ borderBottom: "1px solid #EAEAEA" }}>
+                            <td style={tdStyle}>{cls.className}</td>
+                            <td style={tdStyle}>{cls.professor}</td>
+                            <td style={tdStyle}>{cls.score !== undefined ? cls.score : "N/A"}</td>
+                            <td style={tdStyle}>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
+                            {!isMobile && (
+                              <td style={tdStyle}>
+                                <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+                                  {cls.schedule && cls.schedule.length > 0
+                                    ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
+                                    : <li style={{ color: "#888" }}>Not listed</li>}
+                                </ul>
+                              </td>
+                            )}
+                            <td style={tdStyle}>
+                              {cls.link && cls.link !== "N/A" ? (
+                                <a
+                                  href={cls.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{ color: "#1976d2", fontWeight: 500 }}
+                                >
+                                  RMP
+                                </a>
+                              ) : (
+                                "N/A"
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

@@ -463,8 +463,6 @@ import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommend
       onAddClass={onAddClass}
       onDeleteClass={onDeleteClass}
       classesTaken={classesTaken}
-      c1c2Fulfilled={c1c2Fulfilled}
-      areaCWarning={areaCWarning}
       search={search}
       setSearch={setSearch}
      
@@ -477,7 +475,25 @@ import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommend
 <Route
   path="/berkeleyrecommend"
   element={
-    <ClassRecommendationPage
+    <BerkeleyClassRecommendationPage
+      geRequirements={BerkeleyGeRequirements}
+      classDetails={BerkeleyClassDetails}
+      pageTitle="Smart Class Recommendations — Berkeley"
+    />
+  }
+/><Route
+  path="/berkeleyrecommend"
+  element={
+    <BerkeleyClassRecommendationPage
+      geRequirements={BerkeleyGeRequirements}
+      classDetails={BerkeleyClassDetails}
+      pageTitle="Smart Class Recommendations — Berkeley"
+    />
+  }
+/><Route
+  path="/berkeleyrecommend"
+  element={
+    <BerkeleyClassRecommendationPage
       geRequirements={BerkeleyGeRequirements}
       classDetails={BerkeleyClassDetails}
       pageTitle="Smart Class Recommendations — Berkeley"
