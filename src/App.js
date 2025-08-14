@@ -32,6 +32,10 @@ import BerkeleyGETracker from "./pages/BerekeleyGETracker.jsx";
  import BerkeleyGeRequirements from './data/BerkeleygeRequirements.json';
 import BerkeleyClassDetails from './data/BerekelyclassDetails.json';
 import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommendation.jsx";
+import Footer from "./components/Footer.jsx";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
+
   const areasToShow = [
     "A1 Oral Communication",
     "A2 Written Communication I",
@@ -333,52 +337,52 @@ import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommend
     <button onClick={() => setShowLogin(true)}>Test Open Login</button>
   </div>
 
-    return (
-    <>
-  <Header
-    isAuthenticated={isAuthenticated}
-    onLogout={handleLogout}
-    onShowSignUp={() => setShowSignUp(true)}
-    onShowLogin={() => setShowLogin(true)}
-  />
-  {showSignUp && (
-    <SignUpModal
-      onClose={() => setShowSignUp(false)}
-      onSignUp={handleSignUp}
-      onShowLogin={email => {
-        setShowSignUp(false);
-        setPrefillEmail(email || "");
-        setShowLogin(true);
-      }}
+return (
+  <>
+    <Header
+      isAuthenticated={isAuthenticated}
+      onLogout={handleLogout}
+      onShowSignUp={() => setShowSignUp(true)}
+      onShowLogin={() => setShowLogin(true)}
     />
-  )}
-  {showLogin && (
-    <LoginModal
-      onLogin={handleLogin}
-      onClose={() => setShowLogin(false)}
-      prefillEmail={prefillEmail}
-      onShowSignUp={() => {
-        setShowLogin(false);
-        setShowSignUp(true);
-      }}
-    />
-  )}
 
-  {showForgotPassword && (
-    <ForgotPasswordPage
-      onBackToLogin={() => {
-        setShowForgotPassword(false);
-        setShowLogin(true);
-      }}
-    />
-  )}
+    {/* Modals */}
+    {showSignUp && (
+      <SignUpModal
+        onClose={() => setShowSignUp(false)}
+        onSignUp={handleSignUp}
+        onShowLogin={email => {
+          setShowSignUp(false);
+          setPrefillEmail(email || "");
+          setShowLogin(true);
+        }}
+      />
+    )}
+    {showLogin && (
+      <LoginModal
+        onLogin={handleLogin}
+        onClose={() => setShowLogin(false)}
+        prefillEmail={prefillEmail}
+        onShowSignUp={() => {
+          setShowLogin(false);
+          setShowSignUp(true);
+        }}
+      />
+    )}
+    {showForgotPassword && (
+      <ForgotPasswordPage
+        onBackToLogin={() => {
+          setShowForgotPassword(false);
+          setShowLogin(true);
+        }}
+      />
+    )}
 
-
-
-
-    
+    {/* ALL routes go inside this one <Routes> */}
     <Routes>
       <Route path="/" element={<Home search={search} setSearch={setSearch} />} />
+
+      {/* SJSU */}
       <Route
         path="/sjsu"
         element={
@@ -394,117 +398,114 @@ import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommend
             setSearch={setSearch}
             searchResults={searchResults}
             handleAddClass={handleAddClass}
-            university={"sjsu"}
+            university="sjsu"
           />
         }
       />
       <Route
-    path="/sanjosestate"
-    element={
-      <GETracker
-        geRequirements={geRequirements}
-        classDetails={classDetails}
-        onAddClass={onAddClass}
-        onDeleteClass={onDeleteClass}
-        classesTaken={classesTaken}
-        c1c2Fulfilled={c1c2Fulfilled}
-        areaCWarning={areaCWarning}
-        search={search}
-        setSearch={setSearch}
-        searchResults={searchResults}
-        handleAddClass={handleAddClass}
-        university={"sjsu"}
+        path="/sanjosestate"
+        element={
+          <GETracker
+            geRequirements={geRequirements}
+            classDetails={classDetails}
+            onAddClass={onAddClass}
+            onDeleteClass={onDeleteClass}
+            classesTaken={classesTaken}
+            c1c2Fulfilled={c1c2Fulfilled}
+            areaCWarning={areaCWarning}
+            search={search}
+            setSearch={setSearch}
+            searchResults={searchResults}
+            handleAddClass={handleAddClass}
+            university="sjsu"
+          />
+        }
       />
-    }
-  />
-  <Route
-    path="/chico"
-    element={
-      <ChicoGETracker
+
+      {/* Chico */}
+      <Route
+        path="/chico"
+        element={
+          <ChicoGETracker
             geRequirements={chicoGeRequirements}
             classDetails={chicoClassDetails}
             onAddClass={onAddClass}
-        onDeleteClass={onDeleteClass}
-        classesTaken={classesTaken}
-        c1c2Fulfilled={c1c2Fulfilled}
-        areaCWarning={areaCWarning}
-        search={search}
-        setSearch={setSearch}
-        searchResults={searchResults}
-        handleAddClass={handleAddClass}
+            onDeleteClass={onDeleteClass}
+            classesTaken={classesTaken}
+            c1c2Fulfilled={c1c2Fulfilled}
+            areaCWarning={areaCWarning}
+            search={search}
+            setSearch={setSearch}
+            searchResults={searchResults}
+            handleAddClass={handleAddClass}
             university="chico"
+          />
+        }
       />
-    }
-  />
-      {/* other routes */}
+      <Route
+        path="/chicorecommend"
+        element={
+          <ChicoClassRecommendationPage
+            geRequirements={chicoGeRequirements}
+            classDetails={chicoClassDetails}
+            pageTitle="Chico Class Recommendations"
+          />
+        }
+      />
+
+      {/* Berkeley */}
+      <Route
+        path="/berkeley"
+        element={
+          <BerkeleyGETracker
+            geRequirements={BerkeleyGeRequirements}
+            classDetails={BerkeleyClassDetails}
+            onAddClass={onAddClass}
+            onDeleteClass={onDeleteClass}
+            classesTaken={classesTaken}
+            c1c2Fulfilled={c1c2Fulfilled}
+            areaCWarning={areaCWarning}
+            search={search}
+            setSearch={setSearch}
+            handleAddClass={handleAddClass}
+            university="berkeley"
+          />
+        }
+      />
+      <Route
+        path="/berkeleyrecommend"
+        element={
+          <BerkeleyClassRecommendationPage
+            geRequirements={BerkeleyGeRequirements}
+            classDetails={BerkeleyClassDetails}
+            pageTitle="Smart Class Recommendations — Berkeley"
+          />
+        }
+      />
+
+      {/* Generic recommend (SJSU) */}
+      <Route
+        path="/recommend"
+        element={<ClassRecommendationPage geRequirements={geRequirements} classDetails={classDetails} />}
+      />
+
+      {/* Static pages */}
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/survey" element={<Survey />} />
-  <Route path="/chicorecommend" element={
-    <ChicoClassRecommendationPage
-      geRequirements={chicoGeRequirements}
-      classDetails={chicoClassDetails}
-       pageTitle="Chico Class Recommendations"
-    />} 
-  />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/account" element={<AccountSettingsPage />} />
 
-  <Route path="/recommend" element={
-    <ClassRecommendationPage
-      geRequirements={geRequirements}
-      classDetails={classDetails}
-    />} 
-  />
-<Route
-  path="/berkeley"
-  element={
-    <BerkeleyGETracker
-      geRequirements={BerkeleyGeRequirements}
-      classDetails={BerkeleyClassDetails}
-      onAddClass={onAddClass}
-      onDeleteClass={onDeleteClass}
-      classesTaken={classesTaken}
-      search={search}
-      setSearch={setSearch}
-     
-      handleAddClass={handleAddClass}
-      university="berkeley"
-    />
-  }
-/>
-
-<Route
-  path="/berkeleyrecommend"
-  element={
-    <BerkeleyClassRecommendationPage
-      geRequirements={BerkeleyGeRequirements}
-      classDetails={BerkeleyClassDetails}
-      pageTitle="Smart Class Recommendations — Berkeley"
-    />
-  }
-/><Route
-  path="/berkeleyrecommend"
-  element={
-    <BerkeleyClassRecommendationPage
-      geRequirements={BerkeleyGeRequirements}
-      classDetails={BerkeleyClassDetails}
-      pageTitle="Smart Class Recommendations — Berkeley"
-    />
-  }
-/><Route
-  path="/berkeleyrecommend"
-  element={
-    <BerkeleyClassRecommendationPage
-      geRequirements={BerkeleyGeRequirements}
-      classDetails={BerkeleyClassDetails}
-      pageTitle="Smart Class Recommendations — Berkeley"
-    />
-  }
-/>
-
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+
+    {/* Outside of <Routes> */}
+    <Footer isHome={isHome} />
     {!isHome && <BottomBarA />}
-    </>
-    );
+  </>
+);
 
 
     return (

@@ -74,11 +74,7 @@ const scrollToSearch = () => {
         <button className="cta-button" onClick={scrollToSearch}>
           Start Your Journey →
         </button>
-        <div className="cta-links">
-          <a href="/contact">Contact</a>
-          <a href="/survey">Survey</a>
-          <a href="/about">About</a>
-        </div>
+       
       </section>
     </div>
   );
