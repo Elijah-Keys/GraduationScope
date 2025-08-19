@@ -313,6 +313,64 @@ function getClassTimeWindows(cls) {
   }
   return wins;
 }
+// ===== Conflict helpers: single-window detection and overlap check =====
+function getUniqueWindows(cls) {
+  const wins = getClassTimeWindows(cls);
+  const seen = new Set();
+  const unique = [];
+  for (const w of wins) {
+    if (!w || w.start == null || w.end == null) continue;
+    const key = `${w.start}-${w.end}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(w);
+    }
+  }
+  return unique;
+}
+
+// True if the class has exactly one distinct time window across its meetings
+function hasSingleDistinctWindow(cls) {
+  const uniq = getUniqueWindows(cls);
+  return uniq.length === 1;
+}
+
+function timesOverlap(a, b) {
+  return a && b && a.start < b.end && b.start < a.end;
+}
+
+function setsIntersect(a, b) {
+  for (const x of a) if (b.has(x)) return true;
+  return false;
+}
+
+// Only block if BOTH classes are fixed single-window AND they overlap on any shared day
+function hasStrictConflict(a, b) {
+  if (!hasSingleDistinctWindow(a) || !hasSingleDistinctWindow(b)) return false;
+
+  const aWins = getUniqueWindows(a);
+  const bWins = getUniqueWindows(b);
+  if (aWins.length === 0 || bWins.length === 0) return false; // cannot parse times, do not block
+
+  const aWin = aWins[0];
+  const bWin = bWins[0];
+
+  const aDays = getClassDays(a); // union of days for the class
+  const bDays = getClassDays(b);
+
+  return timesOverlap(aWin, bWin) && setsIntersect(aDays, bDays);
+}
+
+// Check a candidate against an already picked list
+function wouldConflictIfFixed(picked, candidate) {
+  // If the candidate is flexible (not exactly one unique window), we allow it
+  if (!hasSingleDistinctWindow(candidate)) return false;
+
+  for (const p of picked) {
+    if (hasStrictConflict(p, candidate)) return true;
+  }
+  return false;
+}
 
 // Noon boundary (in minutes)
 const NOON_MIN = 12 * 60; // 720
@@ -391,11 +449,38 @@ const wantMonWed    = selectedGoals.includes("MonWed");
 const wantTueThu    = selectedGoals.includes("TueThu");
 const wantEarly     = selectedGoals.includes("earlyclasses"); // <-- add
 const wantLate      = selectedGoals.includes("lateclasses");  // <-- add
-
+const isVeryEasy = (c) => Number.isFinite(c?.difficulty) && c.difficulty <= 2.9;
 const wantEasy      = selectedGoals.includes("easy");
 const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
 
-
+  const applyDayTimePrefs = (list) => {
+    let out = list;
+    if (wantFridayOff) {
+      const noFri = out.filter(c => !hasFriday(c));
+      if (noFri.length >= Math.max(6, numClasses)) out = noFri;
+    }
+    if (wantMonWed && !wantTueThu) {
+      const mwOnly = out.filter(c =>
+        meetsAllDays(c, ["M","W"]) && !meetsAnyDay(c, ["Tu","Th","F"])
+      );
+      if (mwOnly.length >= Math.max(6, numClasses)) out = mwOnly;
+    }
+    if (wantTueThu && !wantMonWed) {
+      const tuthOnly = out.filter(c =>
+        meetsAllDays(c, ["Tu","Th"]) && !meetsAnyDay(c, ["M","W","F"])
+      );
+      if (tuthOnly.length >= Math.max(6, numClasses)) out = tuthOnly;
+    }
+    if (wantEarly && !wantLate) {
+      const earlyOnly = out.filter(classIsEarly);
+      if (earlyOnly.length >= Math.max(6, numClasses)) out = earlyOnly;
+    }
+    if (wantLate && !wantEarly) {
+      const lateOnly = out.filter(classIsLate);
+      if (lateOnly.length >= Math.max(6, numClasses)) out = lateOnly;
+    }
+    return out;
+  };
 
   const TOPIC_MAP =
     (typeof ChicoTOPIC_TO_CLASSES !== "undefined" && ChicoTOPIC_TO_CLASSES) ||
@@ -404,143 +489,110 @@ const hasTopics     = Array.isArray(selectedAreas) && selectedAreas.length > 0;
   const inTopic = (name) => classInSelectedTopics(name, selectedAreas, TOPIC_MAP);
 
   // ---------- EASY branch ----------
-  if (wantEasy) {
-    let pool = hasTopics ? candidates.filter(c => inTopic(c.className)) : candidates;
+ // ---------- EASY branch ----------
+if (wantEasy) {
+  let pool = hasTopics ? candidates.filter(c => inTopic(c.className)) : candidates;
 
-    if (wantFridayOff) {
-      const noFri = pool.filter(c => !hasFriday(c));
-      if (noFri.length >= Math.max(6, numClasses)) pool = noFri;
+  // 1) apply day/time prefs
+  pool = applyDayTimePrefs(pool);
+
+  // 2) widen once if topics too sparse, then reapply prefs
+  if (hasTopics && pool.length === 0) {
+    const kwMap = {
+      business: ["bus","acct","acctg","acct.","account","fin","mktg","mgmt","econ"],
+      communication: ["comm","media","journal","pr","advert"],
+      psychology: ["psych"],
+      computer: ["cs","comp","cis","info","software"],
+      art_design: ["art","design","c1"],
+      philosophy: ["phil","ethic","c2","humanities"],
+      history: ["hist"],
+      health: ["hlth","health","kin","nurs"],
+    };
+    const kws = (selectedAreas || []).flatMap(a => kwMap[a] || []);
+    const rx = kws.length ? new RegExp(`\\b(${kws.join("|")})`, "i") : null;
+    pool = rx ? candidates.filter(c => rx.test(c.className || "")) : candidates;
+    pool = applyDayTimePrefs(pool);
+  }
+
+  // 3) hard cap difficulty, then shuffle once per click
+  pool = pool.filter(c => Number.isFinite(c?.difficulty) && c.difficulty <= 2.9);
+  if (!pool.length) return [];
+  pool = seededShuffle(pool, refreshKey);
+
+  // 4) picking logic stays the same
+  const WINDOW_K = Math.min(Math.max(numClasses * 4, 25), pool.length);
+  const topList = pool.slice(0, WINDOW_K);
+
+  const c1Fulfilled = classesTaken.some(c => isC1(c.area));
+  const c2Fulfilled = classesTaken.some(c => isC2(c.area));
+  let dLeft = remainingDNeeded(classesTaken);
+
+  const getUnfulfilledAreas = (cls) =>
+    getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
+
+  const canC1 = topList.some(it => getUnfulfilledAreas(it).some(isC1));
+  const canC2 = topList.some(it => getUnfulfilledAreas(it).some(isC2));
+  const dAvail = topList.filter(it => getUnfulfilledAreas(it).some(isD)).length;
+
+  let needC1 = !c1Fulfilled && canC1;
+  let needC2 = !c2Fulfilled && canC2;
+  dLeft = Math.min(dLeft, dAvail);
+
+  const picked = [];
+  const usedOtherAreas = new Set();
+  const guardMax = topList.length * 2;
+  const stride = 7;
+  const offset = topList.length
+    ? ((((Math.abs(Number(refreshKey || 0)) / 1000) | 0) * stride) % topList.length)
+    : 0;
+
+  let steps = 0;
+  let i = offset;
+
+  while (picked.length < numClasses && steps++ < guardMax) {
+    const cls = topList[i % topList.length];
+    i++;
+    if (picked.includes(cls)) continue;
+ if (wouldConflictIfFixed(picked, cls)) continue; // <-- add this
+
+    const unfulfilled = getUnfulfilledAreas(cls);
+    if (!unfulfilled.length) continue;
+
+    const hasC1a = unfulfilled.some(isC1);
+    const hasC2a = unfulfilled.some(isC2);
+    const hasDa  = unfulfilled.some(isD);
+
+    if (needC1 && hasC1a && !picked.some(p => getUnfulfilledAreas(p).some(isC1))) {
+      picked.push(cls); needC1 = false; continue;
     }
-    if (wantMonWed && !wantTueThu) {
-      const mwOnly = pool.filter(c =>
-        meetsAllDays(c, ["M", "W"]) && !meetsAnyDay(c, ["Tu", "Th", "F"])
-      );
-      if (mwOnly.length >= Math.max(6, numClasses)) pool = mwOnly;
+    if (needC2 && hasC2a && !picked.some(p => getUnfulfilledAreas(p).some(isC2))) {
+      picked.push(cls); needC2 = false; continue;
     }
-    if (wantTueThu && !wantMonWed) {
-      const tuthOnly = pool.filter(c =>
-        meetsAllDays(c, ["Tu", "Th"]) && !meetsAnyDay(c, ["M", "W", "F"])
-      );
-      if (tuthOnly.length >= Math.max(6, numClasses)) pool = tuthOnly;
-    }
-// Time preference: exclusive filters (only if exactly one chosen)
-if (wantEarly && !wantLate) {
-  const earlyOnly = pool.filter(classIsEarly);
-  if (earlyOnly.length >= Math.max(6, numClasses)) pool = earlyOnly;
-}
-if (wantLate && !wantEarly) {
-  const lateOnly = pool.filter(classIsLate);
-  if (lateOnly.length >= Math.max(6, numClasses)) pool = lateOnly;
-}
+    if (dLeft > 0 && hasDa) { picked.push(cls); dLeft -= 1; continue; }
 
-    // widen if topic map too sparse
-    if (hasTopics && pool.length === 0) {
-      const kwMap = {
-        business: ["bus", "acct", "acctg", "acct.", "account", "fin", "mktg", "mgmt", "econ"],
-        communication: ["comm", "media", "journal", "pr", "advert"],
-        psychology: ["psych"],
-        computer: ["cs", "comp", "cis", "info", "software"],
-        art_design: ["art", "design", "c1"],
-        philosophy: ["phil", "ethic", "c2", "humanities"],
-        history: ["hist"],
-        health: ["hlth", "health", "kin", "nurs"],
-      };
-      const kws = (selectedAreas || []).flatMap(a => kwMap[a] || []);
-      const rx = kws.length ? new RegExp(`\\b(${kws.join("|")})`, "i") : null;
-      pool = rx ? candidates.filter(c => rx.test(c.className || "")) : candidates;
-    }
+    const firstOther = unfulfilled.find(a =>
+      !isC1(a) && !isC2(a) && !isD(a) && !usedOtherAreas.has(a)
+    );
+    if (firstOther) { picked.push(cls); usedOtherAreas.add(firstOther); }
+  }
 
-    if (!pool.length) return [];
-
-    const fridayPenalty = c => wantFridayOff && hasFriday(c) ? 0.6 : 0;
-const scoreWithPrefs = c =>
-  easeScore(c)
-  - fridayPenalty(c)
-  + dayPrefBonus(c, wantMonWed, wantTueThu, wantFridayOff)
-  + timePrefBonus(c, wantEarly, wantLate);
-
-
-    const WINDOW_K = Math.min(Math.max(numClasses * 4, 25), pool.length);
-    const topList = pool.slice(0, WINDOW_K);
-
-    const c1Fulfilled = classesTaken.some(c => isC1(c.area));
-    const c2Fulfilled = classesTaken.some(c => isC2(c.area));
-    let dLeft = remainingDNeeded(classesTaken);
-
-    const getUnfulfilledAreas = (cls) =>
-      getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
-
-    const canC1 = topList.some(it => getUnfulfilledAreas(it).some(isC1));
-    const canC2 = topList.some(it => getUnfulfilledAreas(it).some(isC2));
-    const dAvail = topList.filter(it => getUnfulfilledAreas(it).some(isD)).length;
-
-    let needC1 = !c1Fulfilled && canC1;
-    let needC2 = !c2Fulfilled && canC2;
-    dLeft = Math.min(dLeft, dAvail);
-
-    const picked = [];
-    const usedOtherAreas = new Set();
-    const guardMax = topList.length * 2;
-
-    const stride = 7;
-    const offset = topList.length
-      ? ((((Math.abs(Number(refreshKey || 0)) / 1000) | 0) * stride) % topList.length)
-      : 0;
-
-    let steps = 0;
-    let i = offset;
-
+  if (picked.length < numClasses) {
+    steps = 0;
     while (picked.length < numClasses && steps++ < guardMax) {
       const cls = topList[i % topList.length];
       i++;
-
-      if (picked.includes(cls)) continue;
-
-      const unfulfilled = getUnfulfilledAreas(cls);
-      if (!unfulfilled.length) continue;
-
-      const hasC1a = unfulfilled.some(isC1);
-      const hasC2a = unfulfilled.some(isC2);
-      const hasDa  = unfulfilled.some(isD);
-
-      if (needC1 && hasC1a && !picked.some(p => getUnfulfilledAreas(p).some(isC1))) {
-        picked.push(cls);
-        needC1 = false;
-        continue;
-      }
-      if (needC2 && hasC2a && !picked.some(p => getUnfulfilledAreas(p).some(isC2))) {
-        picked.push(cls);
-        needC2 = false;
-        continue;
-      }
-      if (dLeft > 0 && hasDa) {
-        picked.push(cls);
-        dLeft -= 1;
-        continue;
-      }
-
-      const firstOther = unfulfilled.find(a => !isC1(a) && !isC2(a) && !isD(a) && !usedOtherAreas.has(a));
-      if (firstOther) {
-        picked.push(cls);
-        usedOtherAreas.add(firstOther);
-      }
+     if (!picked.includes(cls) && !wouldConflictIfFixed(picked, cls)) {
+      picked.push(cls); // <-- guarded push
     }
-
-    if (picked.length < numClasses) {
-      steps = 0;
-      while (picked.length < numClasses && steps++ < guardMax) {
-        const cls = topList[i % topList.length];
-        i++;
-        if (!picked.includes(cls)) picked.push(cls);
-      }
-    }
-
-    recommendClasses._hasRun = true;
-    return picked.slice(0, numClasses).map(cls => ({
-      ...cls,
-      matchedAreas: getUnfulfilledAreas(cls)
-    }));
   }
+  }
+
+  recommendClasses._hasRun = true;
+  return picked.slice(0, numClasses).map(cls => ({
+    ...cls,
+    matchedAreas: getUnfulfilledAreas(cls)
+  }));
+}
 
   // ---------- NON-easy branch ----------
   const topicSet = new Set();
@@ -554,31 +606,9 @@ const scoreWithPrefs = c =>
     ? candidates.filter(cls => topicSet.has(cls.className))
     : candidates;
 
-  if (hasTopics && poolNonEasy.length === 0) {
-    poolNonEasy = candidates;
-  }
+// widen once if topic map is sparse
 
-  if (wantMonWed && !wantTueThu) {
-    const mwOnly = poolNonEasy.filter(c =>
-      meetsAllDays(c, ["M", "W"]) && !meetsAnyDay(c, ["Tu", "Th", "F"])
-    );
-    if (mwOnly.length >= Math.max(6, numClasses)) poolNonEasy = mwOnly;
-  }
-  if (wantTueThu && !wantMonWed) {
-    const tuthOnly = poolNonEasy.filter(c =>
-      meetsAllDays(c, ["Tu", "Th"]) && !meetsAnyDay(c, ["M", "W", "F"])
-    );
-    if (tuthOnly.length >= Math.max(6, numClasses)) poolNonEasy = tuthOnly;
-  }
-// Time preference: exclusive filters (only if exactly one chosen)
-if (wantEarly && !wantLate) {
-  const earlyOnly = poolNonEasy.filter(classIsEarly);
-  if (earlyOnly.length >= Math.max(6, numClasses)) poolNonEasy = earlyOnly;
-}
-if (wantLate && !wantEarly) {
-  const lateOnly = poolNonEasy.filter(classIsLate);
-  if (lateOnly.length >= Math.max(6, numClasses)) poolNonEasy = lateOnly;
-}
+
 
   poolNonEasy = poolNonEasy.map(cls => {
     let goalScore = 0;
@@ -599,6 +629,8 @@ if (wantLate && !wantEarly) {
   const out = [];
   for (let k = 0; k < poolNonEasy.length && out.length < numClasses; k++) {
     const cls = poolNonEasy[(startIdx + k) % poolNonEasy.length];
+
+  if (wouldConflictIfFixed(out, cls)) continue; // <-- add this
     const unfulfilled = getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
     if (unfulfilled.length === 0) continue;
     const area = unfulfilled[0];
@@ -683,17 +715,12 @@ const isD  = (a) => /^D\b|D\.\s|Social Sciences/i.test(a);
 
 
 // How many D's the student still needs. If your rule differs, tweak here.
-function remainingDNeeded(classesTaken) {
-  const takenD = classesTaken.filter(c => isD(c.area)).length;
-  return Math.max(0, 2 - takenD);
-}
 // Non-mutating wrapper around your existing shuffle()
 
 
 // ==========================
 // RECOMMENDATION ALGORITHM (Grok 4 Super Heavy)
 // ==========================
-
 
 
 

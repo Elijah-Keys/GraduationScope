@@ -992,14 +992,12 @@ console.log("Class Details with RMP Links:", classDetails.map(c => ({
                         <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
                           Difficulty
                         </th>
-                        {!isMobile && (
-                          <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
-                            Schedule
-                          </th>
-                        )}
+                    <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
+   Schedule
+</th>
                         <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
                           RMP Link
-                        </th>
+                        </th> 
                       </tr>
                     </thead>
                     <tbody style={{
@@ -1045,14 +1043,9 @@ maxWidth: "120px",
  }}>
                             {entry.difficulty}
                           </td>
-                          {!isMobile && (
-                            <td style={{ padding: "10px 12px", textAlign: "center", color: "#555",whiteSpace: "normal",
-wordBreak: "break-word",
-maxWidth: "120px",
- }}>
-                              {Array.isArray(entry.schedule) ? entry.schedule.join(", ") : "N/A"}
-                            </td>
-                          )}
+                         <td style={{ padding: "10px 12px", textAlign: "center", color: "#555", whiteSpace: "normal", wordBreak: "break-word", maxWidth: "160px" }}>
+   {Array.isArray(entry.schedule) ? entry.schedule.join(", ") : "N/A"}
+ </td>
                           <td style={{ padding: "10px 12px", textAlign: "center",whiteSpace: "normal",
 wordBreak: "break-word",
 maxWidth: "120px",

@@ -35,6 +35,11 @@ import BerkeleyClassRecommendationPage from "./components/BerkeleyClassRecommend
 import Footer from "./components/Footer.jsx";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
+import SJSUFAQ from "./components/faq/sjsu";
+import BerkeleyFAQ from "./components/faq/berkeley";
+import ChicoFAQ from "./components/faq/chico";
+import GeneralFAQ from "./components/faq/general";
+
 
   const areasToShow = [
     "A1 Oral Communication",
@@ -496,6 +501,10 @@ return (
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/account" element={<AccountSettingsPage />} />
+<Route path="/faq/sjsu" element={<SJSUFAQ />} />
+<Route path="/faq/berkeley" element={<BerkeleyFAQ />} />
+<Route path="/faq/chico" element={<ChicoFAQ />} />
+<Route path="/faq/general" element={<GeneralFAQ />} />
 
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />

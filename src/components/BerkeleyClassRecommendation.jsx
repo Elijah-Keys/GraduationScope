@@ -169,6 +169,65 @@ function getClassTimeWindows(cls) {
   }
   return wins;
 }
+// ===== Conflict helpers: single-window detection and overlap check =====
+function getUniqueWindows(cls) {
+  const wins = getClassTimeWindows(cls);
+  const seen = new Set();
+  const unique = [];
+  for (const w of wins) {
+    if (!w || w.start == null || w.end == null) continue;
+    const key = `${w.start}-${w.end}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(w);
+    }
+  }
+  return unique;
+}
+
+// True if the class has exactly one distinct time window across its meetings
+function hasSingleDistinctWindow(cls) {
+  const uniq = getUniqueWindows(cls);
+  return uniq.length === 1;
+}
+
+function timesOverlap(a, b) {
+  return a && b && a.start < b.end && b.start < a.end;
+}
+
+function setsIntersect(a, b) {
+  for (const x of a) if (b.has(x)) return true;
+  return false;
+}
+
+// Only block if BOTH classes are fixed single-window AND they overlap on any shared day
+function hasStrictConflict(a, b) {
+  if (!hasSingleDistinctWindow(a) || !hasSingleDistinctWindow(b)) return false;
+
+  const aWins = getUniqueWindows(a);
+  const bWins = getUniqueWindows(b);
+  if (aWins.length === 0 || bWins.length === 0) return false; // cannot parse times, do not block
+
+  const aWin = aWins[0];
+  const bWin = bWins[0];
+
+  const aDays = getClassDays(a); // union of days for the class
+  const bDays = getClassDays(b);
+
+  return timesOverlap(aWin, bWin) && setsIntersect(aDays, bDays);
+}
+
+// Check a candidate against an already picked list
+function wouldConflictIfFixed(picked, candidate) {
+  // If the candidate is flexible, we allow it
+  if (!hasSingleDistinctWindow(candidate)) return false;
+
+  for (const p of picked) {
+    if (hasStrictConflict(p, candidate)) return true;
+  }
+  return false;
+}
+
 const NOON_MIN = 12 * 60;
 function classIsEarly(cls) {
   const wins = getClassTimeWindows(cls);
@@ -730,25 +789,6 @@ const courseKey = (c) => {
   );
 };
 
-const overlaps = (a, b) => {
-  const daysA = getClassDays(a);
-  const daysB = getClassDays(b);
-  // no shared days -> no conflict
-  const shareDay = [...daysA].some((d) => daysB.has(d));
-  if (!shareDay) return false;
-
-  const wA = getClassTimeWindows(a);
-  const wB = getClassTimeWindows(b);
-  if (!wA.length || !wB.length) return false; // unknown times -> allow
-
-  for (const x of wA) {
-    for (const y of wB) {
-      if (x.start < y.end && y.start < x.end) return true; // time window overlaps
-    }
-  }
-  return false;
-};
-
 // ---- rank then rotate for variety ----
 scored.sort((a, b) => (b.__score || 0) - (a.__score || 0));
 const start = scored.length ? Math.abs(Number(refreshKey || 0)) % scored.length : 0;
@@ -767,7 +807,7 @@ const canAdd = (item) => {
   const pKey = normalizeProfessor(item.professor);
   if (pKey && seenProfs.has(pKey)) return false;
 
-  if (picked.some((p) => overlaps(p, item))) return false;
+ if (wouldConflictIfFixed(picked, item)) return false;
 
   return true;
 };

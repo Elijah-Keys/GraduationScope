@@ -1041,3 +1041,5 @@ body, html {
 body, div, span, p, h1, h2, h3, h4, h5, h6, input, button {
   font-family: 'Inter', sans-serif !important;
 }
+.cell-list { margin: 0; padding: 0; list-style: none; }
+.cell-list li + li { margin-top: 4px; }

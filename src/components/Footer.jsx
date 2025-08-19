@@ -61,6 +61,13 @@ export default function Footer({ isHome }) {
             <ScrollLink to="/berkeley">Berkeley Tracker</ScrollLink>
             <ScrollLink to="/berkeleyrecommend">Berkeley Recommend</ScrollLink>
           </div>
+<div className="col">
+  <h4>Help</h4>
+  <ScrollLink to="/faq/general">General FAQ</ScrollLink>
+  <ScrollLink to="/faq/sjsu">SJSU FAQ</ScrollLink>
+  <ScrollLink to="/faq/berkeley">Berkeley FAQ</ScrollLink>
+  <ScrollLink to="/faq/chico">Chico FAQ</ScrollLink>
+</div>
         </nav>
       </div>
 

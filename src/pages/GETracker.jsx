@@ -50,6 +50,17 @@ function ChecklistToggleContent({ geRequirements, classesTaken, classToAreas, c1
   );
 }
 
+// Renders each array item on its own line
+const CellList = ({ items }) => {
+  if (!Array.isArray(items) || items.length === 0) {
+    return <span style={{ color: "#999" }}>N/A</span>;
+  }
+  return (
+    <ul className="cell-list">
+      {items.map((it, i) => <li key={i}>{it}</li>)}
+    </ul>
+  );
+};
 
 function ProgressSummary({ geRequirements, classesTaken, classToAreas, c1c2Fulfilled }) {
   const totalReqs = geRequirements.length;
@@ -942,11 +953,10 @@ console.log("Class Details with RMP Links:", classDetails.map(c => ({
                         <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
                           Difficulty
                         </th>
-                        {!isMobile && (
-                          <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
-                            Schedule
-                          </th>
-                        )}
+                      <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
+  Schedule
+</th>
+
                         <th style={{ padding: "10px 12px", borderBottom: "1.5px solid #ccc", textAlign: "center", fontWeight: 700, color: brandBlue }}>
                           RMP Link
                         </th>
@@ -995,14 +1005,11 @@ maxWidth: "120px",
  }}>
                             {entry.difficulty}
                           </td>
-                          {!isMobile && (
-                            <td style={{ padding: "10px 12px", textAlign: "center", color: "#555",whiteSpace: "normal",
-wordBreak: "break-word",
-maxWidth: "120px",
- }}>
-                              {Array.isArray(entry.schedule) ? entry.schedule.join(", ") : "N/A"}
-                            </td>
-                          )}
+                   <td style={{ padding: "10px 12px", textAlign: "center", color: "#555", whiteSpace: "normal",
+wordBreak: "break-word", maxWidth: "120px", verticalAlign: "top", lineHeight: 1.35 }}>
+  <CellList items={entry.schedule} />
+</td>
+
                           <td style={{ padding: "10px 12px", textAlign: "center",whiteSpace: "normal",
 wordBreak: "break-word",
 maxWidth: "120px",

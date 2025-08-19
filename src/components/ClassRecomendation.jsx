@@ -316,6 +316,64 @@ function getClassTimeWindows(cls) {
 
 // Noon boundary (in minutes)
 const NOON_MIN = 12 * 60; // 720
+// ===== Conflict helpers: single-window detection and overlap check =====
+function getUniqueWindows(cls) {
+  const wins = getClassTimeWindows(cls);
+  const seen = new Set();
+  const unique = [];
+  for (const w of wins) {
+    if (!w || w.start == null || w.end == null) continue;
+    const key = `${w.start}-${w.end}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(w);
+    }
+  }
+  return unique;
+}
+
+// True if the class has exactly one distinct time window across its meetings
+function hasSingleDistinctWindow(cls) {
+  const uniq = getUniqueWindows(cls);
+  return uniq.length === 1;
+}
+
+function timesOverlap(a, b) {
+  return a && b && a.start < b.end && b.start < a.end;
+}
+
+function setsIntersect(a, b) {
+  for (const x of a) if (b.has(x)) return true;
+  return false;
+}
+
+// Only block if BOTH classes are fixed single-window AND they overlap on any shared day
+function hasStrictConflict(a, b) {
+  if (!hasSingleDistinctWindow(a) || !hasSingleDistinctWindow(b)) return false;
+
+  const aWins = getUniqueWindows(a);
+  const bWins = getUniqueWindows(b);
+  if (aWins.length === 0 || bWins.length === 0) return false; // cannot parse times, do not block
+
+  const aWin = aWins[0];
+  const bWin = bWins[0];
+
+  const aDays = getClassDays(a); // union of days for the class
+  const bDays = getClassDays(b);
+
+  return timesOverlap(aWin, bWin) && setsIntersect(aDays, bDays);
+}
+
+// Check a candidate against an already picked list
+function wouldConflictIfFixed(picked, candidate) {
+  // If the candidate is flexible, we allow it
+  if (!hasSingleDistinctWindow(candidate)) return false;
+
+  for (const p of picked) {
+    if (hasStrictConflict(p, candidate)) return true;
+  }
+  return false;
+}
 
 // Early = every meeting ends <= 12:00pm (10:45–12:00 counts Early)
 function classIsEarly(cls) {
@@ -494,7 +552,9 @@ if (wantEasy) {
   while (picked.length < numClasses && steps++ < guardMax) {
     const cls = topList[i % topList.length];
     i++;
-    if (picked.includes(cls)) continue;
+   if (picked.includes(cls)) continue;
+if (wouldConflictIfFixed(picked, cls)) continue;
+
 
     const unfulfilled = getUnfulfilledAreas(cls);
     if (!unfulfilled.length) continue;
@@ -522,7 +582,9 @@ if (wantEasy) {
     while (picked.length < numClasses && steps++ < guardMax) {
       const cls = topList[i % topList.length];
       i++;
-      if (!picked.includes(cls)) picked.push(cls);
+    if (!picked.includes(cls) && !wouldConflictIfFixed(picked, cls)) {
+  picked.push(cls);
+}
     }
   }
 
@@ -568,6 +630,7 @@ if (wantEasy) {
   const out = [];
   for (let k = 0; k < poolNonEasy.length && out.length < numClasses; k++) {
     const cls = poolNonEasy[(startIdx + k) % poolNonEasy.length];
+     if (wouldConflictIfFixed(out, cls)) continue;   // add here
     const unfulfilled = getAreasForClass(cls.className).filter(a => !areasTaken.has(a));
     if (unfulfilled.length === 0) continue;
     const area = unfulfilled[0];
