@@ -10,8 +10,7 @@ import chicoClassDetails from './data/ChicoclassDetails.json';
   import { Navigate } from "react-router-dom";
   import Home from "./components/Home";
   import { useLocation } from "react-router-dom";
- import { ClassesTakenProvider } from './components/ClassesTakenProvider.jsx';
- import { ClassesTakenProvider } from "./lib/classesTakenStore";
+import { ClassesTakenProvider } from "./lib/classesTakenStore";
   // index.js or App.js
   import './global.css';
   import About from "./components/About";

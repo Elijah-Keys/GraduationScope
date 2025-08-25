@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { TOPIC_TO_CLASSES } from "./Topic_To_Classes";
 import "./ClassRecomendation.css";
 import "../pages/GETracker.css";
@@ -7,6 +7,7 @@ import { PiMedal } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { GoGoal } from "react-icons/go";
+import { useClassesTaken } from "../lib/classesTakenStore";
 
 // ==========================
 // DATA ARRAYS
@@ -36,6 +37,8 @@ const ACADEMIC_AREAS = [
 // MAIN COMPONENT
 // ==========================
  const brandBlue = "#7589F3";
+
+
  const thStyle = {
   padding: "14px 16px",
   textAlign: "left",
@@ -61,36 +64,30 @@ export default function ClassRecommendationPage({ geRequirements, classDetails, 
   const [dropdownValue, setDropdownValue] = useState(3);
   const [recommendations, setRecommendations] = useState([]);
   const [refreshKey, setRefreshKey] = useState(Date.now());
-const isMobile = window.innerWidth <= 700;
-const areaRows = isMobile
-  ? getEvenPyramidRows(ACADEMIC_AREAS, 19) // 2 per row on mobile (18 total/9 rows)
-  : getEvenPyramidRows(ACADEMIC_AREAS, 4); // 4 per row on desktop
+  // ---- Shared "classes taken" store ----
+// ---- Shared "classes taken" store ----
+const { list, add, remove, has, toggle: toggleTaken } = useClassesTaken();
 
-
+// Show classes from the store in your UI
+const classesTaken = useMemo(
+  () => list().map(c => ({ className: c.title || c.id, area: c.area || "Other" })),
+  [list]
+);
+  const isMobile = typeof window !== "undefined" ? window.innerWidth <= 700 : false;
+  const areaRows = getEvenPyramidRows(ACADEMIC_AREAS, isMobile ? 19 : 4);
+// local UI state
 const [search, setSearch] = useState("");
-const [classesTaken, setClassesTaken] = useState([
-  // ... optionally, hydrating from localStorage or your context!
-]);
-// -- handlers: recompute recommendations on demand --
-const handleRefresh = () => {
-  const newKey = Date.now();
-  setRefreshKey(newKey);
-// very easy cutoff used by "Easiest Classes"
 
-  const recs = recommendClasses({
-    classDetails,
-    geRequirements,
-    selectedAreas,
-    selectedGoals,
-    numClasses: dropdownValue,
-    refreshKey: newKey,
-    classesTaken,
-  });
-
-  setRecommendations(recs);
+const handleAddClass = (className, area) => {
+  add({ id: className, title: className, area });
+  setSearch("");
 };
-// -- handlers: toggle areas/goals --
-const toggle = (id, type) => {
+
+const handleRemoveClass = (className, area) => {
+  remove({ id: className, title: className, area });
+};
+
+const toggleFilter = (id, type) => {
   if (type === "area") {
     setSelectedAreas(prev =>
       prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]
@@ -102,17 +99,26 @@ const toggle = (id, type) => {
   }
 };
 
-const handleAddClass = (className, area) => {
-  if (!classesTaken.some(obj => obj.className === className && obj.area === area)) {
-    setClassesTaken([...classesTaken, { className, area }]);
-    setSearch("");
-  }
+const handleRefresh = () => {
+  const newKey = Date.now();
+  setRefreshKey(newKey);
+  const recs = recommendClasses({
+    classDetails,
+    geRequirements,
+    selectedAreas,
+    selectedGoals,
+    numClasses: dropdownValue,
+    refreshKey: newKey,
+    classesTaken, // from store-derived array
+  });
+  setRecommendations(recs);
 };
-const handleRemoveClass = (className, area) => {
-  setClassesTaken(classesTaken.filter(
-    obj => !(obj.className === className && obj.area === area)
-  ));
-};
+
+// -- handlers: toggle areas/goals --
+
+
+
+
 const searchResults = (search.trim().length > 0 && classDetails)
   ? Array.from(
       new Map(
@@ -982,7 +988,7 @@ return (
     {areaRows.flat().map((area) => (
       <div
         key={area.id}
-        onClick={() => toggle(area.id, "area")}
+        onClick={() => toggleFilter(area.id, "area")}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -1045,7 +1051,7 @@ return (
     {STUDENT_GOALS.map((goal) => (
       <div
         key={goal.id}
-        onClick={() => toggle(goal.id, "goal")}
+       onClick={() => toggleFilter(goal.id, "goal")}
         style={{
           display: "flex",
           alignItems: "center",
