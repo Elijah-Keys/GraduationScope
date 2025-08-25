@@ -11,6 +11,7 @@ import chicoClassDetails from './data/ChicoclassDetails.json';
   import Home from "./components/Home";
   import { useLocation } from "react-router-dom";
  import { ClassesTakenProvider } from './components/ClassesTakenProvider.jsx';
+ import { ClassesTakenProvider } from "./lib/classesTakenStore";
   // index.js or App.js
   import './global.css';
   import About from "./components/About";
@@ -39,7 +40,12 @@ import SJSUFAQ from "./components/faq/sjsu";
 import BerkeleyFAQ from "./components/faq/berkeley";
 import ChicoFAQ from "./components/faq/chico";
 import GeneralFAQ from "./components/faq/general";
-
+import SJSUEasiestClasses from "./pages/guides/SJSUEasiestClasses.jsx";
+import BerkeleyEasiestClasses from "./pages/guides/BerkeleyEasiestClasses.jsx";
+import ChicoEasiestClasses from "./pages/guides/ChicoEasiestClasses.jsx";
+import BlogPickSJSUGEFast from "./pages/blog/pick-sjsu-ge-fast.jsx";
+import BlogPickBerkeleyBreadthFast from "./pages/blog/pick-berkeley-breadth-fast.jsx";
+import BlogPickChicoAreaCFast from "./pages/blog/pick-chico-area-c-fast.jsx";
 
   const areasToShow = [
     "A1 Oral Communication",
@@ -98,6 +104,7 @@ import GeneralFAQ from "./components/faq/general";
 
 
   export default function App() {
+  
     const [showSignUp, setShowSignUp] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
@@ -343,7 +350,7 @@ import GeneralFAQ from "./components/faq/general";
   </div>
 
 return (
-  <>
+      <ClassesTakenProvider> <>
     <Header
       isAuthenticated={isAuthenticated}
       onLogout={handleLogout}
@@ -505,6 +512,12 @@ return (
 <Route path="/faq/berkeley" element={<BerkeleyFAQ />} />
 <Route path="/faq/chico" element={<ChicoFAQ />} />
 <Route path="/faq/general" element={<GeneralFAQ />} />
+<Route path="/guides/sjsu-easiest-classes" element={<SJSUEasiestClasses />} />
+<Route path="/guides/berkeley-easiest-classes" element={<BerkeleyEasiestClasses />} />
+<Route path="/guides/chico-easiest-classes" element={<ChicoEasiestClasses />} />
+<Route path="/blog/pick-sjsu-ge-fast" element={<BlogPickSJSUGEFast />} />
+<Route path="/blog/pick-berkeley-breadth-fast" element={<BlogPickBerkeleyBreadthFast />} />
+<Route path="/blog/pick-chico-area-c-fast" element={<BlogPickChicoAreaCFast />} />
 
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
@@ -515,8 +528,9 @@ return (
     {!isHome && <BottomBarA />}
   </>
 );
-
-
+</ClassesTakenProvider>
+ 
+)
     return (
       <ClassesTakenProvider>
         <>

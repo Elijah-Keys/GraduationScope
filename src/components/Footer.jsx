@@ -52,6 +52,7 @@ export default function Footer({ isHome }) {
             <ScrollLink to="/privacy">Privacy</ScrollLink>
             <ScrollLink to="/terms">Terms</ScrollLink>
           </div>
+
           <div className="col">
             <h4>Universities</h4>
             <ScrollLink to="/sjsu">SJSU Tracker</ScrollLink>
@@ -61,13 +62,24 @@ export default function Footer({ isHome }) {
             <ScrollLink to="/berkeley">Berkeley Tracker</ScrollLink>
             <ScrollLink to="/berkeleyrecommend">Berkeley Recommend</ScrollLink>
           </div>
-<div className="col">
-  <h4>Help</h4>
-  <ScrollLink to="/faq/general">General FAQ</ScrollLink>
-  <ScrollLink to="/faq/sjsu">SJSU FAQ</ScrollLink>
-  <ScrollLink to="/faq/berkeley">Berkeley FAQ</ScrollLink>
-  <ScrollLink to="/faq/chico">Chico FAQ</ScrollLink>
-</div>
+
+          <div className="col">
+            <h4>Guides</h4>
+            <ScrollLink to="/guides/sjsu-easiest-classes">Easiest Classes at SJSU</ScrollLink>
+            <ScrollLink to="/guides/berkeley-easiest-classes">Berkeley: Easier Breadth</ScrollLink>
+            <ScrollLink to="/guides/chico-easiest-classes">Chico: Easiest Classes</ScrollLink>
+            <ScrollLink to="/blog/pick-sjsu-ge-fast">How to pick SJSU GE (10 min)</ScrollLink>
+            <ScrollLink to="/blog/pick-berkeley-breadth-fast">Pick Berkeley Breadth (10 min)</ScrollLink>
+<ScrollLink to="/blog/pick-chico-area-c-fast">Pick Chico Area C (10 min)</ScrollLink>
+          </div>
+
+          <div className="col">
+            <h4>Help</h4>
+            <ScrollLink to="/faq/general">General FAQ</ScrollLink>
+            <ScrollLink to="/faq/sjsu">SJSU FAQ</ScrollLink>
+            <ScrollLink to="/faq/berkeley">Berkeley FAQ</ScrollLink>
+            <ScrollLink to="/faq/chico">Chico FAQ</ScrollLink>
+          </div>
         </nav>
       </div>
 
