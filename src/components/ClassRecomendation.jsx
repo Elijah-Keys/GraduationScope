@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { TOPIC_TO_CLASSES } from "./Topic_To_Classes";
 import "./ClassRecomendation.css";
 import "../pages/GETracker.css";
@@ -7,7 +7,7 @@ import { PiMedal } from "react-icons/pi";
 import { BsStars } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { GoGoal } from "react-icons/go";
-import { useClassesTaken } from "../lib/classesTakenStore";
+
 
 // ==========================
 // DATA ARRAYS
@@ -57,8 +57,16 @@ const tdStyle = {
   border: "1px solid #E0E0E0", // border around each data cell
 };
 
+export default function ClassRecommendationPage({
+  geRequirements,
+  classDetails,
+  classesTaken,     // from App
+  onAddClass,       // from App
+  onRemoveClass,    // from App
+  pageTitle = "Smart Class Recommendations San Jose",
+}) {
 
-export default function ClassRecommendationPage({ geRequirements, classDetails, onDeleteClass, pageTitle= "Smart Class Recommendations San Jose" }) {
+
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [dropdownValue, setDropdownValue] = useState(3);
@@ -66,26 +74,21 @@ export default function ClassRecommendationPage({ geRequirements, classDetails, 
   const [refreshKey, setRefreshKey] = useState(Date.now());
   // ---- Shared "classes taken" store ----
 // ---- Shared "classes taken" store ----
-const { list, add, remove, has, toggle: toggleTaken } = useClassesTaken();
 
-// Show classes from the store in your UI
-const classesTaken = useMemo(
-  () => list().map(c => ({ className: c.title || c.id, area: c.area || "Other" })),
-  [list]
-);
   const isMobile = typeof window !== "undefined" ? window.innerWidth <= 700 : false;
   const areaRows = getEvenPyramidRows(ACADEMIC_AREAS, isMobile ? 19 : 4);
 // local UI state
 const [search, setSearch] = useState("");
 
-const handleAddClass = (className, area) => {
-  add({ id: className, title: className, area });
+const handleAdd = (className, area) => {
+  onAddClass(className, area);
   setSearch("");
 };
 
-const handleRemoveClass = (className, area) => {
-  remove({ id: className, title: className, area });
+const handleRemove = (className, area) => {
+  onRemoveClass(className, area);
 };
+
 
 const toggleFilter = (id, type) => {
   if (type === "area") {
@@ -854,7 +857,7 @@ return (
             color: "#222",
             userSelect: "none",
           }}
-          onClick={() => handleAddClass(obj.className, obj.area)}
+        onClick={() => handleAdd(obj.className, obj.area)}
           onMouseDown={(e) => e.preventDefault()}
         >
           <strong>{obj.className}</strong>{" "}
@@ -911,7 +914,7 @@ return (
             <span style={{ color: "#555" }}>({obj.area})</span>
           </div>
           <button
-           onClick={() => handleRemoveClass(obj.className, obj.area)}
+         onClick={() => handleRemove(obj.className, obj.area)}
             style={{
               backgroundColor: "#d32f2f",
               color: "#fff",
@@ -1273,7 +1276,7 @@ return (
       <th style={thStyle}>Professor</th>
       <th style={thStyle}>RMP Score</th>
       <th style={thStyle}>Difficulty</th>
-      {!isMobile && <th style={thStyle}>Schedule</th>}
+<th style={thStyle}>Schedule</th>
       <th style={thStyle}>Link</th>
     </tr>
   </thead>
@@ -1284,15 +1287,13 @@ return (
         <td style={tdStyle}>{cls.professor}</td>
         <td style={tdStyle}>{cls.score !== undefined ? cls.score : "N/A"}</td>
         <td style={tdStyle}>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
-        {!isMobile && (
-          <td style={tdStyle}>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-              {cls.schedule && cls.schedule.length > 0
-                ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
-                : <li style={{ color: "#888" }}>Not listed</li>}
-            </ul>
-          </td>
-        )}
+     <td style={tdStyle}>
+  <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+     {cls.schedule && cls.schedule.length > 0
+       ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
+       : <li style={{ color: "#888" }}>Not listed</li>}
+   </ul>
+ </td>
         <td style={tdStyle}>
           {cls.link && cls.link !== "N/A" ? (
             <a

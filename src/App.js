@@ -453,16 +453,19 @@ return (
           />
         }
       />
-      <Route
-        path="/chicorecommend"
-        element={
-          <ChicoClassRecommendationPage
-            geRequirements={chicoGeRequirements}
-            classDetails={chicoClassDetails}
-            pageTitle="Chico Class Recommendations"
-          />
-        }
-      />
+    <Route
+  path="/chicorecommend"
+  element={
+    <ChicoClassRecommendationPage
+      geRequirements={chicoGeRequirements}
+      classDetails={chicoClassDetails}
+      classesTaken={classesTaken}
+      onAddClass={handleAddClass}
+      onRemoveClass={handleRemoveClass}
+      pageTitle="Chico Class Recommendations"
+    />
+  }
+/>
 
       {/* Berkeley */}
       <Route
@@ -484,21 +487,33 @@ return (
         }
       />
       <Route
-        path="/berkeleyrecommend"
-        element={
-          <BerkeleyClassRecommendationPage
-            geRequirements={BerkeleyGeRequirements}
-            classDetails={BerkeleyClassDetails}
-            pageTitle="Smart Class Recommendations — Berkeley"
-          />
-        }
-      />
-
+         path="/berkeleyrecommend"
+  element={
+    <BerkeleyClassRecommendationPage
+      geRequirements={BerkeleyGeRequirements}
+      classDetails={BerkeleyClassDetails}
+    classesTaken={classesTaken}
+     onAddClass={handleAddClass}
+     onRemoveClass={handleRemoveClass}
+      pageTitle="Smart Class Recommendations — Berkeley"
+    />
+  }
+/>
       {/* Generic recommend (SJSU) */}
-      <Route
-        path="/recommend"
-        element={<ClassRecommendationPage geRequirements={geRequirements} classDetails={classDetails} />}
-      />
+     <Route
+  path="/recommend"
+  element={
+    <ClassRecommendationPage
+      geRequirements={geRequirements}
+      classDetails={classDetails}
+      classesTaken={classesTaken}
+      onAddClass={handleAddClass}
+      onRemoveClass={handleRemoveClass}
+      pageTitle="Smart Class Recommendations — SJSU"
+    />
+  }
+/>
+
 
       {/* Static pages */}
       <Route path="/about" element={<About />} />

@@ -414,10 +414,12 @@ function easeScore(cls) {
 // MAIN COMPONENT
 // ==========================
 export default function ClassRecommendationPage({
-  geRequirements,
-  classDetails,
-  onDeleteClass,
-  pageTitle = "Smart Class Recommendations",
+  geRequirements = [],
+  classDetails = [],
+  classesTaken = [],        // ✅ from parent
+  onAddClass = () => {},    // ✅ from parent
+  onRemoveClass = () => {}, // ✅ from parent
+  pageTitle = "Smart Class Recommendations — Berkeley",
 }) {
   // --- STATE (all first) ---
   const [selectedAreas, setSelectedAreas]       = useState([]);
@@ -426,7 +428,7 @@ export default function ClassRecommendationPage({
   const [recommendations, setRecommendations]   = useState([]);
   const [refreshKey, setRefreshKey]             = useState(Date.now());
   const [search, setSearch]                     = useState("");
-  const [classesTaken, setClassesTaken]         = useState([]);
+  
 useEffect(() => {
   console.log("[CR] ClassRecommendationPage mounted");
 }, []);
@@ -503,16 +505,12 @@ useEffect(() => {
   };
 
   const handleAddClass = (className, area) => {
-    if (!classesTaken.some(obj => obj.className === className && obj.area === area)) {
-      setClassesTaken([...classesTaken, { className, area }]);
-      setSearch("");
-    }
-  };
-  const handleRemoveClass = (className, area) => {
-    setClassesTaken(classesTaken.filter(
-      obj => !(obj.className === className && obj.area === area)
-    ));
-  };
+   onAddClass(className, area);
+   setSearch("");
+ };
+ const handleRemoveClass = (className, area) => {
+   onRemoveClass(className, area);
+ };
 
   const searchResults = (search.trim().length > 0 && Array.isArray(classDetails))
     ? Array.from(
@@ -1360,7 +1358,7 @@ return picked.slice(0, numClasses).map((cls) => ({ ...cls }));
                           <th style={thStyle}>Professor</th>
                           <th style={thStyle}>RMP Score</th>
                           <th style={thStyle}>Difficulty</th>
-                          {!isMobile && <th style={thStyle}>Schedule</th>}
+                      <th style={thStyle}>Schedule</th>
                           <th style={thStyle}>Link</th>
                         </tr>
                       </thead>
@@ -1371,15 +1369,13 @@ return picked.slice(0, numClasses).map((cls) => ({ ...cls }));
                             <td style={tdStyle}>{cls.professor}</td>
                             <td style={tdStyle}>{cls.score !== undefined ? cls.score : "N/A"}</td>
                             <td style={tdStyle}>{cls.difficulty !== undefined ? cls.difficulty : "N/A"}</td>
-                            {!isMobile && (
-                              <td style={tdStyle}>
-                                <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-                                  {cls.schedule && cls.schedule.length > 0
-                                    ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
-                                    : <li style={{ color: "#888" }}>Not listed</li>}
-                                </ul>
-                              </td>
-                            )}
+                           <td style={tdStyle}>
+   <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+     {cls.schedule && cls.schedule.length > 0
+       ? cls.schedule.map((s, i) => <li key={i}>{s}</li>)
+      : <li style={{ color: "#888" }}>Not listed</li>}
+   </ul>
+ </td>
                             <td style={tdStyle}>
                               {cls.link && cls.link !== "N/A" ? (
                                 <a
