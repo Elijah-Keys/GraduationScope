@@ -8,7 +8,6 @@ const ScrollLink = ({ to, children, onClick, ...rest }) => (
     to={to}
     onClick={(e) => {
       onClick?.(e);
-      // run right after navigation so the new page is mounted
       setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 0);
     }}
     {...rest}
@@ -20,7 +19,7 @@ const ScrollLink = ({ to, children, onClick, ...rest }) => (
 export default function Footer({ isHome }) {
   const year = new Date().getFullYear();
 
-  // Leave space so the mobile BottomBar (fixed) doesn’t cover the footer
+  // Leave space so the mobile BottomBar fixed does not cover the footer
   const needsBottomBarSpace =
     typeof window !== "undefined" && window.innerWidth <= 768 && !isHome;
 
@@ -65,12 +64,37 @@ export default function Footer({ isHome }) {
 
           <div className="col">
             <h4>Guides</h4>
-            <ScrollLink to="/guides/sjsu-easiest-classes">Easiest Classes at SJSU</ScrollLink>
-            <ScrollLink to="/guides/berkeley-easiest-classes">Berkeley: Easier Breadth</ScrollLink>
-            <ScrollLink to="/guides/chico-easiest-classes">Chico: Easiest Classes</ScrollLink>
-            <ScrollLink to="/blog/pick-sjsu-ge-fast">How to pick SJSU GE (10 min)</ScrollLink>
-            <ScrollLink to="/blog/pick-berkeley-breadth-fast">Pick Berkeley Breadth (10 min)</ScrollLink>
-<ScrollLink to="/blog/pick-chico-area-c-fast">Pick Chico Area C (10 min)</ScrollLink>
+            <ScrollLink to="/guides/sjsu-easiest-classes">
+              Easiest Classes at SJSU
+            </ScrollLink>
+
+            {/* Static SEO page link. Force full reload to serve /public file */}
+            <a
+              href="/sjsu-easiest-ge-classes"
+              className="footer-link"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.assign("/sjsu-easiest-ge-classes");
+              }}
+            >
+              Easiest GEs at SJSU
+            </a>
+
+            <ScrollLink to="/guides/berkeley-easiest-classes">
+              Berkeley: Easier Breadth
+            </ScrollLink>
+            <ScrollLink to="/guides/chico-easiest-classes">
+              Chico: Easiest Classes
+            </ScrollLink>
+            <ScrollLink to="/blog/pick-sjsu-ge-fast">
+              How to pick SJSU GE 10 min
+            </ScrollLink>
+            <ScrollLink to="/blog/pick-berkeley-breadth-fast">
+              Pick Berkeley Breadth 10 min
+            </ScrollLink>
+            <ScrollLink to="/blog/pick-chico-area-c-fast">
+              Pick Chico Area C 10 min
+            </ScrollLink>
           </div>
 
           <div className="col">
