@@ -50,7 +50,7 @@ export default function About() {
             <div className="team-card">
               <img
                 className="team-avatar"
-                src={`${process.env.PUBLIC_URL}/images/elijah.jpg`}
+              src="/images/Elijah.jpg"
                 alt="Elijah Keys"
                 loading="lazy"
               />
@@ -69,7 +69,7 @@ export default function About() {
             <div className="team-card">
               <img
                 className="team-avatar"
-                src={`${process.env.PUBLIC_URL}/images/nuru.jpg`}
+              src="/images/Nuru.jpg"
                 alt="Nuru Kyubwa"
                 loading="lazy"
               />
