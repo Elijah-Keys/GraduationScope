@@ -1,3 +1,14 @@
 User-agent: *
 Allow: /
 Sitemap: https://www.graduationscope.com/sitemap.xml
+# Allow training/browsing by OpenAI
+User-agent: GPTBot
+Allow: /
+
+# Allow Google’s AI usage controls (Gemini/AI features)
+User-agent: Google-Extended
+Allow: /
+
+# Allow Perplexity’s user-triggered fetcher
+User-agent: Perplexity-User
+Allow: /

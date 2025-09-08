@@ -21,3 +21,4 @@ export default function ScrollToTop({ behavior = "smooth" }) {
 
   return null;
 }
+

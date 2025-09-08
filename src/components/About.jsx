@@ -39,52 +39,104 @@ export default function About() {
           Co-Founders: Christian Perez, Deangelo Keys, Wema Kyubwa.
         </p>
 
-        {/* Founding Team */}
-        <section className="team-section">
-          <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
-            Founding Team
-          </h2>
+{/* Founding Team */}
+<section className="team-section">
+  <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
+    Founding Team
+  </h2>
 
-          <div className="team-grid">
-            {/* Elijah */}
-            <div className="team-card">
-              <img
-                className="team-avatar"
-              src="/images/Elijah.jpg"
-                alt="Elijah Keys"
-                loading="lazy"
-              />
-              <div className="team-name">Elijah Keys</div>
-              <a
-                className="team-link"
-                href="https://www.linkedin.com/in/elijah-keys-16a974320/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn →
-              </a>
-            </div>
+  <div className="team-grid">
+    {/* Elijah */}
+    <div className="team-card">
+      <img
+        className="team-avatar"
+        src="/images/Elijah.jpg"
+        alt="Elijah Keys"
+        loading="lazy"
+      />
+      <div className="team-name">Elijah Keys</div>
+      <a
+        className="team-link"
+        href="https://www.linkedin.com/in/elijah-keys-16a974320/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn →
+      </a>
+    </div>
 
-            {/* Nuru */}
-            <div className="team-card">
-              <img
-                className="team-avatar"
-              src="/images/Nuru.jpg"
-                alt="Nuru Kyubwa"
-                loading="lazy"
-              />
-              <div className="team-name">Nuru Kyubwa</div>
-              <a
-                className="team-link"
-                href="https://www.linkedin.com/in/nuru-kyubwa-60377431a/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn →
-              </a>
-            </div>
-          </div>
-        </section>
+    {/* Nuru */}
+    <div className="team-card">
+      <img
+        className="team-avatar"
+        src="/images/Nuru.jpg"
+        alt="Nuru Kyubwa"
+        loading="lazy"
+      />
+      <div className="team-name">Nuru Kyubwa</div>
+      <a
+        className="team-link"
+        href="https://www.linkedin.com/in/nuru-kyubwa-60377431a/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* Team Members */}
+<section className="team-section">
+  <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
+    Team Members
+  </h2>
+
+  <div className="team-grid">
+    {/* Thomas */}
+    <div className="team-card">
+      <img
+        className="team-avatar"
+        src="/images/Thomas.jpg"  /* place file at public/images/Thomas.jpg */
+        alt="Thomas Walls"
+        loading="lazy"
+      />
+      <div className="team-name">Thomas Walls</div>
+      <div className="team-role">Social Engagement Director</div>
+      <a
+        className="team-link"
+        href="https://www.linkedin.com/in/thomas-walls-297320383/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn →
+      </a>
+    </div>
+
+    {/* Nuamin */}
+    <div className="team-card">
+      <img
+        className="team-avatar"
+        src="/images/Nuamin.jpg"
+        alt="Nuamin Hailemariam"
+        loading="lazy"
+      />
+      <div className="team-name">Nuamin Hailemariam</div>
+      <div className="team-role">Social Media Manager</div>
+      <a
+        className="team-link"
+        href="https://www.linkedin.com/in/nuamin-hailemariam-7b3232352/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
       </div>
 
       <style>{`
@@ -98,7 +150,7 @@ export default function About() {
         .team-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 18px;
+        gap: var(--team-gap);
           margin-top: 10px;
         }
         .team-card {
@@ -124,6 +176,11 @@ export default function About() {
         }
         .team-name {
           font-weight: 600;
+          margin-bottom: 4px;
+        }
+        .team-role {
+          font-size: 0.9rem;
+          color: #6b7280;
           margin-bottom: 6px;
         }
         .team-link {
@@ -132,6 +189,25 @@ export default function About() {
           text-decoration: none;
         }
         .team-link:hover { text-decoration: underline; }
+:root { --team-gap: 18px; }
+
+/* center a single card row */
+.team-row-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* make single card equal to one column of the two-up grid */
+.team-equal {
+  width: calc((100% - var(--team-gap)) / 2);
+}
+
+/* make the card fill that width */
+
+
+@media (max-width: 700px) {
+  .team-equal { width: 100%; }
+}
 
         /* Mobile */
         @media (max-width: 700px) {
@@ -142,7 +218,7 @@ export default function About() {
           }
           .about-root h1 { font-size: 1.5rem; }
           .team-grid {
-            grid-template-columns: 1fr; /* stack on mobile */
+            grid-template-columns: 1fr;
             gap: 14px;
           }
           .team-avatar { width: 100px; height: 100px; }
