@@ -240,7 +240,7 @@
 /*                       MOBILE STYLES                              */
 /*------------------------------------------------------------------*/
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .navy-sidebar {
     display: none !important; /* Bottom bar NOT shown on mobile per your request */
   }
@@ -488,3 +488,4 @@
     font-size: 2.07rem;
   }
 }
+

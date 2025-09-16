@@ -3,12 +3,13 @@ let stripe;
 function getStripe() {
   if (!stripe) {
     const Stripe = require("stripe");
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2023-10-16"
+    });
   }
   return stripe;
 }
 
-// safe body reader that works on Vercel whether req.body is an object or a string
 async function readBody(req) {
   try {
     if (req.body && typeof req.body === "object") return req.body;
@@ -22,9 +23,14 @@ async function readBody(req) {
   }
 }
 
+function looksLikeEmail(e) {
+  return typeof e === "string" && /\S+@\S+\.\S+/.test(e);
+}
+
 module.exports = async (req, res) => {
   try {
     if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
       return res.status(405).json({ error: "method_not_allowed" });
     }
 
@@ -33,8 +39,10 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: "bad_json", detail: body.__bodyError });
     }
 
-    const { email, interval } = body;
-    if (!email || !["month", "year"].includes(interval)) {
+    const interval = body.interval;
+    let email = (body.email || "").trim().toLowerCase();
+
+    if (!looksLikeEmail(email) || !["month", "year"].includes(interval)) {
       return res.status(400).json({ error: "email_and_interval_required" });
     }
 
@@ -43,21 +51,33 @@ module.exports = async (req, res) => {
         ? process.env.STRIPE_PRICE_MONTH
         : process.env.STRIPE_PRICE_YEAR;
 
+    if (!priceId) {
+      return res.status(500).json({ error: "missing_price_env" });
+    }
+
     const baseUrl = process.env.APP_URL || `https://${req.headers.host}`;
 
     const s = getStripe();
-    const session = await s.checkout.sessions.create({
-      mode: "subscription",
-      customer_email: email,
-      line_items: [{ price: priceId, quantity: 1 }],
-      allow_promotion_codes: true,
-      success_url: `${baseUrl}/api/checkout-complete?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/premium/cancelled`,
-    });
+    const session = await s.checkout.sessions.create(
+      {
+        mode: "subscription",
+        customer_email: email,
+        line_items: [{ price: priceId, quantity: 1 }],
+        allow_promotion_codes: true,
+        client_reference_id: `gs_${interval}_${Date.now()}`,
+        // Optional. Uncomment when ready to collect tax and addresses.
+        // billing_address_collection: "auto",
+        // automatic_tax: { enabled: true },
+        success_url: `${baseUrl}/plus?success=1&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/premium/cancelled`
+      },
+      {
+        idempotencyKey: `checkout_${email}_${interval}_${new Date().toISOString().slice(0,13)}`
+      }
+    );
 
     return res.status(200).json({ url: session.url });
   } catch (e) {
-    // return the error instead of crashing so you can see it in the console
     return res.status(500).json({ error: "server_error", detail: String(e.message) });
   }
 };

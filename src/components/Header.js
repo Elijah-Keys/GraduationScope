@@ -9,6 +9,7 @@ function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [showUniPicker, setShowUniPicker] = useState(false);
+  const isMobile = window.innerWidth <= 700;
 
   const isHome = location.pathname === '/' || location.pathname === '/home';
 
@@ -245,67 +246,89 @@ const handleRecommendClick = (e) => {
             gap: window.innerWidth <= 768 ? 8 : 16,
           }}
         >
-          {isAuthenticated ? (
-            <>
-              <NavLink
-                to="/account"
-                className="account-link"
-                style={{ color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '1rem' }}
-              >
-                Account Settings
-              </NavLink>
-              <button
-                onClick={onLogout}
-                className="logout-button"
-                style={{
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  padding: '8px 14px',
-                  borderRadius: 8,
-                  border: 'none',
-                  background: '#14213d',
-                  color: '#fff',
-                  cursor: 'pointer',
-                }}
-                type="button"
-              >
-                Log Out
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={onShowSignUp}
-                className="signup-link"
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
-                  fontWeight: 600,
-                  color: '#fff',
-                }}
-                type="button"
-              >
-                Sign Up
-              </button>
-              <button
-                onClick={onShowLogin}
-                className="login-link"
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
-                  fontWeight: 600,
-                  color: '#fff',
-                }}
-                type="button"
-              >
-                Log In
-              </button>
-            </>
-          )}
+{isAuthenticated ? (
+  <>
+    <NavLink
+  to="/plus"
+  style={{
+    ...(window.innerWidth <= 768
+      ? {
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          fontSize: '0.65rem',
+          fontWeight: 600,
+          color: '#fff',
+          padding: 0,
+          lineHeight: 1.2,
+          whiteSpace: 'nowrap',
+          marginLeft: '8px',
+        }
+      : {
+          color: '#fff',           // <-- desktop: force white
+          textDecoration: 'none',
+          fontWeight: 600,
+        }),
+  }}
+>
+  Get Premium
+</NavLink>
+    <button
+      onClick={onLogout}
+      type="button"
+      style={{
+        ...(window.innerWidth <= 768
+          ? {
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '0.65rem',
+              fontWeight: 600,
+              color: '#fff',
+              padding: 0,
+              lineHeight: 1.2,
+              whiteSpace: 'nowrap',
+              marginLeft: '8px',   // <-- nudge toward center
+            }
+          : {}),
+      }}
+    >
+      Log Out
+    </button>
+  </>
+) : (
+  <>
+    <button
+      onClick={onShowSignUp}
+      type="button"
+      style={{
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
+        fontWeight: 600,
+        color: '#fff',
+      }}
+    >
+      Sign Up
+    </button>
+    <button
+      onClick={onShowLogin}
+      type="button"
+      style={{
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
+        fontWeight: 600,
+        color: '#fff',
+      }}
+    >
+      Log In
+    </button>
+  </>
+)}
+
         </div>
       </div>
 

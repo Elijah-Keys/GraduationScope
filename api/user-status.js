@@ -2,8 +2,7 @@ let stripe;
 function getStripe() {
   if (!stripe) {
     const Stripe = require("stripe");
-    const key = process.env.STRIPE_SECRET_KEY;
-    stripe = new Stripe(key);
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2023-10-16" });
   }
   return stripe;
 }
@@ -14,11 +13,8 @@ module.exports = async (req, res) => {
     const m = raw.match(/premium_cust=([^;]+)/);
     const customerId = m && m[1];
 
-    // quick debug
     if (req.query && req.query.debug === "1") {
-      return res
-        .status(200)
-        .json({ debug: true, hasCookie: !!customerId, customerId: customerId || null });
+      return res.status(200).json({ debug: true, hasCookie: !!customerId, customerId: customerId || null });
     }
 
     if (!customerId) {
@@ -30,24 +26,18 @@ module.exports = async (req, res) => {
       customer: customerId,
       status: "all",
       expand: ["data.items.data.price"],
-      limit: 10,
+      limit: 10
     });
 
-    const activeSub = subs.data.find(x =>
-      ["active", "trialing", "past_due", "unpaid"].includes(x.status)
-    );
-
+    const activeSub = subs.data.find(x => ["active", "trialing", "past_due", "unpaid"].includes(x.status));
     if (!activeSub) {
       return res.status(200).json({ plan: "free", active: false, interval: null });
     }
 
     const item = activeSub.items?.data?.[0];
     const interval = item?.price?.recurring?.interval || null;
-
     return res.status(200).json({ plan: "premium", active: true, interval });
   } catch (e) {
-    return res
-      .status(200)
-      .json({ plan: "free", active: false, interval: null, _err: String(e.message) });
+    return res.status(200).json({ plan: "free", active: false, interval: null, _err: String(e.message) });
   }
 };

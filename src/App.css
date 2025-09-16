@@ -59,3 +59,28 @@
 * {
   font-family: 'Inter', sans-serif;
 }
+/* Plus page styles */
+.plus-wrap { max-width: 960px; margin: 32px auto; padding: 0 16px; }
+.plus-hero h1 { font-size: 32px; margin: 8px 0; }
+.subtitle { color: #6b7280; margin: 0 0 16px; }
+
+.pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 16px 0 24px; }
+.plan { border: 1px solid #e5e7eb; border-radius: 16px; padding: 16px; cursor: pointer; background: #fff; position: relative; }
+.plan.active { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,.15); }
+.plan-title { font-weight: 600; }
+.plan-price { font-size: 20px; margin: 8px 0; }
+.plan-badge { position: absolute; top: -10px; right: 12px; background: #10b981; color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 999px; }
+.plan-note { color: #6b7280; font-size: 14px; }
+
+.plus-card { border: 1px solid #e5e7eb; border-radius: 16px; padding: 16px; margin: 16px 0; background: #fff; }
+.field-label { display: block; font-size: 14px; color: #374151; margin-bottom: 6px; }
+.input { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 10px; margin-bottom: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 10px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; }
+.btn.primary { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .6; cursor: not-allowed; }
+
+.features h3, .faq h3 { margin: 24px 0 8px; }
+.features ul { padding-left: 18px; line-height: 1.8; }
+.fineprint { font-size: 12px; color: #6b7280; margin-top: 8px; }
+details { border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; margin: 8px 0; background: #fff; }
+summary { cursor: pointer; font-weight: 600; }

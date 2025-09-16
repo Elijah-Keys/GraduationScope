@@ -45,6 +45,8 @@ import ChicoEasiestClasses from "./pages/guides/ChicoEasiestClasses.jsx";
 import BlogPickSJSUGEFast from "./pages/blog/pick-sjsu-ge-fast.jsx";
 import BlogPickBerkeleyBreadthFast from "./pages/blog/pick-berkeley-breadth-fast.jsx";
 import BlogPickChicoAreaCFast from "./pages/blog/pick-chico-area-c-fast.jsx";
+import Plus from "./pages/Plus";
+
 
   const areasToShow = [
     "A1 Oral Communication",
@@ -432,6 +434,7 @@ return (
           />
         }
       />
+<Route path="/plus" element={<Plus />} />
 
       {/* Chico */}
       <Route
