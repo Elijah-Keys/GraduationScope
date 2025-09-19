@@ -209,25 +209,27 @@ html, body {
   font-size: 2rem;
   margin-bottom: 12px;
 }
-.cta-section {
-  background: #0e1a34;
-  color: #fff;
+/* Full-bleed CTA band with the previous About gradient */
+.cta-section{
+  --edge: calc(50vw - 50%);
+  margin-left: calc(-1 * var(--edge));
+  margin-right: calc(-1 * var(--edge));
+  padding: 48px max(16px, var(--edge) + 16px) 56px;
+  background: linear-gradient(
+    180deg,
+    rgba(117,137,243,0.10),
+    rgba(117,137,243,0.06) 40%,
+    rgba(117,137,243,0.03) 100%
+  );
+  border: 0;
+  border-radius: 0;
   text-align: center;
-  padding: 80px 20px;
-  margin-top: 0;
 }
 
-.cta-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
+/* If your CTA text was white before, bring it back to dark for readability here */
+.cta-title{ color: #111; margin: 0 0 8px; }
+.cta-subtitle{ color: #333; margin: 0 auto 20px; max-width: 70ch; }
 
-.cta-subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 36px;
-  color: #e0e0e0;
-}
 
 .cta-button {
   background-color: #fecd41;
@@ -298,6 +300,10 @@ html, body {
 }
 .home-root {
   font-family: 'Average', 'Montserrat';
+  :root {
+  --panel-bg: #F7F9FF; /* same vibe as Recommend/Tracker */
+}
+
 }
 @media screen and (max-width: 600px) {
   .hero-title {
@@ -334,3 +340,98 @@ html, body {
 .home-root .feature-grid {
   background-color: #ffffff;
 }
+/* Keep reveal animation Home-only */
+@media (prefers-reduced-motion: no-preference){
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional scrim if hero image is too bright */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent 40%);
+  pointer-events: none;
+}
+/* Panel background to match your Tracker and Recommend pages */
+/* Full-bleed About band with only the new color */
+/* Full-bleed About band on dark navy */
+.about-section{
+  position: relative;
+  --edge: calc(50vw - 50%);
+  margin-left: calc(-1 * var(--edge));
+  margin-right: calc(-1 * var(--edge));
+  padding: 32px max(16px, var(--edge) + 16px) 40px;
+  background: #0A0F2C;
+  border: 0;
+  border-radius: 0;
+}
+
+/* readable text on dark */
+.about-title{ color: #fff; text-align: center; margin: 0 0 8px; }
+.about-subtitle{ color: rgba(255,255,255,0.86); text-align: center; margin: 0 auto 24px; max-width: 70ch; }
+
+
+/* Grid like the screenshot: 1 on mobile, 2 on tablet, 4 on wide */
+.about-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 700px){
+  .about-grid{ grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+@media (min-width: 1200px){
+  .about-grid{ grid-template-columns: repeat(4, 1fr); gap: 20px; }
+}
+
+/* Cards */
+.about-card{
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.about-card::before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 4px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  background: linear-gradient(90deg, #9bb0ff, #6a7cf7 45%, #9bb0ff 100%);
+  opacity: .9;
+}
+.about-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 14px 32px rgba(0,0,0,0.10);
+  border-color: rgba(0,0,0,0.12);
+}
+
+/* Icon badge */
+.about-icon{
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: #f3f6ff;
+  border: 1px solid #e1e7ff;
+}
+
+/* Text */
+.about-card-title{ margin: 0 0 6px; font-weight: 700; }
+.about-card-text{ margin: 0; opacity: .92; line-height: 1.6; }
