@@ -13,7 +13,8 @@
   background-color: #0A0F2C;
   display: flex;
   align-items: center;
-  z-index: 1001;
+  z-index: 10000;
+  pointer-events: auto;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
@@ -489,3 +490,16 @@
   }
 }
 
+.navy-header { 
+  z-index: 2147483647;   /* max-ish */
+  pointer-events: auto; 
+  isolation: isolate;    /* own stacking context */
+}
+/* Hotfix: keep header above page content and clickable */
+.navy-header {
+  z-index: 10010 !important;
+  pointer-events: auto !important;
+}
+.navy-header * {
+  pointer-events: auto !important;
+}

@@ -1,0 +1,1622 @@
+[
+  {
+    "className": "ANTH 126",
+    "professor": "Mahajan,N.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "ARBC 4",
+    "professor": "Berrahmoun,A.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "CRES 122",
+    "professor": "Casumbal-Salazar,I.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "ENVS 26",
+    "professor": "Lu,F.E.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "FILM 132B",
+    "professor": "Kara,S.",
+    "schedule": "TuTh 05:20PM-08:20PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "FMST 1",
+    "professor": "Arondekar,A.R.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "FMST 40",
+    "professor": "Marcelino,T.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "FMST 175",
+    "professor": "Marcelino,T.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "FREN 4",
+    "professor": "Rohmer,C.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HAVC 28",
+    "professor": "Ly,B.J.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HAVC 70",
+    "professor": "Furtado,N.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 31A",
+    "professor": "Mota,T.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 70A",
+    "professor": "Breen,B.P.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 78",
+    "professor": "Kehler,E.H.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 150C",
+    "professor": "Aso,N.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 174",
+    "professor": "Thompson,B.A.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "HIS 181",
+    "professor": "Matera,M.A.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "ITAL 4",
+    "professor": "Prencipe,M.A.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "JAPN 103",
+    "professor": "Hoshi,S.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "LALS 165",
+    "professor": "Perez,J.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "LGST 116",
+    "professor": "Nichols,S.L.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "LGST 126C",
+    "professor": "Mahajan,N.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "LIT 130A",
+    "professor": "Thomas,T.N.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "LIT 188E",
+    "professor": "Aladro Font,J.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "MUSC 80A",
+    "professor": "Spiri,G.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "PHIL 22",
+    "professor": "Dinishak,J.",
+    "schedule": "MW 07:10PM-08:45PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "POLI 116",
+    "professor": "Nichols,S.L.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SOCY 15",
+    "professor": "Argenal,A.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPAN 4",
+    "professor": "Barahona,B.A.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPAN 4",
+    "professor": "Barahona,B.A.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPAN 5",
+    "professor": "Malone,S.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPAN 5M",
+    "professor": "Castillo Trelles,C.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPAN 6",
+    "professor": "Barahona,B.A.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPHS 4",
+    "professor": "Gonzalez Pagani,M.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "SPHS 4",
+    "professor": "Gonzalez Pagani,M.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "CC"
+  },
+  {
+    "className": "ANTH 104",
+    "professor": "Fehren-Schmitz,L.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "ANTH 176G",
+    "professor": "Hernandez Garavito,C.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "CRES 10",
+    "professor": "LeBron,M.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "CRES 129",
+    "professor": "Mitchell,N.O.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "CRES 170",
+    "professor": "Mogannam,J.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "CRES 185",
+    "professor": "Sharma,K.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "EDUC 60",
+    "professor": "Kenner,K.A.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "EDUC 140",
+    "professor": "Aguilera,M.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "EDUC 162",
+    "professor": "Aguilera,M.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "ENVS 147",
+    "professor": "Rajan,S.R.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "HAVC 118",
+    "professor": "Schilaro Santa Rosa,T.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "HIS 10A",
+    "professor": "Jones,C.A.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "HIS 44",
+    "professor": "Shaikh,J.M.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "HIS 58",
+    "professor": "Davis,M.H.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "HIS 109A",
+    "professor": "Jones,C.A.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LALS 1",
+    "professor": "Balloffet,L.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LALS 178",
+    "professor": "Patel,S.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LGST 128I",
+    "professor": "Fukurai,H.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LIT 61J",
+    "professor": "Thompson,B.A.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LIT 61R",
+    "professor": "Chen,C.S.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "LIT 189C",
+    "professor": "Aladro Font,J.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "SOCY 128I",
+    "professor": "Fukurai,H.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "SOCY 178Z",
+    "professor": "Harrison,L.S.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "SPAN 105",
+    "professor": "Aladro Font,J.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "THEA 31L",
+    "professor": "Staff",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "ER"
+  },
+  {
+    "className": "ANTH 110Q",
+    "professor": "Shange-Binion,S.T.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "ART 10D",
+    "professor": "Whipple,G.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "ART 147T",
+    "professor": "Rodriguez-Montero,P.",
+    "schedule": "MW 09:20AM-10:55AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "ARTG 25",
+    "professor": "Ballard,P.",
+    "schedule": "MW 09:20AM-10:55AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "COWL 65",
+    "professor": "Somekh,A.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "COWL 70A",
+    "professor": "Young,G.E.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "CRES 110Q",
+    "professor": "Shange-Binion,S.T.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "CT 11",
+    "professor": "Darke,A.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FILM 80A",
+    "professor": "Landberg,T.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FILM 80S",
+    "professor": "Gilichinskaya,Y.",
+    "schedule": "MW 07:10PM-08:45PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FILM 80S",
+    "professor": "Walker,L.K.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FILM 160H",
+    "professor": "Rizzo-Martinez,M.",
+    "schedule": "TuTh 09:50AM-12:50PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FMST 71",
+    "professor": "Nelson,R.E.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "FMST 110Q",
+    "professor": "Shange-Binion,S.T.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HAVC 47",
+    "professor": "Karl,B.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HAVC 135D",
+    "professor": "Polzak,K.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HAVC 141I",
+    "professor": "Gonzalez,J.A.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HAVC 188J",
+    "professor": "Moore,A.C.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HIS 159B",
+    "professor": "Sullivan,E.A.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HIS 163C",
+    "professor": "Kreps,A.S.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "HISC 124",
+    "professor": "Nash,M.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "SOCY 151",
+    "professor": "Zhao,M.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "THEA 20",
+    "professor": "Fritsch,G.J.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "THEA 40",
+    "professor": "Wear,R.",
+    "schedule": "MW 04:00PM-05:35PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "THEA 117",
+    "professor": "Rodriguez-Montero,P.",
+    "schedule": "MW 09:20AM-10:55AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "VAST 1",
+    "professor": "Nelson,R.E.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "VAST 188J",
+    "professor": "Moore,A.C.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "IM"
+  },
+  {
+    "className": "AM 3",
+    "professor": "Dey,P.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "AM 10",
+    "professor": "Katznelson,J.R.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "AM 11A",
+    "professor": "Simons,J.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "AM 11B",
+    "professor": "Simons,J.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "AM 20",
+    "professor": "Katznelson,J.R.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "AM 114",
+    "professor": "Gong,Q.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "ART 101",
+    "professor": "Dolgov,I.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "ASTR 16",
+    "professor": "Batalha,N.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "BME 160",
+    "professor": "Bernick,D.L.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 16",
+    "professor": "Miller,K.A.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 16",
+    "professor": "Westphal,C.J.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 20",
+    "professor": "Munishkina,L.A.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 20",
+    "professor": "Paranjape,I.A.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 20",
+    "professor": "Yue,H.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "CSE 20",
+    "professor": "Paten,B.J.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "EART 119A",
+    "professor": "Hain,M.P.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "ECE 8",
+    "professor": "Huh,T.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "LING 53",
+    "professor": "Law,J.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "LING 112",
+    "professor": "Pancheva,R.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 3",
+    "professor": "Hingtgen,R.L.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 11A",
+    "professor": "Mackall,E.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 11B",
+    "professor": "Kass,J.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 16A",
+    "professor": "Weissman,M.",
+    "schedule": "MW 01:20PM-02:25PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 16B",
+    "professor": "Lewis,D.K.",
+    "schedule": "MW 01:20PM-02:25PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 19A",
+    "professor": "Chattopadhyay,A.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 19A",
+    "professor": "Sanders,B.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 19B",
+    "professor": "Pan,J.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 21",
+    "professor": "Dong,C.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 23A",
+    "professor": "Serboi,S.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 23B",
+    "professor": "Suh,J.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MATH 100",
+    "professor": "Morales,P.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "MUSC 150H",
+    "professor": "Pratorius,C.J.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "PHIL 9",
+    "professor": "Orlandi,N.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "PHYS 5A",
+    "professor": "Dhar,B.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "PHYS 6A",
+    "professor": "Karyndinha,E.S.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "PHYS 15A",
+    "professor": "Ritz,S.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "MF"
+  },
+  {
+    "className": "ANTH 1",
+    "professor": "Schach,E.A.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "ANTH 109",
+    "professor": "Oelze,V.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "ASTR 1",
+    "professor": "Imara,N.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "ASTR 6",
+    "professor": "Smith,G.H.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "BIOL 80A",
+    "professor": "Gurun,G.J.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "BME 18",
+    "professor": "Haussler,D.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "CHEM 3A",
+    "professor": "Eroy-Reveles,A.A.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "CHEM 3A",
+    "professor": "Staff",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "EART 2",
+    "professor": "Gonzalez Reguero,B.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "EART 5",
+    "professor": "Hassell,K.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "ENVS 24",
+    "professor": "Wilmers,C.C.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "GCH 1",
+    "professor": "Salama,S.R.Rahal,D.",
+    "schedule": "Th 07:10PM-08:45PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "LALS 54",
+    "professor": "Martinez,C.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "LALS 177",
+    "professor": "Martinez,C.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "LALS 183",
+    "professor": "Balloffet,L.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "LING 50",
+    "professor": "Wagers,M.W.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "METX 108",
+    "professor": "Lin,A.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "OCEA 80A",
+    "professor": "Friedlaender,A.S.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "PHYS 5C",
+    "professor": "Dhar,B.",
+    "schedule": "MWF 08:00AM-09:05AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "PHYS 6B",
+    "professor": "Karyndinha,E.S.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "PHYS 6C",
+    "professor": "Baumbach,R.E.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "SI"
+  },
+  {
+    "className": "ASTR 19",
+    "professor": "Robertson,B.E.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "CSE 40",
+    "professor": "Rudnick,A.J.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "CSE 40",
+    "professor": "Yue,H.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "CSE 107",
+    "professor": "Tantalo,P.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "ECON 113",
+    "professor": "Zucker,A.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "ECON 113",
+    "professor": "Martinez-Iriarte,J.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "ESCI 160",
+    "professor": "Beaulieu,C.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "LING 80L",
+    "professor": "Anand,P.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "LING 147",
+    "professor": "Paramore,J.C.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "LING 171",
+    "professor": "Brasoveanu,A.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "OCEA 90",
+    "professor": "Moore,A.M.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "PHYS 133",
+    "professor": "Ramirez,A.P.",
+    "schedule": "TuTh 09:00AM-12:45PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "PHYS 133",
+    "professor": "Ramirez,A.P.",
+    "schedule": "TuTh 01:30PM-05:15PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "PSYC 2",
+    "professor": "Menendez,D.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 5",
+    "professor": "Wang,Y.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 5",
+    "professor": "Wang,Y.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 5",
+    "professor": "Katznelson,J.R.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 7",
+    "professor": "Li,Z.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 17",
+    "professor": "Alfaro Cordoba,M.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 80A",
+    "professor": "Parker,P.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 131",
+    "professor": "Lee,J.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 131",
+    "professor": "Hyun,S.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "STAT 132",
+    "professor": "Lund,R.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "SR"
+  },
+  {
+    "className": "BME 132",
+    "professor": "Russell,S.",
+    "schedule": "MWF 09:20AM-10:25AM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "CHIN 103",
+    "professor": "Chan,A.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "CHIN 103",
+    "professor": "Wu,T.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "HIS 100",
+    "professor": "Davis,M.H.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "HISC 12",
+    "professor": "Tomba,M.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "HUMN 15",
+    "professor": "Lyons,L.M.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "HUMN 25",
+    "professor": "Papadopoulos,D.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "LIT 101",
+    "professor": "Cooppan,V.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "LIT 119A",
+    "professor": "Lazo,R.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "LIT 120F",
+    "professor": "Chen,C.S.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "LIT 190U",
+    "professor": "Freccero,C.A.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "PHIL 11",
+    "professor": "Flores,C.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "POLI 20",
+    "professor": "Landis,J.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "PSYC 140H",
+    "professor": "Hammack,P.L.",
+    "schedule": "MW 07:10PM-08:45PM",
+    "generalEducation": "TA"
+  },
+  {
+    "className": "EART 106",
+    "professor": "Griggs,G.B.",
+    "schedule": "TuTh 08:00AM-09:35AM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "EART 110A",
+    "professor": "Blackburn,T.J.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "ENVS 80F",
+    "professor": "Fairbairn,M.P.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "ESCI 30",
+    "professor": "Fredston,A.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "LALS 94X",
+    "professor": "Leiva,F.I.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "METX 150",
+    "professor": "Saltikov,C.W.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "OCEA 80B",
+    "professor": "Lam,P.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "PE-E"
+  },
+  {
+    "className": "APLX 80",
+    "professor": "Miller,D.P.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "CMMU 10",
+    "professor": "Lopez,L.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "COWL 132",
+    "professor": "Robertson,K.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "CT 101",
+    "professor": "Santos,D.R.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "ECON 1",
+    "professor": "Saha,S.",
+    "schedule": "MWF 02:40PM-03:45PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "ECON 2",
+    "professor": "Gonzalez,J.H.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "POLI 70",
+    "professor": "Gordon,D.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "PSYC 1",
+    "professor": "Yamashiro,J.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "SOCY 1",
+    "professor": "Mccullen,C.G.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "SOCY 137",
+    "professor": "McNamara,M.B.",
+    "schedule": "MW 10:40AM-11:45AM",
+    "generalEducation": "PE-H"
+  },
+  {
+    "className": "ARTG 10",
+    "professor": "Gillette,K.L.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "BIOL 80J",
+    "professor": "Shanks,J.A.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "BME 5",
+    "professor": "Hendricks,D.G.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "CMPM 80H",
+    "professor": "Habibi,R.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "CSE 3",
+    "professor": "Moulds,G.B.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "CSE 80A",
+    "professor": "Manduchi,R.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "CSE 80N",
+    "professor": "Graziani,R.M.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "CT 10",
+    "professor": "Gillette,K.L.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "FILM 136C",
+    "professor": "Smith,C.",
+    "schedule": "MW 04:00PM-05:35PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "FILM 189",
+    "professor": "Shanken,E.A.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "HAVC 141L",
+    "professor": "Parry,K.T.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "SOCY 30A",
+    "professor": "de Roock,R.S.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "SOCY 123",
+    "professor": "Morse,J.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PE-T"
+  },
+  {
+    "className": "BIOE 20F",
+    "professor": "Borker,A.",
+    "schedule": "Th 09:00AM-01:00PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "BIOE 20F",
+    "professor": "Borker,A.",
+    "schedule": "Th 01:30PM-03:05PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "BIOE 82",
+    "professor": "Reilly,S.B.",
+    "schedule": "Tu 05:20PM-06:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "BIOE 82",
+    "professor": "Heady,K.K.",
+    "schedule": "Tu 05:20PM-06:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "BIOL 188",
+    "professor": "Vahradian,S.K.",
+    "schedule": "MW 06:00PM-08:00PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CMPM 17",
+    "professor": "Favaloro,T.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CMPM 17",
+    "professor": "Favaloro,T.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CMPM 115",
+    "professor": "Favaloro,T.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CMPM 120",
+    "professor": "Eger,M.",
+    "schedule": "TuTh 07:10PM-08:45PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "COWL 11A",
+    "professor": "Newman,H.G.",
+    "schedule": "Tu 05:20PM-06:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CRWN 102",
+    "professor": "Rao,S.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "CT 125",
+    "professor": "Erb,J.",
+    "schedule": "TuTh 09:50AM-11:25AM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "ESCI 150",
+    "professor": "Moreno,A.",
+    "schedule": "MW 02:00PM-05:00PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "GCH 190",
+    "professor": "Bugg,L.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "GCH 190",
+    "professor": "Mercer,J.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "HIS 189",
+    "professor": "Sullivan,E.A.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "JRLC 120",
+    "professor": "Gardner,M.R.",
+    "schedule": "MW 02:40PM-03:45PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "MATH 101",
+    "professor": "Serboi,S.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "MERR 31F",
+    "professor": "Staff",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "MUSC 1C",
+    "professor": "Berman,N.A.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "MUSC 2",
+    "professor": "Kiesling,B.A.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "PR-E"
+  },
+  {
+    "className": "ART 20H",
+    "professor": "Monaghan,S.M.",
+    "schedule": "MWF 12:00PM-02:25PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "ART 20J",
+    "professor": "Gwyn,M.",
+    "schedule": "MWF 05:20PM-07:45PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "ART 114",
+    "professor": "Whipple,G.",
+    "schedule": "MWF 02:40PM-05:05PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "ARTG 90",
+    "professor": "Darke,A.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "ARTG 118",
+    "professor": "Gregor,E.J.",
+    "schedule": "MW 04:00PM-05:35PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "ARTG 179",
+    "professor": "Coleman,T.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "CMPM 150",
+    "professor": "Sporka,A.",
+    "schedule": "MW 07:10PM-08:45PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "CMPM 179",
+    "professor": "Coleman,T.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "FILM 170B",
+    "professor": "Lareau,Q.A.",
+    "schedule": "MW 02:40PM-05:05PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "FILM 170B",
+    "professor": "Lareau,Q.A.",
+    "schedule": "TuTh 09:50AM-12:20PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "LIT 90",
+    "professor": "Tseng,J.",
+    "schedule": "Th 05:20PM-06:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "LIT 91A",
+    "professor": "Pham,Q.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "LIT 91B",
+    "professor": "Park,J.",
+    "schedule": "MW 05:20PM-06:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "LIT 127J",
+    "professor": "Kleinberg Biehl,J.",
+    "schedule": "TuTh 01:30PM-03:05PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "LIT 179A",
+    "professor": "Tseng,J.",
+    "schedule": "TuTh 11:40AM-01:15PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 5A",
+    "professor": "Garcia,E.",
+    "schedule": "Tu 06:30PM-08:30PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 9",
+    "professor": "Berman,N.A.",
+    "schedule": "MW 07:10PM-08:45PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 12",
+    "professor": "Diaz,J.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 12B",
+    "professor": "Vega,M.S.",
+    "schedule": "Tu 07:00PM-09:00PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 55",
+    "professor": "Batish,A.",
+    "schedule": "Tu 01:30PM-03:05PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 164",
+    "professor": "Hamilton,C.R.",
+    "schedule": "MW 01:20PM-02:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "MUSC 166",
+    "professor": "McGushin,M.J.",
+    "schedule": "MW 03:00PM-05:00PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "THEA 17",
+    "professor": "Grenz,K.M.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "THEA 36",
+    "professor": "Pearlman,C.",
+    "schedule": "TuTh 03:20PM-04:55PM",
+    "generalEducation": "PR-C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Arthur,D.L.",
+    "schedule": "MW 10:40AM-11:45AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Joesten,D.M.",
+    "schedule": "TuTh 05:20PM-06:55PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Galas,L.R.",
+    "schedule": "MWF 10:40AM-11:45AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Garrecht-Williams,C.K.",
+    "schedule": "MWF 12:00PM-01:05PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Galas,L.R.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Garrecht-Williams,C.K.",
+    "schedule": "MWF 01:20PM-02:25PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Arthur,D.L.",
+    "schedule": "MW 09:20AM-10:25AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Schilz,L.A.",
+    "schedule": "MW 10:40AM-11:45AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Bose,D.",
+    "schedule": "Tu 09:50AM-11:25AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Joesten,D.M.",
+    "schedule": "TuTh 07:10PM-08:45PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Schilz,L.A.",
+    "schedule": "MW 09:20AM-10:25AM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Loeffler,T.H.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Galas,L.R.",
+    "schedule": "MWF 04:00PM-05:05PM",
+    "generalEducation": "C"
+  },
+  {
+    "className": "WRIT 2",
+    "professor": "Roybal,K.",
+    "schedule": "MW 10:40AM-11:45AM",
+    "generalEducation": "C"
+  }
+]

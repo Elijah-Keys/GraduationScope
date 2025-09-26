@@ -47,6 +47,14 @@ import BlogPickBerkeleyBreadthFast from "./pages/blog/pick-berkeley-breadth-fast
 import BlogPickChicoAreaCFast from "./pages/blog/pick-chico-area-c-fast.jsx";
 import Plus from "./pages/Plus";
 import { PremiumProvider } from "./PremiumContext";
+import santaCruzGeRequirements from "./data/SantaCruzgeRequirements.json";
+import santaCruzClassDetails from "./data/SantaCruzclassDetails.json";
+import SantaCruzGETracker from "./pages/SantaCruzGETracker";
+import { UCSCTOPIC_TO_CLASSES } from "./components/UCSCTopic_To_Classes.jsx";
+import UCSCgeRequirements from "./data/SantaCruzgeRequirements.json";
+import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.jsx";
+
+
 
 
   const areasToShow = [
@@ -503,6 +511,38 @@ return (
     />
   }
 />
+<Route
+  path="/santacruz"
+  element={
+    <SantaCruzGETracker
+      geRequirements={santaCruzGeRequirements}
+      classDetails={santaCruzClassDetails}
+      onAddClass={onAddClass}
+      onDeleteClass={onDeleteClass}
+      classesTaken={classesTaken}
+      c1c2Fulfilled={c1c2Fulfilled}
+      areaCWarning={areaCWarning}
+      search={search}
+      setSearch={setSearch}
+      searchResults={searchResults}
+      handleAddClass={handleAddClass}
+      university="santacruz"
+    />
+  }
+/>
+<Route
+  path="/santacruzrecommend"
+   element={
+  <UCSCClassRecommendationPage
+     geRequirements={santaCruzGeRequirements}
+     classDetails={santaCruzClassDetails}
+     onRemoveClass={handleRemoveClass}
+     pageTitle="Smart Class Recommendations — UCSC"
+   />
+ }
+/>
+
+
       {/* Generic recommend (SJSU) */}
      <Route
   path="/recommend"

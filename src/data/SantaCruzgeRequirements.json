@@ -1,0 +1,308 @@
+[
+  {
+    "area": "CC - Cross-Cultural Analysis",
+    "classes": [
+      "ANTH 126",
+      "ARBC 4",
+      "CRES 122",
+      "ENVS 26",
+      "FILM 132B",
+      "FMST 1",
+      "FMST 40",
+      "FMST 175",
+      "FREN 4",
+      "HAVC 28",
+      "HAVC 70",
+      "HIS 31A",
+      "HIS 70A",
+      "HIS 78",
+      "HIS 150C",
+      "HIS 174",
+      "HIS 181",
+      "ITAL 4",
+      "JAPN 103",
+      "LALS 165",
+      "LGST 116",
+      "LGST 126C",
+      "LIT 130A",
+      "LIT 188E",
+      "MUSC 80A",
+      "PHIL 22",
+      "POLI 116",
+      "SOCY 15",
+      "SPAN 4",
+      "SPAN 5",
+      "SPAN 5M",
+      "SPAN 6",
+      "SPHS 4"
+    ]
+  },
+  {
+    "area": "ER - Ethnicity and Race",
+    "classes": [
+      "ANTH 104",
+      "ANTH 176G",
+      "CRES 10",
+      "CRES 129",
+      "CRES 170",
+      "CRES 185",
+      "EDUC 60",
+      "EDUC 140",
+      "EDUC 162",
+      "ENVS 147",
+      "HAVC 118",
+      "HIS 10A",
+      "HIS 44",
+      "HIS 58",
+      "HIS 109A",
+      "LALS 1",
+      "LALS 178",
+      "LGST 128I",
+      "LIT 61J",
+      "LIT 61R",
+      "LIT 189C",
+      "SOCY 128I",
+      "SOCY 178Z",
+      "SPAN 105",
+      "THEA 31L"
+    ]
+  },
+  {
+    "area": "IM - Interpreting Arts and Media",
+    "classes": [
+      "ANTH 110Q",
+      "ART 10D",
+      "ART 147T",
+      "ARTG 25",
+      "COWL 65",
+      "COWL 70A",
+      "CRES 110Q",
+      "CT 11",
+      "FILM 80A",
+      "FILM 80S",
+      "FILM 160H",
+      "FMST 71",
+      "FMST 110Q",
+      "HAVC 47",
+      "HAVC 135D",
+      "HAVC 141I",
+      "HAVC 188J",
+      "HIS 159B",
+      "HIS 163C",
+      "HISC 124",
+      "SOCY 151",
+      "THEA 20",
+      "THEA 40",
+      "THEA 117",
+      "VAST 1",
+      "VAST 188J"
+    ]
+  },
+  {
+    "area": "MF - Mathematical and Formal Reasoning",
+    "classes": [
+      "AM 3",
+      "AM 10",
+      "AM 11A",
+      "AM 11B",
+      "AM 20",
+      "AM 114",
+      "ART 101",
+      "ASTR 16",
+      "BME 160",
+      "CSE 16",
+      "CSE 20",
+      "EART 119A",
+      "ECE 8",
+      "LING 53",
+      "LING 112",
+      "MATH 3",
+      "MATH 11A",
+      "MATH 11B",
+      "MATH 16A",
+      "MATH 16B",
+      "MATH 19A",
+      "MATH 19B",
+      "MATH 21",
+      "MATH 23A",
+      "MATH 23B",
+      "MATH 100",
+      "MUSC 150H",
+      "PHIL 9",
+      "PHYS 5A",
+      "PHYS 6A",
+      "PHYS 15A"
+    ]
+  },
+  {
+    "area": "SI - Scientific Inquiry",
+    "classes": [
+      "ANTH 1",
+      "ANTH 109",
+      "ASTR 1",
+      "ASTR 6",
+      "BIOL 80A",
+      "BME 18",
+      "CHEM 3A",
+      "EART 2",
+      "EART 5",
+      "ENVS 24",
+      "GCH 1",
+      "LALS 54",
+      "LALS 177",
+      "LALS 183",
+      "LING 50",
+      "METX 108",
+      "OCEA 80A",
+      "PHYS 5C",
+      "PHYS 6B",
+      "PHYS 6C"
+    ]
+  },
+  {
+    "area": "SR - Statistical Reasoning",
+    "classes": [
+      "ASTR 19",
+      "CSE 40",
+      "CSE 107",
+      "ECON 113",
+      "ESCI 160",
+      "LING 80L",
+      "LING 147",
+      "LING 171",
+      "OCEA 90",
+      "PHYS 133",
+      "PSYC 2",
+      "STAT 5",
+      "STAT 7",
+      "STAT 17",
+      "STAT 80A",
+      "STAT 131",
+      "STAT 132"
+    ]
+  },
+  {
+    "area": "TA - Textual Analysis",
+    "classes": [
+      "BME 132",
+      "CHIN 103",
+      "HIS 100",
+      "HISC 12",
+      "HUMN 15",
+      "HUMN 25",
+      "LIT 101",
+      "LIT 119A",
+      "LIT 120F",
+      "LIT 190U",
+      "PHIL 11",
+      "POLI 20",
+      "PSYC 140H"
+    ]
+  },
+  {
+    "area": "PE-E - Perspectives: Environmental Awareness",
+    "classes": [
+      "EART 106",
+      "EART 110A",
+      "ENVS 80F",
+      "ESCI 30",
+      "LALS 94X",
+      "METX 150",
+      "OCEA 80B"
+    ]
+  },
+  {
+    "area": "PE-H - Perspectives: Human Behavior",
+    "classes": [
+      "APLX 80",
+      "CMMU 10",
+      "COWL 132",
+      "CT 101",
+      "ECON 1",
+      "ECON 2",
+      "POLI 70",
+      "PSYC 1",
+      "SOCY 1",
+      "SOCY 137"
+    ]
+  },
+  {
+    "area": "PE-T - Perspectives: Technology and Society",
+    "classes": [
+      "ARTG 10",
+      "BIOL 80J",
+      "BME 5",
+      "CMPM 80H",
+      "CSE 3",
+      "CSE 80A",
+      "CSE 80N",
+      "CT 10",
+      "FILM 136C",
+      "FILM 189",
+      "HAVC 141L",
+      "SOCY 30A",
+      "SOCY 123"
+    ]
+  },
+  {
+    "area": "PR-E - Practice: Collaborative Endeavor",
+    "classes": [
+      "BIOE 20F",
+      "BIOE 82",
+      "BIOL 188",
+      "CMPM 17",
+      "CMPM 115",
+      "CMPM 120",
+      "COWL 11A",
+      "CRWN 102",
+      "CT 125",
+      "ESCI 150",
+      "GCH 190",
+      "HIS 189",
+      "JRLC 120",
+      "MATH 101",
+      "MERR 31F",
+      "MUSC 1C",
+      "MUSC 2"
+    ]
+  },
+  {
+    "area": "PR-C - Practice: Creative Process",
+    "classes": [
+      "ART 20H",
+      "ART 20J",
+      "ART 114",
+      "ARTG 90",
+      "ARTG 118",
+      "ARTG 179",
+      "CMPM 150",
+      "CMPM 179",
+      "FILM 170B",
+      "LIT 90",
+      "LIT 91A",
+      "LIT 91B",
+      "LIT 127J",
+      "LIT 179A",
+      "MUSC 5A",
+      "MUSC 9",
+      "MUSC 12",
+      "MUSC 12B",
+      "MUSC 55",
+      "MUSC 164",
+      "MUSC 166",
+      "THEA 17",
+      "THEA 36"
+    ]
+  },
+  {
+    "area": "C - Composition",
+    "classes": [
+      "WRIT 2"
+    ]
+  }
+]
+
+
+
+
+

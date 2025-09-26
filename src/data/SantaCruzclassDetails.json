@@ -1,0 +1,2656 @@
+[
+ {
+   "className": "AM 10",
+   "professor": "Jonathan Katznelson",
+   "score": 1.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2938987",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "AM 11A",
+   "professor": "Julie Simons",
+   "score": 3.0,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/3078984",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "AM 11B",
+   "professor": "Julie Simons",
+   "score": 3.0,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/3078984",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "AM 20",
+   "professor": "Jonathan Katznelson",
+   "score": 1.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2938987",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "AM 3",
+   "professor": "Papri Dey",
+   "score": 3.0,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/3076886",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "ANTH 104",
+   "professor": "Lars Fehren-Schmitz",
+   "score": 5.0,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/2005182",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "ANTH 110Q",
+   "professor": "Shange-Binion, S.T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ANTH 126",
+   "professor": "Nidhi Mahajan",
+   "score": 1.6,
+   "difficulty": 1.5,
+   "link": "https://www.ratemyprofessors.com/professor/2448789",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ANTH 176G",
+   "professor": "Carla Hernandez Garavito",
+   "score": 3.9,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2774618",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "ARBC 4",
+   "professor": "Berrahmoun, A.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "ART 10D",
+   "professor": "Grant Whipple",
+   "score": 3.0,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/2388101",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ART 147T",
+   "professor": "Pamela Rodriguez-Montero",
+   "score": 5.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/2779772",
+   "schedule": [
+     "MW 09:20AM-10:55AM"
+   ]
+ },
+ {
+   "className": "ARTG 25",
+   "professor": "Ballard P",
+   "score": 4.8,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/2952244",
+   "schedule": [
+     "MW 09:20AM-10:55AM"
+   ]
+ },
+ {
+   "className": "COWL 65",
+   "professor": "Addi Somekh",
+   "score": 5.0,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/2670634",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "COWL 70A",
+   "professor": "Young, G.E.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CRES 10",
+   "professor": "LeBron, M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CRES 110Q",
+   "professor": "Shange-Binion, S.T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "CRES 122",
+   "professor": "Casumbal-Salazar, I.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "CRES 129",
+   "professor": "Nicholas Mitchell",
+   "score": 4.5,
+   "difficulty": 3.1,
+   "link": "https://www.ratemyprofessors.com/professor/1001148",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "CRES 170",
+   "professor": "Jennifer Mogannam",
+   "score": 4.8,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/2255642",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "CRES 185",
+   "professor": "Kriti Sharma",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "https://www.ratemyprofessors.com/professor/2976331",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CT 11",
+   "professor": "A.M. Darke",
+   "score": 2.2,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/2463375",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "EDUC 140",
+   "professor": "Michelle Aguilera",
+   "score": 2.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/2913753",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "EDUC 162",
+   "professor": "Michelle Aguilera",
+   "score": 2.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/2913753",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "EDUC 60",
+   "professor": "Kylie Kenner",
+   "score": 4.2,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/2354954",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ENVS 147",
+   "professor": "Ravi Rajan",
+   "score": 2.4,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/895635",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "ENVS 26",
+   "professor": "Lu, F.E.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "FILM 132B",
+   "professor": "Selmin Kara",
+   "score": 4.8,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/3080633",
+   "schedule": [
+     "TuTh 05:20PM-08:20PM"
+   ]
+ },
+ {
+   "className": "FILM 160H",
+   "professor": "Rizzo-Martinez, M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-12:50PM"
+   ]
+ },
+ {
+   "className": "FILM 80A",
+   "professor": "Topiary Landberg",
+   "score": 4.1,
+   "difficulty": 1.6,
+   "link": "https://www.ratemyprofessors.com/professor/2900553",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "FILM 80S",
+   "professor": "Logan Walker",
+   "score": 4.5,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/2535128",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "FILM 80S",
+   "professor": "Yulia Gilichinskaya",
+   "score": 5.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/3116872",
+   "schedule": [
+     "MW 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "FMST 1",
+   "professor": "Anjali Arondekar",
+   "score": 3.8,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/166900",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "FMST 110Q",
+   "professor": "Shange-Binion, S.T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "FMST 175",
+   "professor": "Marcelino, T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "FMST 40",
+   "professor": "Marcelino, T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "FMST 71",
+   "professor": "Rachel Nelson",
+   "score": 4.4,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/2265759",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "FREN 4",
+   "professor": "Carine Rohmer",
+   "score": 4.9,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/2232830",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "HAVC 118",
+   "professor": "Tatiane Santa Rosa",
+   "score": 2.3,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/2504415",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "HAVC 135D",
+   "professor": "Kailani Polzak",
+   "score": 5.0,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2676444",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "HAVC 141I",
+   "professor": "Jennifer Gonzalez",
+   "score": 4.4,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/463180",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "HAVC 188J",
+   "professor": "Moore, A.C.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "HAVC 28",
+   "professor": "Boreth LY",
+   "score": 3.9,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/1324993",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "HAVC 47",
+   "professor": "Karl, B.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "HAVC 70",
+   "professor": "Nicole Furtado",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "https://www.ratemyprofessors.com/professor/3108622",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "HIS 109A",
+   "professor": "Catherine Jones",
+   "score": 4.3,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/1265900",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "HIS 10A",
+   "professor": "Catherine Jones",
+   "score": 4.3,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/1265900",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "HIS 150C",
+   "professor": "Noriko Aso",
+   "score": 4.5,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/236378",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "HIS 159B",
+   "professor": "Elaine Sullivan",
+   "score": 3.7,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/1881428",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "HIS 163C",
+   "professor": "Anne Kreps",
+   "score": 5.0,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/2933679",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "HIS 174",
+   "professor": "Bruce Thompson",
+   "score": 4.7,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/175963",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "HIS 181",
+   "professor": "Marc Matera",
+   "score": 4.4,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/1902480",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "HIS 31A",
+   "professor": "Thiago Mota",
+   "score": 5.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/3050672",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "HIS 44",
+   "professor": "Juned Shaikh",
+   "score": 4.8,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/2676787",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "HIS 58",
+   "professor": "Muriam Davis",
+   "score": 3.6,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2342007",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "HIS 70A",
+   "professor": "Benjamin Breen",
+   "score": 4.3,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/2323165",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "HIS 78",
+   "professor": "Edward Kehler",
+   "score": 4.5,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/1211172",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "HISC 124",
+   "professor": "Mark Nash",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "https://www.ratemyprofessors.com/professor/3108450",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ITAL 4",
+   "professor": "Tonia Prencipe",
+   "score": 4.4,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/574127",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "JAPN 103",
+   "professor": "Saori Hoshi",
+   "score": 5.0,
+   "difficulty": 4.0,
+   "link": "https://www.ratemyprofessors.com/professor/2986636",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "LALS 1",
+   "professor": "Lily Balloffet",
+   "score": 2.5,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2611851",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "LALS 165",
+   "professor": "Justin Perez",
+   "score": 3.8,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/2657456",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LALS 178",
+   "professor": "Shankari Patel",
+   "score": 4.5,
+   "difficulty": 1.3,
+   "link": "https://www.ratemyprofessors.com/professor/2445304",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "LGST 116",
+   "professor": "Shawn Nichols",
+   "score": 3.8,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/2150050",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "LGST 126C",
+   "professor": "Nidhi Mahajan",
+   "score": 1.6,
+   "difficulty": 1.5,
+   "link": "https://www.ratemyprofessors.com/professor/2448789",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LGST 128I",
+   "professor": "Hiroshi Fukurai",
+   "score": 4.0,
+   "difficulty": 2.2,
+   "link": "https://www.ratemyprofessors.com/professor/215985",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "LIT 130A",
+   "professor": "Thomas, T.N.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "LIT 188E",
+   "professor": "Jordi Aladro-Font",
+   "score": 3.8,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/217107",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "LIT 189C",
+   "professor": "Jordi Aladro-Font",
+   "score": 3.8,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/217107",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LIT 61J",
+   "professor": "Bruce Thompson",
+   "score": 4.7,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/175963",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "LIT 61R",
+   "professor": "Christopher Chen",
+   "score": 4.6,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/1817330",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "MUSC 80A",
+   "professor": "Spiri, G.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "PHIL 22",
+   "professor": "Janette Dinishak",
+   "score": 4.4,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/1625311",
+   "schedule": [
+     "MW 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "POLI 116",
+   "professor": "Shawn Nichols",
+   "score": 3.8,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/2150050",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "SOCY 128I",
+   "professor": "Hiroshi Fukurai",
+   "score": 4.0,
+   "difficulty": 2.2,
+   "link": "https://www.ratemyprofessors.com/professor/215985",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "SOCY 15",
+   "professor": "Amy Argenal",
+   "score": 5.0,
+   "difficulty": 1.4,
+   "link": "https://www.ratemyprofessors.com/professor/2917071",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "SOCY 151",
+   "professor": "Zhao, M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "SOCY 178Z",
+   "professor": "Laura Harrison",
+   "score": 3.9,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/2753036",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "SPAN 105",
+   "professor": "Jordi Aladro-Font",
+   "score": 3.8,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/217107",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "SPAN 4",
+   "professor": "Bryan Barahona",
+   "score": 4.1,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/1150402",
+   "schedule": [
+     "MWF 01:20PM-02:25PM",
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "SPAN 5",
+   "professor": "Sandra Malone",
+   "score": 4.2,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/2234625",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "SPAN 5M",
+   "professor": "Carolina Castillo-Trelles",
+   "score": 5.0,
+   "difficulty": 1.9,
+   "link": "https://www.ratemyprofessors.com/professor/1647814",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "SPAN 6",
+   "professor": "Bryan Barahona",
+   "score": 4.1,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/1150402",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "SPHS 4",
+   "professor": "Maria Gonzalez- Pagani",
+   "score": 4.2,
+   "difficulty": 3.8,
+   "link": "https://www.ratemyprofessors.com/professor/464559",
+   "schedule": [
+     "MWF 01:20PM-02:25PM",
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "THEA 117",
+   "professor": "Pamela Rodriguez-Montero",
+   "score": 5.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/2779772",
+   "schedule": [
+     "MW 09:20AM-10:55AM"
+   ]
+ },
+ {
+   "className": "THEA 20",
+   "professor": "Greg Fritsch",
+   "score": 4.0,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/421376",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "THEA 31L",
+   "professor": "Staff",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "THEA 40",
+   "professor": "Rebecca Wear",
+   "score": 3.0,
+   "difficulty": 4.0,
+   "link": "https://www.ratemyprofessors.com/professor/2960136",
+   "schedule": [
+     "MW 04:00PM-05:35PM"
+   ]
+ },
+ {
+   "className": "VAST 1",
+   "professor": "Rachel Nelson",
+   "score": 4.4,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/2265759",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "VAST 188J",
+   "professor": "Moore, A.C.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "VAST 1",
+   "professor": "Rachel Nelson",
+   "score": 4.4,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/2265759",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "VAST 188J",
+   "professor": "Andy Moore",
+   "score": 4.1,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/962067",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "AM 3",
+   "professor": "Papri Dey",
+   "score": 3.0,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/3076886",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "AM 10",
+   "professor": "Jonathan Katznelson",
+   "score": 1.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2938987",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "AM 11A",
+   "professor": "Julie Simons",
+   "score": 3.0,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/3078984",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "AM 11B",
+   "professor": "Julie Simons",
+   "score": 3.0,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/3078984",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "AM 20",
+   "professor": "Jonathan Katznelson",
+   "score": 1.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2938987",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "AM 114",
+   "professor": "Qi Gong",
+   "score": 3.6,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/1257446",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "ART 101",
+   "professor": "Dolgov,I.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ASTR 16",
+   "professor": "Natalie Batalha",
+   "score": 4.0,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/2657771",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "BME 160",
+   "professor": "David Bernick",
+   "score": 4.5,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/1825625",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "CSE 16",
+   "professor": "Kyle Miller",
+   "score": 3.3,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/2992275",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CSE 16",
+   "professor": "Cedric Westphal",
+   "score": 2.1,
+   "difficulty": 4.4,
+   "link": "https://www.ratemyprofessors.com/professor/3103126",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "CSE 20",
+   "professor": "Larissa Munishkina",
+   "score": 2.5,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/2586990",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "CSE 20",
+   "professor": "Ishaan Paranjape",
+   "score": 5.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2892319",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "CSE 20",
+   "professor": "Hao Yue",
+   "score": 4.9,
+   "difficulty": 1.9,
+   "link": "https://www.ratemyprofessors.com/professor/3047687",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CSE 20",
+   "professor": "Paten,B.J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "EART 119A",
+   "professor": "Mathis Hain",
+   "score": 4.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2579206",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "ECE 8",
+   "professor": "Tae Huh",
+   "score": 1.2,
+   "difficulty": 4.8,
+   "link": "https://www.ratemyprofessors.com/professor/2983916",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "LING 53",
+   "professor": "Jess Law",
+   "score": 3.3,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2604150",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "LING 112",
+   "professor": "Pancheva,R.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "MATH 3",
+   "professor": "Robert Hingtgen",
+   "score": 5.0,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/2279165",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "MATH 11A",
+   "professor": "Mackall,E.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "MATH 11B",
+   "professor": "Jesse Kass",
+   "score": 3.2,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2895784",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "MATH 16A",
+   "professor": "Martin Weissman",
+   "score": 4.0,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/1035376",
+   "schedule": [
+     "MW 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "MATH 16B",
+   "professor": "Debra Lewis",
+   "score": 2.0,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/212134",
+   "schedule": [
+     "MW 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "MATH 19A",
+   "professor": "Chattopadhyay,A.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "MATH 19A",
+   "professor": "Daniela Sanders",
+   "score": 4.3,
+   "difficulty": 4.0,
+   "link": "https://www.ratemyprofessors.com/professor/1413714",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "MATH 19B",
+   "professor": "Pan,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "MATH 21",
+   "professor": "Chongying Dong",
+   "score": 3.3,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/640399",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "MATH 23A",
+   "professor": "Suzana Serboi",
+   "score": 3.9,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/2927160",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "MATH 23B",
+   "professor": "Junecue Suh",
+   "score": 3.5,
+   "difficulty": 4.2,
+   "link": "https://www.ratemyprofessors.com/professor/2111210",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "MATH 100",
+   "professor": "Pedro Morales",
+   "score": 3.8,
+   "difficulty": 3.1,
+   "link": "https://www.ratemyprofessors.com/professor/2404607",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "MUSC 150H",
+   "professor": "Chris Pratorius",
+   "score": 4.7,
+   "difficulty": 2.1,
+   "link": "https://www.ratemyprofessors.com/professor/347794",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "PHIL 9",
+   "professor": "Nico Orlandi",
+   "score": 4.4,
+   "difficulty": 2.5,
+   "link": "https://www.ratemyprofessors.com/professor/1963474",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "PHYS 5A",
+   "professor": "Dhar,B.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "PHYS 6A",
+   "professor": "Karyndinha,E.S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "PHYS 15A",
+   "professor": "Steve Ritz",
+   "score": 4.9,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/1382214",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "ANTH 1",
+   "professor": "Emily Schach",
+   "score": 4.6,
+   "difficulty": 2.2,
+   "link": "https://www.ratemyprofessors.com/professor/2553195",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "ANTH 109",
+   "professor": "Vicky Oelze",
+   "score": 4.8,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/2251228",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "ASTR 1",
+   "professor": "Nia Imara",
+   "score": 4.8,
+   "difficulty": 1.6,
+   "link": "https://www.ratemyprofessors.com/professor/2680710",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "ASTR 6",
+   "professor": "Graeme Smith",
+   "score": 4.4,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/367298",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "BIOL 80A",
+   "professor": "Gurun,G.J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "BME 18",
+   "professor": "David Haussler",
+   "score": 4.1,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/414542",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "CHEM 3A",
+   "professor": "Alegra Eroy-Reveles",
+   "score": 4.1,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2438885",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "CHEM 3A",
+   "professor": "Staff",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "EART 2",
+   "professor": "Gonzalez Reguero,B.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "EART 5",
+   "professor": "Keenan Hassell",
+   "score": 5.0,
+   "difficulty": 1.5,
+   "link": "https://www.ratemyprofessors.com/professor/3106243",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "ENVS 24",
+   "professor": "Chris Wilmers",
+   "score": 2.7,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/1105594",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "GCH 1",
+   "professor": "Salama,S.R.Rahal,D.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Th 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "LALS 54",
+   "professor": "Carlos Martinez",
+   "score": 5.0,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/2889694",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "LALS 177",
+   "professor": "Carlos Martinez",
+   "score": 5.0,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/2889694",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LALS 183",
+   "professor": "Lily Balloffet",
+   "score": 2.5,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2611851",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "LING 50",
+   "professor": "Matt Wagers",
+   "score": 4.3,
+   "difficulty": 3.1,
+   "link": "https://www.ratemyprofessors.com/professor/1397575",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "METX 108",
+   "professor": "Lin,A.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "OCEA 80A",
+   "professor": "Ari Friedlaender",
+   "score": 4.9,
+   "difficulty": 1.4,
+   "link": "https://www.ratemyprofessors.com/professor/2940948",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "PHYS 5C",
+   "professor": "Dhar,B.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 08:00AM-09:05AM"
+   ]
+ },
+ {
+   "className": "PHYS 6B",
+   "professor": "Karyndinha,E.S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "PHYS 6C",
+   "professor": "Ryan Baumbach",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "https://www.ratemyprofessors.com/professor/3068522",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "ASTR 19",
+   "professor": "Brant Robertson",
+   "score": 2.7,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2240217",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CSE 40",
+   "professor": "Alexander Rudnick",
+   "score": 3.8,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/2762323",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "CSE 40",
+   "professor": "Hao Yue",
+   "score": 4.9,
+   "difficulty": 1.9,
+   "link": "https://www.ratemyprofessors.com/professor/3047687",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CSE 107",
+   "professor": "Patrick Tantalo",
+   "score": 3.7,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/144099",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "ECON 113",
+   "professor": "Ariel Zucker",
+   "score": 3.3,
+   "difficulty": 3.4,
+   "link": "https://www.ratemyprofessors.com/professor/2777067",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "ECON 113",
+   "professor": "Martinez-Iriarte,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "ESCI 160",
+   "professor": "Claudie Beaulieu",
+   "score": 4.7,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/2774415",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "LING 80L",
+   "professor": "Pranav Anand",
+   "score": 4.0,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/1065741",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "LING 147",
+   "professor": "Paramore,J.C.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "LING 171",
+   "professor": "Adrian Brasoveanu",
+   "score": 4.0,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/956206",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "OCEA 90",
+   "professor": "Andy Moore",
+   "score": 4.1,
+   "difficulty": 2.6,
+   "link": "https://www.ratemyprofessors.com/professor/962067",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "PHYS 133",
+   "professor": "Ramirez,A.P.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 01:30PM-05:15PM",
+     "TuTh 09:00AM-12:45PM"
+   ]
+ },
+ {
+   "className": "PSYC 2",
+   "professor": "Menendez,D.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "STAT 5",
+   "professor": "Yunan Wang",
+   "score": 3.9,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/3031005",
+   "schedule": [
+     "MWF 02:40PM-03:45PM",
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "STAT 5",
+   "professor": "Jonathan Katznelson",
+   "score": 1.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2938987",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "STAT 7",
+   "professor": "Li,Z.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "STAT 17",
+   "professor": "Alfaro Cordoba,M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "STAT 80A",
+   "professor": "Paul Parker",
+   "score": 4.4,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/2987792",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "STAT 131",
+   "professor": "Jeremey Lee",
+   "score": 3.3,
+   "difficulty": 3.9,
+   "link": "https://www.ratemyprofessors.com/professor/1103237",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "STAT 131",
+   "professor": "Sangwon Hyun",
+   "score": 2.3,
+   "difficulty": 4.1,
+   "link": "https://www.ratemyprofessors.com/professor/2914336",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "STAT 132",
+   "professor": "Robert Lund",
+   "score": 5.0,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/2980695",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "BME 132",
+   "professor": "Russell,S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 09:20AM-10:25AM"
+   ]
+ },
+ {
+   "className": "CHIN 103",
+   "professor": "Anita Chan",
+   "score": 2.3,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2178678",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CHIN 103",
+   "professor": "Ting Ting Wu",
+   "score": 4.9,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/1292914",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "HIS 100",
+   "professor": "Muriam Davis",
+   "score": 3.6,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2342007",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "HISC 12",
+   "professor": "Massimiliano Tomba",
+   "score": 4.5,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/2377762",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "HUMN 15",
+   "professor": "Lauren Lyons",
+   "score": 4.3,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/3086012",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "HUMN 25",
+   "professor": "Papadopoulos,D.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "LIT 101",
+   "professor": "Vilashini Cooppan",
+   "score": 3.7,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/594336",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "LIT 119A",
+   "professor": "Rodrigo Lazo",
+   "score": 4.5,
+   "difficulty": 2.5,
+   "link": "https://www.ratemyprofessors.com/professor/3051801",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "LIT 120F",
+   "professor": "Christopher Chen",
+   "score": 4.6,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/1817330",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "LIT 190U",
+   "professor": "Carla Freccero",
+   "score": 4.2,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/12446",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "PHIL 11",
+   "professor": "Carolina Flores",
+   "score": 2.5,
+   "difficulty": 1.2,
+   "link": "https://www.ratemyprofessors.com/professor/2996453",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "POLI 20",
+   "professor": "Joel Landis",
+   "score": 4.2,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/3079991",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "PSYC 140H",
+   "professor": "Phillip Hammack",
+   "score": 4.1,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/999872",
+   "schedule": [
+     "MW 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "EART 106",
+   "professor": "Gary Griggs",
+   "score": 4.0,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/183470",
+   "schedule": [
+     "TuTh 08:00AM-09:35AM"
+   ]
+ },
+ {
+   "className": "EART 110A",
+   "professor": "Terry Blackburn",
+   "score": 4.7,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2121289",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "ENVS 80F",
+   "professor": "Fairbairn,M.P.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "ESCI 30",
+   "professor": "Alexa Fredstone",
+   "score": 5.0,
+   "difficulty": 1.3,
+   "link": "https://www.ratemyprofessors.com/professor/2954479",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "LALS 94X",
+   "professor": "Fernando Leiva",
+   "score": 3.8,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/1989576",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "METX 150",
+   "professor": "Chad Saltikov",
+   "score": 4.5,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/821588",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "OCEA 80B",
+   "professor": "Phoebe Lam",
+   "score": 4.4,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/2221173",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "APLX 80",
+   "professor": "Donald Miller",
+   "score": 4.8,
+   "difficulty": 2.2,
+   "link": "https://www.ratemyprofessors.com/professor/2971260",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CMMU 10",
+   "professor": "Leslie Lopez",
+   "score": 3.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/326051",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "COWL 132",
+   "professor": "Brant Robertson",
+   "score": 2.7,
+   "difficulty": 3.3,
+   "link": "https://www.ratemyprofessors.com/professor/2240217",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "CT 101",
+   "professor": "Santos,D.R.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "ECON 1",
+   "professor": "Subhra Saha",
+   "score": 3.9,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/2155126",
+   "schedule": [
+     "MWF 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "ECON 2",
+   "professor": "Jennifer Gonzalez",
+   "score": 4.4,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/463180",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "POLI 70",
+   "professor": "David Gordon",
+   "score": 4.5,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/2431358",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "PSYC 1",
+   "professor": "Jeremy Yamashiro",
+   "score": 4.8,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/2674348",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "SOCY 1",
+   "professor": "Christie Mccullen",
+   "score": 5.0,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/2425324",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "SOCY 137",
+   "professor": "Megan McNamara",
+   "score": 4.7,
+   "difficulty": 2.4,
+   "link": "https://www.ratemyprofessors.com/professor/2264807",
+   "schedule": [
+     "MW 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "ARTG 10",
+   "professor": "Gillette,K.L.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "BIOL 80J",
+   "professor": "James Shanks",
+   "score": 2.8,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2452061",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "BME 5",
+   "professor": "Dianne Hendricks",
+   "score": 5.0,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/2968519",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "CMPM 80H",
+   "professor": "Reza Habibi",
+   "score": 5.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/3113056",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CSE 3",
+   "professor": "Gerald Moulds",
+   "score": 4.6,
+   "difficulty": 1.5,
+   "link": "https://www.ratemyprofessors.com/professor/355999",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "CSE 80A",
+   "professor": "Manduchi,R.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "CSE 80N",
+   "professor": "Rick Graziani",
+   "score": 5.0,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/2472228",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "CT 10",
+   "professor": "Gillette,K.L.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "FILM 136C",
+   "professor": "Graeme Smith",
+   "score": 4.4,
+   "difficulty": 2.3,
+   "link": "https://www.ratemyprofessors.com/professor/367298",
+   "schedule": [
+     "MW 04:00PM-05:35PM"
+   ]
+ },
+ {
+   "className": "FILM 189",
+   "professor": "Edward Shanken",
+   "score": 2.3,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/2420324",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "HAVC 141L",
+   "professor": "Kyle Parry",
+   "score": 3.6,
+   "difficulty": 2.8,
+   "link": "https://www.ratemyprofessors.com/professor/2308944",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "SOCY 30A",
+   "professor": "de Roock,R.S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "SOCY 123",
+   "professor": "Jamie Morse",
+   "score": 4.2,
+   "difficulty": 2.2,
+   "link": "https://www.ratemyprofessors.com/professor/2578840",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "BIOE 20F",
+   "professor": "Abe Borker",
+   "score": 5.0,
+   "difficulty": 1.3,
+   "link": "https://www.ratemyprofessors.com/professor/2956660",
+   "schedule": [
+     "Th 01:30PM-03:05PM",
+     "Th 09:00AM-01:00PM"
+   ]
+ },
+ {
+   "className": "BIOE 82",
+   "professor": "Reilly,S.B.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Tu 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "BIOE 82",
+   "professor": "Heady,K.K.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Tu 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "BIOL 188",
+   "professor": "Vahradian,S.K.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 06:00PM-08:00PM"
+   ]
+ },
+ {
+   "className": "CMPM 17",
+   "professor": "Favaloro,T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM",
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CMPM 115",
+   "professor": "Favaloro,T.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "CMPM 120",
+   "professor": "Markus Eger",
+   "score": 5.0,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/3034877",
+   "schedule": [
+     "TuTh 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "COWL 11A",
+   "professor": "John Newman",
+   "score": 2.5,
+   "difficulty": 3.8,
+   "link": "https://www.ratemyprofessors.com/professor/1144205",
+   "schedule": [
+     "Tu 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "CRWN 102",
+   "professor": "Rao,S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "CT 125",
+   "professor": "Erb,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "ESCI 150",
+   "professor": "Allison Moreno",
+   "score": 3.0,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/3010715",
+   "schedule": [
+     "MW 02:00PM-05:00PM"
+   ]
+ },
+ {
+   "className": "GCH 190",
+   "professor": "Laura Bugg",
+   "score": 5.0,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/2994622",
+   "schedule": [
+     "MWF 01:20PM-02:25PM"
+   ]
+ },
+ {
+   "className": "GCH 190",
+   "professor": "Mercer,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "HIS 189",
+   "professor": "Elaine Sullivan",
+   "score": 3.7,
+   "difficulty": 3.5,
+   "link": "https://www.ratemyprofessors.com/professor/1881428",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "JRLC 120",
+   "professor": "Gardner,M.R.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 02:40PM-03:45PM"
+   ]
+ },
+ {
+   "className": "MATH 101",
+   "professor": "Suzana Serboi",
+   "score": 3.9,
+   "difficulty": 2.7,
+   "link": "https://www.ratemyprofessors.com/professor/2927160",
+   "schedule": [
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "MERR 31F",
+   "professor": "Staff",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "MUSC 1C",
+   "professor": "Nathaniel Berman",
+   "score": 4.9,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/1214934",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "MUSC 2",
+   "professor": "Kiesling,B.A.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "ART 20H",
+   "professor": "Monaghan,S.M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 12:00PM-02:25PM"
+   ]
+ },
+ {
+   "className": "ART 20J",
+   "professor": "Gwyn,M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MWF 05:20PM-07:45PM"
+   ]
+ },
+ {
+   "className": "ART 114",
+   "professor": "Grant Whipple",
+   "score": 3.0,
+   "difficulty": 3.6,
+   "link": "https://www.ratemyprofessors.com/professor/2388101",
+   "schedule": [
+     "MWF 02:40PM-05:05PM"
+   ]
+ },
+ {
+   "className": "ARTG 90",
+   "professor": "A.M. Darke",
+   "score": 2.2,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/2463375",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "ARTG 118",
+   "professor": "Ed Gregor",
+   "score": 5.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2311461",
+   "schedule": [
+     "MW 04:00PM-05:35PM"
+   ]
+ },
+ {
+   "className": "ARTG 179",
+   "professor": "Tyler Coleman",
+   "score": 5.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2973423",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "CMPM 150",
+   "professor": "Adam Sporka",
+   "score": 5.0,
+   "difficulty": 2.0,
+   "link": "https://www.ratemyprofessors.com/professor/2982050",
+   "schedule": [
+     "MW 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "CMPM 179",
+   "professor": "Tyler Coleman",
+   "score": 5.0,
+   "difficulty": 3.0,
+   "link": "https://www.ratemyprofessors.com/professor/2973423",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "FILM 170B",
+   "professor": "Quentin Lareau",
+   "score": 2.0,
+   "difficulty": 1.6,
+   "link": "https://www.ratemyprofessors.com/professor/2775508",
+   "schedule": [
+     "MW 02:40PM-05:05PM",
+     "TuTh 09:50AM-12:20PM"
+   ]
+ },
+ {
+   "className": "LIT 90",
+   "professor": "Tseng,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Th 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LIT 91A",
+   "professor": "Pham,Q.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "LIT 91B",
+   "professor": "Jihoon Park",
+   "score": 5.0,
+   "difficulty": 1.0,
+   "link": "https://www.ratemyprofessors.com/professor/2972226",
+   "schedule": [
+     "MW 05:20PM-06:55PM"
+   ]
+ },
+ {
+   "className": "LIT 127J",
+   "professor": "Kleinberg Biehl,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "LIT 179A",
+   "professor": "Tseng,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 11:40AM-01:15PM"
+   ]
+ },
+ {
+   "className": "MUSC 5A",
+   "professor": "Garcia,E.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Tu 06:30PM-08:30PM"
+   ]
+ },
+ {
+   "className": "MUSC 9",
+   "professor": "Nathaniel Berman",
+   "score": 4.9,
+   "difficulty": 1.7,
+   "link": "https://www.ratemyprofessors.com/professor/1214934",
+   "schedule": [
+     "MW 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "MUSC 12",
+   "professor": "Diaz,J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "MUSC 12B",
+   "professor": "Vega,M.S.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "Tu 07:00PM-09:00PM"
+   ]
+ },
+ {
+   "className": "MUSC 55",
+   "professor": "Ashwin Batish",
+   "score": 5.0,
+   "difficulty": 1.2,
+   "link": "https://www.ratemyprofessors.com/professor/2353772",
+   "schedule": [
+     "Tu 01:30PM-03:05PM"
+   ]
+ },
+ {
+   "className": "MUSC 164",
+   "professor": "Hamilton,C.R.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 01:20PM-02:55PM"
+   ]
+ },
+ {
+   "className": "MUSC 166",
+   "professor": "McGushin,M.J.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "MW 03:00PM-05:00PM"
+   ]
+ },
+ {
+   "className": "THEA 17",
+   "professor": "Grenz,K.M.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "THEA 36",
+   "professor": "Pearlman,C.",
+   "score": "N/A",
+   "difficulty": "N/A",
+   "link": "N/A",
+   "schedule": [
+     "TuTh 03:20PM-04:55PM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Derede Arthur",
+   "score": 4.1,
+   "difficulty": 3.2,
+   "link": "https://www.ratemyprofessors.com/professor/330804",
+   "schedule": [
+     "MW 09:20AM-10:25AM",
+     "MW 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Daniel Joesten",
+   "score": 5.0,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/2467516",
+   "schedule": [
+     "TuTh 05:20PM-06:55PM",
+     "TuTh 07:10PM-08:45PM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Lara Galas",
+   "score": 2.8,
+   "difficulty": 2.5,
+   "link": "https://www.ratemyprofessors.com/professor/2603863",
+   "schedule": [
+     "MWF 01:20PM-02:25PM",
+     "MWF 04:00PM-05:05PM",
+     "MWF 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Christopher Garrecht-Williams",
+   "score": 4.9,
+   "difficulty": 2.1,
+   "link": "https://www.ratemyprofessors.com/professor/2746829",
+   "schedule": [
+     "MWF 01:20PM-02:25PM",
+     "MWF 12:00PM-01:05PM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Lisa Schilz",
+   "score": 4.8,
+   "difficulty": 2.9,
+   "link": "https://www.ratemyprofessors.com/professor/1899450",
+   "schedule": [
+     "MW 09:20AM-10:25AM",
+     "MW 10:40AM-11:45AM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Dev Bose",
+   "score": 3.3,
+   "difficulty": 3.8,
+   "link": "https://www.ratemyprofessors.com/professor/3028458",
+   "schedule": [
+     "Tu 09:50AM-11:25AM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Toby Loeffler",
+   "score": 4.5,
+   "difficulty": 3.7,
+   "link": "https://www.ratemyprofessors.com/professor/1260319",
+   "schedule": [
+     "MWF 04:00PM-05:05PM"
+   ]
+ },
+ {
+   "className": "WRIT 2",
+   "professor": "Kae Roybal",
+   "score": 4.6,
+   "difficulty": 1.8,
+   "link": "https://www.ratemyprofessors.com/professor/2661382",
+   "schedule": [
+     "MW 10:40AM-11:45AM"
+   ]
+ }
+]
+

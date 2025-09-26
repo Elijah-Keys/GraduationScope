@@ -12,12 +12,14 @@ function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
   const isMobile = window.innerWidth <= 700;
 
   const isHome = location.pathname === '/' || location.pathname === '/home';
+const onUcscRec = location.pathname.startsWith('/santacruzrecommend');
 
   const recommendRouteByUni = (id) =>
     ({
       sjsu: '/recommend',
       chico: '/chicorecommend',
       berkeley: '/berkeleyrecommend',
+      santacruz: '/santacruzrecommend',
     }[id] || '/recommend');
 
   const goRecommendFor = (id) => {
@@ -43,6 +45,20 @@ const handleRecommendClick = (e) => {
   }, []);
 
   const getNavLinks = () => {
+       if (location.pathname.startsWith('/santacruzrecommend')) {
+  return [
+       { to: '/', Icon: IoIosHome, label: 'Home' },
+       { to: '/santacruz', Icon: IoIosArrowBack, label: 'Back' },
+       { to: '/about', Icon: FaCircleInfo, label: 'About' },
+     ];
+   }
+   if (location.pathname.startsWith('/santacruz')) {
+     return [
+       { to: '/', Icon: IoIosHome, label: 'Home' },
+       { to: '/santacruzrecommend', Icon: GiBrain, label: 'Recommend' },
+       { to: '/about', Icon: FaCircleInfo, label: 'About' },
+     ];
+   }
     if (location.pathname.startsWith('/recommend')) {
       return [
         { to: '/', Icon: IoIosHome, label: 'Home' },
@@ -96,6 +112,15 @@ const handleRecommendClick = (e) => {
 
   const navLinks = getNavLinks();
 
+const btn = () => ({
+  padding: '12px 14px',
+  borderRadius: 10,
+  border: '1px solid #e0e0e0',
+  background: '#f8fafc',
+  cursor: 'pointer',
+  textAlign: 'left',
+  fontWeight: 600,
+});
   return (
     <header
       className="navy-header"
@@ -119,6 +144,10 @@ const handleRecommendClick = (e) => {
       >
         {/* Left: logo + title */}
         <div
+         onClick={() => navigate('/')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/')}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -126,6 +155,7 @@ const handleRecommendClick = (e) => {
             flexShrink: 0,
             minWidth: window.innerWidth <= 768 ? '50%' : 'auto',
             transform: window.innerWidth <= 768 ? 'translate(90px, 25px)' : 'none',
+             cursor: 'pointer',
           }}
         >
           <div className="logo-circle-wrapper" style={{ position: 'relative' }}>
@@ -208,6 +238,7 @@ const handleRecommendClick = (e) => {
             return (
               <NavLink
                 key={label}
+                  reloadDocument={onUcscRec} 
                 to={to}
                 className={({ isActive }) =>
                   `ge-icon-link ${isActive ? 'active' : ''} ${isRecommend ? 'recommend-cta' : ''}`
@@ -381,6 +412,13 @@ const handleRecommendClick = (e) => {
               >
                 UC Berkeley — Recommend
               </button>
+               <button
+               onClick={() => goRecommendFor('santacruz')}
+               style={btn()}
+               type="button"
+             >
+               UC Santa Cruz — Recommend
+             </button>
             </div>
             <button
               onClick={() => setShowUniPicker(false)}
@@ -392,19 +430,10 @@ const handleRecommendClick = (e) => {
           </div>
         </div>
       )}
-    </header>
-  );
+
+
+
+</header>
+);
 }
-
-// small helper for modal buttons
-const btn = () => ({
-  padding: '12px 14px',
-  borderRadius: 10,
-  border: '1px solid #e0e0e0',
-  background: '#f8fafc',
-  cursor: 'pointer',
-  textAlign: 'left',
-  fontWeight: 600,
-});
-
 export default Header;
