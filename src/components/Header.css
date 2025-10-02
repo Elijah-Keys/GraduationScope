@@ -1,505 +1,1208 @@
-:root {
-  --sidebar-width: 100px;
-  --header-height: 100px;
-  --bottombar-height: 88px; /* bottom bar height for desktop/tablet */
-}
+  /* All styles are scoped under .gs-header to avoid leaking to the rest of the app */
 
-.navy-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: var(--header-height);
-  background-color: #0A0F2C;
-  display: flex;
-  align-items: center;
-  z-index: 10000;
-  pointer-events: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.navy-header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.navy-circle {
-  position: absolute;
-  left: -103px;
-  top:-45px;
-  width: 85px;
-  height: 85px;
-  background-color: #fff;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.navy-logo {
-  position: absolute;
-  left: -103px;
-  top: -45px;
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  z-index: 2;
-  background: transparent;
-  border-radius: 50%;
-}
-
-.navy-title {
-  position: static !important;
-  font-size: 2rem !important; /* 15% smaller than 4rem */
-  font-weight: 800 !important;  /* lighter, as per your redesign spec */
-  color: #fff;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  margin-left: -16px;         /* 10px away from the logo circle */
-  padding: 0;
-  z-index: 2;
-  display: inline-block;
-  line-height: 1.2;
-}
-
-
-.sidebar-icon {
-  color: #fff;
-  font-size: 2.2rem;
-  margin: 24px 0;
-  display: block;
-}
-
-/*------------------------------------------------------------------*/
-/*    SIDEBAR AS BOTTOM BAR FOR DESKTOP/TABLET (&gt;600px)          */
-/*------------------------------------------------------------------*/
-
-.navy-sidebar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100vw;
-  height: var(--bottombar-height);
-  /* Transform from vertical to horizontal bar */
-  background-color: #14213D;
-  display: flex;
-  flex-direction: row;          /* row, not column (horizontal bar) */
-  align-items: center;
-  justify-content: center;      /* center icons horizontally */
-  z-index: 1000;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.04); /* shadow above bar */
-  padding: 0;
-  gap: 76px;                  /* spacing between icons (heavy for clarity) */
-  border-top: 1.5px solid #2328480d;
-}
-
-.navy-sidebar a, .navy-sidebar .sidebar-icon {
-  /* Remove vertical icon spacing, apply horizontal instead */
-  margin: 0 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--bottombar-height);
-}
-
-.navy-sidebar .sidebar-icon {
-  /* Make sure icons stay centered/sized */
-  font-size: 2.15rem;
-  line-height: 1;
-  color: #fff;
-  transition: color 0.18s, transform 0.18s;
-  cursor: pointer;
-  background: none;
-}
-
-.navy-sidebar .sidebar-icon:hover,
-.navy-sidebar .sidebar-icon:focus {
-  color: #ffd700;
-  transform: translateY(-5px) scale(1.06);
-}
-
-.navy-sidebar a:focus {
-  outline: none;
-  box-shadow: 0 2px 10px #ffd70060;
-  border-radius: 10px;
-}
-
-.navy-sidebar a.active .sidebar-icon {
-  color: #ffd700;
-  text-shadow: 0 2px 12px #ffd70027;
-}
-
-.navy-sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Extra for safety: remove vertical styling leftover from old sidebar */
-.navy-sidebar {
-  flex-direction: row !important;
-  flex-wrap: nowrap;
-  align-items: center !important;
-  gap: 76px;
-  top: auto !important;         /* not at top */
-  height: var(--bottombar-height) !important;
-  width: 100vw !important;
-}
-
-.navy-sidebar > * {
-  /* Buttons/links take up no more than 1/3 of the bottom nav */
-  flex: 0 1 140px;
-}
-
-/*------------------------------------------------------------------*/
-/*   REST OF HEADER/AUTH STYLES (unchanged)                         */
-/*------------------------------------------------------------------*/
-
-.auth-buttons-wrapper {
-  position: relative;
-  margin-left: 0;
-  right: 0;
-}
-
-.spacer {
-  flex: 1 1 auto;
-  min-width: 1125px;
-}
-
-.navy-auth-bg {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 120px;
-  height: 120px;
-  background: #fff;
-  border-radius: 50%;
-  z-index: 1;
-  pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.auth-links {
-  display: flex !important;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-left: 858px;
-  flex-wrap: nowrap;
-  min-width: fit-content; /* Prevents it from expanding too wide */
-}
-
-
-
-.guest-links {
-  margin-left: 70px;
-  display: flex;
-  gap: 10px;
-}
-
-.signup-link,
-.login-link,
-.account-link,
-.logout-button {
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  background: #14213d;
-  color: #fff;
-  cursor: pointer;
-  transition: color 0.2s, background 0.2s;
-  white-space: nowrap;
-}
-
-.signup-link:hover,
-.login-link:hover,
-.account-link:hover,
-.logout-button:hover {
-  background: #ffffff;
-  color: #717171;
-}
-
-.logout-button {
-  background: #14213d;
-  color: #fff;
-  border: none;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: color 0.2s, background 0.2s;
-  white-space: nowrap;
-  appearance: none;
-  outline: none;
-  box-shadow: none;
-  text-align: left;
-  display: inline-block;
-}
-
-/*------------------------------------------------------------------*/
-/*                       MOBILE STYLES                              */
-/*------------------------------------------------------------------*/
-
-@media (max-width: 700px) {
-  .navy-sidebar {
-    display: none !important; /* Bottom bar NOT shown on mobile per your request */
-  }
-  .navy-title {
-    display: none !important;
+  .gs-header {
+    position: sticky;                 /* stays with you while scrolling */
+    top: 12px;                        /* small offset from very top */
+    z-index: 1000;
+    pointer-events: none;             /* let only the bar receive events */
   }
 
-  :root {
-    --sidebar-width: 40px;
-  }
-
-  .navy-header {
-    height: var(--header-height);
-    padding: 0;
-  }
-
-  .navy-header-content {
-    padding: 0 6px;
-    min-width: 0;
-  }
-
-  .logo-circle-wrapper {
-    width: 60px;
-    height: 60px;
-    margin-right: 6px;
-  }
-
-  .navy-circle {
-    width: 60px;
-    height: 60px;
-    margin-left: 6px;
-    margin-top: 16px;
-  }
-
-  .navy-logo {
-    width: 70px;
-    height: 70px;
-    margin-left: 5px;
-    margin-top: 15px;
-  }
-
-  .navy-title {
-    font-size: 1.4rem;
-    margin-left: 5px;
-    margin-top: 0;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .auth-links {
-    gap: 4px;
-    margin-left: 0;
-    width: 100%;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-  }
-
-  .signup-link, .login-link, .account-link, .logout-button {
-    font-size: 0.85rem;
-    padding: 2px 4px;
-  }
-
-  .spacer {
-    width: 0 !important;
-    min-width: 0 !important;
-  }
-}
-/* Icon Bar */
-.ge-icon-bar {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 120px; /* space after icon bar (per spec) */
-  user-select: none;
-}
-
-.ge-icon-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #3a60ff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
-
-.ge-icon-link:hover,
-.ge-icon-link:focus {
-  color: #2a44cc;
-}
-
-.ge-icon {
-  font-size: 28px;
-}
-.ge-icon-link:hover {
-  color: #7589F3; /* A nice brand-blue highlight on hover */
-}
-
-.ge-icon-link:hover span {
-  text-decoration: underline;
-}
-
-.ge-icon-link.active {
-  color: #7589F3; /* Active color matching hover */
-  font-weight: 700;
-}
-.auth-links button.signup-link:hover,
-.auth-links button.login-link:hover {
-  color: #EDC239 !important;
-  transition: color 0.2s ease;
-}
-.navy-header, 
-.navy-header *, 
-.auth-links, 
-.guest-links,
-.navy-title,
-.ge-icon-bar,
-.ge-icon-link,
-.account-link,
-.logout-button,
-.signup-link,
-.login-link {
-  font-family: 'Montserrat', sans-serif !important;
-}
-/* Base */
-.ge-icon-link { color: #fff; }
-
-/* Desktop-only hover effects */
-@media (hover:hover) and (pointer:fine) {
-  .ge-icon-link {
-    transition: color 0.18s ease;
-  }
-  .ge-icon-link:hover {
-    color: #fff; /* keep white on hover */
-  }
-  .ge-icon-link:hover svg {
-    transform: translateY(-2px) scale(1.06);
-    filter: drop-shadow(0 6px 12px rgba(10, 17, 40, 0.35));
-  }
-  .ge-icon-link:hover .ge-icon-label {
-    text-decoration: underline;
-  }
-}
-
-/* If you also want the active tab white (no tint) */
-.ge-icon-link.active { color: #fff; }
-/* Force white for all icon links, all states */
-.navy-header .ge-icon-bar .ge-icon-link,
-.navy-header .ge-icon-bar .ge-icon-link:link,
-.navy-header .ge-icon-bar .ge-icon-link:visited,
-.navy-header .ge-icon-bar .ge-icon-link:hover,
-.navy-header .ge-icon-bar .ge-icon-link:active,
-.navy-header .ge-icon-bar .ge-icon-link.active {
-  color: #fff !important;
-}
-
-/* Make the react-icons use that white color */
-.navy-header .ge-icon-bar .ge-icon-link svg {
-  color: inherit !important;
-}
-/* Desktop-only emphasis for the Recommend icon */
-@media (min-width: 769px) {
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta {
-    position: relative;
-    color: #fff !important;
-    border-radius: 12px;
-    padding: 6px 10px;
-    background: rgba(59, 130, 246, 0.12);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  }
-
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta::before {
-    content: '';
-    position: absolute;
-    inset: -10px;
+  /* The floating pill bar */
+  .gs-header__bar {
+    pointer-events: auto;
+    width: min(980px, calc(100% - 32px));  /* not full-bleed */
+    margin: 0 auto;
+    padding: 10px 14px;
     border-radius: 16px;
-    background: radial-gradient(closest-side, rgba(59,130,246,.35), transparent 70%);
-    animation: rec-pulse 2.8s ease-in-out infinite;
-    pointer-events: none;
+    background: linear-gradient(180deg, #37405a, #2b3348);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,.18),
+      inset 0 1px 0 rgba(255,255,255,.06);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(10px) saturate(120%);
+  }
+
+  /* brand (logo + text) */
+  .gs-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  .gs-header__logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .gs-header__title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: .1px;
+    white-space: nowrap;
+  }
+
+  /* center nav */
+  .gs-header__nav {
+    display: flex;
+    gap: 22px;
+    margin-left: 8px;
+  }
+
+  .gs-header__link {
+    color: #e7ebf6;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .98rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: background .15s ease, color .15s ease;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  .gs-header__link:hover { background: rgba(255,255,255,.08); }
+  .gs-header__link.is-active { color: #fff; background: rgba(255,255,255,.12); }
+
+  .gs-header__icon { vertical-align: -2px; margin-right: 6px; }
+
+  /* push right actions */
+  .gs-header__spacer { flex: 1; }
+
+  /* right side */
+  .gs-header__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gs-header__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #1b9cf0;
+    color: #0b1227;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(27,156,240,.3);
+  }
+
+  .gs-header__ghostBtn {
+    background: rgba(255,255,255,.08);
+    color: #e7ebf6;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .gs-header__ghostBtn:hover { background: rgba(255,255,255,.14); }
+
+  /* Modal (university picker) – still scoped */
+  .gs-header__backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.35);
+    display: grid; place-items: center;
+    z-index: 1100;
+  }
+  .gs-header__sheet {
+    width: 440px; max-width: 92vw;
+    background: #fff; color: #111;
+    border-radius: 14px; padding: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.2);
+  }
+  .gs-header__sheetTitle { margin: 0 0 8px; font-size: 1.1rem; }
+  .gs-header__sheetSub   { margin: 0; color: #555; }
+  .gs-header__sheetGrid  { display: grid; gap: 12px; margin-top: 14px; }
+  .gs-header__sheetBtn   {
+    padding: 12px 14px; border-radius: 10px; border: 1px solid #e0e0e0;
+    background: #f8fafc; cursor: pointer; text-align: left; font-weight: 600;
+  }
+  .gs-header__sheetCancel {
+    margin-top: 12px; background: none; border: none; color: #1976d2; cursor: pointer;
+  }
+
+  /* Small screens: keep it compact */
+  @media (max-width: 700px) {
+    .gs-header { top: 8px; }
+    .gs-header__bar { gap: 10px; padding: 8px 10px; }
+    .gs-header__title { font-size: .95rem; }
+    .gs-header__nav { gap: 14px; }
+    .gs-header__pill { padding: 7px 10px; font-size: .95rem; }
+    .gs-header__ghostBtn { padding: 7px 9px; font-size: .9rem; }
+  }
+  /* Sticky only when on Home */
+  .navy-header.is-home {
+    position: sticky;
+    top: 12px;               /* keeps the floating-pill vibe; use 0 if you want it flush */
+    z-index: 1000;
+  }
+
+  /* Make sure the header container doesn't introduce extra spacing */
+  .navy-header { margin: 0; }
+  /* Floating header only on Home */
+  .gs-header.is-home {
+    --header-h: 72px;                /* header height */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);     /* not full-bleed */
+    z-index: 1000;
+    width: min(96vw, 1120px);        /* contained width like your screenshot */
+    height: var(--header-h);
+  }
+
+  /* Keep header normal elsewhere */
+  .gs-header:not(.is-home) {
+    position: static;
+    height: 72px; /* match the floating height for consistency */
+  }
+  /* OUTER WRAPPER: transparent; fixed only on Home */
+  .gs-header {
+    background: transparent;          /* no navy background */
+  }
+
+  .gs-header.is-home {
+    position: fixed;
+    top: 12px;                        /* sits off the top a bit */
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(96vw, 1120px);         /* contained width */
+    z-index: 1000;
+    pointer-events: none;             /* so clicks pass through except the pill */
+  }
+
+  /* THE PILL ITSELF */
+  .gs-header__bar {
+    pointer-events: auto;             /* re-enable clicks inside the pill */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    /* light grey/charcoal glassy rectangle */
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    padding: 10px 14px;
+
+    /* subtle border + shadow (not bulky) */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  /* Keep normal flow on non-Home pages */
+  .gs-header:not(.is-home) {
+    position: static;
+    width: auto;
+    top: unset;
+    left: unset;
+    transform: none;
+  }
+
+  /* (Optional) make buttons look right on the lighter pill */
+  .gs-header__pill { /* “Get Premium” */
+    background: #2e6eea;
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px 14px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .gs-header__ghostBtn { /* “Log Out / Log In / Sign Up” */
+    background: transparent;
+    color: #eaeef6;
+    border: 1px solid rgba(234, 238, 246, 0.35);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-weight: 600;
+  }
+
+  /* Optional: tighten link look inside the pill */
+  .gs-header__link {
+    color: #eaeef6;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .gs-header__link.is-active { text-decoration: underline; }
+  @media (min-width: 1024px) {
+    .hero-heading-group { padding-top: 104px; }  /* was 96px */
+  }
+  /* Ensure the pill can anchor popovers */
+  .gs-header__bar { position: relative; }
+
+  /* ===== Mega / Popover panel ===== */
+  .gs-mega {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);           /* hangs below the pill */
+    transform: translateX(-50%);
+
+    width: min(92vw, 920px);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.18);
+    z-index: 1200;
+    padding: 16px 16px 12px;
+  }
+
+  .gs-mega::before {                  /* small top arrow nub */
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-left: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    border-radius: 3px 0 0 0;
     z-index: -1;
   }
 
-  @keyframes rec-pulse {
-    0%, 100% { transform: scale(1); opacity: .45; }
-    50% { transform: scale(1.06); opacity: .95; }
+  .gs-mega__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
   }
 
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta::after {
-    content: 'New';
-    position: absolute;
-    top: -8px; right: -10px;
-    background: #f59e0b;
-    color: #0a1128;
-    font-size: .65rem;
+  .gs-mega__card {
+    display: block;
+    padding: 14px 14px 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #0f172a;
+    background: #fafafa;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .gs-mega__card h4 {
+    margin: 0 0 6px;
+    font-size: 1rem;
     font-weight: 700;
-    border-radius: 999px;
-    padding: 2px 6px;
-    letter-spacing: .02em;
   }
-
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta svg {
-    color: inherit !important;
-    filter: drop-shadow(0 0 6px rgba(59,130,246,.6));
-    transition: transform 0.2s ease;
+  .gs-mega__card p {
+    margin: 0;
+    color: #475569;
+    font-size: .92rem;
+    line-height: 1.35;
   }
-
-  /* lift only — no scaling */
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta:hover {
+  .gs-mega__card:hover {
+    background: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(59,130,246,.25);
-  }
-  .navy-header .ge-icon-bar .ge-icon-link.recommend-cta:hover svg {
-    transform: translateY(-1px); /* removed scale */
-  }
-}
-/* Desktop only */
-@media (min-width: 769px) {
-  .navy-header .ge-icon-bar {
-    display: flex;
-    align-items: center;            /* make all items share the same vertical center */
-    gap: 48px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
   }
 
-  .navy-header .ge-icon-bar .ge-icon-link {
-    display: inline-flex;
-    flex-direction: column;
+  .gs-mega__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  .gs-mega__footer a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Local scrim so focus stays on menu without dimming hero too much */
+  .gs-mega__backdrop {
+    position: absolute;
+    inset: -24px -24px auto -24px;   /* extend slightly outside pill */
+    height: calc(100% + 300px);      /* just enough click target below */
+    background: transparent;         /* invisible – used for click-outside */
+    z-index: 1100;
+  }
+
+  /* Mobile: stack cards */
+  @media (max-width: 720px) {
+    .gs-mega { width: min(96vw, 620px); }
+    .gs-mega__row { grid-template-columns: 1fr; }
+  }
+  /* Reuse header surface color */
+  .gs-header {
+    --hdr-surface: rgba(20, 28, 48, 0.92); /* matches pill feel */
+    --hdr-border: rgba(255,255,255,0.10);
+    --hdr-card: rgba(255,255,255,0.06);
+    --hdr-card-hover: rgba(255,255,255,0.10);
+    --hdr-text: #ffffff;
+    --link: #7cc7ff;
+  }
+
+  /* ==== Mega panel base (kept from before) ==== */
+  .gs-header__bar { position: relative; }
+
+  /* Dark variant to match header */
+  .gs-mega.gs-mega--dark {
+    background: var(--hdr-surface);
+    color: var(--hdr-text);
+    border: 1px solid var(--hdr-border);
+    box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  }
+
+  /* Keep panel centered; arrow points under "Tracker" via --arrow-shift */
+  .gs-mega {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);
+    transform: translateX(-50%);
+    width: min(92vw, 920px);
+    border-radius: 14px;
+    padding: 16px 16px 12px;
+    z-index: 1200;
+  }
+
+  /* Triangle nub – stays under "Tracker" text */
+  .gs-mega::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(calc(-50% + var(--arrow-shift, 0px))) rotate(45deg);
+    width: 16px;
+    height: 16px;
+    background: var(--hdr-surface);
+    border-left: 1px solid var(--hdr-border);
+    border-top: 1px solid var(--hdr-border);
+    border-radius: 3px 0 0 0;
+    z-index: -1;
+  }
+
+  /* Grid for 4 university options */
+  .gs-mega__row.gs-mega__row--four {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 12px;
+  }
+
+  .gs-mega__card {
+    display: block;
+    padding: 14px 14px 12px;
+    border-radius: 10px;
+    background: var(--hdr-card);
+    border: 1px solid var(--hdr-border);
+    text-decoration: none;
+    color: var(--hdr-text);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .gs-mega__card h4 { margin: 0 0 6px; font-size: 1rem; font-weight: 800; }
+  .gs-mega__card p  { margin: 0; color: rgba(255,255,255,0.82); font-size: .92rem; line-height: 1.35; }
+  .gs-mega__card:hover {
+    background: var(--hdr-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .gs-mega__footer { display: flex; justify-content: flex-end; margin-top: 10px; }
+  .gs-mega__footer a { color: var(--link); text-decoration: none; font-weight: 700; }
+
+  /* Click-outside area (invisible) */
+  .gs-mega__backdrop {
+    position: absolute;
+    inset: -24px -24px auto -24px;
+    height: calc(100% + 300px);
+    background: transparent;
+    z-index: 1100;
+  }
+
+  /* Mobile: stack */
+  @media (max-width: 900px) {
+    .gs-mega__row.gs-mega__row--four { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .gs-mega__row.gs-mega__row--four { grid-template-columns: 1fr; }
+  }
+  /* === Unify pill + popover appearance (paste at END of Header.css) === */
+  .gs-header {
+    /* single source of truth for the surface */
+    --pill-bg: rgba(255, 255, 255, 0.10);
+    --pill-border: rgba(255, 255, 255, 0.18);
+    --pill-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    --pill-blur: blur(10px) saturate(120%);
+    --pill-text: #eaeef6;
+  }
+
+  /* Pill bar uses the variables */
+  .gs-header .gs-header__bar {
+    background: var(--pill-bg) !important;
+    border: 1px solid var(--pill-border) !important;
+    box-shadow: var(--pill-shadow) !important;
+    backdrop-filter: var(--pill-blur) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  /* Popover matches the pill exactly (override any older gs-mega rules) */
+  .gs-header .gs-mega,
+  .gs-header .gs-mega.gs-mega--dark {   /* cover both classes */
+    background: var(--pill-bg) !important;
+    color: var(--pill-text);
+    border: 1px solid var(--pill-border) !important;
+    box-shadow: var(--pill-shadow) !important;
+    backdrop-filter: var(--pill-blur) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+
+  /* Triangle uses the same surface and border */
+  .gs-header .gs-mega::before {
+    background: var(--pill-bg) !important;
+    border-left: 1px solid var(--pill-border) !important;
+    border-top: 1px solid var(--pill-border) !important;
+  }
+
+  /* Cards inside the popover—keep subtle glass look too */
+  .gs-header .gs-mega__card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--pill-border);
+    color: #fff;
+  }
+  .gs-header .gs-mega__card:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.24);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  }
+
+  /* Keep the arrow aligned under “Tracker” (from your JS) */
+  .gs-header .gs-mega::before {
+    left: 50%;
+    transform: translateX(calc(-50% + var(--arrow-shift, 0px))) rotate(45deg);
+  }
+  /* === Popover: solid arrow + solid cards; glassy background stays === */
+
+  /* choose a solid tone that matches your pill hue */
+  .gs-header {
+    --pill-solid: #2b3348;              /* opaque version of the pill */
+    --pill-solid-border: rgba(255,255,255,0.20);
+  }
+
+  /* popover background remains glassy from earlier rules */
+
+  /* Triangle: solid */
+  .gs-header .gs-mega::before {
+    background: var(--pill-solid) !important;
+    border-left: 1px solid var(--pill-solid-border) !important;
+    border-top: 1px solid var(--pill-solid-border) !important;
+  }
+
+  /* Cards: solid blocks (not transparent) */
+  .gs-header .gs-mega__card {
+    background: var(--pill-solid) !important;
+    border: 1px solid var(--pill-solid-border) !important;
+    color: #fff !important;
+    box-shadow: none;
+  }
+  .gs-header .gs-mega__card:hover {
+    background: #333b54 !important;     /* slightly lighter on hover */
+    border-color: rgba(255,255,255,0.28) !important;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  }
+  /* Float the header (same pill treatment) whenever .is-sticky is present */
+  .gs-header.is-sticky {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(96vw, 1120px);
+    z-index: 1000;
+    pointer-events: none;            /* clicks go only to the pill */
+  }
+  .gs-header.is-sticky .gs-header__bar {
+    pointer-events: auto;
+  }
+
+  /* Make sure the old rule doesn't force static positioning */
+  .gs-header:not(.is-sticky) {
+    position: static;
+  }
+
+  /* On tracker/recommendations pages: black/dark text in the pill */
+  .gs-header.on-light .gs-header__title,
+  .gs-header.on-light .gs-header__link {
+    color: #0f172a;                  /* near-black */
+  }
+  .gs-header.on-light .gs-header__link.is-active {
+    color: #0f172a;
+    text-decoration: underline;
+  }
+  .gs-header.on-light .gs-header__ghostBtn {
+    color: #0f172a;
+    border: 1px solid rgba(0,0,0,.22);
+    background: transparent;
+  }
+
+  /* Premium pill stays blue; no change needed, but ensure contrast */
+  .gs-header.on-light .gs-header__pill {
+    color: #fff; /* already white on blue */
+  }
+  /* --- Mobile hamburger visibility --- */
+  .gs-hamburger {
+    display: none;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 8px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    padding: 6px 10px;              /* <-- give ALL items the same padding */
-    border-radius: 12px;            /* consistent shape */
-    height: 64px;                   /* fixed height so they line up perfectly */
-    line-height: 1;
-    color: #fff;
+    cursor: pointer;
+  }
+  .gs-hamburger:active { background: #f3f4f6; }
+
+  /* Hide center nav & actions on mobile; show hamburger */
+  @media (max-width: 767px) {
+    .gs-header__nav,
+    .gs-header__actions { display: none; }
+    .gs-hamburger { display: inline-flex; }
+  }
+
+  /* --- Craft-like overlay + sheet --- */
+  .gs-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.28);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 999;
+  }
+  .gs-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .gs-sheet {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    transform: translateY(-105%);
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transition: transform 220ms ease;
+    z-index: 1000;
+  }
+  .gs-sheet.is-open { transform: translateY(0); }
+
+  .gs-sheet__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px 20px;
+  }
+  .gs-sheet__link {
     text-decoration: none;
+    color: #111827;
+    font-weight: 700;
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+  .gs-sheet__link:active { background: #f3f4f6; }
+
+  .gs-sheet__hr {
+    height: 1px;
+    background: #e5e7eb;
+    border: 0;
+    margin: 8px 0 6px;
   }
 
-  .navy-header .ge-icon-bar .ge-icon-link svg {
-    color: #fff;                    /* keep icons white */
-    font-size: 2.07rem;
+  .gs-sheet__row { display: flex; gap: 10px; }
+
+  .gs-sheet__btn {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #1f2937;
   }
+  .gs-sheet__btn--primary {
+    background: #7589F3;
+    color: #fff;
+    border-color: #7589F3;
+  }
+  .gs-sheet__btn--outline { background: transparent; }
+
+  /* keep desktop behavior unchanged */
+  @media (min-width: 768px) {
+    .gs-overlay, .gs-sheet { display: none; }
+  }
+  /* Keep header above the mobile sheet */
+  .gs-header.is-sticky { z-index: 1200; }
+
+  /* Overlay sits below header (we offset its top in inline style) */
+  .gs-overlay {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    /* top is set inline to barH */
+    background: rgba(0,0,0,0.28);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 999;
+  }
+  .gs-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+  /* Slide-down sheet (under the bar), transparent/frosted, shorter */
+  .gs-sheet {
+    position: fixed;
+    /* top is set inline to barH */
+    left: 0; right: 0;
+    transform: translateY(-105%);
+    background: rgba(255,255,255,0.80);  /* ⬅️ more transparent */
+    backdrop-filter: blur(12px);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transition: transform 220ms ease;
+    z-index: 1000; /* below header (1200) */
+  }
+  .gs-sheet.is-open { transform: translateY(0); }
+  /* header always above sheet */
+  .gs-header { position: sticky; top: 0; z-index: 1200; }
+
+  /* desktop default */
+  .gs-hamburger { display: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .gs-header__nav,
+    .gs-header__actions { display: none; }   /* hide Tracker/Recs + Log In/Sign Up */
+    .gs-hamburger {                          /* show burger on the far right */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      margin-left: auto;
+      border: none; background: transparent; cursor: pointer;
+    }
+  }
+
+  /* DESKTOP: don't render the mobile UI at all */
+  @media (min-width: 769px) {
+    .gs-overlay, .gs-sheet { display: none; }
+  }
+  /* --- stacking so header is always above the sheet --- */
+  .gs-header { position: sticky; top: 0; z-index: 1200; }
+  .gs-header__bar { position: relative; z-index: 1201; }
+
+  /* default (desktop) */
+  .gs-hamburger { display: none; }
+
+  /* mobile layout */
+  @media (max-width: 900px) {
+    /* hide desktop nav and actions completely */
+    .gs-header__nav { display: none !important; }
+    .gs-header__actions { display: none !important; }
+
+    /* only show the hamburger on the far right */
+    .gs-hamburger {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      margin-left: auto;
+      border: 0; background: transparent; cursor: pointer;
+    }
+  }
+
+  /* overlay starts below the header and is semi-transparent */
+  .gs-overlay {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    /* top is set inline from React: style={{ top: barH }} */
+    background: rgba(0,0,0,0.28);
+    opacity: 0; pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 1000; /* below header (1200) */
+  }
+  .gs-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+  /* sheet opens under the bar, slightly transparent */
+  .gs-sheet {
+    position: fixed;
+    left: 0; right: 0;
+    /* top is set inline from React: style={{ top: barH }} */
+    transform: translateY(-105%);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(12px);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transition: transform 220ms ease;
+    z-index: 1001; /* below header, above overlay */
+  }
+  .gs-sheet.is-open { transform: translateY(0); }
+/* ==== FINAL OVERRIDES FOR MOBILE SHEET (wins all conflicts) ==== */
+.gs-header .gs-sheet {
+  /* layout */
+  left: 12px !important;
+  right: 12px !important;
+  /* top is still set inline from React (barH + 8) */
+
+  /* transparency + glass */
+  background: transparent !important;                 /* ← truly transparent */
+  backdrop-filter: blur(14px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(120%) !important;
+
+  /* all four corners rounded + clip children */
+  border-radius: 16px !important;                     /* ← all corners */
+  overflow: hidden !important;
+
+  /* subtle edge & shadow to separate from bg */
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.18) !important;
+
+  /* animation state (keep your slide-down) */
+  transform: translateY(-110%) !important;
+  z-index: 1001 !important;                           /* under header (1200) */
 }
 
-.navy-header { 
-  z-index: 2147483647;   /* max-ish */
-  pointer-events: auto; 
-  isolation: isolate;    /* own stacking context */
+.gs-header .gs-sheet.is-open {
+  transform: translateY(0) !important;
 }
-/* Hotfix: keep header above page content and clickable */
-.navy-header {
-  z-index: 10010 !important;
-  pointer-events: auto !important;
+
+/* make sure inner content stays transparent too */
+.gs-header .gs-sheet__nav,
+.gs-header .gs-sheet__row,
+.gs-header .gs-sheet__hr {
+  background: transparent !important;
 }
-.navy-header * {
-  pointer-events: auto !important;
+
+/* optional: lighten overlay a touch since the sheet is transparent now */
+.gs-header .gs-overlay {
+  background: rgba(0,0,0,0.22) !important;
+}
+/* ==== FINAL MOBILE SHEET LOOK (dark, white text, all corners, no gap) ==== */
+
+.gs-header .gs-sheet {
+  /* position/size – top is set inline (barH) */
+  left: 12px !important;
+  right: 12px !important;
+
+  /* dark surface */
+  background: rgba(17, 24, 39, 0.92) !important; /* slate-900-ish */
+  color: #fff !important;
+
+  /* glass feel */
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+
+  /* all four corners + clip children */
+  border-radius: 16px !important;
+  overflow: hidden !important;
+
+  /* subtle edge/shadow */
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.22) !important;
+
+  /* animation baseline */
+  transform: translateY(-110%) !important;
+  z-index: 1001 !important; /* under header (1200) */
+}
+.gs-header .gs-sheet.is-open { transform: translateY(0) !important; }
+
+/* inner bits stay transparent and white */
+.gs-header .gs-sheet__nav,
+.gs-header .gs-sheet__row { background: transparent !important; }
+
+.gs-header .gs-sheet__link {
+  color: #fff !important;
+  background: transparent !important;
+}
+.gs-header .gs-sheet__link:hover,
+.gs-header .gs-sheet__link:active {
+  background: rgba(255,255,255,0.10) !important;
+}
+
+.gs-header .gs-sheet__btn {
+  background: rgba(255,255,255,0.10) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+.gs-header .gs-sheet__btn--primary {
+  background: #7589F3 !important;
+  border-color: #7589F3 !important;
+  color: #fff !important;
+}
+.gs-header .gs-sheet__btn--outline { background: transparent !important; }
+
+.gs-header .gs-sheet__hr {
+  height: 1px !important;
+  border: 0 !important;
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* overlay sits below header and starts where the sheet starts */
+.gs-header .gs-overlay {
+  top: var(--sheet-top, 0) !important;           /* set inline to barH */
+  background: rgba(0,0,0,0.32) !important;
+}
+/* === Transparent mobile sheet + dark outlined items === */
+
+/* Make the slide-down sheet itself transparent */
+.gs-header .gs-sheet {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 16px !important;   /* all 4 corners (visible when content scrolls) */
+  overflow: visible !important;      /* keep corner radius crisp if content taller */
+}
+
+/* Slightly darker overlay for contrast (still starts under header via inline top) */
+.gs-header .gs-overlay {
+  background: rgba(0,0,0,0.38) !important;
+}
+
+/* Define the outline color once (same dark grey vibe as the header) */
+.gs-header {
+  --menu-outline: #2b3348;           /* dark grey */
+  --menu-outline-hover: rgba(43,51,72,0.55);
+}
+
+/* The nav container is transparent */
+.gs-header .gs-sheet__nav {
+  background: transparent !important;
+  padding: 14px 16px 20px;
+}
+
+/* Each link becomes a dark-grey OUTLINED pill with white text */
+.gs-header .gs-sheet__link {
+  display: block;
+  width: 100%;
+  color: #fff !important;
+  text-decoration: none;
+  border: 1.5px solid var(--menu-outline) !important;
+  background: transparent !important;
+  border-radius: 12px !important;
+  padding: 12px 12px !important;
+  font-weight: 700;
+  margin: 6px 0;                     /* spacing between pills */
+}
+.gs-header .gs-sheet__link:hover,
+.gs-header .gs-sheet__link:active {
+  background: var(--menu-outline-hover) !important;  /* subtle fill on hover */
+}
+
+/* Divider becomes a faint hairline on transparent background */
+.gs-header .gs-sheet__hr {
+  height: 1px !important;
+  border: 0 !important;
+  background: rgba(255,255,255,0.12) !important;
+  margin: 10px 0 8px !important;
+}
+
+/* Buttons in the mobile sheet match the outlined style */
+.gs-header .gs-sheet__btn {
+  display: inline-block;
+  flex: 1 1 auto;
+  text-align: center;
+  color: #fff !important;
+  border: 1.5px solid var(--menu-outline) !important;
+  background: transparent !important;
+  border-radius: 12px !important;
+  padding: 12px 12px !important;
+  font-weight: 700;
+}
+.gs-header .gs-sheet__btn:hover { background: var(--menu-outline-hover) !important; }
+
+/* Primary keeps brand color but still looks like a pill */
+.gs-header .gs-sheet__btn--primary {
+  border-color: #7589F3 !important;
+  background: #7589F3 !important;
+  color: #fff !important;
+}
+
+/* Arrange the two auth buttons nicely */
+.gs-header .gs-sheet__row {
+  gap: 10px;
+  background: transparent !important;
+}
+/* === Compact filled pills on a transparent mobile menu === */
+
+/* Keep the slide-down sheet transparent */
+.gs-header .gs-sheet {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 16px !important;   /* all four corners */
+  overflow: visible !important;
+}
+
+/* Slight overlay (fades in so no hard "bar" under header) */
+.gs-header .gs-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,.38) 24px) !important;
+}
+
+/* Tokens for pill color */
+.gs-header {
+  --pill-fill: #2b3348;
+  --pill-fill-hover: #37405a;
+}
+
+/* Transparent nav container; align items to content width */
+.gs-header .gs-sheet__nav {
+  background: transparent !important;
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;           /* <<< left-align pills, not 100% width */
+  gap: 10px;
+}
+
+/* Links become compact FILLED pills hugging text */
+.gs-header .gs-sheet__link {
+  display: inline-block !important;
+  width: auto !important;            /* <<< no full-width */
+  align-self: flex-start;
+  white-space: nowrap;               /* tight to text */
+  padding: 8px 12px !important;      /* smaller, still tappable */
+  min-height: 36px;                  /* a11y tap target */
+  line-height: 1.2;
+  border-radius: 12px !important;
+  background: var(--pill-fill) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  text-decoration: none;
+}
+.gs-header .gs-sheet__link:hover,
+.gs-header .gs-sheet__link:active {
+  background: var(--pill-fill-hover) !important;
+}
+
+/* Remove the divider “bar” that sat between header and items */
+.gs-header .gs-sheet__hr { display: none !important; }
+
+/* Buttons match the compact filled pills */
+.gs-header .gs-sheet__btn {
+  display: inline-block !important;
+  width: auto !important;
+  align-self: flex-start;
+  white-space: nowrap;
+  padding: 8px 12px !important;
+  min-height: 36px;
+  border-radius: 12px !important;
+  background: var(--pill-fill) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+.gs-header .gs-sheet__btn:hover { background: var(--pill-fill-hover) !important; }
+
+/* Keep “Get Premium” as a filled brand pill (still compact) */
+.gs-header .gs-sheet__btn--primary {
+  background: #7589F3 !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(117,137,243,.35);
+}
+/* === Make mobile-menu "Get Premium" match Home's gradient === */
+.gs-header {
+  /* Same gradient used in Home.jsx / Home.css */
+  --brand-gradient: linear-gradient(90deg, #2f7cf6 0%, #0ea5e9 55%, #22d3ee 100%);
+  --brand-glow: 0 6px 20px rgba(15,113,220,0.28);
+}
+
+/* Compact filled primary pill inside the transparent mobile sheet */
+.gs-header .gs-sheet__btn--primary {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  box-shadow: var(--brand-glow) !important;
+}
+
+/* Nice feel on interaction */
+.gs-header .gs-sheet__btn--primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.gs-header .gs-sheet__btn--primary:active { filter: brightness(0.96); transform: translateY(0); }
+
+/* Optional: unify the non-primary buttons to stay dark pills */
+.gs-header .gs-sheet__btn:not(.gs-sheet__btn--primary) {
+  background: #2b3348 !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+}
+/* === FINAL: no grey band behind the header when menu opens === */
+.gs-header .gs-overlay {
+  /* start below header via inline "top"; keep it fully transparent */
+  background: transparent !important;
+}
+
+/* Keep the sheet itself transparent so nothing shows behind the pill */
+.gs-header .gs-sheet {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+/* === Unify mobile sheet glass with header pill (final overrides) === */
+.gs-header {
+  /* same tokens your header pill already uses */
+  --pill-bg: rgba(255,255,255,0.10);
+  --pill-border: rgba(255,255,255,0.18);
+  --pill-shadow: 0 6px 20px rgba(0,0,0,0.22);
+  --pill-blur: blur(10px) saturate(120%);
+  --pill-text: #eaeef6;
+}
+
+/* Make the slide-down sheet match the header pill exactly */
+.gs-header .gs-sheet {
+  background: var(--pill-bg) !important;
+  border: 1px solid var(--pill-border) !important;
+  box-shadow: var(--pill-shadow) !important;
+  backdrop-filter: var(--pill-blur) !important;
+  -webkit-backdrop-filter: var(--pill-blur) !important;
+  color: var(--pill-text) !important;
+  border-radius: 12px !important;    /* same rounding as the pill */
+  overflow: hidden;                   /* keep corners clean when scrolling */
+}
+
+/* Menu items inherit the same text color */
+.gs-header .gs-sheet__link,
+.gs-header .gs-sheet__btn {
+  color: var(--pill-text) !important;
+}
+
+/* Keep overlay from darkening more than the pill (no grey bar) */
+.gs-header .gs-overlay {
+  background: transparent !important;
+}
+/* === 15% narrower floating header (fills its container) === */
+.gs-header.is-sticky {
+  width: min(calc(96vw * 0.85), calc(1120px * 0.85)) !important; /* 81.6vw or 952px max */
+}
+
+/* Let the pill fill that container width */
+.gs-header__bar {
+  width: 100% !important;
+}
+/* === Mobile: center the floating header and keep it narrower === */
+@media (max-width: 900px) {
+  .gs-header.is-sticky {
+    position: fixed !important;
+    top: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 85vw !important;            /* 15% narrower than full width */
+    max-width: 952px !important;        /* matches your 1120px * 0.85 cap */
+  }
+  .gs-header__bar {
+    width: 100% !important;             /* pill fills the centered container */
+    margin: 0 auto !important;
+  }
+}
+/* === Mobile: hard-center the header pill === */
+@media (max-width: 900px) {
+  /* Make the wrapper span the viewport; kill any old centering transforms */
+  .gs-header.is-sticky {
+    position: fixed !important;
+    top: 12px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding-left: 0;  /* keep clean edges */
+    padding-right: 0;
+  }
+
+  /* Center the pill itself and lock its width (15% narrower than full width) */
+  .gs-header__bar {
+    width: min(85vw, 952px) !important; /* 1120 * 0.85 = 952 cap */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Prevent layout nudge from the spacer when nav/actions are hidden */
+  .gs-header__spacer { display: none !important; }
+}
+/* Back link in mobile subviews */
+.gs-header .gs-sheet__back{
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 0 6px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  opacity: .9;
+}
+
+/* Compact wrap layout for campus choices */
+.gs-header .gs-sheet__grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* reuse the compact filled pill look already defined for .gs-sheet__link */
+.gs-header .gs-sheet__grid .gs-sheet__link{ margin: 0; }
+/* Drop this in Header.css (or a shared buttons file) */
+:root{
+  --brand: #20A7EF;                     /* base */
+  --brand-hover: #1B97E0;               /* hover (slightly darker) */
+  --brand-active: #177FC0;              /* pressed */
+  --brand-ring: rgba(32,167,239,0.45);  /* focus ring */
+}
+
+/* Desktop "Get Premium" pill */
+.gs-header__pill{
+  background: var(--brand);
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(32,167,239,0.35);
+  transition: background-color .2s ease, transform .06s ease;
+}
+.gs-header__pill:hover{ background: var(--brand-hover); }
+.gs-header__pill:active{ background: var(--brand-active); transform: translateY(1px); }
+.gs-header__pill:focus-visible{
+  outline: 3px solid var(--brand-ring);
+  outline-offset: 2px;
+}
+.gs-sheet__btn--primary{
+  background: var(--brand);
+  color:#fff;
+}
+.gs-sheet__btn--primary:hover{ background: var(--brand-hover); }
+.gs-sheet__btn--primary:active{ background: var(--brand-active); }
+/* Shrink "Get Premium" background on the mobile header sheet (keep full-width) */
+@media (max-width: 900px) {
+  .gs-sheet__btn.gs-sheet__btn--primary {
+    /* keep layout/positioning the same */
+    display: block;
+    width: 100%;
+
+    /* reduce the background (height) */
+    padding: 10px 14px;     /* ↓ from the default (often ~14–16px 18–24px) */
+    line-height: 1.1;       /* tighter */
+    font-size: 0.95rem;     /* slightly smaller text */
+
+    /* a bit less rounded */
+    border-radius: 10px;
+
+    /* ensure no tall min-height from base styles */
+    min-height: 0;
+    box-sizing: border-box;
+  }
 }

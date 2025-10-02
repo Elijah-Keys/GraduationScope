@@ -36,107 +36,144 @@ export default function About() {
         <p style={baseStyle}>Other tools used: Content Drips, Mobbin, Canva.</p>
 
         <p style={baseStyle}>
-          Co-Founders: Christian Perez, Deangelo Keys, Wema Kyubwa.
+          Co-Founders: Christian Perez
         </p>
 
-{/* Founding Team */}
-<section className="team-section">
-  <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
-    Founding Team
-  </h2>
+        {/* Founding Team */}
+        <section className="team-section">
+          <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
+            Founding Team
+          </h2>
 
-  <div className="team-grid">
-    {/* Elijah */}
-    <div className="team-card">
-      <img
-        className="team-avatar"
-        src="/images/Elijah.jpg"
-        alt="Elijah Keys"
-        loading="lazy"
-      />
-      <div className="team-name">Elijah Keys</div>
-      <a
-        className="team-link"
-        href="https://www.linkedin.com/in/elijah-keys-16a974320/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn →
-      </a>
-    </div>
+          <div className="team-grid">
+            {/* Elijah */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/Elijah.jpg"
+                alt="Elijah Keys"
+                loading="lazy"
+              />
+              <div className="team-name">Elijah Keys</div>
+              <a
+                className="team-link"
+                href="https://www.linkedin.com/in/elijah-keys-16a974320/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn →
+              </a>
+            </div>
 
-    {/* Nuru */}
-    <div className="team-card">
-      <img
-        className="team-avatar"
-        src="/images/Nuru.jpg"
-        alt="Nuru Kyubwa"
-        loading="lazy"
-      />
-      <div className="team-name">Nuru Kyubwa</div>
-      <a
-        className="team-link"
-        href="https://www.linkedin.com/in/nuru-kyubwa-60377431a/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn →
-      </a>
-    </div>
-  </div>
-</section>
+            {/* Nuru */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/Nuru.jpg"
+                alt="Nuru Kyubwa"
+                loading="lazy"
+              />
+              <div className="team-name">Nuru Kyubwa</div>
+              <a
+                className="team-link"
+                href="https://www.linkedin.com/in/nuru-kyubwa-60377431a/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn →
+              </a>
+            </div>
+          </div>
+        </section>
 
-{/* Team Members */}
-<section className="team-section">
-  <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
-    Team Members
-  </h2>
+        {/* Team Members */}
+        <section className="team-section">
+          <h2 style={{ textAlign: "center", fontWeight: 600, marginTop: 28, marginBottom: 14 }}>
+            Team Members
+          </h2>
 
-  <div className="team-grid">
-    {/* Thomas */}
-    <div className="team-card">
-      <img
-        className="team-avatar"
-        src="/images/Thomas.jpg"  /* place file at public/images/Thomas.jpg */
-        alt="Thomas Walls"
-        loading="lazy"
-      />
-      <div className="team-name">Thomas Walls</div>
-      <div className="team-role">Social Engagement Director</div>
-      <a
-        className="team-link"
-        href="https://www.linkedin.com/in/thomas-walls-297320383/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn →
-      </a>
-    </div>
+          <div className="team-grid">
+            {/* Thomas */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/Thomas.jpg"  /* place file at public/images/Thomas.jpg */
+                alt="Thomas Walls"
+                loading="lazy"
+              />
+              <div className="team-name">Thomas Walls</div>
+              <div className="team-role">Social Engagement Director</div>
+              <a
+                className="team-link"
+                href="https://www.linkedin.com/in/thomas-walls-297320383/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn →
+              </a>
+            </div>
 
-    {/* Nuamin */}
-    <div className="team-card">
-      <img
-        className="team-avatar"
-        src="/images/Nuamin.jpg"
-        alt="Nuamin Hailemariam"
-        loading="lazy"
-      />
-      <div className="team-name">Nuamin Hailemariam</div>
-      <div className="team-role">Social Media Manager</div>
-      <a
-        className="team-link"
-        href="https://www.linkedin.com/in/nuamin-hailemariam-7b3232352/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn →
-      </a>
-    </div>
-  </div>
-</section>
+            {/* Nuamin */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/Nuamin.jpg"
+                alt="Nuamin Hailemariam"
+                loading="lazy"
+              />
+              <div className="team-name">Nuamin Hailemariam</div>
+              <div className="team-role">Social Media Manager</div>
+              <a
+                className="team-link"
+                href="https://www.linkedin.com/in/nuamin-hailemariam-7b3232352/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn →
+              </a>
+            </div>
 
+            {/* Wema */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/wema.jpg"
+                alt="Wema Kyubwa"
+                loading="lazy"
+              />
+              <div className="team-name">Wema Kyubwa</div>
+              <div className="team-role">Human Resource Mangement</div>
+              <a
+                className="team-link"
+                href="https://www.instagram.com/wema__k/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram →
+              </a>
+            </div>
 
-
+            {/* Deangelo */}
+            <div className="team-card">
+              <img
+                className="team-avatar"
+                src="/images/Deangelo.jpg"
+                alt="Deangelo Keys"
+                loading="lazy"
+              />
+              <div className="team-name">Deangelo Keys</div>
+              <div className="team-role">Consulting Manger</div>
+              <a
+                className="team-link"
+                href="https://www.instagram.com/deangelokeys11/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram →
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
 
       <style>{`
@@ -150,7 +187,7 @@ export default function About() {
         .team-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--team-gap);
+          gap: var(--team-gap);
           margin-top: 10px;
         }
         .team-card {
@@ -189,25 +226,23 @@ export default function About() {
           text-decoration: none;
         }
         .team-link:hover { text-decoration: underline; }
-:root { --team-gap: 18px; }
 
-/* center a single card row */
-.team-row-center {
-  display: flex;
-  justify-content: center;
-}
+        :root { --team-gap: 18px; }
 
-/* make single card equal to one column of the two-up grid */
-.team-equal {
-  width: calc((100% - var(--team-gap)) / 2);
-}
+        /* center a single card row */
+        .team-row-center {
+          display: flex;
+          justify-content: center;
+        }
 
-/* make the card fill that width */
+        /* make single card equal to one column of the two-up grid */
+        .team-equal {
+          width: calc((100% - var(--team-gap)) / 2);
+        }
 
-
-@media (max-width: 700px) {
-  .team-equal { width: 100%; }
-}
+        @media (max-width: 700px) {
+          .team-equal { width: 100%; }
+        }
 
         /* Mobile */
         @media (max-width: 700px) {

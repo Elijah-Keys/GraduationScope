@@ -1043,3 +1043,254 @@ body, div, span, p, h1, h2, h3, h4, h5, h6, input, button {
 }
 .cell-list { margin: 0; padding: 0; list-style: none; }
 .cell-list li + li { margin-top: 4px; }
+/* Skin so the expanded ProfessorTable matches the Find Easiest table */
+.easiest-skin table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e5ff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.easiest-skin th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #e0e5ff;
+  background: #fafbff;
+  white-space: nowrap;
+  border-right: 1px solid #e0e5ff;
+  color: #111;
+}
+
+.easiest-skin td {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  vertical-align: top;
+  border-top: 1px solid #eef1ff;
+  border-right: 1px solid #eef1ff;
+  color: #111;
+}
+
+.easiest-skin th:last-child,
+.easiest-skin td:last-child {
+  border-right: none;
+}
+/* Draw clean grid lines in the Find Easiest table */
+.easiest-grid th,
+.easiest-grid td {
+  border: 1px solid #e0e5ff;
+}
+/* Draw clean grid lines in the Find Easiest overlay table */
+.easiest-grid th,
+.easiest-grid td {
+  border: 1px solid #e0e5ff;
+}
+/* Center the whole page content and keep symmetric padding */
+.ge-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Optional: a shared inner column wrapper (you already use .mobile-main-column) */
+.mobile-main-column {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* GETracker.css */
+.ge-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;  /* keeps equal left/right gutters on mobile */
+}
+/* GETracker.css */
+.ge-title { margin-top: 64px; }
+@media (min-width: 701px) {
+  .ge-title { margin-top: 96px; } /* +32px on desktop */
+}
+:root {
+  --brand-blue: #20A7EF;
+  --brand-blue-dark: #2a44cc;
+  --gray-200: #eaeef8;
+  --text-900: #1a1a1a;
+}
+
+/* Shared buttons */
+.ge-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 16px;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .1s ease;
+  line-height: 1.2;
+}
+.ge-btn:active { transform: scale(0.98); }
+
+.ge-btn--primary {
+  background: var(--brand-blue);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(58,96,255,.5);
+}
+.ge-btn--primary:hover { background: var(--brand-blue-dark); }
+
+.ge-btn--outline {
+  background: transparent;
+  color: var(--brand-blue);
+  border: 2px solid var(--brand-blue);
+}
+.ge-btn--outline:hover {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+/* Full-screen sheet for mobile overlays */
+.ge-mobile-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.ge-mobile-sheet__header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  background: #fff;
+}
+.ge-mobile-sheet__title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-900);
+}
+.ge-mobile-sheet__actions {
+  display: inline-flex;
+  gap: 8px;
+}
+.ge-mobile-sheet__body {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px 16px;
+}
+
+/* Search dropdown touch tweaks */
+.ge-search-results {
+  -webkit-overflow-scrolling: touch;
+}
+.ge-search-results li {
+  min-height: 44px; /* finger-friendly */
+  display: flex;
+  align-items: center;
+}
+
+/* Card grid mirror (Chico/SJSU look) */
+.ge-card-grid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .ge-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Buttons */
+.ge-btn {
+  appearance: none;
+  border: 2px solid transparent;
+  background: #f3f4f6;
+  color: #111827;
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.ge-btn--outline {
+  background: transparent;
+  border-color: #20A7EF;
+  color: #20A7EF;
+}
+.ge-btn--primary {
+  background: #3a60ff;
+  color: #fff;
+  border-color: #3a60ff;
+}
+
+/* Mobile full-screen sheet */
+.ge-mobile-sheet {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  /* smooth edges on top for iOS look */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+@supports (height: 100svh) {
+  .ge-mobile-sheet { height: 100svh; }
+}
+.ge-mobile-sheet__header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 1;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
+}
+.ge-mobile-sheet__title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.ge-mobile-sheet__actions {
+  display: flex;
+  gap: 8px;
+}
+.ge-mobile-sheet__body {
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px calc(env(safe-area-inset-bottom, 0px) + 16px);
+}
+/* Brand blue override */
+:root { --brand-blue: #20A7EF; }
+
+.ge-btn--primary {
+  background-color: var(--brand-blue) !important;
+  border: 2px solid var(--brand-blue) !important;
+  color: #fff !important;
+}
+
+.ge-btn--primary:hover,
+.ge-btn--primary:focus {
+  filter: brightness(0.92);
+}
+
+.ge-btn--outline {
+  background: transparent !important;
+  border: 2px solid var(--brand-blue) !important;
+  color: var(--brand-blue) !important;
+}
+
+.ge-btn--outline:hover,
+.ge-btn--outline:focus {
+  background: rgba(32, 167, 239, 0.06);
+}

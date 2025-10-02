@@ -1,439 +1,431 @@
-import React, { useState, useEffect } from 'react';
-import './Header.css';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { IoIosHome, IoIosArrowBack } from 'react-icons/io';
-import { GiBrain } from 'react-icons/gi';
-import { FaCircleInfo } from 'react-icons/fa6';
+// src/components/Header.jsx
+import React, { useState, useEffect, useRef } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import "./Header.css";
+// at top
+import { FiMenu, FiX } from "react-icons/fi";
+
 
 function Header({ isAuthenticated, onLogout, onShowSignUp, onShowLogin }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [showUniPicker, setShowUniPicker] = useState(false);
-  const isMobile = window.innerWidth <= 700;
+  const isMobile = useIsMobile(900); // 900px breakpoint (tweak if you want)
 
-  const isHome = location.pathname === '/' || location.pathname === '/home';
-const onUcscRec = location.pathname.startsWith('/santacruzrecommend');
+// put this above the component (same file or a utils file)
+function useIsMobile(max = 900) {
+  const [isMobile, setIsMobile] = React.useState(
+    typeof window !== "undefined" ? window.innerWidth <= max : false
+  );
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia(`(max-width:${max}px)`);
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    mq.addEventListener?.("change", onChange) || mq.addListener(onChange);
+    return () =>
+      mq.removeEventListener?.("change", onChange) || mq.removeListener(onChange);
+  }, [max]);
+  return isMobile;
+}
 
-  const recommendRouteByUni = (id) =>
-    ({
-      sjsu: '/recommend',
-      chico: '/chicorecommend',
-      berkeley: '/berkeleyrecommend',
-      santacruz: '/santacruzrecommend',
-    }[id] || '/recommend');
+  // Refs for positioning
+  const barRef = useRef(null);
+  const trackerLinkRef = useRef(null);
+  const recsLinkRef = useRef(null);
 
-  const goRecommendFor = (id) => {
-    localStorage.setItem('recentUniversity', id);
-    navigate(recommendRouteByUni(id));
-    setShowUniPicker(false);
+  // State
+  const [isTrackerOpen, setIsTrackerOpen] = useState(false);
+  const [isRecsOpen, setIsRecsOpen] = useState(false);
+  const [arrowShift, setArrowShift] = useState(0);
+// State
+// which view is showing in the mobile sheet: 'root' | 'tracker' | 'recs'
+const [mobileView, setMobileView] = useState('root');
+
+// reset the subview when the sheet closes or route changes
+
+
+const [sheetTop, setSheetTop] = useState(0);
+const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+// height of the top bar (so the sheet can start under it)
+const [barH, setBarH] = useState(64);
+useEffect(() => { if (!isMobileMenuOpen) setMobileView('root'); }, [isMobileMenuOpen]);
+useEffect(() => { setMobileView('root'); }, [location.pathname]);
+useEffect(() => {
+  const measure = () => setBarH(barRef.current ? barRef.current.offsetHeight : 64);
+  measure();
+  window.addEventListener("resize", measure);
+  return () => window.removeEventListener("resize", measure);
+}, []);
+
+// helpers
+const toggleMobileMenu = () => setIsMobileMenuOpen(o => !o);
+const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+// lock background scroll when menu is open
+useEffect(() => {
+  document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+  return () => (document.body.style.overflow = "");
+}, [isMobileMenuOpen]);
+  // ---- ROUTE FLAGS (ORDER MATTERS) ----
+  const isHome = location.pathname === "/" || location.pathname === "/home";
+  const isAbout = location.pathname === "/about"; // ✅ add this
+  const onUcscRec = location.pathname.startsWith("/santacruzrecommend");
+  const isTrackerPage =
+    /^\/(tracker|sjsu|chico|berkeley|santacruz)/.test(location.pathname);
+  const isRecsPage =
+    /^\/(recommend|chicorecommend|berkeleyrecommend|santacruzrecommend)/.test(
+      location.pathname
+    );
+
+  // Make About behave like Home (centered/not full-bleed)
+  const isSticky = isHome || isAbout || isTrackerPage || isRecsPage;
+
+  // Black text on About (and keep current behavior for tracker/recs)
+  const onLight = isAbout || isTrackerPage || isRecsPage;
+
+// near the top of Header()
+
+
+  // ⬇️ NEW: map current path to the correct Tracker/Recommendations pair
+  const routeSets = {
+    sjsu:       { tracker: "/sjsu",       recs: "/recommend" },
+    chico:      { tracker: "/chico",      recs: "/chicorecommend" },
+    berkeley:   { tracker: "/berkeley",   recs: "/berkeleyrecommend" },
+    santacruz:  { tracker: "/santacruz",  recs: "/santacruzrecommend" },
+    default:    { tracker: "/tracker",    recs: "/recommend" },
+  };
+  const currentRoutes = (() => {
+    const p = location.pathname;
+    if (p.startsWith("/chico") || p.startsWith("/chicorecommend")) return routeSets.chico;
+    if (p.startsWith("/berkeley") || p.startsWith("/berkeleyrecommend")) return routeSets.berkeley;
+    if (p.startsWith("/santacruz") || p.startsWith("/santacruzrecommend")) return routeSets.santacruz;
+    if (p.startsWith("/sjsu") || p.startsWith("/tracker") || p.startsWith("/recommend")) return routeSets.sjsu;
+    return routeSets.default;
+  })();
+  // ---- helpers ----
+  const computeArrow = (anchorRef) => {
+    if (!barRef.current || !anchorRef.current) return 0;
+    const bar = barRef.current.getBoundingClientRect();
+    const link = anchorRef.current.getBoundingClientRect();
+    const barCenter = bar.left + bar.width / 2;
+    const linkCenter = link.left + link.width / 2;
+    return linkCenter - barCenter;
   };
 
- // inside Header.jsx
-
-const handleRecommendClick = (e) => {
-  if (!isHome) return;        // only intercept on Home
-  e.preventDefault();
-  setShowUniPicker(true);     // always show the picker
-};
-
-
-  // Close picker on ESC
+  // Close popovers on ESC / click outside
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && setShowUniPicker(false);
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setIsTrackerOpen(false);
+        setIsRecsOpen(false);
+        setIsMobileMenuOpen(false);  // ⬅️ close on ESC
+      }
+    };
+    const onClickOutside = (e) => {
+      if (!barRef.current) return;
+      if (!barRef.current.contains(e.target)) {
+        setIsTrackerOpen(false);
+        setIsRecsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClickOutside);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClickOutside);
+    };
   }, []);
 
-  const getNavLinks = () => {
-       if (location.pathname.startsWith('/santacruzrecommend')) {
-  return [
-       { to: '/', Icon: IoIosHome, label: 'Home' },
-       { to: '/santacruz', Icon: IoIosArrowBack, label: 'Back' },
-       { to: '/about', Icon: FaCircleInfo, label: 'About' },
-     ];
-   }
-   if (location.pathname.startsWith('/santacruz')) {
-     return [
-       { to: '/', Icon: IoIosHome, label: 'Home' },
-       { to: '/santacruzrecommend', Icon: GiBrain, label: 'Recommend' },
-       { to: '/about', Icon: FaCircleInfo, label: 'About' },
-     ];
-   }
-    if (location.pathname.startsWith('/recommend')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/sjsu', Icon: IoIosArrowBack, label: 'Back' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    if (location.pathname.startsWith('/chicorecommend')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/chico', Icon: IoIosArrowBack, label: 'Back' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    if (location.pathname.startsWith('/berkeleyrecommend')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/berkeley', Icon: IoIosArrowBack, label: 'Back' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    if (location.pathname.startsWith('/chico')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/chicorecommend', Icon: GiBrain, label: 'Recommend' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    if (location.pathname.startsWith('/berkeley')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/berkeleyrecommend', Icon: GiBrain, label: 'Recommend' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    if (location.pathname.startsWith('/sjsu')) {
-      return [
-        { to: '/', Icon: IoIosHome, label: 'Home' },
-        { to: '/recommend', Icon: GiBrain, label: 'Recommend' },
-        { to: '/about', Icon: FaCircleInfo, label: 'About' },
-      ];
-    }
-    // Home / default
-    return [
-      { to: '/', Icon: IoIosHome, label: 'Home' },
-      // 'to' is a no-op on Home; we intercept click
-      { to: '/recommend', Icon: GiBrain, label: 'Recommend', isHomeRecommend: true },
-      { to: '/about', Icon: FaCircleInfo, label: 'About' },
-    ];
+  // Close popovers on any route change
+  useEffect(() => {
+    setIsTrackerOpen(false);
+    setIsRecsOpen(false);
+      setIsMobileMenuOpen(false);   // ⬅️ close mobile sheet on route change
+  }, [location.pathname]);
+
+  // Recompute arrow when a popover opens or on resize
+  useEffect(() => {
+  const compute = () => {
+    if (!barRef.current) { setSheetTop(0); return; }
+    const rect = barRef.current.getBoundingClientRect();
+    setSheetTop(rect.bottom + 0); // add +6 or +8 if you want a tiny gap
+  };
+  compute();
+  window.addEventListener("resize", compute);
+  window.addEventListener("scroll", compute, { passive: true });
+  return () => {
+    window.removeEventListener("resize", compute);
+    window.removeEventListener("scroll", compute);
+  };
+}, []);
+
+
+  // Toggles
+  const onTrackerClick = (e) => {
+    if (!isHome) return; // normal nav off Home
+    e.preventDefault();
+    setIsRecsOpen(false);
+    setIsTrackerOpen((o) => {
+      const next = !o;
+      if (next) setArrowShift(computeArrow(trackerLinkRef));
+      return next;
+    });
   };
 
-  const navLinks = getNavLinks();
+  const onRecsClick = (e) => {
+    if (!isHome) return; // normal nav off Home
+    e.preventDefault();
+    setIsTrackerOpen(false);
+    setIsRecsOpen((o) => {
+      const next = !o;
+      if (next) setArrowShift(computeArrow(recsLinkRef));
+      return next;
+    });
+  };
 
-const btn = () => ({
-  padding: '12px 14px',
-  borderRadius: 10,
-  border: '1px solid #e0e0e0',
-  background: '#f8fafc',
-  cursor: 'pointer',
-  textAlign: 'left',
-  fontWeight: 600,
-});
   return (
-    <header
-      className="navy-header"
-      style={{ backgroundColor: '#0A1128', height: '100px', display: 'flex', alignItems: 'center' }}
-    >
-      <div
-        className="navy-header-content"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 20px',
-          position: 'relative',
-          height: '100%',
-          flexWrap: 'nowrap',
-          overflow: 'visible',
-        }}
-      >
-        {/* Left: logo + title */}
-        <div
-         onClick={() => navigate('/')}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            flexShrink: 0,
-            minWidth: window.innerWidth <= 768 ? '50%' : 'auto',
-            transform: window.innerWidth <= 768 ? 'translate(90px, 25px)' : 'none',
-             cursor: 'pointer',
-          }}
-        >
-          <div className="logo-circle-wrapper" style={{ position: 'relative' }}>
-            <div className="navy-circle"></div>
-            <img
-              src="/graduation-scope-logo.png"
-              alt="Graduation Scope Logo"
-              className="navy-logo"
-              style={{
-                width: window.innerWidth <= 768 ? 65 : 85,
-                height: window.innerWidth <= 768 ? 65 : 85,
-                objectFit: 'contain',
-                zIndex: 2,
-                transform: window.innerWidth <= 768 ? 'translateX(-2px)' : 'none',
-              }}
-            />
-          </div>
-          <span
-            style={{
-              fontWeight: 500,
-              fontSize: window.innerWidth <= 768 ? '0.95rem' : '1.6rem',
-              color: '#fff',
-              whiteSpace: 'nowrap',
-              userSelect: 'none',
-              overflow: 'visible',
-              display: 'inline-block',
-              position: 'relative',
-              left: window.innerWidth <= 768 ? '-108px' : '-10px',
-              top: window.innerWidth <= 768 ? '-30px' : '0',
-            }}
-          >
-            Graduation Scope
-          </span>
-        </div>
-
-        {/* Center: icon bar (hidden on mobile) */}
-        <nav
-          className="ge-icon-bar"
-          aria-label="Primary navigation"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            display: window.innerWidth <= 768 ? 'none' : 'flex',
-            gap: 48,
-            zIndex: 2,
-          }}
-        >
-          {navLinks.map(({ to, Icon, label, isHomeRecommend }) => {
-            const isRecommend = label === 'Recommend';
-
-            // On Home, Recommend opens the picker / fast nav
-            if (isHomeRecommend) {
-              return (
-                <button
-                  key={label}
-                  onClick={handleRecommendClick}
-                  className={`ge-icon-link ${isRecommend ? 'recommend-cta' : ''}`}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    color: '#fff',
-                    textDecoration: 'none',
-                    fontSize: '1rem',
-                    cursor: 'pointer',
-                  }}
-                  aria-label={label}
-                  type="button"
-                >
-                  <Icon style={{ fontSize: '2.07rem', color: '#fff' }} />
-                  <span style={{ marginTop: 2, textDecoration: 'underline' }}>{label}</span>
-                </button>
-              );
-            }
-
-            return (
-              <NavLink
-                key={label}
-                  reloadDocument={onUcscRec} 
-                to={to}
-                className={({ isActive }) =>
-                  `ge-icon-link ${isActive ? 'active' : ''} ${isRecommend ? 'recommend-cta' : ''}`
-                }
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  color: '#fff',
-                  textDecoration: 'none',
-                  fontSize: '1rem',
-                }}
-                aria-label={label}
-              >
-                <Icon style={{ fontSize: '2.07rem', color: '#fff' }} />
-                <span style={{ marginTop: 2, textDecoration: 'underline' }}>{label}</span>
-              </NavLink>
-            );
-          })}
-        </nav>
-
-        {/* Right: Auth */}
-        <div
-          className="auth-links"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            position: window.innerWidth <= 768 ? 'static' : 'absolute',
-            right: window.innerWidth <= 768 ? 'auto' : -102,
-            top: window.innerWidth <= 768 ? 'auto' : '50%',
-            transform: window.innerWidth <= 768 ? 'none' : 'translateY(-50%)',
-            marginLeft: window.innerWidth <= 768 ? 20 : undefined,
-            marginTop: window.innerWidth <= 768 ? -7.5 : 0,
-            zIndex: 3,
-            flexDirection: 'row',
-            gap: window.innerWidth <= 768 ? 8 : 16,
-          }}
-        >
-{isAuthenticated ? (
-  <>
-    <NavLink
-  to="/plus"
-  style={{
-    ...(window.innerWidth <= 768
-      ? {
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          fontSize: '0.65rem',
-          fontWeight: 600,
-          color: '#fff',
-          padding: 0,
-          lineHeight: 1.2,
-          whiteSpace: 'nowrap',
-          marginLeft: '8px',
-        }
-      : {
-          color: '#fff',           // <-- desktop: force white
-          textDecoration: 'none',
-          fontWeight: 600,
-        }),
-  }}
+    <header className={`gs-header ${isSticky ? "is-sticky" : ""} ${onLight ? "on-light" : ""}`}>
+      <div className="gs-header__bar" ref={barRef}>
+        {/* Brand */}
+      <button
+  className="gs-header__brand"
+  onClick={() => (onUcscRec ? (window.location.href = "/") : navigate("/"))}
+  type="button"
+  aria-label="Graduation Scope Home"
 >
-  Get Premium
-</NavLink>
-    <button
-      onClick={onLogout}
-      type="button"
-      style={{
-        ...(window.innerWidth <= 768
-          ? {
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '0.65rem',
-              fontWeight: 600,
-              color: '#fff',
-              padding: 0,
-              lineHeight: 1.2,
-              whiteSpace: 'nowrap',
-              marginLeft: '8px',   // <-- nudge toward center
-            }
-          : {}),
-      }}
-    >
-      Log Out
-    </button>
-  </>
-) : (
-  <>
-    <button
-      onClick={onShowSignUp}
-      type="button"
-      style={{
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
-        fontWeight: 600,
-        color: '#fff',
-      }}
-    >
-      Sign Up
-    </button>
-    <button
-      onClick={onShowLogin}
-      type="button"
-      style={{
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        fontSize: window.innerWidth <= 768 ? '0.65rem' : '1rem',
-        fontWeight: 600,
-        color: '#fff',
-      }}
-    >
-      Log In
-    </button>
-  </>
+  <img className="gs-header__logo" src="/graduation-scope-logo.png" alt="" />
+  <span className="gs-header__title">Graduation Scope</span>
+</button>
+
+
+  {/* Center nav */}
+{!isMobile && (
+  <nav className="gs-header__nav" aria-label="Primary">
+    {isHome ? (
+      <a
+        href={currentRoutes.tracker}
+        ref={trackerLinkRef}
+        className={`gs-header__link ${isTrackerOpen ? "is-active" : ""}`}
+        onClick={onTrackerClick}
+      >
+        Tracker
+      </a>
+    ) : (
+      <NavLink
+        to={currentRoutes.tracker}
+        reloadDocument={onUcscRec}
+        className={({ isActive }) => `gs-header__link ${isActive ? "is-active" : ""}`}
+      >
+        Tracker
+      </NavLink>
+    )}
+
+    {isHome ? (
+      <a
+        href={currentRoutes.recs}
+        ref={recsLinkRef}
+        className={`gs-header__link ${isRecsOpen ? "is-active" : ""}`}
+        onClick={onRecsClick}
+      >
+        Recommendations
+      </a>
+    ) : (
+      <NavLink
+        to={currentRoutes.recs}
+        reloadDocument={onUcscRec}
+        className={({ isActive }) => `gs-header__link ${isActive ? "is-active" : ""}`}
+      >
+        Recommendations
+      </NavLink>
+    )}
+  </nav>
 )}
 
-        </div>
-      </div>
+<div className="gs-header__spacer" />
 
-      {/* University Picker (Home -> Recommend) */}
-      {showUniPicker && (
-        <div
-          onClick={() => setShowUniPicker(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0,0,0,0.35)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: 440,
-              maxWidth: '92vw',
-              background: '#fff',
-              borderRadius: 14,
-              padding: 20,
-              boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
-            }}
-          >
-            <h3 style={{ marginTop: 0, marginBottom: 12 }}>Choose your university</h3>
-            <p style={{ marginTop: 0, color: '#555' }}>We’ll remember this for next time.</p>
-            <div style={{ display: 'grid', gap: 12, marginTop: 14 }}>
-              <button
-                onClick={() => goRecommendFor('sjsu')}
-                style={btn()}
-                type="button"
-              >
-                San José State — Recommend
-              </button>
-              <button
-                onClick={() => goRecommendFor('chico')}
-                style={btn()}
-                type="button"
-              >
-                Chico State — Recommend
-              </button>
-              <button
-                onClick={() => goRecommendFor('berkeley')}
-                style={btn()}
-                type="button"
-              >
-                UC Berkeley — Recommend
-              </button>
-               <button
-               onClick={() => goRecommendFor('santacruz')}
-               style={btn()}
-               type="button"
-             >
-               UC Santa Cruz — Recommend
-             </button>
-            </div>
-            <button
-              onClick={() => setShowUniPicker(false)}
-              style={{ marginTop: 14, background: 'none', border: 'none', color: '#1976d2', cursor: 'pointer' }}
-              type="button"
+{/* Right actions (desktop only) */}
+{!isMobile && (
+  <div className="gs-header__actions">
+    <NavLink to="/plus" className="gs-header__pill">Get Premium</NavLink>
+    {isAuthenticated ? (
+      <button className="gs-header__ghostBtn" onClick={onLogout} type="button">Log Out</button>
+    ) : (
+      <>
+        <button className="gs-header__ghostBtn" onClick={onShowLogin} type="button">Log In</button>
+        <button className="gs-header__ghostBtn" onClick={onShowSignUp} type="button">Sign Up</button>
+      </>
+    )}
+  </div>
+)}
+
+{/* Hamburger (mobile only) */}
+{isMobile && (
+  <button
+    className="gs-hamburger"
+    aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+    aria-expanded={isMobileMenuOpen}
+    aria-controls="gs-mobile-menu"
+    onClick={toggleMobileMenu}
+    type="button"
+  >
+    {isMobileMenuOpen ? <FiX size={22} color="#20A7EF" /> : <FiMenu size={22} color="#20A7EF" />}
+  </button>
+)}
+
+
+        {/* === Tracker mega (Home only) === */}
+        {isHome && isTrackerOpen && (
+          <>
+            <div className="gs-mega__backdrop" onClick={() => setIsTrackerOpen(false)} />
+            <div
+              className="gs-mega gs-mega--dark"
+              style={{ "--arrow-shift": `${arrowShift}px` }}
+              role="dialog"
+              aria-label="Tracker menu"
             >
-              Cancel
-            </button>
-          </div>
+              <div className="gs-mega__row gs-mega__row--four">
+                <NavLink to="/sjsu" className="gs-mega__card" onClick={() => setIsTrackerOpen(false)}>
+                  <h4>San José State</h4>
+                  <p>Open SJSU GE Tracker</p>
+                </NavLink>
+                <NavLink to="/chico" className="gs-mega__card" onClick={() => setIsTrackerOpen(false)}>
+                  <h4>Chico State</h4>
+                  <p>Open Chico GE Tracker</p>
+                </NavLink>
+                <NavLink to="/berkeley" className="gs-mega__card" onClick={() => setIsTrackerOpen(false)}>
+                  <h4>UC Berkeley</h4>
+                  <p>Open Berkeley GE Tracker</p>
+                </NavLink>
+                <NavLink to="/santacruz" className="gs-mega__card" onClick={() => setIsTrackerOpen(false)}>
+                  <h4>UC Santa Cruz</h4>
+                  <p>Open UCSC GE Tracker</p>
+                </NavLink>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* === Recommendations mega (Home only) — IDENTICAL LOOK === */}
+        {isHome && isRecsOpen && (
+          <>
+            <div className="gs-mega__backdrop" onClick={() => setIsRecsOpen(false)} />
+            <div
+              className="gs-mega gs-mega--dark"
+              style={{ "--arrow-shift": `${arrowShift}px` }}
+              role="dialog"
+              aria-label="Recommendations menu"
+            >
+              <div className="gs-mega__row gs-mega__row--four">
+                <NavLink to="/recommend" className="gs-mega__card" onClick={() => setIsRecsOpen(false)}>
+                  <h4>San José State</h4>
+                  <p>Open SJSU Recommendations</p>
+                </NavLink>
+                <NavLink to="/chicorecommend" className="gs-mega__card" onClick={() => setIsRecsOpen(false)}>
+                  <h4>Chico State</h4>
+                  <p>Open Chico Recommendations</p>
+                </NavLink>
+                <NavLink to="/berkeleyrecommend" className="gs-mega__card" onClick={() => setIsRecsOpen(false)}>
+                  <h4>UC Berkeley</h4>
+                  <p>Open Berkeley Recommendations</p>
+                </NavLink>
+                <NavLink to="/santacruzrecommend" className="gs-mega__card" onClick={() => setIsRecsOpen(false)}>
+                  <h4>UC Santa Cruz</h4>
+                  <p>Open UCSC Recommendations</p>
+                </NavLink>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+     
+
+{/* Mobile overlay */}
+<div
+  className={`gs-overlay ${isMobileMenuOpen ? "is-open" : ""}`}
+  onClick={closeMobileMenu}
+  style={{ top: sheetTop }}   // ⬅️ was barH
+/>
+
+{/* Mobile sheet */}
+<div
+  id="gs-mobile-menu"
+  className={`gs-sheet ${isMobileMenuOpen ? "is-open" : ""}`}
+  role="dialog"
+  aria-modal="true"
+  onClick={closeMobileMenu}
+  style={{
+    top: sheetTop,                               // ⬅️ was barH
+    maxHeight: `calc(85vh - ${sheetTop}px)`,
+    overflow: "auto",
+  }}
+>
+<nav className="gs-sheet__nav" onClick={(e) => e.stopPropagation()}>
+  {mobileView === 'root' && (
+    <>
+      <button type="button" className="gs-sheet__link" onClick={() => setMobileView('tracker')}>
+        Tracker
+      </button>
+
+      {/* NOW a subview for Recommendations too */}
+      <button type="button" className="gs-sheet__link" onClick={() => setMobileView('recs')}>
+        Recommendations
+      </button>
+
+      <NavLink to="/plus" onClick={closeMobileMenu} className="gs-sheet__btn gs-sheet__btn--primary">
+        Get Premium
+      </NavLink>
+
+      {isAuthenticated ? (
+        <button onClick={() => { onLogout(); closeMobileMenu(); }} className="gs-sheet__btn" type="button">
+          Log Out
+        </button>
+      ) : (
+        <div className="gs-sheet__row">
+          <button className="gs-sheet__btn" onClick={() => { onShowLogin(); closeMobileMenu(); }} type="button">
+            Log In
+          </button>
+          <button className="gs-sheet__btn gs-sheet__btn--outline" onClick={() => { onShowSignUp(); closeMobileMenu(); }} type="button">
+            Sign Up
+          </button>
         </div>
       )}
+    </>
+  )}
 
+  {mobileView === 'tracker' && (
+    <>
+      <button type="button" className="gs-sheet__back" onClick={() => setMobileView('root')}>
+        ← Back
+      </button>
+      <div className="gs-sheet__grid">
+        <NavLink to="/sjsu"      onClick={closeMobileMenu} className="gs-sheet__link">San José State</NavLink>
+        <NavLink to="/chico"     onClick={closeMobileMenu} className="gs-sheet__link">Chico State</NavLink>
+        <NavLink to="/berkeley"  onClick={closeMobileMenu} className="gs-sheet__link">UC Berkeley</NavLink>
+        <NavLink to="/santacruz" onClick={closeMobileMenu} className="gs-sheet__link">UC Santa Cruz</NavLink>
+      </div>
+    </>
+  )}
 
+  {/* NEW: Recommendations subview */}
+  {mobileView === 'recs' && (
+    <>
+      <button type="button" className="gs-sheet__back" onClick={() => setMobileView('root')}>
+        ← Back
+      </button>
+      <div className="gs-sheet__grid">
+        <NavLink to="/recommend"           onClick={closeMobileMenu} className="gs-sheet__link">San José State</NavLink>
+        <NavLink to="/chicorecommend"     onClick={closeMobileMenu} className="gs-sheet__link">Chico State</NavLink>
+        <NavLink to="/berkeleyrecommend"  onClick={closeMobileMenu} className="gs-sheet__link">UC Berkeley</NavLink>
+        <NavLink to="/santacruzrecommend" onClick={closeMobileMenu} className="gs-sheet__link">UC Santa Cruz</NavLink>
+      </div>
+    </>
+  )}
+</nav>
 
-</header>
-);
+</div>
+
+    </header>
+  );
 }
+
 export default Header;

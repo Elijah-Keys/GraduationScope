@@ -1347,7 +1347,7 @@ return picked.slice(0, numClasses).map((cls) => ({ ...cls }));
         </>
 
         {/* Recommendations */}
-        <div style={{ paddingBottom: isMobile ? 48 : 0 }}>
+        <div style={{ paddingBottom: isMobile ? 48 : 32 }}>
           <div
             style={{
               width: isMobile ? "92vw" : 1200,

@@ -84,3 +84,24 @@
 .fineprint { font-size: 12px; color: #6b7280; margin-top: 8px; }
 details { border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px 12px; margin: 8px 0; background: #fff; }
 summary { cursor: pointer; font-weight: 600; }
+/* Center crosshair */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+body::before { /* vertical */
+  left: 50%;
+  width: 1px;
+  background: rgba(255, 0, 0, 0.6);
+}
+
+body::after { /* horizontal */
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 0, 0, 0.6);
+}

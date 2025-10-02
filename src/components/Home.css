@@ -1,4 +1,6 @@
 /* src/components/Home.css */
+html, body { margin: 0; padding: 0; }
+.home-root { --sub-w: 560px; }  /* fallback before JS measures */
 
 .hero-section {
   position: relative;
@@ -45,10 +47,10 @@
 
 .hero-search {
 
-  width: 700px;       /* Increase this value to make it longer */
-  max-width: 95vw;    /* Keeps it responsive on smaller screens */
-  padding: 28px 40px; /* Optional: adjust padding for better look */
-  font-size: 1.6rem;  /* Optional: adjust font size */
+width: 100%;  max-width: 560px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  box-sizing: border-box;
   border-radius: 32px;     /* More rounding */
   border: none;
   outline: none;
@@ -56,9 +58,6 @@
   box-shadow: 0 6px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.08); /* Stronger shadow */
   margin-bottom: 24px;
   transition: box-shadow 0.2s, background 0.2s;
-  position: center;
-  margin-left: -30px;
-  margin-top: -80px;
   margin-bottom: 24px;
 }
 
@@ -87,18 +86,6 @@ html, body {
     font-size: 2rem;
     margin-bottom: 20px;
     padding: 0 0.5rem;
-  }
-
-  .hero-search {
-    width: 70vw;
-    max-width: 281px;
-    min-width: 80px;
-    padding: 14px 16px;
-    border-radius: 40px;
-    margin-bottom: 16px;
-    margin-left: 35px;
-    margin-top: 0;
-    font-size: 1.1rem;
   }
 
   .hero-overlay {
@@ -215,20 +202,15 @@ html, body {
   margin-left: calc(-1 * var(--edge));
   margin-right: calc(-1 * var(--edge));
   padding: 48px max(16px, var(--edge) + 16px) 56px;
-  background: linear-gradient(
-    180deg,
-    rgba(117,137,243,0.10),
-    rgba(117,137,243,0.06) 40%,
-    rgba(117,137,243,0.03) 100%
-  );
+   background: #0A0F2C;         /* <— solid navy */
   border: 0;
   border-radius: 0;
   text-align: center;
 }
 
 /* If your CTA text was white before, bring it back to dark for readability here */
-.cta-title{ color: #111; margin: 0 0 8px; }
-.cta-subtitle{ color: #333; margin: 0 auto 20px; max-width: 70ch; }
+.cta-title{ color: #ffffff; margin: 0 0 8px; }
+.cta-subtitle{ color: #ffffff; margin: 0 auto 20px; max-width: 70ch; }
 
 
 .cta-button {
@@ -264,20 +246,15 @@ html, body {
 .cta-button, .feature-card h3 {
   font-weight: 600;
 }
-.hero-heading-group {
-  transform: translateY(-200px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+
+
+/* MOBILE ONLY: if you still want the old nudge on phones */
+@media (max-width: 700px) {
+  .hero-search-wrapper {
+    transform: none;              /* or keep translateY(-100px) if you liked it on mobile */
+  }
 }
 
-.hero-search-wrapper {
-  transform: translateY(-100px);
-  width: 100%;           /* Ensures it doesn't shrink */
-  display: flex;
-  justify-content: center;  /* Keeps the search bar centered */
-}
 .cta-links {
   display: flex;
   justify-content: center;
@@ -315,11 +292,17 @@ html, body {
     line-height: 1.4;
   }
 }
+/* was: display:none; */
 @media (max-width: 700px) {
   .hero-heading-group {
-    display: none;
+    display: block !important;
+    transform: none;            /* stop pushing it off-screen */
+    align-items: flex-start;
+    text-align: left;
+    padding: 0 16px;
   }
 }
+
 @media (max-width: 600px) {
   .hero-search-wrapper {
     margin-top: 100px;
@@ -435,3 +418,1007 @@ html, body {
 /* Text */
 .about-card-title{ margin: 0 0 6px; font-weight: 700; }
 .about-card-text{ margin: 0; opacity: .92; line-height: 1.6; }
+/* Optional: keep typography consistent */
+.hero-title-mobile, .hero-subtitle-mobile {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+.hero-title-mobile,
+.hero-subtitle-mobile {
+  display: block;
+}
+/* Gradient title text */
+
+
+/* Subtitle white + slight glow for readability on photos */
+.hero-subtitle-mobile {
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0,0,0,.35);
+}
+
+/* Put the hero text at the very top on mobile */
+@media (max-width: 700px) {
+  .hero-section {
+    display: flex;
+    justify-content: flex-start;                                  /* top align */
+    align-items: stretch;
+    padding-top: calc(env(safe-area-inset-top) + 10px);           /* notch-safe */
+  }
+
+  .hero-overlay {
+    align-items: flex-start;                                      /* left align */
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .hero-heading-group {
+    display: block !important;
+    transform: none !important;
+    text-align: left;
+    margin-top: 0;
+  }
+
+  .hero-search-wrapper {
+    transform: none !important;
+    margin-top: 14px;                                             /* tight like screenshot */
+    width: 100%;
+ 
+
+  }
+}
+
+/* Make sure overlays stay behind content */
+.hero-blur-overlay,
+.hero-scrim { z-index: 0; pointer-events: none; }
+.hero-overlay { position: relative; z-index: 2; }
+
+/* DESKTOP: giant, single-line title */
+@media (min-width: 1024px) {
+  .hero-title-mobile {
+    font-size: clamp(64px, 6.5vw, 104px);
+    line-height: 1.05;
+    white-space: nowrap;          /* one line */
+  }
+  .hero-title-mobile br { display: none; } /* kill line-break on desktop */
+}
+
+  /* Subtitle: white, larger, with a soft halo */
+  .hero-subtitle-mobile {
+    font-size: clamp(12px, 6vw, 20px) !important; /* ~2× */
+    color: #fff !important;
+    text-shadow:
+      0 2px 10px rgba(0,0,0,.55),
+      0 1px 2px rgba(0,0,0,.35);
+    margin-top: 8px; /* tighter with larger type */
+  }
+
+  /* keep spacing tidy with larger text */
+  .hero-search-wrapper {
+    margin-top: 14px !important;
+  }
+
+
+
+
+/* MOBILE: center the search bar with flex */
+@media (max-width: 700px) {
+  .hero-search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;   /* <-- centers horizontally */
+    align-items: center;
+    padding: 0 16px;           /* optional side gutters */
+    margin-top: 14px !important;
+    transform: none !important;
+  }
+
+  .hero-search {
+    width: min(92vw, 560px);   /* responsive width cap */
+    margin: 0 !important;      /* kill any left shifts */
+    transform: none !important;
+  }
+}
+@media (max-width: 700px) {
+  .hero-overlay {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0 30px;                 /* was 0 16px → 30px gutters */
+  }
+
+  .hero-heading-group {
+    display: block !important;
+    transform: none !important;
+    text-align: left;
+    margin-top: 0;
+    padding: 0;                      /* was 0 16px; let .hero-overlay supply gutters */
+  }
+
+  .hero-search-wrapper {
+    transform: none !important;
+    margin-top: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 30px;                 /* was 0 16px → match gutters */
+    box-sizing: border-box;
+  }
+}
+/* MOBILE: make hero text and search the same width */
+@media (max-width: 700px) {
+  /* keep the outer gutter you liked */
+  .hero-overlay { padding: 0 30px; }
+
+  /* constrain both blocks to the same max-width and center them */
+  .hero-heading-group,
+  .hero-search-wrapper {
+    width: 100%;
+    max-width: 560px;          /* <- same cap for both */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 0;                /* let .hero-overlay handle side padding */
+  }
+
+  /* make the input fill that shared width */
+  .hero-search {
+    width: 100%;
+    max-width: 100%;           /* inherit the container width */
+  }
+}
+/* MOBILE: place hero content 40px from the top */
+@media (max-width: 700px) {
+  /* put the content at the top of the hero */
+  .hero-section {
+    display: flex;
+    justify-content: flex-start;   /* top of the section */
+    align-items: stretch;
+  }
+
+  /* start the column at 40px from the safe area */
+  .hero-overlay {
+    justify-content: flex-start !important;
+    padding-top: calc(env(safe-area-inset-top) + 40px) !important;
+    padding-left: 30px;   /* keep your side gutters */
+    padding-right: 30px;  /* keep your side gutters */
+  }
+
+  /* neutralize any previous vertical nudges */
+  .hero-heading-group,
+  .hero-search-wrapper {
+    transform: none !important;
+    margin-top: 0;               /* text sits at the top */
+    width: 100%;
+    max-width: 560px;            /* same width as search */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* keep the search just under the text */
+  .hero-search-wrapper { margin-top: 14px; }
+
+  /* input fills that shared width */
+  .hero-search { width: 100%; max-width: 100%; }
+}
+
+/* hidden by default (desktop) */
+.mobile-bottom-bar { display: none; }
+
+/* Mobile-only bottom bar */
+@media (max-width: 700px) {
+  .home-root { 
+    /* reserve space so content isn't hidden under the bar */
+    --mobileBarH: 64px;
+    padding-bottom: calc(env(safe-area-inset-bottom) + var(--mobileBarH) + 8px);
+  }
+
+  .mobile-bottom-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: var(--mobileBarH);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:
+      8px
+      calc(env(safe-area-inset-right) + 12px)
+      calc(env(safe-area-inset-bottom) + 8px)
+      calc(env(safe-area-inset-left) + 12px);
+    background: rgba(10, 15, 44, 0.72);        /* subtle glassy bar */
+    backdrop-filter: blur(10px) saturate(120%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 99;
+  }
+
+  .mobile-bottom-bar .mbb-item {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-decoration: none; /* for <a> */
+  }
+
+  /* optional: highlight Search as primary */
+.mobile-bottom-bar .mbb-item:first-child {
+  background: linear-gradient(90deg, #2f7cf6 0%, #0ea5e9 55%, #22d3ee 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15); /* subtle edge on light bg */
+  box-shadow: 0 6px 20px rgba(15, 113, 220, 0.28);
+}
+
+}
+
+
+/* Motion-safe: stop animation if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-mobile {
+    animation: none !important;
+    background-position: 50% 50%;
+  }
+}
+
+@keyframes heroGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Base title: bigger + bolder */
+.hero-title-mobile {
+  margin: 0;
+  font-weight: 900;           
+    color: #fff;  /* add this */      /* bolder */
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-size: clamp(34px, 7vw, 60px);/* bigger on all screens */
+}
+
+/* "Find Your" stays white */
+.hero-title-prefix {
+  color: #ffffff;
+}
+
+/* Gradient only on "Easiest Classes" */
+.hero-title-emph {
+  background: linear-gradient(90deg, #2f7cf6 0%, #0ea5e9 55%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; 
+}
+
+/* (Optional) give the subtitle a touch more presence */
+.hero-subtitle-mobile {
+  font-weight: 600;                 /* a bit bolder */
+  font-size: clamp(16px, 4.2vw, 20px);
+}
+/* MOBILE: no gradient, light + dark text */
+@media (max-width: 700px) {
+  /* kill any title-wide gradient leftovers */
+  .hero-title-mobile {
+    background: none !important;
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+
+  /* "Find Your" = light */
+  .hero-title-prefix {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+      color: #ffffff;
+    background: none !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,.35); /* keep readable on photos */
+  }
+
+  /* "Easiest Classes" = dark (no gradient) */
+  .hero-title-emph {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: #20A7EF!important;   /* dark navy to contrast the white */
+    text-shadow: none;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-title-mobile {
+    display: inline-block;   /* allow accurate width measurement */
+    white-space: nowrap;     /* keep title on one line */
+  }
+
+  .hero-subtitle-mobile {
+    display: block;
+    white-space: normal;     /* let it wrap */
+    max-width: clamp(320px, calc(var(--title-w) + 10px), 1200px);
+    text-wrap: balance;      /* nicer line breaks where supported */
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+/* Tighter measure + side air for the subtitle */
+.hero-subtitle-mobile {
+  /* limit the line length so it wraps sooner */
+  max-width: min(58ch, 720px);
+  text-wrap: balance;          /* nicer breaks where supported */
+  padding-inline: 20px;        /* <-- side padding inside the block */
+  margin-left: 0;              /* keep left-aligned under the title */
+  margin-right: 0;
+}
+
+/* Desktop: push it in a bit more */
+@media (min-width: 1024px) {
+  .hero-heading-group { padding-inline: 32px; }  /* gentle gutter for title+subtitle */
+  .hero-subtitle-mobile {
+    max-width: min(50ch, 660px); /* narrower line length */
+    padding-inline: 24px;        /* extra side breathing room */
+  }
+}
+/* Mildly push the subtitle in (desktop + large tablets) */
+@media (min-width: 1024px) {
+  /* optional: a small gutter for the whole heading block */
+  .hero-heading-group { padding-inline: 16px; }
+
+  .hero-subtitle-mobile {
+    max-width: min(60ch, 680px); /* was tighter; loosened */
+    padding-inline: 12px;        /* subtle side air */
+    text-wrap: balance;          /* nicer breaks; remove if you don't like it */
+  }
+}
+/* Desktop: center the search bar and place it 32px under the subtitle */
+@media (min-width: 1024px) {
+  .hero-search-wrapper {
+    transform: none !important;  /* undo the old -100px shift */
+    margin-top: 32px !important; /* 32px below the subtitle */
+    display: flex;
+    justify-content: center;     /* center horizontally */
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Optional: nice max width for the input */
+  .hero-search {
+    width: min(640px, 60vw);
+  }
+}
+/* Desktop: remove flex gap so only the 32px margin controls spacing */
+@media (min-width: 1024px) {
+  .hero-overlay { gap: 0 !important; }
+  .hero-subtitle-mobile { margin-bottom: 0 !important; }
+  .hero-search-wrapper {
+    transform: none !important;
+    margin-top: 32px !important;   /* exactly 32px below subtitle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/* ===== Desktop: center search and keep it exactly 32px under the subtitle ===== */
+@media (min-width: 1024px) {
+  /* 1) neutralize the vertical nudges that break spacing control */
+  .hero-heading-group,
+  .hero-search-wrapper {
+    transform: none !important;
+  }
+
+  /* 2) remove extra flex gap so only margin controls the distance */
+  .hero-overlay { gap: 0 !important; }
+
+  /* 3) ensure no bottom margin on subtitle */
+  .hero-subtitle-mobile { margin-bottom: 0 !important; }
+
+  /* 4) place and center the search bar */
+  .hero-search-wrapper {
+    margin-top: 32px !important;   /* exactly 32px below subtitle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Optional: tidy max width */
+  .hero-search { width: min(640px, 60vw); }
+}
+@media (min-width: 1024px) {
+  .hero-heading-group { transform: none !important; }
+}
+@media (min-width: 1024px) {
+  .hero-overlay { gap: 0 !important; }
+  .hero-subtitle-mobile { margin-bottom: 0 !important; }
+  .hero-search-wrapper {
+    transform: none !important;
+    margin-top: 0 !important;      /* 0px directly under the subtitle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+/* Desktop: remove legacy vertical nudges so spacing is controlled by marginTop above */
+@media (min-width: 1024px) {
+  .hero-heading-group { transform: none !important; }
+  .hero-search-wrapper { transform: none !important; }
+}
+/* Hard stop: no vertical nudges on desktop */
+@media (min-width: 1024px) {
+  .hero-heading-group { transform: none !important; }
+  .hero-search-wrapper { transform: none !important; }
+}
+/* Center crosshair */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+body::before { /* vertical */
+  left: 50%;
+  width: 1px;
+  background: rgba(255, 0, 0, 0.6);
+}
+
+body::after { /* horizontal */
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 0, 0, 0.6);
+}
+@media (min-width: 1024px) {
+  .hero-heading-group,
+  .hero-search-wrapper { transform: none !important; }
+}
+  /* ===== DESKTOP: lock hero content to a centered column ===== */
+@media (min-width: 1024px) {
+  /* Give title + subtitle + search a shared centered width */
+  .hero-heading-group,
+  .hero-search-wrapper {
+    max-width: 900px;                /* adjust if you like */
+    margin-left: auto !important;    /* center the block itself */
+    margin-right: auto !important;
+  }
+
+  /* Center the subtitle block (not just its text) */
+  .hero-subtitle-mobile {
+    max-width: 900px;                /* same measure as above */
+    margin-left: auto !important;    /* <-- this is what you were missing */
+    margin-right: auto !important;
+    text-align: center !important;
+    padding-inline: 0 !important;    /* remove side bias from padding */
+  }
+
+  /* Make sure the search actually sits centered right under the subtitle */
+  .hero-search-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 0 !important;        /* 0px under the subtitle */
+  }
+
+  /* Keep the column centered inside the hero */
+  .hero-overlay {
+    align-items: center !important;
+    gap: 0 !important;
+  }
+}
+/* Desktop: center the search bar and align with the text column */
+@media (min-width: 1024px) {
+  /* make the wrapper the same centered column as the text */
+  .hero-search-wrapper {
+    max-width: 900px;              /* tweak if your text column is a different width */
+    margin: 0 auto !important;     /* center the wrapper */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-inline: 0 !important;
+  }
+
+  /* center the inner UniversitySearch container (the div that wraps the input) */
+  .hero-search-wrapper > div {
+    margin: 0 auto !important;
+  }
+
+  /* ensure the input itself can’t drift */
+  .hero-search {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+/* Desktop: make the search bar exactly as wide as the subtitle and centered */
+@media (min-width: 1024px) {
+  .hero-search-wrapper {
+    max-width: var(--sub-w, 640px);   /* match subtitle width */
+    margin: 0 auto !important;        /* center the wrapper */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .hero-search {
+    width: 100% !important;           /* fill that wrapper */
+    display: block;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-heading-group,
+  .hero-search-wrapper { transform: none !important; }
+
+  .hero-search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0 !important;   /* 0px directly under the subtitle */
+    width: 100%;
+  }
+}
+/* ===== Desktop: center the column and match search width to subtitle ===== */
+@media (min-width: 1024px) {
+  /* Center the shared column to the measured subtitle width */
+  .hero-heading-group,
+  .hero-search-wrapper {
+    max-width: var(--sub-w, 640px);
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Let the input actually fill that width (remove the old 560px clamp) */
+  .hero-search {
+    width: 100% !important;
+    max-width: none !important;   /* ← kills the 560px cap */
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Keep the wrapper centered and tight to the subtitle */
+  .hero-search-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 0 !important;     /* 0px directly under subtitle */
+    padding-inline: 0 !important;
+  }
+}
+
+/* Shell around the input should not impose its own max-width */
+.uni-search-shell {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+/* DESKTOP: clamp only the search width; leave heading width alone */
+@media (min-width: 1024px) {
+  /* keep the title/subtitle exactly as they were */
+  .hero-heading-group {
+    max-width: none !important;   /* don't constrain */
+    width: 100% !important;       /* full available width */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* clamp + center the search to the measured subtitle width (with caps) */
+  .hero-search-wrapper {
+    max-width: clamp(420px, var(--sub-w, 560px), 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .hero-search {
+    width: 100% !important;       /* fill the clamped wrapper */
+    max-width: none !important;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+}
+/* DESKTOP: place hero content 32px from the top */
+@media (min-width: 1024px) {
+  .hero-section {
+    align-items: flex-start !important;   /* top of the hero */
+    justify-content: flex-start !important;
+  }
+
+  .hero-overlay {
+    justify-content: flex-start !important;
+    padding-top: 32px !important;         /* <-- exactly 32px from the top */
+    gap: 0 !important;                    /* keep spacing controlled below */
+  }
+
+  /* keep the search directly under the subtitle */
+  .hero-search-wrapper { margin-top: 0 !important; }
+}
+/* DESKTOP: 32px gap between subtitle and search */
+@media (min-width: 1024px) {
+  .hero-heading-group,
+  .hero-search-wrapper { transform: none !important; }
+
+  .hero-overlay { gap: 0 !important; }     /* let margin control the spacing */
+  .hero-search-wrapper { margin-top: 32px !important; }
+}
+
+/* Desktop: tiny right shift of the search bar only */
+@media (min-width: 1024px) {
+  .hero-search-wrapper {
+    justify-content: center !important; /* keep centering logic */
+  }
+  .hero-search-wrapper .uni-search-shell {
+    transform: translateX(12px); /* ← tweak this: 4–16px */
+  }
+}
+@media (min-width: 1024px) {
+  .hero-overlay { --search-gap: 64px; } /* increase to move it further down */
+}
+/* Desktop: position + size tweaks for the search bar only */
+@media (min-width: 1024px) {
+  /* move the whole search bar down */
+  .hero-search-wrapper {
+    margin-top: 117px !important;   /* adjust: 32–72px as you like */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* ensure the inner shell centers and controls width */
+  .uni-search-shell {
+    width: 100%;
+    max-width: clamp(420px, var(--sub-w, 560px), 640px); /* same column as subtitle */
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-search {
+    /* ~20% size bump */
+    font-size: 1.2rem;             /* was 1rem */
+    padding: 17px 22px;            /* was 14px 18px */
+    border-radius: 36px;           /* keep it nicely rounded */
+
+    /* light blue outline (same as mobile “Easiest Classes” color) */
+    /* use an inset ring so you keep the drop shadow */
+    box-shadow:
+      0 6px 32px rgba(0,0,0,0.18),
+      0 1.5px 6px rgba(0,0,0,0.08),
+      inset 0 0 0 2px #20A7EF;
+
+    /* width controlled by the shell; fill it */
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+  }
+
+  /* dropdown should align to the wider input */
+  .university-dropdown {
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
+}
+/* Disable dev crosshair */
+body::before,
+body::after { content: none !important; }
+/* Home.css */
+.hero-section { margin-top: 0 !important; }
+/* Desktop: nudge heading down, search stays put */
+@media (min-width: 1024px) {
+  .hero-heading-group {
+    transform: translateY(28px);   /* adjust 20–40px to taste */
+  }
+}
+/* Prevent top-margin collapse and push ONLY the heading down on desktop */
+@media (min-width: 1024px) {
+  .hero-heading-group {
+    padding-top: 96px;          /* move "Find Your..." down */
+  }
+  .hero-title-mobile {
+    margin-top: 0;              /* avoid collapsing margin creating a top gap */
+  }
+}
+
+/* Keep the search bar's relationship to the subtitle the same */
+@media (min-width: 1024px) {
+  .hero-search-wrapper {
+    margin-top: 32px !important; /* still 32px under the subtitle */
+  }
+}
+@media (min-width: 1024px) {
+  .hero-search-wrapper {
+    margin-top: 48px !important; /* was 32px */
+  }
+}
+/* Header.css */
+@media (max-width: 900px) {
+  .gs-header__nav,
+  .gs-header__actions { display: none !important; }
+  .gs-hamburger { display: inline-flex; }
+}
+@media (min-width: 901px) {
+  .gs-hamburger { display: none; }
+}
+/* overlay */
+.gs-overlay{
+  position: fixed;
+  left: 0; right: 0;
+  top: var(--sheet-top, 64px);
+  bottom: 0;
+  background: rgba(0,0,0,0.25); /* or transparent if you want */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility 0s linear .2s;
+  z-index: 999; /* header can be 1000 */
+}
+.gs-overlay.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .2s ease;
+}
+
+/* sheet */
+.gs-sheet{
+  position: fixed;
+  left: 0; right: 0;
+  top: var(--sheet-top, 64px);
+  background: rgba(255,255,255,0.9); /* transparent-ish */
+  backdrop-filter: saturate(140%) blur(8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 999;
+  transition: transform .24s ease, opacity .2s ease, visibility 0s linear .24s;
+}
+.gs-sheet.is-open{
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform .24s ease, opacity .2s ease;
+}
+/* Mobile sheet (closed by default; opened via .is-open) */
+.gs-sheet{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  /* starts below header via inline top value */
+  background: transparent;                  /* ← fully transparent */
+  border-radius: 16px;                      /* ← all four corners */
+  border: 1px solid rgba(0,0,0,0.06);       /* subtle edge (optional) */
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  overflow: hidden;                         /* clip children to radius */
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 999;                             /* header stays above (>=1000) */
+  transition: transform .24s ease, opacity .2s ease, visibility 0s linear .24s;
+}
+
+/* If you previously had only bottom corners, remove any:
+   border-top-left-radius: 0; border-top-right-radius: 0; */
+
+.gs-sheet.is-open{
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Keep the dimmer as-is, or lighten it if the sheet is transparent */
+.gs-overlay{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  top: var(--sheet-top, 64px);              /* set from inline style */
+  background: rgba(0,0,0,0.25);             /* tweak if you want lighter */
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .2s ease, visibility 0s linear .2s;
+  z-index: 998;                             /* under header (1000) & sheet (999) */
+}
+.gs-overlay.is-open{ opacity: 1; visibility: visible; pointer-events: auto; }
+/* === Mobile-only: make title & subtitle share the exact same side padding === */
+@media (max-width: 700px) {
+  /* Put both title & subtitle inside one padded wrapper */
+  .hero-heading-group {
+    /* match the subtitle’s 20px inner padding */
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+
+  /* Ensure the children don't add their own extra padding */
+  .hero-title-mobile,
+  .hero-subtitle-mobile {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* === Mobile: search bar matches the title width === */
+@media (max-width: 700px) {
+  .hero-search-wrapper {
+    max-width: var(--title-w-mobile) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .hero-search {
+    width: 100% !important;      /* fill that exact width */
+    max-width: none !important;
+  }
+}
+/* Mobile: drop the hero title by 32px */
+@media (max-width: 700px) {
+  .home-root .hero-title-mobile {
+    margin-top: 32px !important;
+  }
+}
+/* Fix white band on mobile between dark sections */
+@media (max-width: 700px) {
+  /* 1) Make the page background navy on mobile */
+  .home-root {
+    background-color: #0A0F2C !important;
+  }
+
+  /* 2) Prevent margin-collapsing + kill stray top/bottom margins */
+  .about-section,
+  .cta-section {
+    display: flow-root;                 /* new BFC stops margin collapse */
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .about-section > *:first-child,
+  .cta-section > *:first-child { margin-top: 0 !important; }
+  .about-section > *:last-child,
+  .cta-section > *:last-child  { margin-bottom: 0 !important; }
+}
+/* ensure the CTA band is navy and margins don't expose white */
+.cta-section {
+  background: var(--navy, #0b1233);
+  padding-top: 20px; /* give the ribbon breathing room */
+}
+
+.about-section { margin-bottom: 0; }           /* optional guard */
+.about-section + .cta-section { margin-top: 0; } /* optional guard */
+/* === CTA band on solid navy, no seam === */
+.cta-section {
+  background: var(--navy, #0b1233) !important; /* hard override if a global `section{background:#fff}` exists */
+  margin-top: 0;    /* prevent grey line (no collapsed margin gap) */
+  padding: 28px 16px 48px; /* breathing room for ribbon & button */
+  position: relative;      /* guard against odd margin collapsing */
+}
+
+/* make sure the section before it doesn't push a gap that shows body bg */
+.about-section { margin-bottom: 0; }
+
+/* also prevent any top margin on the CTA when it follows the about section */
+.about-section + .cta-section { margin-top: 0; }
+
+/* optional: if any borders/shadows cause the line, nuke them */
+.about-section, .cta-section { border: 0; box-shadow: none; }
+/* TEMP: ensure reveal items are visible even if JS hasn’t toggled them yet */
+.reveal { opacity: 1 !important; transform: none !important; }
+.cta-title {
+  color: #fff;
+  text-align: center;
+  font-size: clamp(22px, 3.8vw, 36px);
+  font-weight: 800;
+  margin: 16px 0 10px;
+}
+
+.cta-subtitle {
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  font-size: clamp(14px, 2.8vw, 18px);
+  max-width: 900px;
+  margin: 0 auto 18px;
+}
+
+.cta-button {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  background: #7589F3;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(117,137,243,0.35);
+}
+.cta-button:hover { filter: brightness(0.95); }
+/* === kill the seam above the ribbon === */
+
+/* ensure the whole band stays navy and doesn't show body bg in-between */
+.about-section {
+  background: var(--navy, #0b1233) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* if your inner wrapper leaves space, remove it */
+.about-inner {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.about-inner > *:last-child { margin-bottom: 0 !important; }
+
+/* the ribbon component wrapper (cover common class names) */
+.feature-ribbon,
+.FeatureRibbon,
+section.feature-ribbon {
+  margin-top: 0 !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+}
+
+/* FINAL NUKE for stubborn 1px sub-pixel seams (Safari/retina):
+   pull the ribbon up by 1px only when it follows the about section */
+.about-section + .feature-ribbon,
+.about-section + .FeatureRibbon,
+.about-section + section.feature-ribbon {
+  margin-top: -1px !important;
+}
+/* CTA band (navy) */
+.cta-section {
+  background: var(--navy, #0e1a33);
+  padding: 32px 16px 56px;
+  margin: 0;              /* prevent collapsed margins creating a seam */
+  border: 0;              /* kill any default borders */
+  position: relative;
+  isolation: isolate;     /* avoids odd blending lines on some GPUs */
+}
+
+/* if a theme adds a divider pseudo-element, turn it off */
+.cta-section::before {
+  content: none !important;
+  display: none !important;
+}
+/* remove the grey hairline above the ribbon */
+.cta-section :where(.feature-ribbon, .FeatureRibbon) {
+  border-top: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important; /* in case a gradient is used as a rule */
+  margin-top: 0 !important;
+}
+
+/* hide any stray <hr> inside the CTA band */
+.cta-section hr { display: none !important; }
+
+/* ensure the section above doesn't introduce a seam */
+.about-section {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* tiny negative nudge to eliminate sub-pixel gaps on retina/Safari */
+.about-section + .cta-section { margin-top: -1px !important; }
+:root{
+  --brand: #20A7EF;
+  --brand-hover: #1B97E0;
+  --brand-active: #177FC0;
+  --brand-ring: rgba(32,167,239,.45);
+}
+
+/* CTA button override */
+.cta-button{
+  background: var(--brand) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(32,167,239,.35);
+  transition: background-color .2s ease, transform .06s ease;
+}
+.cta-button:hover{ background: var(--brand-hover) !important; }
+.cta-button:active{ background: var(--brand-active) !important; transform: translateY(1px); }
+.cta-button:focus-visible{
+  outline: 3px solid var(--brand-ring);
+  outline-offset: 2px;
+}

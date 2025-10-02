@@ -1164,7 +1164,7 @@ return (
   </>
 <div
   style={{
-    paddingBottom: isMobile ? 48 : 0, // adds mobile-only bottom spacing
+    paddingBottom: isMobile ? 48 : 32, // adds mobile-only bottom spacing
   }}
 >
 <div
@@ -1172,6 +1172,7 @@ return (
     width: isMobile ? "92vw" : 1200,
     maxWidth: "92vw",
     margin: isMobile ? "0 auto 32px auto" : "32px auto 0",
+     marginBottom: 32, // ⬅️ add this line
     backgroundColor: "#fff",
     borderRadius: 16,
     padding: isMobile ? "20px 18px" : "28px 32px",
