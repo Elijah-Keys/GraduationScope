@@ -135,12 +135,7 @@ export default function About() {
 
             {/* Wema */}
             <div className="team-card">
-              <img
-                className="team-avatar"
-                src="/images/wema.jpg"
-                alt="Wema Kyubwa"
-                loading="lazy"
-              />
+          <img className="team-avatar" src="/images/Wema.jpg" alt="Wema Kyubwa" />
               <div className="team-name">Wema Kyubwa</div>
               <div className="team-role">Human Resource Mangement</div>
               <a
