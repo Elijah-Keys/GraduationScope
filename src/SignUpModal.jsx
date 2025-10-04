@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpModal.css";
+import "./AuthModal.css";
 
 export default function SignUpModal({ onClose, onSignUp, onShowLogin }) {
   const [email, setEmail] = useState("");
@@ -7,22 +7,15 @@ export default function SignUpModal({ onClose, onSignUp, onShowLogin }) {
   const [confirm, setConfirm] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPw, setShowPw] = useState(false);
+  const [showPw2, setShowPw2] = useState(false);
 
-  function normalizeEmail(email) {
-    return email.trim().toLowerCase();
-  }
-
+  function normalizeEmail(v) { return v.trim().toLowerCase(); }
   function getUsers() {
-    try {
-      return JSON.parse(localStorage.getItem("users") || "{}");
-    } catch {
-      return {};
-    }
+    try { return JSON.parse(localStorage.getItem("users") || "{}"); }
+    catch { return {}; }
   }
-
-  function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
-  }
+  function saveUsers(users) { localStorage.setItem("users", JSON.stringify(users)); }
 
   async function handleSignUp(e) {
     e.preventDefault();
@@ -42,7 +35,6 @@ export default function SignUpModal({ onClose, onSignUp, onShowLogin }) {
     }
 
     setLoading(true);
-
     const users = getUsers();
     const normalizedEmail = normalizeEmail(email);
 
@@ -56,88 +48,104 @@ export default function SignUpModal({ onClose, onSignUp, onShowLogin }) {
     saveUsers(users);
 
     setMessage("Account created! Redirecting to log in...");
-
     setTimeout(() => {
       setLoading(false);
-      if (onShowLogin) {
-        onShowLogin(normalizedEmail); // Pass the email to prefill in login
-      }
-    }, 1200);
-  }
-
-  function handleClose() {
-    if (onClose) onClose();
+      onShowLogin && onShowLogin(normalizedEmail);
+    }, 1000);
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="login-modal-content">
-        <button className="modal-close" onClick={handleClose} title="Close">&times;</button>
-        <h1>Sign Up</h1>
-        <form onSubmit={handleSignUp} autoComplete="off">
-          <div className="input-box">
+    <div className="modal-overlay" role="dialog" aria-modal="true">
+      <div className="auth-modal is-transparent">
+        <button className="modal-close" onClick={onClose} aria-label="Close">&times;</button>
+
+        <div className="auth-head">
+          <div className="auth-title">Create your account</div>
+          <div className="auth-sub">It only takes a minute.</div>
+        </div>
+
+        <form className="auth-form" onSubmit={handleSignUp} autoComplete="off">
+          <div className="field">
+            <label className="label" htmlFor="su-email">Email</label>
             <input
+              id="su-email"
+              className="input"
               type="email"
-              placeholder="Email"
+              placeholder="Your email address"
               value={email}
+              onChange={(e) => setEmail(e.target.value)}
               autoComplete="username"
-              onChange={e => setEmail(e.target.value)}
               disabled={loading}
               required
             />
-            <i className="fa fa-envelope" aria-hidden="true" />
           </div>
-          <div className="input-box">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              autoComplete="new-password"
-              onChange={e => setPassword(e.target.value)}
-              disabled={loading}
-              required
-            />
-            <i className="fa fa-lock" aria-hidden="true" />
+
+          <div className="field">
+            <label className="label" htmlFor="su-password">Password</label>
+            <div className="input-row">
+              <input
+                id="su-password"
+                className="input"
+                type={showPw ? "text" : "password"}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                disabled={loading}
+                required
+              />
+              <button
+                type="button"
+                className="toggle-visibility"
+                onClick={() => setShowPw((s) => !s)}
+                aria-label={showPw ? "Hide password" : "Show password"}
+                title={showPw ? "Hide" : "Show"}
+              >
+                {showPw ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
-          <div className="input-box">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirm}
-              autoComplete="new-password"
-              onChange={e => setConfirm(e.target.value)}
-              disabled={loading}
-              required
-            />
-            <i className="fa fa-lock" aria-hidden="true" />
+
+          <div className="field">
+            <label className="label" htmlFor="su-confirm">Confirm password</label>
+            <div className="input-row">
+              <input
+                id="su-confirm"
+                className="input"
+                type={showPw2 ? "text" : "password"}
+                placeholder="••••••••"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                autoComplete="new-password"
+                disabled={loading}
+                required
+              />
+              <button
+                type="button"
+                className="toggle-visibility"
+                onClick={() => setShowPw2((s) => !s)}
+                aria-label={showPw2 ? "Hide password" : "Show password"}
+                title={showPw2 ? "Hide" : "Show"}
+              >
+                {showPw2 ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
+
           {message && (
-            <div
-              style={{
-                color: message.startsWith("Account created") ? "#21824b" : "#d32f2f",
-                background: message.startsWith("Account created") ? "#e8f5e9" : "#ffebee",
-                borderRadius: 6,
-                fontWeight: 600,
-                padding: "10px 12px",
-                marginBottom: 18,
-                textAlign: "center"
-              }}
-            >
+            <div className={`message ${message.startsWith("Account created") ? "ok" : "error"}`}>
               {message}
             </div>
           )}
-          <button
-            className="btn"
-            type="submit"
-            disabled={loading}
-            style={{ opacity: loading ? 0.7 : 1, pointerEvents: loading ? "none" : "auto" }}
-          >
-            {loading ? "Signing Up..." : "Sign Up"}
+
+          <button className="btn" type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Create account"}
           </button>
         </form>
-        <div className="register-link" style={{ marginTop: 12 }}>
+
+        <div className="helper">
           Already have an account?{" "}
-          <a href="#" onClick={e => { e.preventDefault(); if (onShowLogin) onShowLogin(); }}>
+          <a href="#" onClick={(e) => { e.preventDefault(); onShowLogin && onShowLogin(); }}>
             Sign in
           </a>
         </div>

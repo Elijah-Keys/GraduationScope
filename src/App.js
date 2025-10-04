@@ -21,7 +21,7 @@ import { ClassesTakenProvider } from "./lib/classesTakenStore";
   import AccountSettingsPage from "./pages/AccountSettingsPage";
   import Cookies from 'js-cookie';
   import BottomBarA from './components/MobileBottomBar';
-  import LoginModal from "./components/SignInModal.jsx";
+import SignInModal from "./components/SignInModal.jsx";
   import ForgotPasswordPage from "./components/ForgotPassword.jsx";
   import introJs from "intro.js";
   import "intro.js/introjs.css"; // Don't forget to import the CSS!
@@ -53,7 +53,7 @@ import SantaCruzGETracker from "./pages/SantaCruzGETracker";
 import { UCSCTOPIC_TO_CLASSES } from "./components/UCSCTopic_To_Classes.jsx";
 import UCSCgeRequirements from "./data/SantaCruzgeRequirements.json";
 import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.jsx";
-
+import FooterGuard from "./components/FooterGuard"; // adjust path
 
 
 
@@ -120,6 +120,8 @@ import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.js
     const [successMessage, setSuccessMessage] = useState("");
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [prefillEmail, setPrefillEmail] = useState("");
+// ⬇️ NEW: remember where the user was when they opened Login
+const [returnPath, setReturnPath] = useState(null);
 
     // ...rest of your hooks and logic...
  const loc = useLocation();
@@ -262,27 +264,75 @@ import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.js
     ));
   };
   // In your handleLogin function in App.js
-  const handleLogin = ({ email, password, rememberMe }) => {
-    const users = JSON.parse(localStorage.getItem("users") || "{}");
-    if (users[email] && users[email].password === password) {
-      // Store in localStorage if Remember Me, otherwise sessionStorage
-      if (rememberMe) {
-        localStorage.setItem("isAuthenticated", "true");
-        localStorage.setItem("currentUser", email);
-      } else {
-        sessionStorage.setItem("isAuthenticated", "true");
-        sessionStorage.setItem("currentUser", email);
-      }
-      setIsAuthenticated(true);
-      setCurrentUser(email);
-      setClassesTaken(users[email].classesTaken || []);
-      setShowLogin(false);
-      const recentUniversity = localStorage.getItem("recentUniversity") || "sjsu";
-      navigate(`/${recentUniversity}`);
+const handleLogin = ({ email, password, rememberMe }) => {
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  if (users[email] && users[email].password === password) {
+    // persist session
+    if (rememberMe) {
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", email);
     } else {
-      alert("Invalid credentials");
+      sessionStorage.setItem("isAuthenticated", "true");
+      sessionStorage.setItem("currentUser", email);
     }
-  };
+
+    setIsAuthenticated(true);
+    setCurrentUser(email);
+    setClassesTaken(users[email].classesTaken || []);
+    setShowLogin(false);
+
+    // ⬇️ NEW: go back to where the user opened the login
+    if (loc.pathname === "/login") {
+      if (returnPath) {
+        navigate(returnPath, { replace: true });
+        setReturnPath(null);
+      } else if (window.history.length > 1) {
+        navigate(-1);
+      } else {
+        navigate("/");
+      }
+    }
+
+  } else {
+    alert("Invalid credentials");
+  }
+};
+
+  // ⬇️ NEW: open Login modal and reflect it in the URL
+const openLogin = () => {
+  if (!showLogin) setShowLogin(true);
+
+  // remember where the user was BEFORE /login
+  if (loc.pathname !== "/login") {
+    setReturnPath(loc.pathname + loc.search + loc.hash);
+    navigate("/login", { replace: false });
+  }
+};
+
+// ⬇️ NEW: close Login modal and restore the previous page
+const closeLogin = () => {
+  setShowLogin(false);
+  if (loc.pathname === "/login") {
+    if (returnPath) {
+      navigate(returnPath, { replace: true });
+      setReturnPath(null);
+    } else if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  }
+};
+
+// ⬇️ NEW: if the user lands on /login directly, show the modal
+useEffect(() => {
+  if (loc.pathname === "/login") setShowLogin(true);
+}, [loc.pathname]);
+
+// if user lands on /login directly, show the modal
+useEffect(() => {
+  if (loc.pathname === "/login") setShowLogin(true);
+}, [loc.pathname]);
 
 
 
@@ -361,29 +411,29 @@ import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.js
 
 return (
       <ClassesTakenProvider> <>
-    <Header
-      isAuthenticated={isAuthenticated}
-      onLogout={handleLogout}
-      onShowSignUp={() => setShowSignUp(true)}
-      onShowLogin={() => setShowLogin(true)}
-    />
+  <Header
+   isAuthenticated={isAuthenticated}
+   onLogout={handleLogout}
+   onShowSignUp={() => setShowSignUp(true)}
+ onShowLogin={openLogin}
+ />
 
     {/* Modals */}
     {showSignUp && (
       <SignUpModal
         onClose={() => setShowSignUp(false)}
         onSignUp={handleSignUp}
-        onShowLogin={email => {
-          setShowSignUp(false);
-          setPrefillEmail(email || "");
-          setShowLogin(true);
-        }}
+        onShowLogin={(email) => {
+     setShowSignUp(false);
+     if (email) setPrefillEmail(email);
+     openLogin();           // <-- not setShowLogin(true)
+   }}
       />
     )}
     {showLogin && (
-      <LoginModal
+      <SignInModal
         onLogin={handleLogin}
-        onClose={() => setShowLogin(false)}
+           onClose={() => setShowLogin(false)}
         prefillEmail={prefillEmail}
         onShowSignUp={() => {
           setShowLogin(false);
@@ -403,7 +453,8 @@ return (
     {/* ALL routes go inside this one <Routes> */}
     <Routes>
       <Route path="/" element={<Home search={search} setSearch={setSearch} />} />
-
+<Route path="/login" element={<Home search={search} setSearch={setSearch} />} />
+ <Route path="/signup" element={<Home search={search} setSearch={setSearch} />} />
       {/* SJSU */}
       <Route
         path="/sjsu"
@@ -583,6 +634,7 @@ return (
 
     {/* Outside of <Routes> */}
     <Footer isHome={isHome} />
+      <FooterGuard />
     {!isHome && <BottomBarA />}
   </>
 );
@@ -610,7 +662,7 @@ return (
             />
           )}
           {showLogin && (
-            <LoginModal
+            <SignInModal
               onLogin={handleLogin}
               onClose={() => setShowLogin(false)}
               prefillEmail={prefillEmail}

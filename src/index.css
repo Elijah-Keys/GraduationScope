@@ -13,3 +13,12 @@ code {
 }
 /* in src/index.css */
 html { scroll-behavior: smooth; }
+html, body, #root { height: 100%; }       /* let the root fill the viewport */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make any empty space below the footer match the footer color */
+html, body { background: #0A0F2C; }

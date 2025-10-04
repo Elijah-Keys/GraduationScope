@@ -1422,3 +1422,28 @@ section.feature-ribbon {
   outline: 3px solid var(--brand-ring);
   outline-offset: 2px;
 }
+html, body { background: #0A0F2C; }  /* match your footer color */
+/* Home page only */
+.home-root { --navy: #0A0F2C; }                 /* exact footer color */
+
+/* Only the dark band(s) near the footer on Home */
+.home-root .about-section,
+.home-root .cta-section,
+.home-root .feature-ribbon,
+.home-root .FeatureRibbon,
+.home-root section.feature-ribbon {
+  background-color: var(--navy) !important;
+  background-image: none !important;           /* kill any gradients */
+  border: 0 !important;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;                 /* avoid seams from margin collapse */
+}
+
+/* Optional: if a 1px seam still appears at some zooms */
+.home-root .about-section + .cta-section,
+.home-root .about-section + .feature-ribbon,
+.home-root .about-section + .FeatureRibbon,
+.home-root .about-section + section.feature-ribbon {
+  margin-top: -1px !important;                 /* nudge to hide sub-pixel gaps */
+}

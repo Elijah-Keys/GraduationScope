@@ -105,3 +105,20 @@ body::after { /* horizontal */
   height: 1px;
   background: rgba(255, 0, 0, 0.6);
 }
+/* FINAL OVERRIDE: make body pseudos textless */
+body::before,
+body::after { content: "" !important; }
+/* Hide stray bare text nodes under <body> (like a dangling ');') */
+body {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Restore normal typography for all real element children of <body> */
+body > * {
+  font-size: initial;
+  line-height: normal;
+}
+/* Remove these if present */
+.site-footer::after { content: none !important; }
+.footer-eraser { display: none !important; }

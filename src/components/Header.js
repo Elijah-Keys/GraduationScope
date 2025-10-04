@@ -67,21 +67,22 @@ useEffect(() => {
   return () => (document.body.style.overflow = "");
 }, [isMobileMenuOpen]);
   // ---- ROUTE FLAGS (ORDER MATTERS) ----
-  const isHome = location.pathname === "/" || location.pathname === "/home";
-  const isAbout = location.pathname === "/about"; // ✅ add this
-  const onUcscRec = location.pathname.startsWith("/santacruzrecommend");
-  const isTrackerPage =
-    /^\/(tracker|sjsu|chico|berkeley|santacruz)/.test(location.pathname);
-  const isRecsPage =
-    /^\/(recommend|chicorecommend|berkeleyrecommend|santacruzrecommend)/.test(
-      location.pathname
-    );
+// ---- ROUTE FLAGS (ORDER MATTERS) ----
+const isHome = location.pathname === "/" || location.pathname === "/home";
+const isAbout = location.pathname === "/about";
+const isLogin = location.pathname === "/login"; // ⬅️ NEW
+const onUcscRec = location.pathname.startsWith("/santacruzrecommend");
+const isTrackerPage =
+  /^\/(tracker|sjsu|chico|berkeley|santacruz)/.test(location.pathname);
+const isRecsPage =
+  /^\/(recommend|chicorecommend|berkeleyrecommend|santacruzrecommend)/.test(
+    location.pathname
+  );
 
-  // Make About behave like Home (centered/not full-bleed)
-  const isSticky = isHome || isAbout || isTrackerPage || isRecsPage;
+// Treat /login like a light, compact page so the header doesn’t stretch/flip colors
+const isSticky = isHome || isAbout || isTrackerPage || isRecsPage || isLogin;   // ⬅️ include isLogin
+const onLight  = isAbout || isTrackerPage || isRecsPage || isLogin;             // ⬅️ include isLogin
 
-  // Black text on About (and keep current behavior for tracker/recs)
-  const onLight = isAbout || isTrackerPage || isRecsPage;
 
 // near the top of Header()
 
@@ -251,12 +252,17 @@ useEffect(() => {
       <button className="gs-header__ghostBtn" onClick={onLogout} type="button">Log Out</button>
     ) : (
       <>
-        <button className="gs-header__ghostBtn" onClick={onShowLogin} type="button">Log In</button>
-        <button className="gs-header__ghostBtn" onClick={onShowSignUp} type="button">Sign Up</button>
+        <button className="gs-header__ghostBtn" onClick={onShowLogin} type="button">
+          Log In
+        </button>
+        <button className="gs-header__ghostBtn" onClick={onShowSignUp} type="button">
+          Sign Up
+        </button>
       </>
     )}
   </div>
 )}
+
 
 {/* Hamburger (mobile only) */}
 {isMobile && (

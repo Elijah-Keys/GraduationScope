@@ -1,0 +1,391 @@
+/* ===== Professional Auth Modal (light + dark, a11y, no logic changes) ===== */
+:root {
+  --brand: #20A7EF;
+  --brand-hover: #1B97E0;
+  --ring: rgba(32,167,239,.45);
+  --radius: 14px;
+
+  /* Light defaults */
+  --panel-bg: #ffffff;
+  --panel-fg: #0b1027;
+  --panel-border: rgba(8, 10, 22, 0.08);
+  --overlay: rgba(9, 12, 24, 0.40);
+
+  --input-bg: #f7f8fb;
+  --input-border: rgba(8, 10, 22, 0.12);
+  --input-fg: #0b1027;
+  --muted: #5b6784;
+
+  --ok-bg: #e8f6ee;
+  --ok-fg: #1e7e52;
+  --ok-border: #b9e7cd;
+
+  --err-bg: #ffebee;
+  --err-fg: #c62828;
+  --err-border: #ffcdd2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --panel-bg: rgba(14, 20, 52, 0.92);
+    --panel-fg: #ffffff;
+    --panel-border: rgba(255,255,255,0.08);
+    --overlay: rgba(5,8,20,.55);
+
+    --input-bg: rgba(255,255,255,.08);
+    --input-border: rgba(255,255,255,.14);
+    --input-fg: #ffffff;
+    --muted: rgba(207,216,255,0.82);
+
+    --ok-bg: rgba(33, 150, 83, .16);
+    --ok-fg: #b7f7cf;
+    --ok-border: rgba(33, 150, 83, .35);
+
+    --err-bg: rgba(255, 71, 87, .14);
+    --err-fg: #ffb3b3;
+    --err-border: rgba(255, 71, 87, .35);
+  }
+}
+
+/* Full-screen dimmer */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: var(--overlay);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+  backdrop-filter: saturate(130%) blur(10px);
+  display: grid; place-items: center;
+  z-index: 2000;
+  padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+}
+
+/* Modal shell (support both class names you use) */
+.auth-modal, .login-modal-content {
+  width: min(92vw, 480px);
+  background: var(--panel-bg);
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 60px rgba(0,0,0,.20), 0 2px 8px rgba(0,0,0,.06);
+  padding: 24px;
+  position: relative;
+  animation: auth-in .18s ease-out;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+@keyframes auth-in { from { transform: translateY(8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@media (prefers-reduced-motion: reduce) {
+  .auth-modal, .login-modal-content { animation: none; }
+}
+
+/* Close button */
+.modal-close {
+  position: absolute; top: 10px; right: 10px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.modal-close:hover { background: rgba(0,0,0,.04); }
+@media (prefers-color-scheme: dark) {
+  .modal-close:hover { background: rgba(255,255,255,.08); }
+}
+
+/* Header */
+.auth-head { display: grid; gap: 6px; margin: 6px 6px 18px; }
+.auth-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; }
+.auth-sub { color: var(--muted); font-size: .95rem; }
+
+/* Form */
+.auth-form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.label { font-size: .9rem; color: var(--muted); }
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-fg);
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.input::placeholder { color: color-mix(in srgb, var(--muted), transparent 30%); }
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--ring);
+  background: color-mix(in srgb, var(--input-bg), #fff 6%);
+}
+
+/* Password visibility */
+.input-row { position: relative; }
+.toggle-visibility {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: transparent; border: 0; color: var(--muted); cursor: pointer;
+  padding: 6px;
+}
+.toggle-visibility:hover { color: var(--panel-fg); }
+
+/* Row (remember/forgot) */
+.row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-top: 2px;
+}
+.checkbox { display: inline-flex; align-items: center; gap: 8px; font-size: .92rem; color: var(--muted); }
+.checkbox input { width: 16px; height: 16px; }
+
+/* Primary button */
+.btn {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, var(--brand), #22d3ee);
+  color: #fff; font-weight: 700; font-size: 1.05rem;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+}
+.btn:hover { filter: brightness(.98); }
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: .7; cursor: not-allowed; }
+
+/* Secondary (ghost) button, if you ever add it */
+.btn.secondary {
+  background: transparent;
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
+}
+.btn.secondary:hover { background: rgba(0,0,0,.04); }
+@media (prefers-color-scheme: dark) {
+  .btn.secondary:hover { background: rgba(255,255,255,.06); }
+}
+
+/* Helper / links */
+.helper { margin-top: 10px; text-align: center; color: var(--muted); font-size: .95rem; }
+.helper a { color: var(--panel-fg); text-decoration: underline; font-weight: 700; }
+
+/* Messages */
+.message {
+  border-radius: 12px; padding: 10px 12px; text-align: center; font-weight: 600;
+  border: 1px solid transparent;
+}
+.message.error { color: var(--err-fg); background: var(--err-bg); border-color: var(--err-border); }
+.message.ok    { color: var(--ok-fg);  background: var(--ok-bg);  border-color: var(--ok-border); }
+
+/* Divider (for future “or continue with”) */
+.divider {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  color: var(--muted); font-size: .9rem; margin: 6px 0;
+}
+.divider::before, .divider::after {
+  content: ""; height: 1px; background: var(--panel-border);
+}
+
+/* OAuth button (optional placeholder style) */
+.oauth-row { display: grid; gap: 10px; margin-top: 8px; }
+.oauth-btn {
+  display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 12px; border: 1px solid var(--panel-border);
+  background: var(--panel-bg); color: var(--panel-fg); text-align: left;
+  cursor: pointer;
+}
+.oauth-btn:hover { background: color-mix(in srgb, var(--panel-bg), #fff 6%); }
+
+/* Small screens */
+@media (max-width: 420px) { .auth-modal, .login-modal-content { padding: 18px; width: min(94vw, 480px); } }
+
+/* High-contrast mode support */
+@media (forced-colors: active) {
+  .modal-overlay { background: CanvasText; }
+  .auth-modal, .login-modal-content { border: 1px solid CanvasText; }
+  .btn { border: 1px solid ButtonText; }
+  .input { border: 1px solid CanvasText; }
+}
+/* Add this near the bottom */
+.auth-modal.is-transparent {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;                 /* optional: remove the padding */
+}
+
+/* Optional: give inner spacing back if you remove padding above */
+.auth-modal.is-transparent .auth-form,
+.auth-modal.is-transparent .auth-head {
+  padding: 16px;
+  background: transparent;
+}
+/* === Transparent "glass" card with a subtle gradient outline === */
+.auth-modal.is-transparent {
+  background: rgba(255,255,255,0.02);              /* near-transparent */
+  border: 1px solid rgba(255,255,255,0.16);        /* fallback outline */
+  border-radius: 16px;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  position: relative;                               /* needed for ::before */
+}
+
+/* Gradient edge (looks like a high-end glass border) */
+.auth-modal.is-transparent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;                                     /* outline thickness */
+  background: linear-gradient(180deg,
+    rgba(255,255,255,.45),
+    rgba(255,255,255,.12)
+  );
+  /* punch out the middle so only the 1px border shows */
+/* punch out the middle so only the 1px border shows */
+mask:
+  linear-gradient(#000 0 0) content-box,
+  linear-gradient(#000 0 0);
+-webkit-mask:
+  linear-gradient(#000 0 0) content-box,
+  linear-gradient(#000 0 0);
+
+mask-composite: exclude;         /* standard syntax (Chrome/Edge) */
+-webkit-mask-composite: xor;     /* Safari/WebKit */
+
+pointer-events: none;
+
+}
+
+/* Keep some inner breathing room if you trimmed padding elsewhere */
+.auth-modal.is-transparent .auth-head,
+.auth-modal.is-transparent .auth-form {
+  background: transparent;
+}
+
+/* === Headings: subtle outline (stroke) + glow for legibility === */
+.auth-title {
+  color: #fff;
+  font-weight: 800;
+  /* Stroke support (WebKit) + graceful fallback (text-shadow) */
+  -webkit-text-stroke: 0.4px rgba(255,255,255,.35);
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.60),       /* dark inner shadow for contrast */
+    0 0 14px rgba(32,167,239,.25);   /* soft brand glow */
+}
+
+.auth-sub {
+  color: rgba(255,255,255,.92);
+  -webkit-text-stroke: 0.25px rgba(255,255,255,.25);
+  text-shadow:
+    0 1px 1px rgba(0,0,0,.55),
+    0 0 8px rgba(32,167,239,.15);
+}
+
+/* Inputs still readable on a transparent card */
+.input {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.16);
+}
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* (Optional) slightly lighter overlay so the glass panel stands out more
+.modal-overlay { background: rgba(5,8,20,.45); }
+*/
+/* === White inputs on the glass modal === */
+.auth-modal .input {
+  background: #ffffff !important;
+  color: #0A0F2C !important;                      /* dark text inside the white field */
+  border: 1px solid rgba(0,0,0,0.14) !important;
+}
+
+.auth-modal .input::placeholder {
+  color: #6B7280 !important;                      /* readable placeholder on white */
+}
+
+.auth-modal .input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* === Turn labels + helper texts to white === */
+.auth-modal .label,
+.auth-modal .checkbox,
+.auth-modal .helper,
+.auth-modal .helper a,
+.auth-modal .row a {
+  color: #ffffff !important;                      /* Email, Password, Remember me, Forgot?, No account? Create one */
+  text-decoration-color: rgba(255,255,255,0.9);   /* keeps underline visible on white links */
+}
+
+/* Optional: brand accent for the checkbox checkmark */
+.auth-modal .checkbox input {
+  accent-color: var(--brand);
+}
+/* Close button: white icon/text with good contrast */
+.modal-close {
+  color: #fff !important;                          /* if it's the × character */
+  border-color: rgba(255,255,255,0.35) !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+.modal-close:hover { 
+  background: rgba(255,255,255,0.12) !important; 
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* If your close button is an SVG icon instead of text, force it white */
+.modal-close svg { 
+  fill: #fff !important; 
+  color: #fff !important; 
+}
+
+/* If your close button uses a masked icon, ensure the white paint shows */
+.modal-close[data-icon="mask"]::before {
+  content: "";
+  display: inline-block;
+  width: 16px; height: 16px;
+  background: #fff;                /* the “paint” that shows through the mask */
+  mask: var(--close-mask);
+  -webkit-mask: var(--close-mask);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+/* --- modal bottom padding (+16px) --- */
+.auth-modal{
+  /* you already have padding: 22px; — keep it */
+  padding-bottom: calc(22px + 16px);
+}
+
+/* --- helper line spacing + keep it white --- */
+.helper{
+  color: #fff;                /* you asked for white text */
+  margin-top: 12px;           /* space above the helper */
+  padding-bottom: 16px;       /* space to the bottom edge of modal */
+}
+
+/* --- inputs & button: identical width --- */
+.auth-form .field,
+.auth-form .input-row,
+.auth-form .input,
+.auth-form .btn{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-form .btn{
+  display: block;
+  margin: 4px 0 0;            /* small consistent offset above the button */
+}
+
+/* if you have the eye icon, avoid overlap and keep visual width equal */
+.input-row .input{ padding-right: 44px; }
+.toggle-visibility{ right: 12px; }
