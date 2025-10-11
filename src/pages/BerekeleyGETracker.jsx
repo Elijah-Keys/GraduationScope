@@ -422,48 +422,181 @@ const [mobileArea, setMobileArea] = useState(geRequirements?.[0]?.area || "");
       {/* Panel: All Options / Easiest / Details */}
       <div style={{ ...edge, border: "1px solid #e5e7eb", borderRadius: 14, padding: 12 }}>
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-          <h3 style={{ margin: 0, fontSize: "0.8rem" }}>
-            {area} — {selectedAllClass ? "Class Details" : (overlayMode === "easiest" ? "Easiest" : "All Options")}
-          </h3>
-          <div style={{ display: "flex", gap: 8 }}>
-            {overlayMode !== "all" && !selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => setOverlayMode("all")}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                View All
-              </button>
-            )}
-            {overlayMode !== "easiest" && !selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                Easiest
-              </button>
-            )}
-            {selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => setSelectedAllClass(null)}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                Back
-              </button>
-            )}
-          </div>
-        </div>
+      {/* Header (hidden while viewing Class Details) */}
+{!selectedAllClass && (
+  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+    <h3 style={{ margin: 0, fontSize: "0.8rem" }}>
+      {area} — {overlayMode === "easiest" ? "Easiest" : "All Options"}
+    </h3>
+    <div style={{ display: "flex", gap: 8 }}>
+      {overlayMode !== "all" && (
+        <button
+          type="button"
+          onClick={() => setOverlayMode("all")}
+          style={{
+            background: "transparent",
+            border: `2px solid ${brandBlue}`,
+            borderRadius: 8,
+            color: brandBlue,
+            padding: "6px 10px",
+            fontWeight: 700
+          }}
+        >
+          View All
+        </button>
+      )}
+
+      {overlayMode !== "easiest" && (
+        <button
+          type="button"
+          onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
+          style={{
+            /* turn blue while you're in View All */
+            background: overlayMode === "all" ? brandBlue : "transparent",
+            border: `2px solid ${brandBlue}`,
+            borderRadius: 8,
+            color: overlayMode === "all" ? "#fff" : brandBlue,
+            padding: "6px 10px",
+            fontWeight: 700,
+            boxShadow: overlayMode === "all" ? "0 3px 8px rgba(32,167,239,0.35)" : "none",
+            cursor: "pointer"
+          }}
+          onMouseEnter={(e) => overlayMode === "all" && (e.currentTarget.style.filter = "brightness(0.95)")}
+          onMouseLeave={(e) => (e.currentTarget.style.filter = "none")}
+        >
+          Easiest
+        </button>
+      )}
+    </div>
+  </div>
+)}
+
+
 
         {/* Body */}
         <div style={{ overflow: "auto", paddingRight: 12, maxHeight: 420 }}>
-          {selectedAllClass ? (
-            <div style={{ padding: 4 }}>
-              <ProfessorTable className={selectedAllClass} classDetails={classDetails} compact />
-            </div>
-          ) : overlayMode === "easiest" ? (
+         {selectedAllClass ? (
+  <div style={{ padding: 4 }}>
+    {/* Header with back */}
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+      <h3 style={{ margin: 0, fontSize: "0.9rem" }}>{selectedAllClass} — Class Details</h3>
+      <button
+        type="button"
+        onClick={() => setSelectedAllClass(null)}
+        style={{
+          background: "transparent",
+          border: `2px solid ${brandBlue}`,
+          borderRadius: 10,
+          color: brandBlue,
+          padding: "6px 10px",
+          fontWeight: 700,
+          cursor: "pointer",
+        }}
+      >
+        Back
+      </button>
+    </div>
+
+    {/* Details table with schedule, same vibe as desktop */}
+    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+      <table
+        style={{
+          width: "max-content",
+          tableLayout: "fixed",
+          borderCollapse: "collapse",
+          border: "1.5px solid #e0e5ff",
+          borderRadius: 12,
+          overflow: "hidden",
+          fontSize: "0.9rem",
+        }}
+      >
+        <colgroup>
+          <col style={{ width: 200 }} />
+          <col style={{ width: 64 }} />
+          <col style={{ width: 60 }} />
+          <col style={{ width: 300 }} />
+          <col style={{ width: 90 }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Professor</th>
+            <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>RMP</th>
+            <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Diff</th>
+            <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Schedule</th>
+            <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classDetails
+            .filter((row) => row.className === selectedAllClass)
+            .map((row, idx) => {
+              const lines = getScheduleLines(row);
+              const rmpScoreRaw = row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+              const rmpScore = typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+              const rmpLink = row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+              const taken = classesTaken.some(
+                (t) => t.className === selectedAllClass && (t.area === area || !t.area)
+              );
+              const toDelete = classesTaken.find(
+                (t) => t.className === selectedAllClass && (t.area === area || !t.area)
+              );
+
+              return (
+                <tr key={`${selectedAllClass}-${row.professor || "NA"}-${idx}`}>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
+                    {rmpLink ? (
+                      <a href={rmpLink} target="_blank" rel="noreferrer noopener" style={{ fontWeight: 700, textDecoration: "underline" }}>
+                        {row.professor || "—"}
+                      </a>
+                    ) : (
+                      <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                    )}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {rmpScore}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", fontSize: ".8rem", color: "#555", lineHeight: 1.25 }}>
+                    {lines.length ? (
+                      lines.map((l, i) => (
+                        <div key={i} style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={l}>
+                          {l}
+                        </div>
+                      ))
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
+                    {taken ? (
+                      <button
+                        onClick={() => onDeleteClass(toDelete || { className: selectedAllClass, area })}
+                        type="button"
+                        style={{ background: "#d32f2f", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => onAddClass(selectedAllClass, area)}
+                        type="button"
+                        style={{ background: "#20a7ef", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+) : overlayMode === "easiest" ? (
+
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", overscrollBehaviorX: "contain", touchAction: "pan-x", marginBottom: 2 }}>
               <table
                 style={{
@@ -649,8 +782,9 @@ const [mobileArea, setMobileArea] = useState(geRequirements?.[0]?.area || "");
     </section>
   );
 }
-function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
+function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF", yOffset = 40,        }) {
   if (!open) return null;
+
   return (
     <div
       role="dialog"
@@ -679,6 +813,8 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
           overflow: "hidden",
           display: "grid",
           gridTemplateRows: "auto 1fr",
+          // ↓ instead of a hardcoded 32px, use the prop
+          transform: isMobile ? `translateY(${yOffset}px)` : undefined,
         }}
       >
         <div
@@ -1063,7 +1199,10 @@ console.log("Class Details with RMP Links:", classDetails.map(c => ({
  return (
     <div className="ge-container">
       {/* Title/Header */}
-      <h1 className="ge-title" style={{ marginTop: '64px' }}>
+      <h1
+  className="ge-title"
+  style={{ marginTop: isMobile ? '64px' : '80px' }} // +16px on desktop
+>
   UC Berkeley
 </h1>
 
@@ -1091,6 +1230,28 @@ console.log("Class Details with RMP Links:", classDetails.map(c => ({
     classToAreas={classToAreas}
     c1c2Fulfilled={c1c2Fulfilled}
   />
+{/* Desktop: Checklist inline */}
+{!isMobile && (
+  <div id="ge-checklist-content" style={{ marginTop: 4 }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 8,
+      }}
+    >
+    </div>
+
+    <ChecklistToggleContent
+      geRequirements={geRequirements}
+      classesTaken={classesTaken}
+      classToAreas={classToAreas}
+      c1c2Fulfilled={c1c2Fulfilled}
+      scrollToArea={scrollToArea} // uses your areaRefs to scroll the grid below
+    />
+  </div>
+)}
 
 {/* Checklist Toggle + Content on Mobile (modal) */}
 {isMobile && (

@@ -28,6 +28,8 @@ function useIsMobile(max = 700) {
 function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
   const isMobile = useIsMobile(700); // <— add this
 
+  const topOffset = "calc(env(safe-area-inset-top, 0px) + 70px)";
+
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -40,7 +42,7 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+   if (!open) return null;
 
   return (
     <div
@@ -53,9 +55,12 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
         inset: 0,
         background: "rgba(0,0,0,0.45)",
         display: "flex",
-        alignItems: "center",
+        // anchor to top on mobile, center on desktop
+        alignItems: isMobile ? "flex-start" : "center",
         justifyContent: "center",
         padding: 16,
+        // ensure we respect the notch/status bar on iOS
+        paddingTop: isMobile ? "env(safe-area-inset-top, 0px)" : 16,
         zIndex: 1000,
       }}
     >
@@ -70,7 +75,10 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
           overflow: "hidden",
           display: "grid",
           gridTemplateRows: "auto 1fr",
-          transform: isMobile ? "translateY(32px)" : undefined, // <— mobile offset
+          // key: push it down on mobile
+          marginTop: isMobile ? topOffset : 0,
+          // remove the old translate
+          // transform: isMobile ? "translateY(32px)" : undefined,
         }}
       >
         <div
@@ -249,6 +257,9 @@ function ProgressSummary({ geRequirements, classesTaken, classToAreas, c1c2Fulfi
 }
 // Mobile: checklist button right after progress, before search
 
+const padTight   = { padding: "6px 8px" };
+const padTightL  = { padding: "6px 6px 6px 8px" };  // tighter on left edge
+const padTightR  = { padding: "6px 8px 6px 6px" };  // tighter on right edge
 
 // ——— Mobile Finder (SJSU) ———
 // Replaces the entire previous SJSUMobileFinder
@@ -264,8 +275,8 @@ function SJSUMobileFinder({
   selectedArea,
   onSelectArea,
 }) {
-
-  const brandBlue = "##20A7EF";
+const isMobile = useIsMobile(700);
+  const brandBlue = "#20A7EF";
 const edge = { width: "100%", boxSizing: "border-box", marginInline: 0 };
   // Selected GE area + which panel is showing
   const [area, setArea] = React.useState(selectedArea || geRequirements?.[0]?.area || "");
@@ -310,6 +321,54 @@ React.useEffect(() => {
     if (!areaObj) return [];
     return (areaObj.classes || []).filter((cls) => classesWithProfessors.has(cls));
   }, [area, geRequirements, classesWithProfessors]);
+
+  // After: const allOptionsForArea = React.useMemo(...)
+
+const rowsByClass = React.useMemo(() => {
+  const map = new Map();
+  for (const d of classDetails) {
+    const list = map.get(d.className) || [];
+    list.push(d);
+    map.set(d.className, list);
+  }
+  return map;
+}, [classDetails]);
+
+const schedulesForClass = React.useCallback((cls) => {
+  const entries = rowsByClass.get(cls) || [];
+  const uniq = new Set();
+  for (const e of entries) {
+    getScheduleLines(e).forEach(line => {
+      const s = String(line).trim();
+      if (s) uniq.add(s);
+    });
+  }
+  return Array.from(uniq);
+}, [rowsByClass, getScheduleLines]);
+
+const allRowsForArea = React.useMemo(() => {
+  const allowed = new Set(
+    (geRequirements.find((a) => a.area === area)?.classes || [])
+  );
+
+  return classDetails
+    .filter((d) => allowed.has(d.className))
+    .map((d) => ({
+      ...d,
+      rmpLink:
+        d.rmpLink ?? (d.link && d.link !== "N/A" ? d.link : null),
+      rmpScore:
+        d.rmpScore ?? d.score ?? d.rating ?? d.rmp ?? d.RMPScore ?? null,
+    }))
+    .sort((a, b) => {
+      if (a.className !== b.className) {
+        return a.className.localeCompare(b.className);
+      }
+      const ad = typeof a.difficulty === "number" ? a.difficulty : Infinity;
+      const bd = typeof b.difficulty === "number" ? b.difficulty : Infinity;
+      return ad - bd;
+    });
+}, [area, geRequirements, classDetails]);
 
   // Easiest logic (same approach you use elsewhere)
   const findEasiestClasses = React.useCallback((selectedArea) => {
@@ -540,15 +599,27 @@ React.useEffect(() => {
   )}
 
   {/* Show "Easiest" only when not already on Easiest and not in details */}
-  {overlayMode !== "easiest" && !selectedAllClass && (
-    <button
-      type="button"
-      onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
-      style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-    >
-      Easiest
-    </button>
-  )}
+ {overlayMode !== "easiest" && !selectedAllClass && (
+ <button
+  onClick={(e) => { e.stopPropagation(); setOverlayMode("easiest"); findEasiestClasses(area); }}
+  type="button"
+  style={{
+    background: brandBlue,       // filled
+    border: "none",
+    borderRadius: 10,
+    color: "#fff",
+    padding: "6px 12px",
+    fontWeight: 700,
+    cursor: "pointer",
+  }}
+  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#2a44cc")}
+  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = brandBlue)}
+>
+  Easiest
+</button>
+
+)}
+
 
   {/* In details mode, only show Back */}
   {selectedAllClass && (
@@ -566,12 +637,171 @@ React.useEffect(() => {
 
         {/* Body */}
         <div style={{ overflow: "auto", paddingRight: 12, maxHeight: 420 }}>
-          {selectedAllClass ? (
-            <div style={{ padding: 4 }}>
-              <ProfessorTable className={selectedAllClass} classDetails={classDetails} compact />
-            </div>
-) : overlayMode === "easiest" ? (
+{selectedAllClass ? (
+  /* === DETAILS (unchanged) === */
   <div
+    style={{
+      overflowX: "auto",
+      WebkitOverflowScrolling: "touch",
+      overscrollBehaviorX: "contain",
+      touchAction: "pan-x",
+      paddingBottom: 2,
+    }}
+  >
+    <table
+      style={{
+        width: "max-content",
+        tableLayout: "fixed",
+        borderCollapse: "collapse",
+        border: "1.5px solid #e0e5ff",
+        borderRadius: 12,
+        overflow: "hidden",
+        fontSize: isMobile ? "0.9rem" : "0.95rem",
+      }}
+    >
+    <colgroup>
+  <col style={{ width: 200 }} />  {/* Professor (was 220) */}
+  <col style={{ width: 56 }} />   {/* RMP (was 64) */}
+  <col style={{ width: 56 }} />   {/* Diff (was 60) */}
+  <col style={{ width: 150 }} />  {/* Schedule (was 320) */}
+  <col style={{ width: 72 }} />   {/* Action (was 90) */}
+</colgroup>
+
+
+      <thead>
+        <tr>
+          <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Professor</th>
+          <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>RMP</th>
+          <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Diff</th>
+          <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Schedule</th>
+          <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {classDetails
+          .filter((row) => row.className === selectedAllClass)
+          .map((row, i) => {
+            const rmpLink =
+              row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+            const rmpScoreRaw =
+              row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+            const rmpScore =
+              typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+            const lines = getScheduleLines(row);
+
+            const taken = classesTaken.some(
+              (t) => t.className === row.className && (t.area === area || !t.area)
+            );
+            const toDelete =
+              classesTaken.find(
+                (t) => t.className === row.className && (t.area === area || !t.area)
+              ) || { className: row.className, area };
+
+            return (
+              <tr key={`${row.className}-${row.professor || "NA"}-${i}`}>
+                {/* Professor */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
+                  {rmpLink ? (
+                    <a
+                      href={rmpLink}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      style={{ fontWeight: 700, textDecoration: "underline" }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {row.professor || "—"}
+                    </a>
+                  ) : (
+                    <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                  )}
+                </td>
+
+                {/* RMP */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                  {rmpScore}
+                </td>
+
+                {/* Difficulty */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                  {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                </td>
+
+                {/* Schedule */}
+                <td
+                  style={{
+                    padding: "10px 12px",
+                    borderTop: "1px solid #e0e5ff",
+                    fontSize: ".8rem",
+                    color: "#555",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {lines.length ? (
+                    lines.map((l, idx) => (
+                      <div
+                        key={idx}
+                        title={l}
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {l}
+                      </div>
+                    ))
+                  ) : (
+                    "—"
+                  )}
+                </td>
+
+                {/* Action */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
+                  {taken ? (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onDeleteClass(toDelete); }}
+                      type="button"
+                      style={{
+                        background: "#d32f2f",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 10,
+                        padding: "4px 10px",
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onAddClass(row.className, area); }}
+                      type="button"
+                      style={{
+                        background: "#20a7ef",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 10,
+                        padding: "4px 10px",
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Add
+                    </button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+      </tbody>
+    </table>
+  </div>
+) : overlayMode === "easiest" ? (
+   <div
     style={{
       overflowX: "auto",
       WebkitOverflowScrolling: "touch",
@@ -582,23 +812,25 @@ React.useEffect(() => {
   >
     <table
       style={{
-        width: "max-content",              // shrink-wrap to content -> swipe horizontally
+        width: "max-content",
         tableLayout: "fixed",
         borderCollapse: "collapse",
         border: "1.5px solid #e0e5ff",
         borderRadius: 12,
         overflow: "hidden",
-        fontSize: "0.92rem",
+        fontSize: isMobile ? "0.9rem" : "0.95rem",
       }}
     >
-      <colgroup>
-        <col style={{ width: 240 }} />   {/* Class */}
-        <col style={{ width: 160 }} />   {/* Professor */}
-        <col style={{ width: 64 }} />    {/* RMP */}
-        <col style={{ width: 60 }} />    {/* Diff */}
-        <col style={{ width: 260 }} />   {/* Schedule */}
-        <col style={{ width: 90 }} />    {/* Action */}
-      </colgroup>
+   <colgroup>
+  <col style={{ width: isMobile ? 210 : 240 }} /> // Class
+  <col style={{ width: isMobile ? 140 : 160 }} /> // Professor
+  <col style={{ width: isMobile ? 56  : 64  }} /> // RMP
+  <col style={{ width: isMobile ? 56  : 60  }} /> // Diff
+  <col style={{ width: isMobile ? 150 : 320 }} /> // Schedule
+  <col style={{ width: isMobile ? 72  : 90  }} /> // Action
+</colgroup>
+
+
       <thead>
         <tr>
           <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Class</th>
@@ -609,168 +841,152 @@ React.useEffect(() => {
           <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Action</th>
         </tr>
       </thead>
+
       <tbody>
-        {(easiestResults[area] || []).map((row) => {
-          const lines = getScheduleLines(row);
-          const rmpScoreRaw =
-            row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
-          const rmpScore =
-            typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
-          const taken = classesTaken.some(
-            (t) => t.className === row.className && (t.area === area || !t.area)
-          );
-          const toDelete = classesTaken.find(
-            (t) => t.className === row.className && (t.area === area || !t.area)
-          );
-          const rmpLink = row.rmpLink && row.rmpLink !== "N/A" ? row.rmpLink : null;
+        {(easiestResults[area] || []).length === 0 ? (
+          <tr>
+            <td colSpan={6} style={{ padding: "12px 14px", textAlign: "center", color: "#666" }}>
+              No classes found.
+            </td>
+          </tr>
+        ) : (
+          (easiestResults[area] || []).map((row, i) => {
+            const rmpLink =
+              row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+            const rmpScoreRaw =
+              row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+            const rmpScore =
+              typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+            const lines = getScheduleLines(row);
 
-          return (
-            <tr key={`${row.className}-${row.professor || "NA"}`}>
-              {/* Class */}
-              <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
-                <span style={{ fontWeight: 600 }}>{row.className}</span>
-              </td>
+            const taken = classesTaken.some(
+              (t) => t.className === row.className && (t.area === area || !t.area)
+            );
+            const toDelete =
+              classesTaken.find(
+                (t) => t.className === row.className && (t.area === area || !t.area)
+              ) || { className: row.className, area };
 
-              {/* Professor */}
-              <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
-                {rmpLink ? (
-                  <a
-                    href={rmpLink}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    style={{ fontWeight: 700, textDecoration: "underline" }}
-                  >
-                    {row.professor || "—"}
-                  </a>
-                ) : (
-                  <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
-                )}
-              </td>
-
-              {/* RMP */}
-              <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
-                {rmpScore}
-              </td>
-
-              {/* Diff */}
-              <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
-                {typeof row.difficulty === "number" ? row.difficulty : "—"}
-              </td>
-
-              {/* Schedule */}
-              <td
-                style={{
-                  padding: "10px 12px",
-                  borderTop: "1px solid #e0e5ff",
-                  fontSize: ".8rem",
-                  color: "#555",
-                  lineHeight: 1.25,
-                }}
-              >
-                {lines.length ? (
-                  lines.map((l, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        whiteSpace: "nowrap",       // keep each line on one row; user can swipe
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                      title={l}
+            return (
+              <tr key={`${row.className}-${row.professor || "NA"}-${i}`}>
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap", fontWeight: 600 }}>
+                  {row.className}
+                </td>
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
+                  {rmpLink ? (
+                    <a
+                      href={rmpLink}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      style={{ fontWeight: 700, textDecoration: "underline" }}
+                      onClick={(e) => e.stopPropagation()}
                     >
-                      {l}
-                    </div>
-                  ))
-                ) : (
-                  "—"
-                )}
-              </td>
-
-              {/* Action */}
-              <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
-                {taken ? (
-                  <button
-                    onClick={() => onDeleteClass(toDelete || { className: row.className, area })}
-                    type="button"
-                    style={{
-                      background: "#d32f2f",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 10,
-                      padding: "4px 10px",
-                      fontSize: "0.85rem",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Delete
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => onAddClass(row.className, area)}
-                    type="button"
-                    style={{
-                      background: "#20a7ef",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 10,
-                      padding: "4px 10px",
-                      fontSize: "0.85rem",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Add
-                  </button>
-                )}
-              </td>
-            </tr>
-          );
-        })}
+                      {row.professor || "—"}
+                    </a>
+                  ) : (
+                    <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                  )}
+                </td>
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                  {rmpScore}
+                </td>
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                  {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                </td>
+                <td
+                  style={{
+                    padding: "10px 12px",
+                    borderTop: "1px solid #e0e5ff",
+                    fontSize: ".8rem",
+                    color: "#555",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {lines.length ? (
+                    lines.map((l, idx) => (
+                      <div
+                        key={idx}
+                        title={l}
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {l}
+                      </div>
+                    ))
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
+                  {taken ? (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onDeleteClass(toDelete); }}
+                      type="button"
+                      style={{
+                        background: "#d32f2f",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 10,
+                        padding: "4px 10px",
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onAddClass(row.className, area); }}
+                      type="button"
+                      style={{
+                        background: "#20a7ef",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: 10,
+                        padding: "4px 10px",
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Add
+                    </button>
+                  )}
+                </td>
+              </tr>
+            );
+          })
+        )}
       </tbody>
     </table>
   </div>
 ) : (
-  // All Options
-<table
-  style={{
-    width: "100%",
-    tableLayout: "auto", // let columns size to content
-    borderCollapse: "collapse",
-    border: "1.5px solid #222",
-    borderRadius: 12,
-    overflow: "hidden",
-    fontSize: "0.95rem",
-  }}
->
-  <colgroup>
-    <col />                     {/* Class column expands */}
-    <col style={{ width: "1%" }} /> {/* Action shrinks to button */}
-  </colgroup>
-
+  /* === VIEW ALL (move your current table here) === */
+  <table
+    style={{
+      width: "100%",
+      tableLayout: "auto",
+      borderCollapse: "collapse",
+      border: "1.5px solid #222",
+      borderRadius: 12,
+      overflow: "hidden",
+      fontSize: "0.95rem",
+    }}
+  >
+    <colgroup>
+      <col />
+      <col style={{ width: "1%" }} />
+    </colgroup>
     <thead>
       <tr>
-        <th
-          style={{
-            padding: "10px 12px",
-            textAlign: "left",
-            fontWeight: 700,
-            borderBottom: "1px solid #222",
-            background: "#fafbff",
-          }}
-        >
+        <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff" }}>
           Class
         </th>
-        <th
-          style={{
-            padding: "10px 12px",
-            textAlign: "right",
-            fontWeight: 700,
-            borderBottom: "1px solid #222",
-            background: "#fafbff",
-            paddingRight: 16,
-          }}
-        >
+        <th style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff", paddingRight: 16 }}>
           Action
         </th>
       </tr>
@@ -792,10 +1008,8 @@ React.useEffect(() => {
                 padding: "10px 12px",
                 borderTop: "1px solid #222",
                 fontWeight: 700,
-                whiteSpace: "nowrap", // <— add this
                 fontSize: "clamp(0.82rem, 2.6vw, 0.95rem)",
                 lineHeight: 1.2,
-                whiteSpace: "normal",
                 wordBreak: "break-word",
                 overflowWrap: "anywhere",
                 cursor: "pointer",
@@ -803,25 +1017,20 @@ React.useEffect(() => {
               title={cls}
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedAllClass(cls);   // <— open the NEW details view
+                setSelectedAllClass(cls);
               }}
             >
-       <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-  <span>{cls}</span>
-  <span aria-hidden="true" style={{ fontSize: "1.2rem", lineHeight: 1 }}>▾</span>
-</span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <span>{cls}</span>
+                <span aria-hidden="true" style={{ fontSize: "1.2rem", lineHeight: 1 }}>▾</span>
+              </span>
+</td>
+              {/* If you want the preview lines under the title, keep this block; if not, remove it */}
 
-            </td>
-
-            <td
-              style={{ padding: "10px 12px", borderTop: "1px solid #222", textAlign: "right" }}
-            >
+            <td style={{ padding: "10px 12px", borderTop: "1px solid #222", textAlign: "right" }}>
               {taken ? (
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDeleteClass(toDelete);
-                  }}
+                  onClick={(e) => { e.stopPropagation(); onDeleteClass(toDelete); }}
                   type="button"
                   style={{
                     background: "#d32f2f",
@@ -838,10 +1047,7 @@ React.useEffect(() => {
                 </button>
               ) : (
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onAddClass(cls, area);
-                  }}
+                  onClick={(e) => { e.stopPropagation(); onAddClass(cls, area); }}
                   type="button"
                   style={{
                     background: "#20a7ef",
@@ -863,7 +1069,7 @@ React.useEffect(() => {
       })}
     </tbody>
   </table>
-)}
+)} 
 </div>
 </div>
 </section>

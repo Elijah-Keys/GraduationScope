@@ -156,7 +156,13 @@ function ProgressSummary({ geRequirements, classesTaken, classToAreas, c1c2Fulfi
     </section>
   );
 }
-function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
+function ChecklistModal({
+  open,
+  onClose,
+  children,
+  brandBlue = "#20A7EF",
+  mobileOffset = 32, // px
+}) {
   if (!open) return null;
   return (
     <div
@@ -186,7 +192,7 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
           overflow: "hidden",
           display: "grid",
           gridTemplateRows: "auto 1fr",
-          transform: isMobile ? "translateY(32px)" : undefined, // mobile nudge
+          transform: isMobile ? `translateY(${mobileOffset}px)` : undefined,
         }}
       >
         <div
@@ -281,17 +287,60 @@ const renderAddDelete = (className, areaName) => {
     () => new Set(classDetails.map((d) => d.className)),
     [classDetails]
   );
+// ---- SCHEDULE HELPERS (local to SJSUMobileFinder)
+// ---- SCHEDULE HELPERS (local to SJSUMobileFinder) ----
+// Use function declarations (hoisted) + unique names to avoid TDZ/scope issues.
+function getScheduleLinesLocal(entry) {
+  if (!entry) return [];
+  if (Array.isArray(entry.schedules) && entry.schedules.length) return entry.schedules;
+  if (Array.isArray(entry.schedule) && entry.schedule.length) return entry.schedule;
+  if (Array.isArray(entry.sections) && entry.sections.length) return entry.sections;
 
-  const getScheduleLines = React.useCallback((entry) => {
-    if (!entry) return [];
-    if (Array.isArray(entry.schedules) && entry.schedules.length) return entry.schedules;
-    if (Array.isArray(entry.schedule) && entry.schedule.length) return entry.schedule;
-    if (Array.isArray(entry.sections) && entry.sections.length) return entry.sections;
-    const raw = entry.schedule || entry.time || entry.days || "";
-    if (!raw) return [];
-    const parts = String(raw).split(/\s*(?:\n|,|;|•|\/|\|)\s*/).filter(Boolean);
-    return parts.length ? parts : [String(raw)];
-  }, []);
+  const raw = entry.schedule || entry.time || entry.days || "";
+  if (!raw) return [];
+  return String(raw).split(/\s*(?:\n|,|;|•|\/|\|)\s*/).filter(Boolean);
+}
+
+function getScheduleLinesSafeLocal(row) {
+  const base = getScheduleLinesLocal(row);
+  if (base && base.length) return base;
+
+  const days  = row?.days || row?.Days || row?.day || row?.Day || "";
+  const time  = row?.time || row?.Time || row?.hours || row?.Hours || "";
+  const where = row?.location || row?.Location || row?.where || row?.Where || "";
+
+  const combo = [days, time, where]
+    .map((s) => String(s || "").trim())
+    .filter(Boolean)
+    .join(" ");
+
+  return combo ? [combo] : [];
+}
+
+
+
+  // gather all schedule lines for a given class (deduped)
+const rowsByClass = React.useMemo(() => {
+  const map = new Map();
+  for (const d of classDetails) {
+    const list = map.get(d.className) || [];
+    list.push(d);
+    map.set(d.className, list);
+  }
+  return map;
+}, [classDetails]);
+
+const schedulesForClass = React.useCallback((cls) => {
+  const entries = rowsByClass.get(cls) || [];
+  const uniq = new Set();
+  for (const e of entries) {
+    getScheduleLinesSafeLocal(e).forEach((line) => {
+      const s = String(line).trim();
+      if (s) uniq.add(s);
+    });
+  }
+  return Array.from(uniq);
+}, [rowsByClass, getScheduleLinesSafeLocal]);
 
   const chooseAreaForClass = React.useCallback((className) => {
     const areas = classToAreas[className] || [];
@@ -500,24 +549,33 @@ const renderAddDelete = (className, areaName) => {
             {area} — {selectedAllClass ? "Class Details" : (overlayMode === "easiest" ? "Easiest" : "All Options")}
           </h3>
           <div style={{ display: "flex", gap: 8 }}>
-            {overlayMode !== "all" && !selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => setOverlayMode("all")}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                View All
-              </button>
-            )}
-            {overlayMode !== "easiest" && !selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                Easiest
-              </button>
-            )}
+         {overlayMode !== "all" && !selectedAllClass && (
+  <button
+    type="button"
+    onClick={() => { setSelectedAllClass(null); setOverlayMode("all"); }}
+    style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
+  >
+    View All
+  </button>
+)}
+
+        {overlayMode !== "easiest" && !selectedAllClass && (
+  <button
+    type="button"
+    onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
+    style={{
+      ...(isMobile && overlayMode === "all"
+        ? { background: brandBlue, color: "#fff", border: "none" }       // solid on mobile in View All
+        : { background: "transparent", border: `2px solid ${brandBlue}`, color: brandBlue }), // outline otherwise
+      borderRadius: 8,
+      padding: "6px 10px",
+      fontWeight: 700,
+    }}
+  >
+    Easiest
+  </button>
+)}
+
             {selectedAllClass && (
               <button
                 type="button"
@@ -530,178 +588,297 @@ const renderAddDelete = (className, areaName) => {
           </div>
         </div>
 
-        <div style={{ overflow: "auto", paddingRight: 12, maxHeight: 420 }}>
-          {selectedAllClass ? (
-            <div style={{ padding: 4 }}>
-              <ProfessorTable className={selectedAllClass} classDetails={classDetails} compact />
-            </div>
-          ) : overlayMode === "easiest" ? (
-            /* Easiest table — same as San José */
-            <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", overscrollBehaviorX: "contain", touchAction: "pan-x", marginBottom: 2 }}>
-              <table
-                style={{
-                  width: "max-content",
-                  tableLayout: "fixed",
-                  borderCollapse: "collapse",
-                  border: "1.5px solid #e0e5ff",
-                  borderRadius: 12,
-                  overflow: "hidden",
-                  fontSize: "0.92rem",
-                }}
-              >
-                <colgroup>
-                  <col style={{ width: 240 }} />
-                  <col style={{ width: 160 }} />
-                  <col style={{ width: 64 }} />
-                  <col style={{ width: 60 }} />
-                  <col style={{ width: 260 }} />
-                  <col style={{ width: 90 }} />
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Class</th>
-                    <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Professor</th>
-                    <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>RMP</th>
-                    <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Diff</th>
-                    <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Schedule</th>
-                    <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(easiestResults[area] || []).map((row) => {
-                    const lines = getScheduleLines(row);
-                    const rmpScoreRaw = row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
-                    const rmpScore = typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
-                    const taken = classesTaken.some((t) => t.className === row.className && (t.area === area || !t.area));
-                    const toDelete = classesTaken.find((t) => t.className === row.className && (t.area === area || !t.area));
-                    const rmpLink = row.rmpLink && row.rmpLink !== "N/A" ? row.rmpLink : null;
+      <div style={{ overflow: "auto", paddingRight: 12, maxHeight: 420 }}>
+{selectedAllClass ? (
+  <div style={{ padding: 4, overflowX: "auto" }}>
+    <table
+      style={{
+        width: "800px",                  // let wrapper scroll on narrow screens
+        tableLayout: "fixed",
+        borderCollapse: "collapse",
+        border: "1.5px solid #e0e5ff",
+        borderRadius: 12,
+        overflow: "hidden",
+        fontSize: "0.92rem",
+      }}
+    >
+  <colgroup>
+  <col style={{ width: isMobile ? 50 : 240 }} />  {/* Professor (tighter) */}
+  <col style={{ width: isMobile ? 20  : 70  }} />  {/* RMP (tighter) */}
+  <col style={{ width: isMobile ? 34  : 60  }} />  {/* Diff (tighter) */}
+  <col style={{ width: isMobile ? 100 : "25%" }} />{/* Schedule (FIXED on mobile) */}
+  <col style={{ width: isMobile ? 30  : 100 }} />  {/* Action (tighter) */}
+</colgroup>
+      <thead>
+        <tr>
+          <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Professor</th>
+          <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>RMP</th>
+          <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Diff</th>
+          <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Schedule</th>
+          <th style={{ padding: "10px 12px",  textAlign: isMobile ? "left" : "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff",...(isMobile ? { paddingLeft: 6 } : {}), }}>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {classDetails
+          .filter((row) => row.className === selectedAllClass)
+          .map((row, i) => {
+            const rmpLink =
+              row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+            const rmpScoreRaw =
+              row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+            const rmpScore =
+              typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+            const lines = getScheduleLinesSafeLocal(row);
 
-                    return (
-                      <tr key={`${row.className}-${row.professor || "NA"}`}>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
-                          <span style={{ fontWeight: 600 }}>{row.className}</span>
-                        </td>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
-                          {rmpLink ? (
-                            <a href={rmpLink} target="_blank" rel="noreferrer noopener" style={{ fontWeight: 700, textDecoration: "underline" }}>
-                              {row.professor || "—"}
-                            </a>
-                          ) : (
-                            <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
-                          )}
-                        </td>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
-                          {rmpScore}
-                        </td>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
-                          {typeof row.difficulty === "number" ? row.difficulty : "—"}
-                        </td>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", fontSize: ".8rem", color: "#555", lineHeight: 1.25 }}>
-                          {lines.length ? lines.map((l, i) => (
-                            <div key={i} style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={l}>
-                              {l}
-                            </div>
-                          )) : "—"}
-                        </td>
-                        <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
-                          {taken ? (
-                            <button
-                              onClick={() => onDeleteClass(toDelete || { className: row.className, area })}
-                              type="button"
-                              style={{ background: "#d32f2f", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
-                            >
-                              Delete
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => onAddClass(row.className, area)}
-                              type="button"
-                              style={{ background: "#20a7ef", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
-                            >
-                              Add
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            /* All Options table — same as San José */
-            <table
-              style={{
-                width: "100%",
-                tableLayout: "auto",
-                borderCollapse: "collapse",
-                border: "1.5px solid #222",
-                borderRadius: 12,
-                overflow: "hidden",
-                fontSize: "0.95rem",
-              }}
-            >
-              <colgroup>
-                <col />
-                <col style={{ width: "1%" }} />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff" }}>
-                    Class
-                  </th>
-                  <th style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff", paddingRight: 16 }}>
-                    Action
-                  </th>
+            return (
+              <tr key={`${row.className}-${row.professor || "NA"}-${i}`}>
+                {/* Professor */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap", ...(isMobile ? { paddingRight: 6 } : null), }}>
+                  {rmpLink ? (
+                    <a
+                      href={rmpLink}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      style={{ fontWeight: 700, textDecoration: "underline" }}
+                    >
+                      {row.professor || "—"}
+                    </a>
+                  ) : (
+                    <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                  )}
+                </td>
+
+                {/* RMP */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap", ...(isMobile ? { paddingLeft: 6, paddingRight: 4 } : null), }}>
+                  {rmpScore}
+                </td>
+
+                {/* Diff */}
+                <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap", ...(isMobile ? { paddingLeft: 6 } : null), }}>
+                  {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                </td>
+
+                {/* Schedule (wraps fully) */}
+             <td
+  style={{
+    padding: "10px 12px",
+    borderTop: "1px solid #e0e5ff",
+    color: "#555",
+    lineHeight: 1.25,
+    whiteSpace: "normal",
+    overflow: "visible",
+    textOverflow: "clip",
+    wordBreak: "break-word",
+    ...(isMobile ? { paddingLeft: 6, paddingRight: 0, borderRight: "none" } : null), // ⬅️ add paddingRight: 0
+  }}
+>
+
+                  {lines.length
+                    ? lines.map((l, j) => <div key={j}>{l}</div>)
+                    : "—"}
+                </td>
+
+                {/* Action */}
+                <td
+  style={{
+    padding: "10px 12px",
+    borderTop: "1px solid #e0e5ff",
+    whiteSpace: "nowrap",
+    ...(isMobile
+      ? {
+          textAlign: "left",   // bring button to the left edge
+          paddingLeft: 0,      // remove the gap
+          borderLeft: "none",
+          width: 0,            // shrink-wrap to content
+        }
+      : { textAlign: "right" }),
+  }}
+>
+  {renderAddDelete(row.className, area)}
+</td>
+
+              </tr>
+            );
+          })}
+      </tbody>
+    </table>
+  </div>
+) : overlayMode === "easiest" ? (
+
+    /* --- Easiest (NEW for mobile) --- */
+    <div style={{ padding: 4, overflowX: "auto" }}>
+      {easiestLoading[area] ? (
+        <div style={{ padding: 12, color: "#555" }}>Loading easiest classes…</div>
+      ) : (easiestResults[area] || []).length === 0 ? (
+        <div style={{ padding: 12, color: "#555" }}>No difficulty data for this area.</div>
+      ) : (
+        <table
+          style={{
+            width: "900px",                 // gives breathing room; wrapper scrolls if needed
+            tableLayout: "fixed",
+            borderCollapse: "collapse",
+            border: "1.5px solid #e0e5ff",
+            borderRadius: 12,
+            overflow: "hidden",
+            fontSize: "0.92rem",
+          }}
+        >
+          <colgroup>
+            <col style={{ width: 200 }} />   {/* Class */}
+            <col style={{ width: 200 }} />   {/* Professor */}
+            <col />                           {/* Schedule (flex) */}
+            <col style={{ width: 70 }} />     {/* RMP */}
+            <col style={{ width: 60 }} />     {/* Diff */}
+            <col style={{ width: 100 }} />    {/* Action */}
+          </colgroup>
+          <thead>
+            <tr>
+              <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Class</th>
+              <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Professor</th>
+              <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Schedule</th>
+              <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>RMP</th>
+              <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Diff</th>
+              <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff" }}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(easiestResults[area] || []).map((row, i) => {
+              const rmpLink =
+                row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+              const rmpScoreRaw =
+                row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+              const rmpScore =
+                typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+              const lines = getScheduleLinesSafeLocal(row); // ✅ local safe helper
+
+              return (
+                <tr key={`${row.className}-${row.professor || "NA"}-${i}`}>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", fontWeight: 700 }}>
+                    {row.className}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
+                    {rmpLink ? (
+                      <a href={rmpLink} target="_blank" rel="noreferrer noopener" style={{ fontWeight: 700, textDecoration: "underline" }}>
+                        {row.professor || "—"}
+                      </a>
+                    ) : (
+                      <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                    )}
+                  </td>
+
+                  {/* ✅ Schedule now wraps to full length (no ellipsis) */}
+                  <td
+                    style={{
+                      padding: "10px 12px",
+                      borderTop: "1px solid #e0e5ff",
+                      color: "#555",
+                      lineHeight: 1.25,
+                      whiteSpace: "normal",
+                      overflow: "visible",
+                      textOverflow: "clip",
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {lines.length ? lines.map((l, j) => (
+                      <div key={j}>{l}</div>
+                    )) : "—"}
+                  </td>
+
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {rmpScore}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
+                    {renderAddDelete(row.className, area)}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {allOptionsForArea.map((cls) => {
-                  const taken = classesTaken.some((t) => t.className === cls && (t.area === area || !t.area));
-                  const toDelete = classesTaken.find((t) => t.className === cls && (t.area === area || !t.area)) || { className: cls, area };
-                  return (
-                    <tr key={`${area}::${cls}`}>
-                      <td
-                        style={{
-                          padding: "10px 12px",
-                          borderTop: "1px solid #222",
-                          fontWeight: 700,
-                          whiteSpace: "normal",
-                          wordBreak: "break-word",
-                          cursor: "pointer",
-                        }}
-                        title={cls}
-                        onClick={(e) => { e.stopPropagation(); setSelectedAllClass(cls); }}
-                      >
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                          <span>{cls}</span>
-                          <span aria-hidden="true" style={{ fontSize: "1.2rem", lineHeight: 1 }}>▾</span>
-                        </span>
-                      </td>
-                      <td style={{ padding: "10px 12px", borderTop: "1px solid #222", textAlign: "right" }}>
-                        {taken ? (
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onDeleteClass(toDelete); }}
-                            type="button"
-                            style={{ background: "#d32f2f", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
-                          >
-                            Delete
-                          </button>
-                        ) : (
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onAddClass(cls, area); }}
-                            type="button"
-                            style={{ background: "#20a7ef", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
-                          >
-                            Add
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+    </div>
+  ) : (
+  /* rest of the panel */
+
+            /* All Options table — same as San José */
+     /* All Options table — NO schedule in the menu */
+<table
+  style={{
+    width: "100%",
+    tableLayout: "auto",
+    borderCollapse: "collapse",
+    border: "1.5px solid #222",
+    borderRadius: 12,
+    overflow: "hidden",
+    fontSize: "0.95rem",
+  }}
+>
+  <colgroup>
+    <col />
+    <col style={{ width: "1%" }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff" }}>
+        Class
+      </th>
+      <th style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, borderBottom: "1px solid #222", background: "#fafbff", paddingRight: 16 }}>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {allOptionsForArea.map((cls) => {
+      const taken = classesTaken.some((t) => t.className === cls && (t.area === area || !t.area));
+      const toDelete = classesTaken.find((t) => t.className === cls && (t.area === area || !t.area)) || { className: cls, area };
+
+      return (
+        <tr key={`${area}::${cls}`}>
+          <td
+            style={{
+              padding: "10px 12px",
+              borderTop: "1px solid #222",
+              fontWeight: 700,
+              whiteSpace: "normal",
+              wordBreak: "break-word",
+              cursor: "pointer",
+            }}
+            title={cls}
+            onClick={(e) => { e.stopPropagation(); setSelectedAllClass(cls); }}
+          >
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <span>{cls}</span>
+              <span aria-hidden="true" style={{ fontSize: "1.2rem", lineHeight: 1 }}>▾</span>
+            </span>
+          </td>
+          <td style={{ padding: "10px 12px", borderTop: "1px solid #222", textAlign: "right" }}>
+            {taken ? (
+              <button
+                onClick={(e) => { e.stopPropagation(); onDeleteClass(toDelete); }}
+                type="button"
+                style={{ background: "#d32f2f", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+              >
+                Delete
+              </button>
+            ) : (
+              <button
+                onClick={(e) => { e.stopPropagation(); onAddClass(cls, area); }}
+                type="button"
+                style={{ background: "#20a7ef", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+              >
+                Add
+              </button>
+            )}
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
           )}
         </div>
       </div>
@@ -908,6 +1085,23 @@ const getScheduleLines = (entry) => {
 
   return parts.length ? parts : [String(raw)];
 };
+// Safe schedule normalizer for GETracker scope
+const getScheduleLinesSafe = (row) => {
+  const base = getScheduleLines(row);
+  if (base && base.length) return base;
+
+  // extra fallbacks (common alt keys)
+  const days  = row?.days || row?.Days || row?.day || row?.Day || "";
+  const time  = row?.time || row?.Time || row?.hours || row?.Hours || "";
+  const where = row?.location || row?.Location || row?.where || row?.Where || "";
+
+  const combo = [days, time, where]
+    .map((s) => String(s || "").trim())
+    .filter(Boolean)
+    .join(" ");
+
+  return combo ? [combo] : [];
+};
 
 useEffect(() => {
   if (selectedArea && selectedPanelRef.current) {
@@ -1096,7 +1290,7 @@ const chooseAreaForClass = (className) => {
    return (
       <div className="ge-container">
         {/* Title/Header */}
-        <h1 className="ge-title" style={{ marginTop: '64px' }}>
+        <h1 className="ge-title" style={{ marginTop: isMobile ? '64px' : '80px' }}>
    Chico State University
   </h1>
   
@@ -1158,7 +1352,7 @@ const chooseAreaForClass = (className) => {
       </button>
     </div>
 
-    <ChecklistModal open={checklistOpen} onClose={() => setChecklistOpen(false)}>
+    <ChecklistModal open={checklistOpen} onClose={() => setChecklistOpen(false)} mobileOffset={40}>
       <ChecklistToggleContent
         geRequirements={geRequirements}
         classesTaken={classesTaken}
@@ -1707,7 +1901,7 @@ onClick={() => {
                       }}
                     >
                       {(() => {
-                        const lines = getScheduleLines(row);
+                        const lines = getScheduleLinesSafe(row);
                         if (!lines.length) return "—";
                         return lines.map((line, i) => (
                           <div
@@ -1886,116 +2080,171 @@ onClick={() => {
             background: "#fff",
           };
           return (
-            <table
-              style={{
-                width: "100%",
-                tableLayout: "fixed",
-                borderCollapse: "collapse",
-                border: "1.5px solid #222",
-                borderRadius: 12,
-                overflow: "hidden",
-                fontSize: isMobile ? "0.88rem" : "0.95rem",
-              }}
-            >
-               {/* ⬇️ ADD THIS */}
+           <table
+  style={{
+    width: "100%",
+    tableLayout: "fixed",
+    borderCollapse: "collapse",
+    border: "1.5px solid #222",
+    borderRadius: 12,
+    overflow: "hidden",
+    fontSize: isMobile ? "0.88rem" : "0.95rem",
+  }}
+>
   <colgroup>
-    <col style={{ width: "85%" }} />   {/* Class */}
-    <col style={{ width: "15%" }} />   {/* Action */}
+    <col style={{ width: isMobile ? "60%" : "85%" }} />   {/* Class */}
+    {isMobile && <col style={{ width: "25%" }} />}       {/* Schedule (mobile only) */}
+    <col style={{ width: "15%" }} />                     {/* Action */}
   </colgroup>
-              <thead>
-                <tr>
-                  <th style={th}>Class</th>
-                  <th style={{ ...th, borderRight: "none", textAlign: "right" }}>Action</th>
-                </tr>
-              </thead>
 
-              <tbody>
-                {filteredClasses.length === 0 && (
-                  <tr>
-                    <td colSpan={2} style={{ ...td, borderRight: "none", color: "#777" }}>
-                      No available classes.
-                    </td>
-                  </tr>
-                )}
+  <thead>
+    <tr>
+      <th style={th}>Class</th>
+      {isMobile && <th style={th}>Schedule</th>}
+      <th style={{ ...th, borderRight: "none", textAlign: "right" }}>Action</th>
+    </tr>
+  </thead>
 
-                {filteredClasses.map((cls) => {
-                  const alreadyTaken = classesTaken.some((t) => t.className === cls);
-                  const c1c2LimitReached =
-                    (areaObj.area === "C1 Arts" || areaObj.area === "C2 Humanities") && c1c2Count >= 3;
+  <tbody>
+    {filteredClasses.length === 0 && (
+      <tr>
+        <td
+          colSpan={isMobile ? 3 : 2}
+          style={{ ...td, borderRight: "none", color: "#777" }}
+        >
+          No available classes.
+        </td>
+      </tr>
+    )}
 
-                  return (
-                    <tr key={`${areaObj.area}::${cls}`}>
-                      <td
-                        role="button"
-                        onClick={() => setSelectedAllClass(cls)}
-                        title={cls}
-                        style={{
-                          ...td,
-                          cursor: "pointer",
-                          fontWeight: 700,
-                          whiteSpace: "normal",
-                          wordBreak: "break-word",
-                          borderRight: "1px solid #222",
-                        }}
-                      >
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                          <span>{cls}</span>
-                          <span aria-hidden="true">▼</span>
-                        </span>
-                      </td>
+    {filteredClasses.map((cls) => {
+      // collect unique schedule lines for this class
+      const uniq = new Set();
+      classDetails.forEach((d) => {
+        if (d.className === cls) {
+          getScheduleLinesSafe(d).forEach((line) => {
+            const s = String(line).trim();
+            if (s) uniq.add(s);
+          });
+        }
+      });
+      const lines = Array.from(uniq);
 
-            <td style={{ ...td, borderRight: "none", textAlign: "right" }}>
-  {isTaken(cls) ? (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        removeByName(cls);
-      }}
-      type="button"
-      style={{
-        background: "#d32f2f",
-        color: "#fff",
-        border: "none",
-        borderRadius: 10,
-        padding: "4px 10px",
-        fontSize: "0.85rem",
-        fontWeight: 700,
-        cursor: "pointer",
-      }}
-    >
-      Delete
-    </button>
-  ) : !c1c2LimitReached ? (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        addClass({ id: cls, title: cls, area: areaObj.area });
-      }}
-      type="button"
-      style={{
-        background: "#20a7ef",
-        color: "#fff",
-        border: "none",
-        borderRadius: 10,
-        padding: "4px 10px",
-        fontSize: "0.85rem",
-        fontWeight: 700,
-        cursor: "pointer",
-      }}
-    >
-      Add
-    </button>
-  ) : (
-    <span style={{ color: "#999", fontWeight: 600 }}>Max 3</span>
-  )}
-</td>
+      return (
+        <tr key={`${areaObj.area}::${cls}`}>
+          {/* Class (click to open details) */}
+          <td
+            role="button"
+            onClick={() => setSelectedAllClass(cls)}
+            title={cls}
+            style={{
+              ...td,
+              cursor: "pointer",
+              fontWeight: 700,
+              whiteSpace: "normal",
+              wordBreak: "break-word",
+              borderRight: "1px solid #222",
+            }}
+          >
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <span>{cls}</span>
+              <span aria-hidden="true">▼</span>
+            </span>
+          </td>
 
+          {/* Schedule (mobile only) */}
+          {isMobile && (
+            <td
+              style={{
+                ...td,
+                fontSize: "0.85rem",
+                color: "#555",
+                lineHeight: 1.25,
+                paddingRight: 4,
+                borderRight: "none",
+              }}
+              title={lines.join(" • ")}
+            >
+              {lines.length ? (
+                lines.slice(0, 3).map((l, i) => (
+                  <div
+                    key={i}
+                    style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                  >
+                    {l}
+                  </div>
+                ))
+              ) : (
+                "—"
+              )}
+            </td>
+          )}
 
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          {/* Action */}
+          <td
+            style={{
+              ...td,
+              ...(isMobile
+                ? {
+                    textAlign: "left",
+                    paddingLeft: 4,
+                    whiteSpace: "nowrap",
+                    borderLeft: "none",
+                    width: 0,
+                  }
+                : { textAlign: "right" }),
+            }}
+          >
+            {isTaken(cls) ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeByName(cls);
+                }}
+                type="button"
+                style={{
+                  background: "#d32f2f",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 10,
+                  padding: isMobile ? "3px 8px" : "4px 10px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  ...(isMobile ? { marginLeft: -2 } : {}),
+                }}
+              >
+                Delete
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addClass({ id: cls, title: cls, area: areaObj.area });
+                }}
+                type="button"
+                style={{
+                  background: "#20a7ef",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 10,
+                  padding: isMobile ? "3px 8px" : "4px 10px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  ...(isMobile ? { marginLeft: -2 } : {}),
+                }}
+              >
+                Add
+              </button>
+            )}
+          </td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
           );
         })()
       )}

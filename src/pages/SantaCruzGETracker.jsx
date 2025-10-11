@@ -27,7 +27,7 @@ function useIsMobile(max = 700) {
 }
 
 /** === Checklist modal (like SJSU) === */
-function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
+function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF",yOffset = 32,                 }) {
   const isMobile = useIsMobile(700);
 
   useEffect(() => {
@@ -61,20 +61,20 @@ function ChecklistModal({ open, onClose, children, brandBlue = "#20A7EF" }) {
         zIndex: 1000,
       }}
     >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          width: "min(900px, 92vw)",
-          maxHeight: "80vh",
-          background: "#fff",
-          borderRadius: 16,
-          boxShadow: "0 16px 40px rgba(0,0,0,0.25)",
-          overflow: "hidden",
-          display: "grid",
-          gridTemplateRows: "auto 1fr",
-          transform: isMobile ? "translateY(32px)" : undefined,
-        }}
-      >
+     <div
+    onClick={(e) => e.stopPropagation()}
+    style={{
+      width: "min(900px, 92vw)",
+      maxHeight: "80vh",
+      background: "#fff",
+      borderRadius: 16,
+      boxShadow: "0 16px 40px rgba(0,0,0,0.25)",
+      overflow: "hidden",
+      display: "grid",
+      gridTemplateRows: "auto 1fr",
+      transform: isMobile ? `translateY(${yOffset}px)` : undefined, // ← use it
+    }}
+  >
         <div
           style={{
             display: "flex",
@@ -188,7 +188,7 @@ function ProgressSummary({ geRequirements, classesTaken, classToAreas, c1c2Fulfi
       </div>
 
       <div style={{ background: "#e0e0e0", borderRadius: 12, overflow: "hidden", height: 20, marginBottom: 6, width: "100%" }}>
-        <div style={{ background: "#20a7ef", height: "100%", width: `${progressPercent}%`, transition: "width 0.5s ease" }} />
+        <div style={{ background: "#3a60ff", height: "100%", width: `${progressPercent}%`, transition: "width 0.5s ease" }} />
       </div>
 
       <div style={{ fontSize: "2.5rem", fontWeight: 600, color: "#20A7EF", textAlign: "center", marginBottom: 24 }}>
@@ -496,15 +496,22 @@ const edge = {
                 View All
               </button>
             )}
-            {overlayMode !== "easiest" && !selectedAllClass && (
-              <button
-                type="button"
-                onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
-                style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 8, color: brandBlue, padding: "6px 10px", fontWeight: 700 }}
-              >
-                Easiest
-              </button>
-            )}
+          {overlayMode !== "easiest" && !selectedAllClass && (
+  <button
+    type="button"
+    onClick={() => { setOverlayMode("easiest"); findEasiestClasses(area); }}
+    style={{
+      background: overlayMode === "all" ? brandBlue : "transparent",
+      color: overlayMode === "all" ? "#fff" : brandBlue,
+      border: `2px solid ${brandBlue}`,
+      borderRadius: 8,
+      padding: "6px 10px",
+      fontWeight: 700,
+    }}
+  >
+    Easiest
+  </button>
+)}
             {selectedAllClass && (
               <button
                 type="button"
@@ -520,10 +527,119 @@ const edge = {
         {/* Body */}
 <div style={{ overflow: "auto", paddingRight: 12, maxHeight: MOBILE_BLOCK_MAX }}>
           {selectedAllClass ? (
-            <div style={{ padding: 4 }}>
-              <ProfessorTable className={selectedAllClass} classDetails={classDetails} compact />
-            </div>
-          ) : overlayMode === "easiest" ? (
+  <div style={{ padding: 4 }}>
+   
+
+    {/* Details table with schedule (same vibe as desktop) */}
+    <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+      <table
+        style={{
+          width: "max-content",
+          tableLayout: "fixed",
+          borderCollapse: "collapse",
+          border: "1.5px solid #e0e5ff",
+          borderRadius: 12,
+          overflow: "hidden",
+          fontSize: "0.9rem",
+        }}
+      >
+        <colgroup>
+          <col style={{ width: 200 }} />  {/* Professor */}
+          <col style={{ width: 64 }} />   {/* RMP */}
+          <col style={{ width: 60 }} />   {/* Diff */}
+          <col style={{ width: 300 }} />  {/* Schedule */}
+          <col style={{ width: 90 }} />   {/* Action */}
+        </colgroup>
+        <thead>
+          <tr>
+            <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Professor</th>
+            <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>RMP</th>
+            <th style={{ padding: "10px 12px", textAlign: "center", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Diff</th>
+            <th style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Schedule</th>
+            <th style={{ padding: "10px 12px", textAlign: "right", borderBottom: "1px solid #e0e5ff", background: "#fafbff", whiteSpace: "nowrap" }}>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classDetails
+            .filter((row) => row.className === selectedAllClass)
+            .map((row, idx) => {
+              const lines = getScheduleLines(row);
+              const rmpScoreRaw = row.rmpScore ?? row.score ?? row.rating ?? row.rmp ?? row.RMPScore ?? null;
+              const rmpScore = typeof rmpScoreRaw === "number" ? rmpScoreRaw.toFixed(1) : (rmpScoreRaw || "—");
+              const rmpLink = row.rmpLink ?? (row.link && row.link !== "N/A" ? row.link : null);
+
+              const taken = classesTaken.some(
+                (t) => t.className === selectedAllClass && (t.area === area || !t.area)
+              );
+              const toDelete = classesTaken.find(
+                (t) => t.className === selectedAllClass && (t.area === area || !t.area)
+              );
+
+              return (
+                <tr key={`${selectedAllClass}-${row.professor || "NA"}-${idx}`}>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", whiteSpace: "nowrap" }}>
+                    {rmpLink ? (
+                      <a
+                        href={rmpLink}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        style={{ fontWeight: 700, textDecoration: "underline" }}
+                      >
+                        {row.professor || "—"}
+                      </a>
+                    ) : (
+                      <span style={{ fontWeight: 700 }}>{row.professor || "—"}</span>
+                    )}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {rmpScore}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "center", whiteSpace: "nowrap" }}>
+                    {typeof row.difficulty === "number" ? row.difficulty : "—"}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", fontSize: ".8rem", color: "#555", lineHeight: 1.25 }}>
+                    {lines.length ? (
+                      lines.map((l, i) => (
+                        <div
+                          key={i}
+                          style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                          title={l}
+                        >
+                          {l}
+                        </div>
+                      ))
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td style={{ padding: "10px 12px", borderTop: "1px solid #e0e5ff", textAlign: "right", whiteSpace: "nowrap" }}>
+                    {taken ? (
+                      <button
+                        onClick={() => onDeleteClass(toDelete || { className: selectedAllClass, area })}
+                        type="button"
+                        style={{ background: "#d32f2f", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => onAddClass(selectedAllClass, area)}
+                        type="button"
+                        style={{ background: "#20a7ef", color: "#fff", border: "none", borderRadius: 10, padding: "4px 10px", fontSize: "0.85rem", fontWeight: 700, cursor: "pointer" }}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+) : overlayMode === "easiest" ? (
+
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch", overscrollBehaviorX: "contain", touchAction: "pan-x", marginBottom: 2 }}>
               <table
                 style={{
@@ -972,7 +1088,7 @@ export default function GETracker({
                   boxShadow: "0 3px 8px rgba(58, 96, 255, 0.6)",
                   transition: "background-color 0.3s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#2a44cc")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#20a7ef")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = brandBlue)}
                 onClick={() => setChecklistOpen((o) => !o)}
                 type="button"
@@ -983,7 +1099,7 @@ export default function GETracker({
               </button>
             </div>
 
-            <ChecklistModal open={checklistOpen} onClose={() => setChecklistOpen(false)} brandBlue={brandBlue}>
+            <ChecklistModal open={checklistOpen} onClose={() => setChecklistOpen(false)} brandBlue={brandBlue} yOffset={40}>
               <ChecklistToggleContent
                 geRequirements={geRequirements}
                 classesTaken={classesTaken}
