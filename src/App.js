@@ -2,7 +2,7 @@
   import React, { useState, useEffect } from "react";
   import GETracker from "./pages/GETracker";
   import geRequirements from "./data/geRequirements.json";
-  import classDetails from "./data/classDetails.json";
+import classDetails from "./data/SpringSJSUclassDetails.json";
   import chicoGeRequirements from './data/ChicogeRequirements.json';
 import chicoClassDetails from './data/ChicoclassDetails.json';
   import { Routes, Route } from "react-router-dom";

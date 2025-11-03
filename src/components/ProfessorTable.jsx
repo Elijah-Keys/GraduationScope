@@ -4,25 +4,44 @@ import "./ProfessorTable.css";
 const RMP_KEY = "score";
 const DIFF_KEY = "difficulty";
 
-export default function ProfessorTable({ className, classDetails, compact = false }) {
-  const normalize = (str) => str.replace(/\s+/g, " ").trim().toLowerCase();
+export default function ProfessorTable({
+  className: classNameProp,
+  selectedClass,
+  classDetails,
+  compact = false,
+}) {
+  // pick the real name to use
+  const targetClassName = (selectedClass || classNameProp || "").trim();
 
-  // rows for this class
+  const normalize = (str = "") => str.replace(/\s+/g, " ").trim().toLowerCase();
+
+  // pick only rows for this class
   const professors = useMemo(
-    () => classDetails.filter((p) => normalize(p.className) === normalize(className)),
-    [classDetails, className]
+    () =>
+      classDetails.filter(
+        (p) => normalize(p.className) === normalize(targetClassName)
+      ),
+    [classDetails, targetClassName]
   );
 
-  const [sortConfig, setSortConfig] = useState({ key: RMP_KEY, direction: "desc" });
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // safe window for mobile or SSR
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const onResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const isMobile = windowWidth <= 700;
+
+  const [sortConfig, setSortConfig] = useState({
+    key: RMP_KEY,
+    direction: "desc",
+  });
 
   const handleSort = (key) =>
     setSortConfig((prev) => ({
@@ -31,7 +50,11 @@ export default function ProfessorTable({ className, classDetails, compact = fals
     }));
 
   const getArrow = (key) =>
-    sortConfig.key === key ? (sortConfig.direction === "asc" ? " ▲" : " ▼") : "";
+    sortConfig.key === key
+      ? sortConfig.direction === "asc"
+        ? " ▲"
+        : " ▼"
+      : "";
 
   const sorted = [...professors].sort((a, b) => {
     const aVal = typeof a[sortConfig.key] === "number" ? a[sortConfig.key] : -Infinity;
@@ -39,14 +62,19 @@ export default function ProfessorTable({ className, classDetails, compact = fals
     return sortConfig.direction === "asc" ? aVal - bVal : bVal - aVal;
   });
 
-  if (!sorted.length) return <div>No professor data for this class.</div>;
+  if (!sorted.length) {
+    return <div>No professor data for this class.</div>;
+  }
 
-  // ---- NEW: helper to break schedules into lines ----
+  // schedule helper
   const getScheduleLines = (entry) => {
     if (!entry) return [];
-    if (Array.isArray(entry.schedules) && entry.schedules.length) return entry.schedules;
-    if (Array.isArray(entry.schedule) && entry.schedule.length) return entry.schedule;
-    if (Array.isArray(entry.sections) && entry.sections.length) return entry.sections;
+    if (Array.isArray(entry.schedules) && entry.schedules.length)
+      return entry.schedules;
+    if (Array.isArray(entry.schedule) && entry.schedule.length)
+      return entry.schedule;
+    if (Array.isArray(entry.sections) && entry.sections.length)
+      return entry.sections;
 
     const raw = entry.schedule || entry.time || entry.days || "";
     if (!raw) return [];
@@ -56,7 +84,6 @@ export default function ProfessorTable({ className, classDetails, compact = fals
     return parts.length ? parts : [String(raw)];
   };
 
-  // styles
   const border = "#ccc";
   const thStyle = {
     cursor: "pointer",
@@ -77,30 +104,30 @@ export default function ProfessorTable({ className, classDetails, compact = fals
     verticalAlign: "middle",
   };
   const tdLeftBorderStyle = { borderLeft: `1px solid ${border}` };
-// tighter padding for number-ish columns
-// tighter padding for number-ish columns
-// tighter padding for number-ish columns (about 50% tighter)
-// tighter padding for number-ish columns
-const densePad = isMobile ? "6px 8px" : "6px 8px";
-const thDense  = { ...thStyle,    padding: densePad };
-const tdDense  = { ...tdBaseStyle, padding: densePad };
+  const densePad = isMobile ? "6px 8px" : "6px 8px";
+  const thDense = { ...thStyle, padding: densePad };
+  const tdDense = { ...tdBaseStyle, padding: densePad };
 
-// ⬇️ NEW: scale the padding 30% just for the RMP column
-const scalePad = (pad, scale) => {
-  const [v, h] = pad.split(" ");
-  const num = (s) => parseFloat(s.replace(/[^\d.]/g, ""));
-  const unit = (s) => s.replace(/[\d.]/g, "") || "px";
-  const vNum = num(v), hNum = num(h), vUnit = unit(v), hUnit = unit(h);
-  return `${(vNum * scale).toFixed(1)}${vUnit} ${(hNum * scale).toFixed(1)}${hUnit}`;
-};
-const rmpPad = scalePad(densePad, 1); // ~30% more
-const rmpTh  = { ...thDense, padding: rmpPad };
-const rmpTd  = { ...tdDense, padding: rmpPad };
-
-
+  // keep padding util
+  const scalePad = (pad, scale) => {
+    const [v, h] = pad.split(" ");
+    const num = (s) => parseFloat(s.replace(/[^\d.]/g, ""));
+    const unit = (s) => s.replace(/[\d.]/g, "") || "px";
+    const vNum = num(v);
+    const hNum = num(h);
+    const vUnit = unit(v);
+    const hUnit = unit(h);
+    return `${(vNum * scale).toFixed(1)}${vUnit} ${(hNum * scale).toFixed(1)}${hUnit}`;
+  };
+  const rmpPad = scalePad(densePad, 1);
+  const rmpTh = { ...thDense, padding: rmpPad };
+  const rmpTd = { ...tdDense, padding: rmpPad };
 
   return (
-    <div className="professor-table" style={{ backgroundColor: "#fff", width: "100%", overflowX: "hidden" }}>
+    <div
+      className="professor-table"
+      style={{ backgroundColor: "#fff", width: "100%", overflowX: "hidden" }}
+    >
       <div className="professor-table-scroll" style={{ minWidth: 0 }}>
         <table
           style={{
@@ -114,61 +141,55 @@ const rmpTd  = { ...tdDense, padding: rmpPad };
           }}
         >
           {isMobile ? (
-  <colgroup>
-    <col style={{ width: "55%" }} />  {/* Professor */}
-    <col style={{ width: 60 }} />     {/* RMP */}
-    <col style={{ width: 72 }} />     {/* Difficulty */}
-  </colgroup>
-) : (
-  <colgroup>
-    <col style={{ width: "30%" }} />  {/* Professor */}
-    <col style={{ width: 64 }} />     {/* RMP */}
-    <col style={{ width: 72 }} />     {/* Difficulty */}
-    <col style={{ width: "auto" }} /> {/* Schedule grows */}
-  </colgroup>
-)}
-       <thead>
-  <tr>
-    <th style={{ ...thStyle, borderLeft: "none" }}>Professor</th>
-
-  <th
-  className="clickable"
-  onClick={() => handleSort(RMP_KEY)}
-  style={{ ...rmpTh, borderRight: `1px solid ${border}` }}   // ⬅️ was thDense
->
-  Score{getArrow(RMP_KEY)}
-</th>
-
-
-    <th
-      className="clickable"
-      onClick={() => handleSort(DIFF_KEY)}
-      style={{
-        ...thDense,
-        borderRight: isMobile ? "none" : `1px solid ${border}` // last on mobile
-      }}
-    >
-      Difficulty{getArrow(DIFF_KEY)}
-    </th>
-
-    {!isMobile && (
-      <th style={{ ...thStyle, borderRight: "none" /* last on desktop */ }}>
-        Schedule
-      </th>
-    )}
-  </tr>
-</thead>
-
-
-
+            <colgroup>
+              <col style={{ width: "55%" }} />
+              <col style={{ width: 60 }} />
+              <col style={{ width: 72 }} />
+            </colgroup>
+          ) : (
+            <colgroup>
+              <col style={{ width: "30%" }} />
+              <col style={{ width: 64 }} />
+              <col style={{ width: 72 }} />
+              <col style={{ width: "auto" }} />
+            </colgroup>
+          )}
+          <thead>
+            <tr>
+              <th style={{ ...thStyle, borderLeft: "none" }}>Professor</th>
+              <th
+                className="clickable"
+                onClick={() => handleSort(RMP_KEY)}
+                style={{ ...rmpTh, borderRight: `1px solid ${border}` }}
+              >
+                Score{getArrow(RMP_KEY)}
+              </th>
+              <th
+                className="clickable"
+                onClick={() => handleSort(DIFF_KEY)}
+                style={{
+                  ...thDense,
+                  borderRight: isMobile ? "none" : `1px solid ${border}`,
+                }}
+              >
+                Difficulty{getArrow(DIFF_KEY)}
+              </th>
+              {!isMobile && (
+                <th style={{ ...thStyle, borderRight: "none" }}>
+                  Schedule
+                </th>
+              )}
+            </tr>
+          </thead>
           <tbody>
             {sorted.map((prof, idx) => {
               const rmpScore =
-                typeof prof[RMP_KEY] === "number" ? prof[RMP_KEY].toFixed(1) : prof[RMP_KEY] ?? "N/A";
+                typeof prof[RMP_KEY] === "number"
+                  ? prof[RMP_KEY].toFixed(1)
+                  : prof[RMP_KEY] ?? "N/A";
 
               return (
                 <tr key={idx} tabIndex={-1}>
-                  {/* Professor (bold, and linked if RMP link exists) */}
                   <td
                     style={{
                       ...tdBaseStyle,
@@ -195,71 +216,66 @@ const rmpTd  = { ...tdDense, padding: rmpPad };
                     )}
                   </td>
 
-                  {/* RMP Score */}
-              {/* RMP Score */}
-<td
-  style={{
-    ...rmpTd,                                  // ⬅️ was tdDense
-    ...tdLeftBorderStyle,
-    borderRight: `1px solid ${border}`,
-    fontWeight: 700,
-    whiteSpace: "nowrap",
-  }}
-  title={rmpScore}
->
-  {rmpScore}
-</td>
+                  <td
+                    style={{
+                      ...rmpTd,
+                      ...tdLeftBorderStyle,
+                      borderRight: `1px solid ${border}`,
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                    }}
+                    title={rmpScore}
+                  >
+                    {rmpScore}
+                  </td>
 
+                  <td
+                    style={{
+                      ...tdDense,
+                      ...tdLeftBorderStyle,
+                      borderRight: isMobile ? "none" : `1px solid ${border}`,
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                    }}
+                    title={prof[DIFF_KEY]}
+                  >
+                    {prof[DIFF_KEY] ?? "N/A"}
+                  </td>
 
-{/* Difficulty */}
-<td
-  style={{
-    ...tdDense,
-    ...tdLeftBorderStyle,
-    borderRight: isMobile ? "none" : `1px solid ${border}`, // last on mobile
-    fontWeight: 700,
-    whiteSpace: "nowrap",
-  }}
-  title={prof[DIFF_KEY]}
->
-  {prof[DIFF_KEY] ?? "N/A"}
-</td>
-
-{/* Schedule (desktop only) */}
-{!isMobile && (
-  <td
-    style={{
-      ...tdBaseStyle,
-      ...tdLeftBorderStyle,
-      borderRight: "none", // last on desktop
-      fontWeight: 400,
-      whiteSpace: "normal",
-      lineHeight: 1.25,
-      fontSize: compact ? "0.78rem" : undefined,
-    }}
-  >
-    {(() => {
-      const lines = getScheduleLines(prof);
-      if (!lines.length) return "—";
-      return lines.map((line, i) => (
-        <div
-          key={i}
-          style={{
-            whiteSpace: /^(Mo|Tu|We|Th|Fr|Sa|Su)/.test(line) ? "nowrap" : "normal",
-            wordBreak: "keep-all",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            maxWidth: "100%",
-          }}
-          title={line}
-        >
-          {line}
-        </div>
-      ));
-    })()}
-  </td>
-)}
-
+                  {!isMobile && (
+                    <td
+                      style={{
+                        ...tdBaseStyle,
+                        ...tdLeftBorderStyle,
+                        borderRight: "none",
+                        fontWeight: 400,
+                        whiteSpace: "normal",
+                        lineHeight: 1.25,
+                        fontSize: compact ? "0.78rem" : undefined,
+                      }}
+                    >
+                      {(() => {
+                        const lines = getScheduleLines(prof);
+                        if (!lines.length) return "N/A";
+                        return lines.map((line, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              whiteSpace: /^(Mo|Tu|We|Th|Fr|Sa|Su)/.test(line)
+                                ? "nowrap"
+                                : "normal",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              maxWidth: "100%",
+                            }}
+                            title={line}
+                          >
+                            {line}
+                          </div>
+                        ));
+                      })()}
+                    </td>
+                  )}
                 </tr>
               );
             })}

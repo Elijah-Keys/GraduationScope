@@ -1294,3 +1294,178 @@ body, div, span, p, h1, h2, h3, h4, h5, h6, input, button {
 .ge-btn--outline:focus {
   background: rgba(32, 167, 239, 0.06);
 }
+.ge-card {
+  scroll-margin-top: 120px;
+}
+@media (max-width: 700px) {
+  .ge-card {
+    scroll-margin-top: 90px;
+  }
+}
+@media (max-width: 700px) {
+  .gs-easiest-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  .gs-easiest-scroll table {
+    min-width: 540px;
+    width: max-content;
+  }
+}
+
+.gs-mobile-table-card {
+  border: 1px solid #e0e5ff;
+  border-radius: 14px;
+  background: #fff;
+  padding: 6px 6px 10px 6px;
+}
+
+.gs-mobile-table-wrap {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gs-mobile-table {
+  border-collapse: collapse;
+  min-width: 540px;
+  width: max-content;
+  font-size: 0.78rem;
+}
+
+
+.gs-mobile-table th {
+  text-align: left;
+  background: #fafbff;
+  border-bottom: 1px solid #e0e5ff;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+.gs-mobile-table td {
+  border-bottom: 1px solid #eef1ff;
+  padding: 7px 10px;
+  background: #fff;
+}
+@media (max-width: 700px) {
+  .ge-card {
+    overflow: hidden;
+  }
+
+  .ge-card .gs-mobile-table-wrap,
+  .ge-card .gs-easiest-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+/* force small layout when the Easiest overlay is open, no matter the screen size */
+.ge-mobile-sheet .ge-container,
+.ge-mobile-sheet .mobile-main-column,
+.ge-mobile-sheet .ge-search-section,
+.ge-mobile-sheet .ge-classes-taken-section,
+.ge-mobile-sheet .ge-checklist-btn-rect,
+.ge-mobile-sheet .ge-card-grid,
+.ge-mobile-sheet .ge-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* make the title inside the overlay normal size */
+.ge-mobile-sheet .ge-title,
+.ge-mobile-sheet .ge-rectangle-title {
+  font-size: 1.05rem !important;
+  padding: 8px 8px !important;
+  margin: 6px 0 10px 0 !important;
+  width: 100% !important;
+  text-align: center;
+}
+
+/* cards and buttons inside easiest */
+.ge-mobile-sheet .find-easiest-btn,
+.ge-mobile-sheet .see-all-options-btn,
+.ge-mobile-sheet .ge-checklist-btn {
+  font-size: 0.9rem !important;
+  width: 100% !important;
+  padding: 9px 10px !important;
+}
+
+/* stop the grid from trying to be two columns inside overlay */
+.ge-mobile-sheet .ge-card-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+/* when the table is open, let the column scroll */
+.mobile-main-column.mobile-table-open {
+  overflow-x: auto;
+  width: 100vw;
+}
+
+/* when the table is open, do not force 2 columns */
+.mobile-main-column.mobile-table-open .ge-card-grid {
+  display: block;
+  width: max-content;
+  max-width: none;
+}
+
+/* keep cards readable */
+.mobile-main-column.mobile-table-open .ge-card {
+  margin-bottom: 24px;
+}
+/* mobile hard fix */
+@media (max-width: 700px) {
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  .ge-container,
+  .mobile-main-column {
+    max-width: 100vw !important;
+  }
+
+  /* fix the icon bar pushing layout to the right */
+  .ge-title-iconbar {
+    margin-right: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
+
+  /* stop the table state from making a super wide grid */
+  .mobile-main-column.mobile-table-open {
+    overflow-x: hidden !important;
+    width: 100vw !important;
+  }
+
+  .mobile-main-column.mobile-table-open .ge-card-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* keep cards inside the screen */
+  .ge-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+.gs-mobile-table td:nth-child(1),
+.gs-mobile-table th:nth-child(1) {
+  padding-right: 4px !important;
+}
+
+.gs-mobile-table td:nth-child(2),
+.gs-mobile-table th:nth-child(2) {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
