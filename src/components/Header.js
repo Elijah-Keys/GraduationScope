@@ -247,7 +247,7 @@ const onLight  = isAbout || isTrackerPage || isRecsPage || isLogin;             
 {/* Right actions (desktop only) */}
 {!isMobile && (
   <div className="gs-header__actions">
-    <NavLink to="/plus" className="gs-header__pill">Get Premium</NavLink>
+  
     {isAuthenticated ? (
       <button className="gs-header__ghostBtn" onClick={onLogout} type="button">Log Out</button>
     ) : (
@@ -377,9 +377,7 @@ const onLight  = isAbout || isTrackerPage || isRecsPage || isLogin;             
         Recommendations
       </button>
 
-      <NavLink to="/plus" onClick={closeMobileMenu} className="gs-sheet__btn gs-sheet__btn--primary">
-        Get Premium
-      </NavLink>
+
 
       {isAuthenticated ? (
         <button onClick={() => { onLogout(); closeMobileMenu(); }} className="gs-sheet__btn" type="button">

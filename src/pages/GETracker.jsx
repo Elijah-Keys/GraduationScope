@@ -207,6 +207,7 @@ function ProgressSummary({
   classToAreas,
   c1c2Fulfilled,
   isMobile,
+  brandBlue = "#20A7EF",
 }) {
   const totalReqs = geRequirements.length;
   const fulfilledCount = geRequirements.reduce((count, req) => {
@@ -278,7 +279,47 @@ function ProgressSummary({
   <span style={{ fontSize: "0.7rem", color: "#555" }}> Complete</span>
 </div>
 
-
+      {/* Desktop-only visual bar */}
+      {!isMobile && (
+        <div style={{ width: "100%", maxWidth: 820, margin: "0 auto 16px" }}>
+          <div
+            role="progressbar"
+            aria-label="Graduation progress"
+            aria-valuenow={progressPercent}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            style={{
+              height: 14,
+              background: "#eef2ff",
+              borderRadius: 9999,
+              overflow: "hidden",
+              boxShadow: "inset 0 1px 2px rgba(0,0,0,0.06)",
+            }}
+          >
+            <div
+              style={{
+                width: `${Math.max(0, Math.min(100, progressPercent))}%`,
+                height: "100%",
+                background: brandBlue,
+                borderRadius: 9999,
+                transition: "width 600ms ease",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: ".9rem",
+              color: "#666",
+              marginTop: 6,
+            }}
+          >
+            <span>{fulfilledCount} of {totalReqs} areas completed</span>
+            <span>{totalReqs - fulfilledCount} to go</span>
+          </div>
+        </div>
+      )}
       {!isMobile && (
         <div
           style={{
@@ -657,15 +698,17 @@ return (
   </h3>
 
   <div
-    style={{
-      display: "flex",
-      gap: 6,
-      flexWrap: isEasiestMobile ? "wrap" : "nowrap",
-      justifyContent: "flex-end",
-      maxWidth: "32vw",
-    }}
-  >
-    {overlayMode !== "all" && !selectedAllClass && (
+  style={{
+    display: "flex",
+    gap: 6,
+    flexWrap: isEasiestMobile ? "wrap" : "nowrap",
+    justifyContent: "flex-end",
+    maxWidth: "32vw",
+  }}
+>
+  {!selectedAllClass && (
+    <>
+      {/* Outline View all */}
       <button
         type="button"
         onClick={() => setOverlayMode("all")}
@@ -681,21 +724,20 @@ return (
       >
         View all
       </button>
-    )}
 
-    {overlayMode !== "easiest" && !selectedAllClass && (
-   <button
-  type="button"
-  onClick={() => {
-    setSelectedAllClass(null);          // force list view
-    setOverlayMode("easiest");
-    findEasiestClasses(area);
-  }}
+      {/* Filled Easiest */}
+      <button
+        type="button"
+        onClick={() => {
+          setSelectedAllClass(null);
+          setOverlayMode("easiest");
+          findEasiestClasses(area);
+        }}
         style={{
-          background: "transparent",
+          background: brandBlue,
           border: "2px solid " + brandBlue,
           borderRadius: 8,
-          color: brandBlue,
+          color: "#fff",
           padding: "5px 8px",
           fontWeight: 700,
           fontSize: "0.7rem",
@@ -703,26 +745,27 @@ return (
       >
         Easiest
       </button>
-    )}
+    </>
+  )}
 
-    {selectedAllClass && (
-      <button
-        type="button"
-        onClick={() => setSelectedAllClass(null)}
-        style={{
-          background: "transparent",
-          border: "2px solid " + brandBlue,
-          borderRadius: 8,
-          color: brandBlue,
-          padding: "5px 8px",
-          fontWeight: 700,
-          fontSize: "0.7rem",
-        }}
-      >
-        Back
-      </button>
-    )}
-  </div>
+  {selectedAllClass && (
+    <button
+      type="button"
+      onClick={() => setSelectedAllClass(null)}
+      style={{
+        background: "transparent",
+        border: "2px solid " + brandBlue,
+        borderRadius: 8,
+        color: brandBlue,
+        padding: "5px 8px",
+        fontWeight: 700,
+        fontSize: "0.7rem",
+      }}
+    >
+      Back
+    </button>
+  )}
+</div>
 </div>
 
 {/* Body */}
@@ -3039,15 +3082,24 @@ onClick={(e) => {
 <button
   onClick={(e) => {
     e.stopPropagation();
-    setSelectedAllClass(null);          // make sure we do not stay in detail mode
+    setSelectedAllClass(null);
     setOverlayMode("easiest");
     findEasiestClasses(areaObj.area);
   }}
-            type="button"
-            style={{ background: "transparent", border: `2px solid ${brandBlue}`, borderRadius: 10, color: brandBlue, padding: "6px 12px", fontWeight: 700, cursor: "pointer" }}
-          >
-            Easiest
-          </button>
+  type="button"
+  style={{
+    background: brandBlue,          // filled
+    border: `2px solid ${brandBlue}`,
+    borderRadius: 10,
+    color: "#fff",                  // white text
+    padding: "6px 12px",
+    fontWeight: 700,
+    cursor: "pointer",
+  }}
+>
+  Easiest
+</button>
+
           <button
             onClick={(e) => { e.stopPropagation(); setSelectedArea(null); }}
             type="button"
