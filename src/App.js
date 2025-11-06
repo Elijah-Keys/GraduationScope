@@ -54,7 +54,10 @@ import { UCSCTOPIC_TO_CLASSES } from "./components/UCSCTopic_To_Classes.jsx";
 import UCSCgeRequirements from "./data/SantaCruzgeRequirements.json";
 import UCSCClassRecommendationPage from "./components/UCSCClassRecommendation.jsx";
 import FooterGuard from "./components/FooterGuard"; // adjust path
-
+import AdTimers from "./ads/AdsTimer.jsx";
+// at the top of App.js
+import seb1 from "./ads/Seb1.jpg";
+import seb2 from "./ads/Seb2.jpg";
 
 
   const areasToShow = [
@@ -417,6 +420,43 @@ return (
    onShowSignUp={() => setShowSignUp(true)}
  onShowLogin={openLogin}
  />
+ 
+
+
+<AdTimers
+  userId={currentUser || "anon"}
+  firstDelaySec={10}
+  gapAfterFirstSec={20}
+  countIdleWhileTesting={true}
+  firstAd={{
+    id: "seb-1",
+    title: "SebBlendzz at Panther Barbershop",
+    text: "Best barber in San Jose",
+    image: seb1,
+    ctaText: "Book now",
+    href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
+    secondaryCtaText: "Instagram",
+    secondaryHref: "https://www.instagram.com/sebblendzz/"
+  }}
+  secondAd={{
+    id: "seb-2",
+    title: "Need a fresh cut in San Jose?",
+    text: "Tap to book with SebBlendzz",
+    image: seb2,
+    ctaText: "Book now",
+    href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
+    secondaryCtaText: "Instagram",
+    secondaryHref: "https://www.instagram.com/sebblendzz/"
+  }}
+/>
+
+
+
+
+
+
+
+
 
     {/* Modals */}
     {showSignUp && (

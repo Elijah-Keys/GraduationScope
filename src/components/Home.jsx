@@ -4,6 +4,7 @@ import UniversitySearch from "./UniversitySearch";
 import "./Home.css";
 import FeatureRibbon from "../components/FeatureRibbon"; // adjust path if needed
 
+
 function useMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   useEffect(() => {
@@ -207,7 +208,6 @@ useEffect(() => {
               with personalized recommendations from Graduation Scope.
             </p>
           </div>
-
           {/* Search */}
           <div
             className="hero-search-wrapper reveal"

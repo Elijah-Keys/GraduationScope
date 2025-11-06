@@ -1206,3 +1206,46 @@
     box-sizing: border-box;
   }
 }
+/* Desktop: make "Log In" brand blue only when both Log In and Sign Up are present */
+.gs-header__actions:has(.gs-header__ghostBtn + .gs-header__ghostBtn)
+  .gs-header__ghostBtn:first-child {
+  background: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+  box-shadow: 0 6px 16px rgba(32,167,239,.30);
+}
+.gs-header__actions:has(.gs-header__ghostBtn + .gs-header__ghostBtn)
+  .gs-header__ghostBtn:first-child:hover {
+  filter: brightness(.96);
+}
+.gs-header__actions:has(.gs-header__ghostBtn + .gs-header__ghostBtn)
+  .gs-header__ghostBtn:first-child:active {
+  filter: brightness(.92);
+}
+.gs-header__actions:has(.gs-header__ghostBtn + .gs-header__ghostBtn)
+  .gs-header__ghostBtn:first-child:focus-visible {
+  outline: 3px solid rgba(32,167,239,.45);
+  outline-offset: 2px;
+}
+
+/* Mobile sheet: make the first auth button (Log In) brand blue when both buttons show */
+.gs-header .gs-sheet__row:has(.gs-sheet__btn + .gs-sheet__btn)
+  .gs-sheet__btn:first-child {
+  background: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+  box-shadow: 0 2px 10px rgba(32,167,239,.30) !important;
+}
+.gs-header .gs-sheet__row:has(.gs-sheet__btn + .gs-sheet__btn)
+  .gs-sheet__btn:first-child:hover {
+  filter: brightness(.96);
+}
+.gs-header .gs-sheet__row:has(.gs-sheet__btn + .gs-sheet__btn)
+  .gs-sheet__btn:first-child:active {
+  filter: brightness(.92);
+}
+.gs-header .gs-sheet__row:has(.gs-sheet__btn + .gs-sheet__btn)
+  .gs-sheet__btn:first-child:focus-visible {
+  outline: 3px solid rgba(32,167,239,.45);
+  outline-offset: 2px;
+}
