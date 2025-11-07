@@ -1,18 +1,15 @@
 {
-  "name": "server",
+  "name": "gs-ads-server",
+  "private": true,
   "version": "1.0.0",
-  "main": "ad-analytics.js",
+  "type": "commonjs",
+  "main": "ad-analytics.cjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ad-analytics.js"
+    "start": "node ad-analytics.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
-  },
-  "type": "module"
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2"
+  }
 }

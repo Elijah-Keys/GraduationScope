@@ -59,6 +59,28 @@ import AdTimers from "./ads/AdsTimer.jsx";
 import seb1 from "./ads/Seb1.jpg";
 import seb2 from "./ads/Seb2.jpg";
 
+// add:
+const FIRST_AD = {
+  id: "sebblendz-1",
+  title: "SebBlendzz at Panther Barbershop",
+  text: "Best barber in San Jose",
+  image: seb1,
+  ctaText: "Book now",
+  href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
+  secondaryCtaText: "Instagram",
+  secondaryHref: "https://www.instagram.com/sebblendzz/"
+};
+
+const SECOND_AD = {
+  id: "sebblendz-2",
+  title: "Need a fresh cut in San Jose?",
+  text: "Tap to book with SebBlendzz",
+  image: seb2,
+  ctaText: "Book now",
+  href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
+  secondaryCtaText: "Instagram",
+  secondaryHref: "https://www.instagram.com/sebblendzz/"
+};
 
   const areasToShow = [
     "A1 Oral Communication",
@@ -425,38 +447,12 @@ return (
 
 <AdTimers
   userId={currentUser || "anon"}
-  firstDelaySec={10}
-  gapAfterFirstSec={20}
+  firstAd={FIRST_AD}
+  secondAd={SECOND_AD}
+  firstDelaySec={30}
+  gapAfterFirstSec={150}
   countIdleWhileTesting={true}
-  firstAd={{
-    id: "seb-1",
-    title: "SebBlendzz at Panther Barbershop",
-    text: "Best barber in San Jose",
-    image: seb1,
-    ctaText: "Book now",
-    href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
-    secondaryCtaText: "Instagram",
-    secondaryHref: "https://www.instagram.com/sebblendzz/"
-  }}
-  secondAd={{
-    id: "seb-2",
-    title: "Need a fresh cut in San Jose?",
-    text: "Tap to book with SebBlendzz",
-    image: seb2,
-    ctaText: "Book now",
-    href: "https://booksy.com/en-us/1493170_sebblendzz_barber-shop_134690_san-jose#ba_s=seo",
-    secondaryCtaText: "Instagram",
-    secondaryHref: "https://www.instagram.com/sebblendzz/"
-  }}
 />
-
-
-
-
-
-
-
-
 
     {/* Modals */}
     {showSignUp && (
