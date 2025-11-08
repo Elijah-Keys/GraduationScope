@@ -7,12 +7,13 @@ export default function Survey() {
   return (
     <div
       style={{
-        marginTop: isMobile ? 150 : 120, // adjust as needed
+        marginTop: isMobile ? 150 : 120,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         padding: isMobile ? "0 12px" : "0",
         boxSizing: "border-box",
+        paddingBottom: isMobile ? 80 : 160 // ← add this for space above footer
       }}
     >
       <iframe
@@ -27,12 +28,11 @@ export default function Survey() {
           maxWidth: isMobile ? 360 : 700,
           borderRadius: 8,
           border: "1px solid #ddd",
-          background: "#fff",
+          background: "#fff"
         }}
       >
         Loading…
       </iframe>
-
     </div>
   );
 }

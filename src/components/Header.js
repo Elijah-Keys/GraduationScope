@@ -68,9 +68,11 @@ useEffect(() => {
 }, [isMobileMenuOpen]);
   // ---- ROUTE FLAGS (ORDER MATTERS) ----
 // ---- ROUTE FLAGS (ORDER MATTERS) ----
+// ---- ROUTE FLAGS (ORDER MATTERS) ----
 const isHome = location.pathname === "/" || location.pathname === "/home";
 const isAbout = location.pathname === "/about";
-const isLogin = location.pathname === "/login"; // ⬅️ NEW
+const isLogin = location.pathname === "/login";
+const isSurvey = location.pathname === "/survey"; // ← add this
 const onUcscRec = location.pathname.startsWith("/santacruzrecommend");
 const isTrackerPage =
   /^\/(tracker|sjsu|chico|berkeley|santacruz)/.test(location.pathname);
@@ -79,9 +81,10 @@ const isRecsPage =
     location.pathname
   );
 
-// Treat /login like a light, compact page so the header doesn’t stretch/flip colors
-const isSticky = isHome || isAbout || isTrackerPage || isRecsPage || isLogin;   // ⬅️ include isLogin
-const onLight  = isAbout || isTrackerPage || isRecsPage || isLogin;             // ⬅️ include isLogin
+// include isSurvey
+const isSticky = isHome || isAbout || isTrackerPage || isRecsPage || isLogin || isSurvey;
+const onLight  = isAbout || isTrackerPage || isRecsPage || isLogin || isSurvey;
+
 
 
 // near the top of Header()

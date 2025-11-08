@@ -3,3 +3,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* survey modal */
+.survey-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center; z-index: 60; }
+.survey-modal { position: relative; width: min(420px, 92vw); background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.2); font-family: Montserrat, system-ui, sans-serif; }
+.survey-modal h3 { margin: 0 0 6px 0; font-size: 20px; }
+.survey-modal p { margin: 0 0 16px 0; line-height: 1.4; }
+.survey-actions { display: flex; gap: 10px; }
+.survey-primary { flex: 1; padding: 10px 14px; border: 0; border-radius: 10px; color: #fff; background: #20A7EF; font-weight: 600; cursor: pointer; }
+.survey-secondary { padding: 10px 14px; border: 1px solid #ddd; border-radius: 10px; background: #fff; cursor: pointer; }
+.survey-x { position: absolute; right: 10px; top: 6px; font-size: 22px; background: transparent; border: 0; cursor: pointer; }

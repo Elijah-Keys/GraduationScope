@@ -58,6 +58,9 @@ import AdTimers from "./ads/AdsTimer.jsx";
 // at the top of App.js
 import seb1 from "./ads/Seb1.jpg";
 import seb2 from "./ads/Seb2.jpg";
+// ADD
+import SurveyModal from "./surveys/SurveyModal.jsx";
+import { useSurveyPrompt } from "./surveys/useSurveyPrompt.js";
 
 // add:
 const FIRST_AD = {
@@ -81,7 +84,9 @@ const SECOND_AD = {
   secondaryCtaText: "Instagram",
   secondaryHref: "https://www.instagram.com/sebblendzz/"
 };
-
+const SURVEY_URL =
+  process.env.REACT_APP_SURVEY_URL || "https://www.graduationscope.com/survey";
+  
   const areasToShow = [
     "A1 Oral Communication",
     "A2 Written Communication I",
@@ -415,6 +420,17 @@ useEffect(() => {
     sessionStorage.getItem("currentUser") ||
     null
   );
+  // ADD survey prompt hook for testing now
+// Survey prompt hook
+const { open: surveyOpen, dismiss: surveyDismiss, take: surveyTake } =
+  useSurveyPrompt({
+    userId: currentUser || "anon",
+    initialDelaySec: 120,      // show right away for testing
+    cooldownHours: 3,        // no cooldown for testing
+    forceTest: true          // force open on load for testing
+  });
+
+
   useEffect(() => {
     if (currentUser) {
       const users = JSON.parse(localStorage.getItem("users") || "{}");
@@ -450,7 +466,7 @@ return (
   firstAd={FIRST_AD}
   secondAd={SECOND_AD}
   firstDelaySec={30}
-  gapAfterFirstSec={150}
+  gapAfterFirstSec={280}
   countIdleWhileTesting={true}
 />
 
@@ -670,6 +686,15 @@ return (
 
     {/* Outside of <Routes> */}
     <Footer isHome={isHome} />
+ 
+<SurveyModal
+  open={surveyOpen}
+  onClose={surveyDismiss}
+  onTake={() => surveyTake(SURVEY_URL)}
+  title="Help us improve GraduationScope!"
+  subtitle="Enter our gift card giveaway by taking a quick survey."
+/>
+
       <FooterGuard />
     {!isHome && <BottomBarA />}
   </>
