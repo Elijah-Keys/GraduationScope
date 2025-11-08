@@ -427,7 +427,7 @@ const { open: surveyOpen, dismiss: surveyDismiss, take: surveyTake } =
     userId: currentUser || "anon",
     initialDelaySec: 120,      // show right away for testing
     cooldownHours: 3,        // no cooldown for testing
-    forceTest: true          // force open on load for testing
+    forceTest: false          // force open on load for testing
   });
 
 
