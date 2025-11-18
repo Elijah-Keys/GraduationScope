@@ -24,218 +24,232 @@
       "Communication and Social Change - HNRS 100"
     ]
   },
-{
-  "area": "Mathematical Concepts and Quantitative Reasoning (GNED 2) ",
-  "classes": [
-    "Personal Financial Literacy - FINA 101",
-    "Patterns of Mathematical Thought - MATH 101",
-    "Introduction to Statistics - MATH 105",
-    "Finite Mathematics for Business - MATH 107",
-    "Statistics of Business and Economics - MATH 108",
-    "Concepts and Structures of Mathematics - MATH 110",
-    "College Algebra - MATH 116",
-    "Trigonometry - MATH 118",
-    "Precalculus Mathematics - MATH 119",
-    "Analytic Geometry and Calculus - MATH 120"
-  ]
-},
-{
-  "area": "Arts (GNED 3A) ",
-  "classes": [
-    "Art Appreciation: Multicultural Perspectives - ARTH 100",
-    "Art History Survey: Prehistory to Medieval - ARTH 110",
-    "Art History Survey: 1800 to the Present - ARTH 130",
-    "Survey of Arts of the Americas, Oceania, and Africa - ARTH 150",
-    "Computer-Assisted Art I - CAGD 110",
-    "Chicana/o Arts and Ideas - CHLX 254",
-    "Introduction to Comics and Graphic Novels - ENGL 204",
-    "Visualizing Local Landscapes - GEOG 139",
-    "Arts - HNRS 101",
-    "Ancient and Medieval Art and Literature - HUMN 220",
-    "Arts and Ideas: Renaissance to the Present",
-    "Food and Film - HUMN 281",
-    "Introduction to Dance - KINE 152",
-    "Social Media Storytelling - MADT 218",
-    "World Music - MUSC 290",
-    "American Music: It's History and International Influence - MUSC 291",
-    "The Appreciation of Music - MUSC 292",
-    "History of Rock Music - MUSC 294",
-    "Introduction to Acting - THEA 112",
-    "World Theatre - THEA 251",
-    "History of the American Musical: Oklahoma! to Hamilton - THEA 254"
-  ]
-},
-{
-  "area": "Humanities (GNED 3B)",
-  "classes": [
-    "American Indian Histories Past and Present - AIST 230",
-    "American Indian Literature - AIST 252",
-    "Language and Culture of Deaf Americans - CMSD 156",
-    "Gender Communication - CMST 234",
-    "English as a Foreign Language - EFLN 170",
-    "Beginning Creative Writing - ENGL 220W",
-    "Women Writers (W) - ENGL 264W",
-    "American Ethnic and Regional Writers",
-    "Beginning French I - FREN 101",
-    "Beginning German I - GERM 101",
-    "Beginning German II - GERM 102",
-    "Intermediate German I - GERM 201",
-    "Intermediate German II - GERM 202",
-    "Islam and the World - HIST 261",
-    "Humanities (W) - HNRS 102W",
-    "Asian Film and Literature (W) - HUMN 224W",
-    "Beginning Italian I - ITAL 101",
-    "Lifestyles and Livelihoods in the Italian Renaissance - ITAL 260",
-    "Beginning Japanese I - JAPN 101",
-    "Beginning Japanese II - JAPN 102",
-    "Intermediate Japanese I - JAPN 201",
-    "Intermediate Japanese II - JAPN 202",
-    "Digital Literacy and Media Technology - JOUR 255",
-    "Latin American Film and Culture - LAST 120",
-    "Introduction to Philosophy - PHIL 101",
-    "The Good Life - PHIL 104",
-    "Ethics for College Life and Beyond - PHIL 106",
-    "Ethics of Artificial Intelligence - PHIL 111",
-    "Environmental Ethics - PHIL 129",
-    "Philosophy and Video Games - PHIL 133",
-    "Introduction to Spiritual Traditions of Asia - RELS 110",
-    "Introduction to Spirituality and Religion in California - RELS 180",
-    "Dying, Death, and Afterlife - RELS 264",
-    "Dying, Death, and Afterlife (W) - RELS 264W",
-    "Women and Religion - RELS 275",
-    "Beginning Spanish I - SPAN 101",
-    "Beginning Spanish II - SPAN 102",
-    "Intermediate Spanish I - SPAN 201",
-    "Intermediate Spanish for Healthcare - SPAN 201C",
-    "Intermediate Spanish II - SPAN 202",
-    "Intermediate Spanish for Heritage Speakers - SPAN 202N",
-    "Science Fiction - TECH 182"
-  ]
-},
-{
-  "area": "Social and Behavioral Sciences (GNED 4)",
-  "classes": [
-    "Introduction to Agricultural Business and Economics - ABUS 101",
-    "Introduction to Archaeology - ANTH 112",
-    "Magic, Witchcraft, and Religion - ANTH 140",
-    "Marriage and Family Relationships - CHLD 255",
-    "Introduction to Criminal Justice - CRIM 250",
-    "Principles of Macroeconomic Analysis - ECON 102",
-    "Principles of Microeconomic Analysis - ECON 103",
-    "Peoples, Places, and Environments - GEOG 102",
-    "California Cultural Landscapes - GEOG 105",
-    "World History to 1400 - HIST 101",
-    "Pop Culture and Media Innovation - JOUR 210",
-    "Gender and Sexuality in Media - JOUR 211",
-    "Disability and Physical Activity in the Media - KINE 295",
-    "Latin America Today - LAST 110",
-    "Law, Politics, and Justice - LEGL 112",
-    "Health at Every Size: A Non-Diet Approach to Wellness (W) - NFSC 200W",
-    "Human Sexuality - PHHA 265",
-    "Principles of Psychology - PSYC 101",
-    "Developmental Wellness - PYSC 152",
-    "Diversity in Public Lands - RHPM 210",
-    "Introduction to Sociology - SOCI 100",
-    "Sociology of Sexuality - SOCI 133",
-    "Social Welfare Institutions: A Response to Power and Scarcity - SWRK 170",
-    "Transitions and Transformation: Academic Identity and Success - UNIV 120",
-    "Introduction to Women's Studies - WMST 170",
-    "Women Internationally - WMST 233"
-  ]
-},
-{
-  "area": "Physical Science (GNED 5A)",
-  "classes": [
-    "Introduction to Astronomy: Survey of the Cosmos - ASTR 100",
-    "General Chemistry for Applied Sciences - CHEM 107",
-    "Organic Chemistry for Applied Sciences - CHEM 108",
-    "General Chemistry I - CHEM 111",
-    "Fun with Electronics and Systems - EECE 110",
-    "Our Changing Planet - ERTH 101",
-    "Physical Geology - ERTH 102",
-    "Oceanography - ERTH 110",
-    "Introduction to Environmental Science - ERTH 130",
-    "Earth Systems and Physical Geography - GEOG 101",
-    "General Physics I - PHYS 202A",
-    "Physics for Students of Science and Engineering: Mechanics - PHYS 204A"
-  ]
-},
-{
-  "area": "Biological Science (GNED 5B)",
-  "classes": [
-    "Introduction to Biological Anthropology - ANTH 111",
-    "Introduction to Living Systems - BIOL 102",
-    "Human Anatomy - BIOL 103",
-    "Human Physiology - BIOL 104",
-    "Food, Fiber, and Drugs - BIOL 105",
-    "Principles of Ecological, Evolutionary, and Organismal Biology - BIOL 161",
-    "Principles of Cellular and Molecular Biology - BIOL 162",
-    "Principles of Physiology and Development - BIOL 163",
-    "Biological Processes in Environmental Engineering - CIVL 175",
-    "Basic Nutrition - NFSC 100",
-    "Introduction to Plant Science - PSSC 101"
-  ]
-},
-{
-  "area": "Laboratory (GNED 5C)",
-  "classes": [
-    "Introduction to Biological Anthropology - ANTH 111",
-    "Introduction to Astronomy: Survey of the Cosmos - ASTR 100",
-    "Introduction to Living Systems - BIOL 102",
-    "Human Anatomy - BIOL 103",
-    "Human Physiology - BIOL 104",
-    "Principles of Ecological, Evolutionary, and Organismal Biology - BIOL 161",
-    "Principles of Cellular and Molecular Biology - BIOL 162",
-    "General Chemistry for Applied Sciences - CHEM 107",
-    "Organic Chemistry for Applied Sciences - CHEM 108",
-    "General Chemistry I - CHEM 111",
-    "Fun with Electronics and Systems - EECE 110",
-    "Earth Systems and Physical Geography Lab - GEOG 101L",
-    "General Physics I - PHYS 202A",
-    "Physics for Students of Science and Engineering: Mechanics - PHYS 204A"
-  ]
-},
-{
-  "area": "Ethnic Studies (GNED 6)",
-  "classes": [
-    "Introduction to Asian Studies - AAST 110",
-    "Introduction to the Asian American Experience - AAST 152",
-    "Introduction to Critical Hmong Studies - AAST 330",
-    "Introduction to Black/African American Studies - AFAM 170",
-    "Introduction to American Indian/US Native American Studies - AIST 170",
-    "American Indian Storytelling/Oral Narrative - AIST 365",
-    "Introduction to Latinx - CHLX 157",
-    "Mexican American History - CHLX 235",
-    "Honors Ethnic Studies Methodologies - HNRS 300",
-    "Learning from Women of Color in Leadership - MCGS 145",
-    "Introduction to Intersectional Ethnic Studies - MCGS 155",
-    "Introduction to Intersectional Ethnic Studies (W) - MCGS 155W"
-  ]
-},
-{
-  "area": "Lifelong Learning and Self-Development (E)",
-  "classes": [
-    "Child Development - CHLD 252",
-    "Intercultural Communication - CMST 235",
-    "Environmental Literacy - ENVL 105",
-    "Introduction to International Engagement (W) - INST 110W",
-    "Physical Activity and Wellness: A Way of Life - KINE 110",
-    "World Sports and Games - KINE 247",
-    "Design Thinking - MADT 102",
-    "The Meaning of Life - PHIL 207",
-    "Leisure and Life - RPHM 180"
-  ]
-},{
-  "area": "American Institutions: US History",
-  "classes": [
-    "United States History - HIST 130"
-  ]
-}
+  {
+    "area": "Mathematical Concepts and Quantitative Reasoning (GNED 2) ",
+    "classes": [
+      "Personal Financial Literacy - FINA 101",
+      "Patterns of Mathematical Thought - MATH 101",
+      "Introduction to Statistics - MATH 105",
+      "Finite Mathematics for Business - MATH 107",
+      "Statistics of Business and Economics - MATH 108",
+      "Concepts and Structures of Mathematics - MATH 110",
+      "College Algebra - MATH 116",
+      "Trigonometry - MATH 118",
+      "Precalculus Mathematics - MATH 119",
+      "Analytic Geometry and Calculus - MATH 120"
+    ]
+  },
+  {
+    "area": "Arts (GNED 3A) ",
+    "classes": [
+      "Art Appreciation: Multicultural Perspectives - ARTH 100",
+      "Art History Survey: Prehistory to Medieval - ARTH 110",
+      "Art History Survey: 1800 to the Present - ARTH 130",
+      "Survey of Arts of the Americas, Oceania, and Africa - ARTH 150",
+      "Computer-Assisted Art I - CAGD 110",
+      "Chicana/o Arts and Ideas - CHLX 254",
+      "Introduction to Comics and Graphic Novels - ENGL 204",
+      "Visualizing Local Landscapes - GEOG 139",
+      "Arts - HNRS 101",
+      "Ancient and Medieval Art and Literature - HUMN 220",
+      "Arts and Ideas: Renaissance to the Present",
+      "Food and Film - HUMN 281",
+      "Introduction to Dance - KINE 152",
+      "Social Media Storytelling - MADT 218",
+      "World Music - MUSC 290",
+      "American Music: It's History and International Influence - MUSC 291",
+      "The Appreciation of Music - MUSC 292",
+      "History of Rock Music - MUSC 294",
+      "Introduction to Acting - THEA 112",
+      "World Theatre - THEA 251",
+      "History of the American Musical: Oklahoma! to Hamilton - THEA 254",
+      "Art History Survey: Renaissance to 1800 - ARTH 120",
+      "Chicana/o Arts and Ideas - HUMN 254",
+      "Chicana/o Arts and Ideas - LANC 254",
+      "Social Media Photography - MADT 217",
+      "Introduction to Theatre Arts - THEA 110"
+    ]
+  },
+  {
+    "area": "Humanities (GNED 3B)",
+    "classes": [
+      "Global Adaptations of Shakespeare in Film - ENGL 203",
+      "Women Writers (W) - ENGL 261W",
+      "Beginning French II - FREN 102",
+      "American Indian Histories Past and Present - AIST 230",
+      "American Indian Literature - AIST 252",
+      "Language and Culture of Deaf Americans - CMSD 156",
+      "Gender Communication - CMST 234",
+      "English as a Foreign Language - EFLN 170",
+      "Beginning Creative Writing - ENGL 220W",
+      "Women Writers (W) - ENGL 264W",
+      "American Ethnic and Regional Writers",
+      "Beginning French I - FREN 101",
+      "Beginning German I - GERM 101",
+      "Beginning German II - GERM 102",
+      "Intermediate German I - GERM 201",
+      "Intermediate German II - GERM 202",
+      "Islam and the World - HIST 261",
+      "Humanities (W) - HNRS 102W",
+      "Asian Film and Literature (W) - HUMN 224W",
+      "Beginning Italian I - ITAL 101",
+      "Lifestyles and Livelihoods in the Italian Renaissance - ITAL 260",
+      "Beginning Japanese I - JAPN 101",
+      "Beginning Japanese II - JAPN 102",
+      "Intermediate Japanese I - JAPN 201",
+      "Intermediate Japanese II - JAPN 202",
+      "Digital Literacy and Media Technology - JOUR 255",
+      "Latin American Film and Culture - LAST 120",
+      "Introduction to Philosophy - PHIL 101",
+      "The Good Life - PHIL 104",
+      "Ethics for College Life and Beyond - PHIL 106",
+      "Ethics of Artificial Intelligence - PHIL 111",
+      "Environmental Ethics - PHIL 129",
+      "Philosophy and Video Games - PHIL 133",
+      "Introduction to Spiritual Traditions of Asia - RELS 110",
+      "Introduction to Spirituality and Religion in California - RELS 180",
+      "Dying, Death, and Afterlife - RELS 264",
+      "Dying, Death, and Afterlife (W) - RELS 264W",
+      "Women and Religion - RELS 275",
+      "Beginning Spanish I - SPAN 101",
+      "Beginning Spanish II - SPAN 102",
+      "Intermediate Spanish I - SPAN 201",
+      "Intermediate Spanish for Healthcare - SPAN 201C",
+      "Intermediate Spanish II - SPAN 202",
+      "Intermediate Spanish for Heritage Speakers - SPAN 202N",
+      "Science Fiction - TECH 182"
+    ]
+  },
+  {
+    "area": "Social and Behavioral Sciences (GNED 4)",
+    "classes": [
+      "Introduction to Agricultural Business and Economics - ABUS 101",
+      "Introduction to Archaeology - ANTH 112",
+      "Magic, Witchcraft, and Religion - ANTH 140",
+      "Marriage and Family Relationships - CHLD 255",
+      "Introduction to Criminal Justice - CRIM 250",
+      "Principles of Macroeconomic Analysis - ECON 102",
+      "Principles of Microeconomic Analysis - ECON 103",
+      "Peoples, Places, and Environments - GEOG 102",
+      "California Cultural Landscapes - GEOG 105",
+      "World History to 1400 - HIST 101",
+      "Pop Culture and Media Innovation - JOUR 210",
+      "Gender and Sexuality in Media - JOUR 211",
+      "Disability and Physical Activity in the Media - KINE 295",
+      "Latin America Today - LAST 110",
+      "Law, Politics, and Justice - LEGL 112",
+      "Health at Every Size: A Non-Diet Approach to Wellness (W) - NFSC 200W",
+      "Human Sexuality - PHHA 265",
+      "Principles of Psychology - PSYC 101",
+      "Developmental Wellness - PYSC 152",
+      "Diversity in Public Lands - RHPM 210",
+      "Introduction to Sociology - SOCI 100",
+      "Sociology of Sexuality - SOCI 133",
+      "Social Welfare Institutions: A Response to Power and Scarcity - SWRK 170",
+      "Transitions and Transformation: Academic Identity and Success - UNIV 120",
+      "Introduction to Women's Studies - WMST 170",
+      "Women Internationally - WMST 233",
+      "Vital Political Problems - POLS 101",
+      "Socio-Cultural Context of Psychological Development - PSYC 151",
+      "Sociology of Popular Culture - SOCI 227",
+      "Food Justice - MCGS 240",
+      "Food Justice - SOCI 240",
+      "Gender and Sexuality in Media - WMST 211"
+    ]
+  },
+  {
+    "area": "Physical Science (GNED 5A)",
+    "classes": [
+      "Introduction to Astronomy: Survey of the Cosmos - ASTR 100",
+      "General Chemistry for Applied Sciences - CHEM 107",
+      "Organic Chemistry for Applied Sciences - CHEM 108",
+      "General Chemistry I - CHEM 111",
+      "Fun with Electronics and Systems - EECE 110",
+      "Our Changing Planet - ERTH 101",
+      "Physical Geology - ERTH 102",
+      "Oceanography - ERTH 110",
+      "Introduction to Environmental Science - ERTH 130",
+      "Earth Systems and Physical Geography - GEOG 101",
+      "General Physics I - PHYS 202A",
+      "Physics for Students of Science and Engineering: Mechanics - PHYS 204A",
+      "Introduction to Astronomy: Survey of the Cosmos - PHYS 100",
+      "Introduction to Earth System Science - SCED 101",
+      "Physical Sciences - HNRS 103"
+    ]
+  },
+  {
+    "area": "Biological Science (GNED 5B)",
+    "classes": [
+      "Introduction to Biological Anthropology - ANTH 111",
+      "Introduction to Living Systems - BIOL 102",
+      "Human Anatomy - BIOL 103",
+      "Human Physiology - BIOL 104",
+      "Food, Fiber, and Drugs - BIOL 105",
+      "Principles of Ecological, Evolutionary, and Organismal Biology - BIOL 161",
+      "Principles of Cellular and Molecular Biology - BIOL 162",
+      "Principles of Physiology and Development - BIOL 163",
+      "Biological Processes in Environmental Engineering - CIVL 175",
+      "Basic Nutrition - NFSC 100",
+      "Introduction to Plant Science - PSSC 101"
+    ]
+  },
+  {
+    "area": "Laboratory (GNED 5C)",
+    "classes": [
+      "Introduction to Biological Anthropology - ANTH 111",
+      "Introduction to Astronomy: Survey of the Cosmos - ASTR 100",
+      "Introduction to Living Systems - BIOL 102",
+      "Human Anatomy - BIOL 103",
+      "Human Physiology - BIOL 104",
+      "Principles of Ecological, Evolutionary, and Organismal Biology - BIOL 161",
+      "Principles of Cellular and Molecular Biology - BIOL 162",
+      "General Chemistry for Applied Sciences - CHEM 107",
+      "Organic Chemistry for Applied Sciences - CHEM 108",
+      "General Chemistry I - CHEM 111",
+      "Fun with Electronics and Systems - EECE 110",
+      "Earth Systems and Physical Geography Lab - GEOG 101L",
+      "General Physics I - PHYS 202A",
+      "Physics for Students of Science and Engineering: Mechanics - PHYS 204A"
+    ]
+  },
+  {
+    "area": "Ethnic Studies (GNED 6)",
+    "classes": [
+      "African American History - AFAM 231",
+      "Mexican American History - HIST 235",
+      "Introduction to Asian Studies - AAST 110",
+      "Introduction to the Asian American Experience - AAST 152",
+      "Introduction to Critical Hmong Studies - AAST 330",
+      "Introduction to Black/African American Studies - AFAM 170",
+      "Introduction to American Indian/US Native American Studies - AIST 170",
+      "American Indian Storytelling/Oral Narrative - AIST 365",
+      "Introduction to Latinx - CHLX 157",
+      "Mexican American History - CHLX 235",
+      "Honors Ethnic Studies Methodologies - HNRS 300",
+      "Learning from Women of Color in Leadership - MCGS 145",
+      "Introduction to Intersectional Ethnic Studies - MCGS 155",
+      "Introduction to Intersectional Ethnic Studies (W) - MCGS 155W"
+    ]
+  },
+  {
+    "area": "Lifelong Learning and Self-Development (E)",
+    "classes": [
+      "Child Development - CHLD 252",
+      "Children in a Changing World - CHLD 272",
+      "Intercultural Communication - CMST 235",
+      "Environmental Literacy - ENVL 105",
+      "Introduction to International Engagement (W) - INST 110W",
+      "Physical Activity and Wellness: A Way of Life - KINE 110",
+      "World Sports and Games - KINE 247",
+      "Design Thinking - MADT 102",
+      "The Meaning of Life - PHIL 207",
+      "Leisure and Life - RHPM 180"
+    ]
+  },
+  {
+    "area": "American Institutions: US History",
+    "classes": [
+      "United States History - HIST 130"
+    ]
+  }
 ]
-
-
-
-
-
-
-
